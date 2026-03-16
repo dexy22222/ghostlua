@@ -1,19 +1,39 @@
+// ── CORS proxy helper (fallback if primary fails) ─────────────────────────────
+async function _fetchWithCors(url) {
+  const proxies = [
+    (u) => `https://corsproxy.io/?url=${encodeURIComponent(u)}`,
+    (u) => `https://api.allorigins.win/raw?url=${encodeURIComponent(u)}`,
+  ];
+  let lastErr;
+  for (const toProxy of proxies) {
+    try {
+      const res = await fetch(toProxy(url), { signal: AbortSignal.timeout(12000) });
+      if (res.ok) return res;
+      lastErr = new Error(`HTTP ${res.status}`);
+    } catch (e) {
+      lastErr = e;
+    }
+  }
+  throw lastErr || new Error('Request failed');
+}
+
 // ── Profile State ─────────────────────────────────────────────────────────────
 let _ps = {
-  steamId64:  null,
-  name:       null,
-  avatar:     null,
-  isPublic:   false,
-  currentTab: 'overview',
-  inGameName: '',
-  inGameAppId:'',
-  hoursWeek:  '',
-  gamesCount: undefined,
-  totalHours: undefined,
-  mostPlayed: null,
-  games:      null,
-  friends:    null,
-  wishlist:   null,
+  steamId64:   null,
+  name:        null,
+  avatar:      null,
+  isPublic:    false,
+  currentTab:  'overview',
+  inGameName:  '',
+  inGameAppId: '',
+  hoursWeek:   '',
+  gamesCount:  undefined,
+  totalHours:  undefined,
+  mostPlayed:  null,
+  games:       null,
+  friends:     null,
+  wishlist:    null,
+  gamesLoading: false,
 };
 
 window._lastProfileGames = null;
@@ -140,9 +160,19 @@ function _loadOverviewTab(content) {
   }
 
   if (!html) {
-    html = `<div class="text-center py-4 text-slate-600 text-xs">
-      <i class="fa-solid fa-info-circle mr-1"></i>No overview data available
-    </div>`;
+    if (_ps.gamesLoading && _ps.isPublic) {
+      html = `<div class="text-center py-4 text-slate-600 text-xs">
+        <i class="fa-solid fa-spinner animate-spin mr-1 text-teal-400/60"></i>Loading your games…
+      </div>`;
+    } else if (_ps.isPublic) {
+      html = `<div class="text-center py-4 text-slate-600 text-xs">
+        <i class="fa-solid fa-info-circle mr-1"></i>Overview data is limited. Try the <button onclick="switchProfileTab('games')" class="text-teal-400 hover:text-teal-300 font-semibold underline">Games</button> tab.
+      </div>`;
+    } else {
+      html = `<div class="text-center py-4 text-slate-600 text-xs">
+        <i class="fa-solid fa-lock mr-1 text-slate-700"></i>Profile is private. Set your profile to public to see games.
+      </div>`;
+    }
   }
 
   content.innerHTML = html;
@@ -243,7 +273,7 @@ async function _loadFriendsTab(content) {
 
   try {
     const url = `https://steamcommunity.com/profiles/${_ps.steamId64}/friends/?xml=1`;
-    const res  = await fetch(`https://corsproxy.io/?url=${encodeURIComponent(url)}`);
+    const res  = await _fetchWithCors(url);
     if (!res.ok) throw new Error('Friends page unavailable');
     const text = await res.text();
     const xml  = new DOMParser().parseFromString(text, 'text/xml');
@@ -318,7 +348,7 @@ async function _loadWishlistTab(content) {
 
   try {
     const url = `https://store.steampowered.com/wishlist/profiles/${_ps.steamId64}/wishlistdata/?p=0`;
-    const res  = await fetch(`https://corsproxy.io/?url=${encodeURIComponent(url)}`);
+    const res  = await _fetchWithCors(url);
     if (!res.ok) throw new Error('Wishlist unavailable');
     const data = await res.json();
 
@@ -365,7 +395,7 @@ function _renderWishlistInTab(content, items) {
 // ── Owned games loader (shared) ───────────────────────────────────────────────
 async function loadOwnedGames(steamId64) {
   const url  = `https://steamcommunity.com/profiles/${steamId64}/games/?tab=all`;
-  const res  = await fetch(`https://corsproxy.io/?url=${encodeURIComponent(url)}`);
+  const res  = await _fetchWithCors(url);
   if (!res.ok) throw new Error('Games page unavailable');
   const html = await res.text();
 
@@ -404,6 +434,7 @@ async function lookupProfile(input) {
     currentTab: 'overview', inGameName: '', inGameAppId: '',
     hoursWeek: '', gamesCount: undefined, totalHours: undefined,
     mostPlayed: null, games: null, friends: null, wishlist: null,
+    gamesLoading: false,
   };
 
   prof.innerHTML = `
@@ -422,7 +453,7 @@ async function lookupProfile(input) {
     else if (/^\d{17}$/.test(trimmed)) xmlUrl = `https://steamcommunity.com/profiles/${trimmed}/?xml=1`;
     else                               xmlUrl = `https://steamcommunity.com/id/${trimmed}/?xml=1`;
 
-    const res  = await fetch(`https://corsproxy.io/?url=${encodeURIComponent(xmlUrl)}`);
+    const res  = await _fetchWithCors(xmlUrl);
     const text = await res.text();
     const xml  = new DOMParser().parseFromString(text, 'text/xml');
 
@@ -498,17 +529,34 @@ async function lookupProfile(input) {
 
     // Kick off game loading in background to populate stats
     if (_ps.isPublic && !_ps.games) {
+      _ps.gamesLoading = true;
+      const content = document.getElementById('ptab-content');
+      if (content) _loadOverviewTab(content);
+
       loadOwnedGames(_ps.steamId64).then(games => {
-        _ps.games      = games;
-        _ps.gamesCount = games.length;
-        _ps.totalHours = games.reduce((s, g) => s + g.hours, 0);
+        _ps.games       = games;
+        _ps.gamesCount  = games.length;
+        _ps.totalHours  = games.reduce((s, g) => s + g.hours, 0);
+        _ps.gamesLoading = false;
+        // Populate mostPlayed from top 6 games (Steam XML often returns empty)
+        _ps.mostPlayed  = games.slice(0, 6).map(g => ({
+          appId: g.appId,
+          name:  g.name,
+          hours: g.hours,
+          logo:  g.appId ? `https://cdn.akamai.steamstatic.com/steam/apps/${g.appId}/header.jpg` : '',
+        }));
         window._lastProfileGames = games.slice(0, 200).map(g => ({ appId: g.appId, name: g.name }));
-        // Refresh overview stats if user is still on it
         if (_ps.currentTab === 'overview') {
           const c = document.getElementById('ptab-content');
           if (c) _loadOverviewTab(c);
         }
-      }).catch(() => {});
+      }).catch(() => {
+        _ps.gamesLoading = false;
+        if (_ps.currentTab === 'overview') {
+          const c = document.getElementById('ptab-content');
+          if (c) _loadOverviewTab(c);
+        }
+      });
     }
 
   } catch (err) {
