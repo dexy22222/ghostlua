@@ -32,7 +32,6 @@ let _ps = {
   mostPlayed:  null,
   games:       null,
   friends:     null,
-  wishlist:    null,
   gamesLoading: false,
 };
 
@@ -56,7 +55,6 @@ function _renderTabBar(activeTab) {
     { id: 'overview', icon: 'fa-user',       label: 'Overview' },
     { id: 'games',    icon: 'fa-gamepad',     label: 'Games'    },
     { id: 'friends',  icon: 'fa-user-group',  label: 'Friends'  },
-    { id: 'wishlist', icon: 'fa-bookmark',    label: 'Wishlist' },
   ];
   return `
     <div class="ptab-bar">
@@ -85,7 +83,6 @@ function switchProfileTab(tab) {
     case 'overview': _loadOverviewTab(content); break;
     case 'games':    _loadGamesTab(content);    break;
     case 'friends':  _loadFriendsTab(content);  break;
-    case 'wishlist': _loadWishlistTab(content);  break;
   }
 }
 
@@ -272,6 +269,15 @@ async function _loadFriendsTab(content) {
   </div>`;
 
   try {
+    const steamApiFriends = await _loadFriendsViaSteamApi(_ps.steamId64);
+    if (steamApiFriends?.length) {
+      _ps.friends = steamApiFriends;
+      _renderFriendsInTab(content, steamApiFriends);
+      return;
+    }
+  } catch (_) {}
+
+  try {
     const url = `https://steamcommunity.com/profiles/${_ps.steamId64}/friends/?xml=1`;
     const res  = await _fetchWithCors(url);
     if (!res.ok) throw new Error('Friends page unavailable');
@@ -335,87 +341,117 @@ function _renderFriendsInTab(content, friends) {
     </div>`;
 }
 
-// ── Wishlist Tab ──────────────────────────────────────────────────────────────
-async function _loadWishlistTab(content) {
-  if (_ps.wishlist) {
-    _renderWishlistInTab(content, _ps.wishlist);
-    return;
-  }
-
-  content.innerHTML = `<div class="flex items-center justify-center gap-2 py-6 text-slate-600 text-xs">
-    <i class="fa-solid fa-spinner animate-spin text-teal-400/60"></i> Loading wishlist…
-  </div>`;
-
-  try {
-    const url = `https://store.steampowered.com/wishlist/profiles/${_ps.steamId64}/wishlistdata/?p=0`;
-    const res  = await _fetchWithCors(url);
-    if (!res.ok) throw new Error('Wishlist unavailable');
-    const data = await res.json();
-
-    const items = Object.entries(data).map(([appId, g]) => ({
-      appId,
-      name:     g.name || appId,
-      priority: g.priority ?? 999,
-      added:    g.added ? new Date(g.added * 1000) : null,
-    })).sort((a, b) => a.priority - b.priority).slice(0, 40);
-
-    if (!items.length) throw new Error('Wishlist is empty or private');
-    _ps.wishlist = items;
-    _renderWishlistInTab(content, items);
-  } catch (e) {
-    content.innerHTML = `<div class="text-center py-5 text-slate-600 text-xs">
-      <i class="fa-solid fa-bookmark mr-1 text-slate-700"></i>${e.message || 'Wishlist is private or empty'}
-    </div>`;
-  }
+// ── Steam API (when Worker + STEAM_API_KEY configured) ───────────────────────
+async function _steamApi(path, params = {}) {
+  const url = new URL(path, window.location.origin);
+  Object.entries(params).forEach(([k, v]) => url.searchParams.set(k, v));
+  const res = await fetch(url.toString(), { signal: AbortSignal.timeout(15000) });
+  if (!res.ok) throw new Error(`API ${res.status}`);
+  return res.json();
 }
 
-function _renderWishlistInTab(content, items) {
-  content.innerHTML = `
-    <div class="mb-2">
-      <span class="text-[10px] text-slate-600">
-        <span class="font-bold text-slate-400">${items.length}</span> wishlist items
-      </span>
-    </div>
-    <div class="space-y-0.5 max-h-[300px] overflow-y-auto profile-games-list">
-      ${items.map((g, i) => `
-        <div class="flex items-center gap-2.5 py-1.5 px-1 hover:bg-white/[0.03] rounded-lg transition-colors group/wl">
-          <div class="profile-game-img-wrap flex-shrink-0">
-            <img src="${steamImg(g.appId)}" loading="lazy" class="profile-game-img" onerror="_prFb(this)" />
-          </div>
-          <div class="flex-1 min-w-0">
-            <div class="text-[11px] font-medium text-slate-300 truncate">${g.name}</div>
-            <div class="text-[9px] text-slate-700">#${i + 1}${g.added ? ` · Added ${_fmtDate(g.added)}` : ''}</div>
-          </div>
-          <button onclick="event.stopPropagation();quickDownload(${g.appId},${_jqAttr(g.name)},'','',[])"
-            class="flex-shrink-0 text-[9px] px-2 py-0.5 bg-slate-800/60 text-slate-500 group-hover/wl:text-teal-400 group-hover/wl:bg-teal-600/15 group-hover/wl:border-teal-600/30 border border-slate-700/50 rounded-md transition-colors font-semibold">Get</button>
-        </div>`).join('')}
-    </div>`;
+async function _resolveSteamId(input) {
+  const trimmed = input.trim().replace(/\/$/, '');
+  const mProfiles = trimmed.match(/steamcommunity\.com\/profiles\/(\d+)/i);
+  const mId = trimmed.match(/steamcommunity\.com\/id\/([^\/\?]+)/i);
+  if (mProfiles) return mProfiles[1];
+  if (/^\d{17}$/.test(trimmed)) return trimmed;
+  if (mId || !/^\d+$/.test(trimmed)) {
+    try {
+      const vanity = mId ? mId[1] : trimmed;
+      const data = await _steamApi('/api/steam/resolve', { vanity });
+      if (data?.response?.steamid) return data.response.steamid;
+    } catch (_) {}
+  }
+  return null;
 }
 
-// ── Owned games loader (shared) ───────────────────────────────────────────────
+async function _loadProfileViaSteamApi(steamId64) {
+  const data = await _steamApi('/api/steam/summary', { steamids: steamId64 });
+  const players = data?.response?.players;
+  if (!players?.length) return null;
+  const p = players[0];
+  const gameExtra = p.gameextrainfo || '';
+  const gameId = p.gameid || '';
+  return {
+    steamId64,
+    name: p.personaname || 'Unknown',
+    avatar: p.avatarfull || p.avatarmedium || '',
+    isPublic: true,
+    hoursWeek: '',
+    inGameName: gameExtra,
+    inGameAppId: gameId,
+    realname: p.realname || '',
+    state: p.personastate,
+    memberSince: '',
+    location: '',
+    vacBanned: false,
+    mostPlayed: [],
+  };
+}
+
+async function _loadGamesViaSteamApi(steamId64) {
+  const data = await _steamApi('/api/steam/games', { steamid: steamId64 });
+  const list = data?.response?.games;
+  if (!list?.length) return null;
+  return list.map(g => ({
+    appId: String(g.appid),
+    name: g.name || '',
+    hours: (g.playtime_forever || 0) / 60,
+    hoursRecent: (g.playtime_2weeks || 0) / 60,
+    lastPlayed: g.rtime_last_played ? new Date(g.rtime_last_played * 1000) : null,
+  })).filter(g => g.appId && g.name).sort((a, b) => b.hours - a.hours);
+}
+
+async function _loadFriendsViaSteamApi(steamId64) {
+  const data = await _steamApi('/api/steam/friends', { steamid: steamId64 });
+  const list = data?.friendslist?.friends;
+  if (!list?.length) return null;
+  const ids = list.slice(0, 40).map(f => f.steamid).join(',');
+  const summaries = await _steamApi('/api/steam/summary', { steamids: ids });
+  const players = summaries?.response?.players || [];
+  const byId = Object.fromEntries(players.map(p => [p.steamid, p]));
+  return list.map(f => {
+    const p = byId[f.steamid];
+    const state = p?.personastate === 0 ? 'offline' : p?.personastate === 1 ? 'online' : p?.personastate === 2 ? 'in-game' : 'offline';
+    return {
+      steamId64: f.steamid,
+      name: p?.personaname || 'Unknown',
+      avatar: p?.avatarfull || p?.avatarmedium || '',
+      state,
+    };
+  });
+}
+
+// ── Owned games loader (fallback when Steam API not available) ────────────────
 async function loadOwnedGames(steamId64) {
-  const url  = `https://steamcommunity.com/profiles/${steamId64}/games/?tab=all`;
-  const res  = await _fetchWithCors(url);
+  try {
+    const games = await _loadGamesViaSteamApi(steamId64);
+    if (games?.length) return games;
+  } catch (_) {}
+
+  const url = `https://steamcommunity.com/profiles/${steamId64}/games/?tab=all`;
+  const res = await _fetchWithCors(url);
   if (!res.ok) throw new Error('Games page unavailable');
   const html = await res.text();
 
-  const marker   = 'var rgGames = [';
+  const marker = 'var rgGames = [';
   const startIdx = html.indexOf(marker);
   if (startIdx === -1) throw new Error('Game data not found — profile may be private');
 
   let depth = 0, i = startIdx + marker.length - 1;
   for (; i < html.length; i++) {
-    if      (html[i] === '[') depth++;
+    if (html[i] === '[') depth++;
     else if (html[i] === ']') { depth--; if (depth === 0) break; }
   }
 
-  const raw   = JSON.parse(html.slice(startIdx + marker.length - 1, i + 1));
+  const raw = JSON.parse(html.slice(startIdx + marker.length - 1, i + 1));
   const games = raw.map(g => ({
-    appId:      String(g.appid),
-    name:       g.name || '',
-    hours:      g.hours_forever ? parseFloat(String(g.hours_forever).replace(/,/g, '')) : 0,
-    hoursRecent:g.hours         ? parseFloat(String(g.hours).replace(/,/g, ''))         : 0,
-    lastPlayed: g.last_played   ? new Date(g.last_played * 1000)                        : null,
+    appId: String(g.appid),
+    name: g.name || '',
+    hours: g.hours_forever ? parseFloat(String(g.hours_forever).replace(/,/g, '')) : 0,
+    hoursRecent: g.hours ? parseFloat(String(g.hours).replace(/,/g, '')) : 0,
+    lastPlayed: g.last_played ? new Date(g.last_played * 1000) : null,
   })).filter(g => g.appId && g.name).sort((a, b) => b.hours - a.hours);
 
   if (!games.length) throw new Error('No games found');
@@ -433,7 +469,7 @@ async function lookupProfile(input) {
     steamId64: null, name: null, avatar: null, isPublic: false,
     currentTab: 'overview', inGameName: '', inGameAppId: '',
     hoursWeek: '', gamesCount: undefined, totalHours: undefined,
-    mostPlayed: null, games: null, friends: null, wishlist: null,
+    mostPlayed: null, games: null, friends: null,
     gamesLoading: false,
   };
 
@@ -445,55 +481,74 @@ async function lookupProfile(input) {
 
   try {
     const trimmed = input.trim().replace(/\/$/, '');
-    let xmlUrl = '';
-    const mProfiles = trimmed.match(/steamcommunity\.com\/profiles\/(\d+)/i);
-    const mId       = trimmed.match(/steamcommunity\.com\/id\/([^\/\?]+)/i);
-    if (mProfiles)                     xmlUrl = `https://steamcommunity.com/profiles/${mProfiles[1]}/?xml=1`;
-    else if (mId)                      xmlUrl = `https://steamcommunity.com/id/${mId[1]}/?xml=1`;
-    else if (/^\d{17}$/.test(trimmed)) xmlUrl = `https://steamcommunity.com/profiles/${trimmed}/?xml=1`;
-    else                               xmlUrl = `https://steamcommunity.com/id/${trimmed}/?xml=1`;
+    let steamId64 = await _resolveSteamId(trimmed);
+    if (!steamId64 && !/^\d{17}$/.test(trimmed)) {
+      const mProf = trimmed.match(/steamcommunity\.com\/profiles\/(\d+)/i);
+      steamId64 = mProf ? mProf[1] : null;
+    }
+    if (!steamId64 && /^\d{17}$/.test(trimmed)) steamId64 = trimmed;
 
-    const res  = await _fetchWithCors(xmlUrl);
-    const text = await res.text();
-    const xml  = new DOMParser().parseFromString(text, 'text/xml');
+    let profileData = null;
+    try {
+      profileData = await _loadProfileViaSteamApi(steamId64);
+    } catch (_) {}
 
-    const err = xml.querySelector('error');
-    if (err) throw new Error(err.textContent || 'Profile not found');
+    if (!profileData) {
+      const mProfiles = trimmed.match(/steamcommunity\.com\/profiles\/(\d+)/i);
+      const mId = trimmed.match(/steamcommunity\.com\/id\/([^\/\?]+)/i);
+      let xmlUrl = '';
+      if (steamId64) xmlUrl = `https://steamcommunity.com/profiles/${steamId64}/?xml=1`;
+      else if (mProfiles) xmlUrl = `https://steamcommunity.com/profiles/${mProfiles[1]}/?xml=1`;
+      else if (mId) xmlUrl = `https://steamcommunity.com/id/${mId[1]}/?xml=1`;
+      else if (!/^\d+$/.test(trimmed)) xmlUrl = `https://steamcommunity.com/id/${trimmed}/?xml=1`;
+      if (!xmlUrl) throw new Error('Invalid Steam URL or ID');
 
-    const get = sel => xml.querySelector(sel)?.textContent?.trim() || '';
+      const res = await _fetchWithCors(xmlUrl);
+      const text = await res.text();
+      const xml = new DOMParser().parseFromString(text, 'text/xml');
+      const err = xml.querySelector('error');
+      if (err) throw new Error(err.textContent || 'Profile not found');
 
-    _ps.steamId64   = get('steamID64');
-    _ps.name        = get('steamID');
-    _ps.avatar      = get('avatarFull') || get('avatarMedium') || '';
-    _ps.isPublic    = get('visibilityState') === '3';
-    _ps.hoursWeek   = get('hoursPlayed2Wk');
-    _ps.inGameName  = xml.querySelector('inGameInfo gameName')?.textContent?.trim() || '';
-    const inGameLogo = xml.querySelector('inGameInfo gameLogo')?.textContent?.trim() || '';
-    _ps.inGameAppId = inGameLogo.match(/\/apps\/(\d+)\//)?.[1] || '';
-
-    const realname    = get('realname');
-    const state       = get('onlineState');
-    const memberSince = get('memberSince');
-    const location    = get('location');
-    const vacBanned   = get('vacBanned') === '1';
-
-    _ps.mostPlayed = Array.from(xml.querySelectorAll('mostPlayedGame')).slice(0, 6).map(g => {
-      const logo      = g.querySelector('gameLogo')?.textContent?.trim() || '';
-      const appIdMatch = logo.match(/\/apps\/(\d+)\//);
-      return {
-        appId: appIdMatch ? appIdMatch[1] : null,
-        name:  g.querySelector('gameName')?.textContent?.trim() || '',
-        logo,
-        hours: parseFloat((g.querySelector('hoursOnRecord')?.textContent || '0').replace(/,/g, '')),
+      const get = sel => xml.querySelector(sel)?.textContent?.trim() || '';
+      profileData = {
+        steamId64: get('steamID64') || steamId64,
+        name: get('steamID'),
+        avatar: get('avatarFull') || get('avatarMedium') || '',
+        isPublic: get('visibilityState') === '3',
+        hoursWeek: get('hoursPlayed2Wk'),
+        inGameName: xml.querySelector('inGameInfo gameName')?.textContent?.trim() || '',
+        inGameAppId: (xml.querySelector('inGameInfo gameLogo')?.textContent?.trim() || '').match(/\/apps\/(\d+)\//)?.[1] || '',
+        realname: get('realname'),
+        state: get('onlineState'),
+        memberSince: get('memberSince'),
+        location: get('location'),
+        vacBanned: get('vacBanned') === '1',
+        mostPlayed: Array.from(xml.querySelectorAll('mostPlayedGame')).slice(0, 6).map(g => ({
+          appId: (g.querySelector('gameLogo')?.textContent?.trim() || '').match(/\/apps\/(\d+)\//)?.[1] || null,
+          name: g.querySelector('gameName')?.textContent?.trim() || '',
+          logo: g.querySelector('gameLogo')?.textContent?.trim() || '',
+          hours: parseFloat((g.querySelector('hoursOnRecord')?.textContent || '0').replace(/,/g, '')),
+        })).filter(g => g.name),
       };
-    }).filter(g => g.name);
+    }
 
-    const dotColor   = state === 'online' ? 'bg-emerald-400' : state === 'in-game' ? 'bg-teal-400' : 'bg-slate-600';
-    const stateColor = state === 'online' ? 'text-emerald-400' : state === 'in-game' ? 'text-teal-400' : 'text-slate-500';
-    const stateLabel = state === 'in-game' ? 'In-Game' : state === 'online' ? 'Online' : 'Offline';
+    _ps.steamId64 = profileData.steamId64;
+    _ps.name = profileData.name;
+    _ps.avatar = profileData.avatar;
+    _ps.isPublic = profileData.isPublic;
+    _ps.hoursWeek = profileData.hoursWeek || '';
+    _ps.inGameName = profileData.inGameName || '';
+    _ps.inGameAppId = profileData.inGameAppId || '';
+    _ps.mostPlayed = profileData.mostPlayed || [];
+
+    const state = profileData.state;
+    const personastate = typeof state === 'number' ? state : (state === 'online' ? 1 : state === 'in-game' ? 2 : 0);
+    const dotColor = personastate === 1 ? 'bg-emerald-400' : personastate === 2 ? 'bg-teal-400' : 'bg-slate-600';
+    const stateColor = personastate === 1 ? 'text-emerald-400' : personastate === 2 ? 'text-teal-400' : 'text-slate-500';
+    const stateLabel = personastate === 2 ? 'In-Game' : personastate === 1 ? 'Online' : 'Offline';
 
     prof.innerHTML = `
-      ${vacBanned ? `
+      ${profileData.vacBanned ? `
       <div class="flex items-center gap-2 mb-2.5 px-2.5 py-1.5 rounded-lg bg-red-900/20 border border-red-500/25">
         <i class="fa-solid fa-shield-halved text-red-400 text-[10px]"></i>
         <span class="text-[10px] text-red-400 font-semibold">VAC Banned Account</span>
@@ -513,10 +568,10 @@ async function lookupProfile(input) {
               <i class="fa-brands fa-steam"></i>
             </a>
           </div>
-          ${realname    ? `<div class="text-[10px] text-slate-500 truncate -mt-0.5">${realname}</div>` : ''}
+          ${profileData.realname ? `<div class="text-[10px] text-slate-500 truncate -mt-0.5">${profileData.realname}</div>` : ''}
           <div class="text-xs ${stateColor} font-medium mt-0.5">${stateLabel}</div>
-          ${location    ? `<div class="text-[10px] text-slate-600 mt-0.5"><i class="fa-solid fa-location-dot text-[9px] mr-1"></i>${location}</div>` : ''}
-          ${memberSince ? `<div class="text-[10px] text-slate-600 mt-0.5">Member since ${memberSince}</div>` : ''}
+          ${profileData.location ? `<div class="text-[10px] text-slate-600 mt-0.5"><i class="fa-solid fa-location-dot text-[9px] mr-1"></i>${profileData.location}</div>` : ''}
+          ${profileData.memberSince ? `<div class="text-[10px] text-slate-600 mt-0.5">Member since ${profileData.memberSince}</div>` : ''}
           ${_ps.hoursWeek && parseFloat(_ps.hoursWeek) > 0 ? `<div class="text-[9px] text-teal-500/70 mt-0.5"><i class="fa-solid fa-clock text-[8px] mr-1"></i>${_ps.hoursWeek} hrs past 2 weeks</div>` : ''}
         </div>
       </div>

@@ -16,6 +16,16 @@ Free Steam Lua scripts — fast, clean, and easy.
 
 The site is static — no build step required. It will be live at `https://ghostlua.pages.dev` (or your custom domain).
 
+## Steam API (optional, for better profile search)
+
+For improved profile lookup (custom URLs, faster loading), add a Steam API key:
+
+1. Get a key at https://steamcommunity.com/dev/apikey
+2. Run: `npx wrangler secret put STEAM_API_KEY`
+3. Enter your key when prompted
+
+Without the key, profile search falls back to Steam community scraping.
+
 ## Local development
 
 ```bash
