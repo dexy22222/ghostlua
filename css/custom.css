@@ -1184,77 +1184,6 @@ a.dl-tag-link:hover {
   color: #4b5563;
 }
 
-/* ── SECTION 3: Recently Added (full width) ── */
-.recently-added-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 3px;
-  padding: 10px 12px 14px;
-}
-
-@media (max-width: 1100px) {
-  .recently-added-grid { grid-template-columns: repeat(2, 1fr); }
-}
-@media (max-width: 640px) {
-  .recently-added-grid { grid-template-columns: 1fr; }
-}
-
-.recent-item {
-  display: flex;
-  align-items: center;
-  gap: 11px;
-  padding: 10px 11px;
-  border-radius: 12px;
-  border: 1px solid transparent;
-  cursor: pointer;
-  transition: background 0.18s, border-color 0.15s, transform 0.15s;
-  animation: chartItemIn 0.32s cubic-bezier(0.22, 1, 0.36, 1) both;
-}
-.recent-item:hover {
-  background: rgba(6,182,212,0.06);
-  border-color: rgba(6,182,212,0.14);
-  transform: translateX(2px);
-}
-
-.recent-thumb-wrap {
-  width: 68px; height: 40px;
-  border-radius: 8px;
-  overflow: hidden;
-  flex-shrink: 0;
-  background: rgba(10,8,20,0.85);
-  display: flex; align-items: center; justify-content: center;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.5), 0 0 0 1px rgba(255,255,255,0.04);
-}
-.recent-thumb {
-  width: 68px; height: 40px;
-  object-fit: cover;
-  display: block;
-  transition: transform 0.25s ease;
-}
-.recent-item:hover .recent-thumb { transform: scale(1.06); }
-.recent-thumb-fallback {
-  display: flex; align-items: center; justify-content: center;
-  width: 100%; height: 100%;
-  color: #2e1f5e; font-size: 14px;
-}
-
-.recent-game-name {
-  font-size: 12.5px;
-  font-weight: 600;
-  color: #e2e8f0;
-  line-height: 1.3;
-}
-.recent-game-meta {
-  display: flex;
-  align-items: center;
-  gap: 4px;
-  margin-top: 3px;
-  font-size: 10px;
-  color: #475569;
-  flex-wrap: wrap;
-}
-.recent-date { color: #374151; }
-
 /* ══════════════════════════════════════════
    CHART TAB BUTTONS (Top Downloads / Trending)
 ══════════════════════════════════════════ */
@@ -1289,75 +1218,133 @@ a.dl-tag-link:hover {
 }
 
 /* ══════════════════════════════════════════
-   NOTIFICATIONS PANEL
+   POPUP DOWNLOAD NOTIFICATIONS (Steam-style)
 ══════════════════════════════════════════ */
-.notif-feed {
-  display:        flex;
+.toast-container {
+  position:   fixed;
+  bottom:     5.5rem;
+  right:      1rem;
+  z-index:    100;
+  display:    flex;
   flex-direction: column;
-  gap:            3px;
-  padding:        8px 8px 12px;
-  max-height:     380px;
-  overflow-y:     auto;
-  scrollbar-width: thin;
-  scrollbar-color: rgba(6,182,212,0.12) transparent;
-}
-.notif-feed::-webkit-scrollbar       { width: 3px; }
-.notif-feed::-webkit-scrollbar-thumb { background: rgba(6,182,212,0.18); border-radius: 4px; }
-
-@keyframes notifSlideIn {
-  from { opacity: 0; transform: translateY(-10px) scale(0.97); }
-  to   { opacity: 1; transform: translateY(0)     scale(1);    }
+  gap:        8px;
+  max-width:  320px;
+  pointer-events: none;
 }
 
-.notif-item {
+.toast-container > * {
+  pointer-events: auto;
+}
+
+.toast-popup {
+  animation: toastSlideIn 0.35s cubic-bezier(0.22, 1, 0.36, 1) both;
+  transform-origin: bottom right;
+}
+
+.toast-popup-out {
+  animation: toastSlideOut 0.3s ease forwards;
+}
+
+@keyframes toastSlideIn {
+  from { opacity: 0; transform: translateX(24px) scale(0.92); }
+  to   { opacity: 1; transform: translateX(0) scale(1); }
+}
+
+@keyframes toastSlideOut {
+  to { opacity: 0; transform: translateX(24px) scale(0.95); }
+}
+
+.toast-popup-inner {
   display:     flex;
-  align-items: flex-start;
+  align-items: center;
   gap:         10px;
-  padding:     10px 10px;
-  border-radius: 10px;
-  border:      1px solid transparent;
-  transition:  background 0.16s, border-color 0.16s;
-  animation:   chartItemIn 0.3s cubic-bezier(0.22, 1, 0.36, 1) both;
+  padding:     10px 12px;
+  background:  rgba(8,12,22,0.95);
+  border:      1px solid rgba(6,182,212,0.2);
+  border-radius: 12px;
+  box-shadow:  0 8px 32px rgba(0,0,0,0.5), 0 0 0 1px rgba(255,255,255,0.04) inset;
+  backdrop-filter: blur(20px);
 }
 
-.notif-item:hover {
-  background:    rgba(6,182,212,0.05);
-  border-color:  rgba(6,182,212,0.12);
-}
-
-.notif-item-new {
-  animation: notifSlideIn 0.35s cubic-bezier(0.22, 1, 0.36, 1) both !important;
-}
-
-/* Notification icon */
-.notif-icon-wrap {
+.toast-popup-avatar {
   flex-shrink: 0;
-  width:  28px;
-  height: 28px;
+  width:        28px;
+  height:       28px;
   border-radius: 8px;
-  border: 1px solid;
-  display:     flex;
-  align-items: center;
+  border:       1px solid;
+  display:      flex;
+  align-items:  center;
   justify-content: center;
+  font-size:    11px;
+  font-weight:   800;
 }
 
-/* Text content */
-.notif-body { flex: 1; min-width: 0; }
-
-.notif-msg {
-  font-size:   12px;
-  font-weight: 500;
-  color:       #e2e8f0;
-  line-height: 1.4;
+.toast-popup-thumb {
+  flex-shrink: 0;
+  width:        56px;
+  height:       32px;
+  border-radius: 6px;
+  overflow:     hidden;
+  background:   rgba(10,8,20,0.9);
 }
 
-.notif-time {
-  font-size:   9px;
+.toast-popup-thumb img {
+  width:  100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.toast-popup-body {
+  flex: 1;
+  min-width: 0;
+}
+
+.toast-popup-user {
+  font-size:   10px;
+  font-weight:  700;
   color:       #64748b;
-  margin-top:  4px;
-  display:     flex;
+}
+
+.toast-popup-msg {
+  font-size:   9px;
+  color:       #475569;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.toast-popup-game {
+  font-size:   12px;
+  font-weight:  600;
+  color:       #e2e8f0;
+  white-space: nowrap;
+  overflow:    hidden;
+  text-overflow: ellipsis;
+}
+
+.toast-popup-btn {
+  flex-shrink: 0;
+  display:     inline-flex;
   align-items: center;
-  gap:         3px;
+  gap:         4px;
+  padding:     5px 10px;
+  font-size:   10px;
+  font-weight:  700;
+  background:  rgba(6,182,212,0.15);
+  color:       #22d3ee;
+  border:      1px solid rgba(6,182,212,0.3);
+  border-radius: 8px;
+  cursor:      pointer;
+  transition:  background 0.15s, border-color 0.15s, color 0.15s;
+}
+
+.toast-popup-btn:hover {
+  background:  rgba(6,182,212,0.25);
+  border-color: rgba(6,182,212,0.5);
+  color:       #fff;
+}
+
+@media (min-width: 768px) {
+  .toast-container { bottom: 1.5rem; right: 1.5rem; }
 }
 
 /* ══════════════════════════════════════════

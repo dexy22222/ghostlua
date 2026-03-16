@@ -165,16 +165,6 @@
         </div>
         <!-- /chart card -->
 
-        <!-- Recently Added card -->
-        <div class="card rounded-2xl overflow-hidden" style="animation-delay:80ms">
-          <div class="chart-panel-header">
-            <i class="fa-regular fa-clock text-cyan-400/60 text-[9px]"></i>
-            <span>Recently Added Scripts</span>
-            <span class="ml-auto text-[9px] text-slate-700 font-medium tracking-wider">UPDATED DAILY</span>
-          </div>
-          <div id="recently-added-list" class="recently-added-grid"></div>
-        </div>
-
       </div>
       <!-- /LEFT COLUMN -->
 
@@ -293,24 +283,6 @@
           </p>
         </div>
         <!-- /search card -->
-
-        <!-- Notifications panel (individual mode) -->
-        <div id="notif-card" class="card rounded-2xl overflow-hidden" style="animation-delay:140ms">
-          <div class="chart-panel-header">
-            <i class="fa-solid fa-bell text-cyan-400/60 text-[9px]"></i>
-            <span>Notifications</span>
-            <div class="flex items-center gap-1.5 ml-auto">
-              <span class="live-dot-indicator"></span>
-              <span class="text-[9px] text-slate-700 font-medium uppercase tracking-wider">LIVE</span>
-            </div>
-          </div>
-          <div id="notif-feed" class="notif-feed">
-            <div class="flex items-center justify-center gap-2 py-6 text-slate-700 text-xs">
-              <i class="fa-solid fa-spinner animate-spin text-cyan-600/40"></i> Connecting…
-            </div>
-          </div>
-        </div>
-        <!-- /notifications -->
 
         <!-- Profile section (profile mode, hidden by default) -->
         <div id="profile-section" class="card rounded-2xl p-4 hidden" style="animation-delay:140ms"></div>
@@ -618,5 +590,8 @@
   <script src="js/main.js"></script>
   <script src="js/notifications.js"></script>
   <script src="js/welcome.js"></script>
+
+  <!-- Popup download notifications (Steam-style toasts) -->
+  <div id="toast-container" class="toast-container" aria-live="polite"></div>
 </body>
 </html>

@@ -42,11 +42,6 @@ window.currentMode = 'individual';
 // ── Rank styles ───────────────────────────────────────────────────────────────
 const rankClasses = ['rank-1', 'rank-2', 'rank-3'];
 
-// ── Fallback for recently added thumbs ────────────────────────────────────────
-function _recentThumbFb(el) {
-  el.parentNode.innerHTML = '<span class="recent-thumb-fallback"><i class="fa-brands fa-steam"></i></span>';
-}
-
 // ── Render a single chart game item ───────────────────────────────────────────
 function _renderChartItem(g, i) {
   const fallback = `if(this.dataset.tried){_thumbFb(this)}else{this.dataset.tried=1;this.src='https://steamcdn-a.akamaihd.net/steam/apps/${g.appId}/header.jpg'}`;
@@ -93,48 +88,10 @@ function renderTrendingList() {
   container.innerHTML = trendingGames.map((g, i) => _renderChartItem(g, i)).join('');
 }
 
-// ── Render recently added ─────────────────────────────────────────────────────
-function renderRecentlyAdded() {
-  const container = document.getElementById('recently-added-list');
-  if (!container) return;
-  container.innerHTML = recentlyAdded.map((g, i) => {
-    const fallback = `if(this.dataset.tried){_recentThumbFb(this)}else{this.dataset.tried=1;this.src='https://steamcdn-a.akamaihd.net/steam/apps/${g.appId}/header.jpg'}`;
-    const dateStr = _fmtAddedDate(g.addedDate);
-    const tagsHtml = (g.tags || []).map(t =>
-      `<span class="game-tag game-tag-${t.toLowerCase().replace(/\s+/g, '-')}">${t}</span>`
-    ).join('');
-    return `
-      <button class="recent-item w-full text-left"
-        onclick="quickDownload(${g.appId}, ${_jqAttr(g.name)}, '${g.downloads} downloads', '', ${_jqAttr(g.tags || [])})"
-        style="animation-delay:${i * 50}ms">
-        <div class="recent-thumb-wrap">
-          <img src="${steamImg(g.appId)}" class="recent-thumb" alt="${g.name}" loading="lazy"
-               onerror="${fallback}" />
-        </div>
-        <div class="flex-1 min-w-0">
-          <div class="recent-game-name truncate">${g.name}</div>
-          <div class="recent-game-meta">
-            <i class="fa-regular fa-clock text-[8px] text-slate-700"></i>
-            <span class="recent-date">${dateStr}</span>
-            <span class="text-slate-700">·</span>
-            <span>↓ ${g.downloads.toLocaleString()}</span>
-            ${tagsHtml}
-          </div>
-        </div>
-        <i class="fa-solid fa-chevron-right game-arrow text-[9px] flex-shrink-0"></i>
-      </button>`;
-  }).join('');
-}
-
-function _fmtAddedDate(dateStr) {
-  try { return _fmtDate(new Date(dateStr)); } catch { return dateStr; }
-}
-
 // ── Master render (called on init + live update) ──────────────────────────────
 function renderGames() {
   renderTopList();
   renderTrendingList();
-  renderRecentlyAdded();
 }
 
 // ── Show more (top downloads only) ───────────────────────────────────────────
@@ -189,22 +146,19 @@ function switchMode(mode) {
   document.getElementById('mode-individual').className = base + (isInd ? 'mode-tab-active' : 'mode-tab-inactive');
   document.getElementById('mode-profile').className    = base + (!isInd ? 'mode-tab-active' : 'mode-tab-inactive');
 
-  const input     = document.getElementById('search-input');
-  const tip       = document.getElementById('search-tip');
-  const prof      = document.getElementById('profile-section');
-  const notifCard = document.getElementById('notif-card');
+  const input = document.getElementById('search-input');
+  const tip   = document.getElementById('search-tip');
+  const prof  = document.getElementById('profile-section');
 
   if (isInd) {
     input.placeholder = placeholders[phIdx];
-    if (tip)       tip.classList.remove('hidden');
-    if (prof)      prof.classList.add('hidden');
-    if (notifCard) notifCard.classList.remove('hidden');
+    if (tip)  tip.classList.remove('hidden');
+    if (prof) prof.classList.add('hidden');
     document.getElementById('search-results').classList.add('hidden');
   } else {
     input.placeholder = 'Steam URL, Steam64 ID, or username…';
-    if (tip)       tip.classList.add('hidden');
-    if (notifCard) notifCard.classList.add('hidden');
-    if (prof)      { prof.classList.remove('hidden'); renderProfileEmpty(); }
+    if (tip)  tip.classList.add('hidden');
+    if (prof) { prof.classList.remove('hidden'); renderProfileEmpty(); }
     document.getElementById('search-results').classList.add('hidden');
   }
 }
