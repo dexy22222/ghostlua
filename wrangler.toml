@@ -1,3 +1,6 @@
-# Cloudflare Pages — for CLI deploy: npx wrangler pages deploy . --project-name=ghostlua
+# Cloudflare Workers — static assets (for npx wrangler deploy)
 name = "ghostlua"
 compatibility_date = "2024-01-01"
+
+[assets]
+directory = "."
