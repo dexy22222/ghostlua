@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>GhostLua Usage Guide</title>
+  <link rel="icon" type="image/png" href="images/ghost.svg" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/guide.css" />
+</head>
+<body>
+
+  <!-- ── Top Navbar ── -->
+  <nav class="navbar">
+    <div class="navbar-left">
+      <button class="nav-toggle" onclick="toggleSidebar()" aria-label="Toggle menu">
+        <i class="fa-solid fa-bars"></i>
+      </button>
+      <a href="index.html" class="navbar-brand">
+        <img src="images/ghost.svg" class="brand-ghost-img" alt="GhostLua" />
+        <span class="brand-ol">GhostLua</span>
+        <span class="brand-guide">Usage Guide</span>
+      </a>
+      <a href="#faq" class="nav-link" onclick="navigate('faq')">FAQ</a>
+      <a href="status.html" class="nav-link nav-status">
+        Status <i class="fa-solid fa-circle fa-xs" style="color:#22c55e;font-size:7px;"></i>
+      </a>
+    </div>
+    <div class="navbar-right">
+      <a href="https://discord.gg/ghostlua" target="_blank" class="nav-icon" title="Discord">
+        <i class="fa-brands fa-discord"></i>
+      </a>
+      <a href="https://github.com/ghostlua" target="_blank" class="nav-icon" title="GitHub">
+        <i class="fa-brands fa-github"></i>
+      </a>
+    </div>
+  </nav>
+
+  <!-- ── Sidebar backdrop (mobile) ── -->
+  <div id="sidebar-backdrop" class="sidebar-backdrop hidden" onclick="closeSidebar()"></div>
+
+  <div class="docs-layout">
+
+    <!-- ── Sidebar ── -->
+    <aside id="sidebar" class="sidebar">
+      <nav class="sidebar-nav">
+        <ul class="menu-list">
+
+          <li class="menu-item">
+            <a class="menu-link" href="#intro" onclick="navigate('intro')">
+              <span>Introduction</span>
+            </a>
+          </li>
+
+          <li class="menu-item menu-category" id="cat-beginners">
+            <div class="menu-category-header" onclick="toggleCategory('beginners')">
+              <a class="menu-link menu-sublist" href="#beginners" onclick="navigate('beginners')">
+                Beginner's Guide
+              </a>
+              <button class="menu-caret" aria-label="Expand">
+                <i class="fa-solid fa-chevron-down fa-xs"></i>
+              </button>
+            </div>
+            <ul class="menu-sub hidden" id="sub-beginners">
+              <li><a class="menu-link menu-sub-link" href="#installing" onclick="navigate('installing')">Installing SteamTools</a></li>
+              <li><a class="menu-link menu-sub-link" href="#downloading" onclick="navigate('downloading')">Downloading a game</a></li>
+              <li><a class="menu-link menu-sub-link" href="#removing" onclick="navigate('removing')">Removing a game</a></li>
+            </ul>
+          </li>
+
+          <li class="menu-item menu-category" id="cat-bypasses">
+            <div class="menu-category-header" onclick="toggleCategory('bypasses')">
+              <a class="menu-link menu-sublist" href="#bypasses" onclick="navigate('bypasses')">
+                Bypasses/Fixes
+              </a>
+              <button class="menu-caret" aria-label="Expand">
+                <i class="fa-solid fa-chevron-down fa-xs"></i>
+              </button>
+            </div>
+            <ul class="menu-sub hidden" id="sub-bypasses">
+              <li><a class="menu-link menu-sub-link" href="#fc26" onclick="navigate('fc26')">EA SPORTS FC™ 26</a></li>
+              <li><a class="menu-link menu-sub-link" href="#arc-raiders" onclick="navigate('arc-raiders')">ARC Raiders</a></li>
+              <li><a class="menu-link menu-sub-link" href="#among-us" onclick="navigate('among-us')">Among Us</a></li>
+            </ul>
+          </li>
+
+          <li class="menu-item">
+            <a class="menu-link" href="#faq" onclick="navigate('faq')">
+              <span>Frequently Asked Questions</span>
+            </a>
+          </li>
+
+        </ul>
+      </nav>
+    </aside>
+
+    <!-- ── Main content ── -->
+    <main class="docs-main">
+      <div id="doc-content" class="doc-content">
+        <!-- injected by JS -->
+      </div>
+    </main>
+
+  </div>
+
+  <!-- ── Footer ── -->
+  <footer class="docs-footer">
+    <a href="tos.html">Terms of Service <i class="fa-solid fa-arrow-up-right-from-square fa-xs"></i></a>
+    <a href="privacy.html">Privacy Policy <i class="fa-solid fa-arrow-up-right-from-square fa-xs"></i></a>
+    <a href="https://discord.gg/ghostlua" target="_blank" rel="noopener"><i class="fa-brands fa-discord"></i> Discord</a>
+    <span>© 2026 GhostLua</span>
+  </footer>
+
+  <script src="js/guide.js"></script>
+</body>
+</html>

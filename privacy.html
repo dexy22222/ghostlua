@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Privacy Policy — GhostLua</title>
+  <link rel="icon" type="image/png" href="images/ghost.svg" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: { extend: {
+        colors: { primary: '#06b6d4' },
+        fontFamily: { sans: ['Inter','ui-sans-serif','system-ui','sans-serif'] }
+      }}
+    }
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,300..800;1,14..32,300..800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/custom.css" />
+  <link rel="stylesheet" href="css/animations.css" />
+  <style>
+    .legal-h2 { font-size: 1.05rem; font-weight: 700; color: #e2e8f0; margin: 1.5rem 0 0.5rem; }
+    .legal-h3 { font-size: 0.9rem; font-weight: 600; color: #94a3b8; margin: 1rem 0 0.35rem; }
+    .legal-p  { font-size: 0.875rem; color: #64748b; line-height: 1.65; margin-bottom: 0.6rem; }
+    .legal-ul { list-style: disc; padding-left: 1.4rem; margin-bottom: 0.6rem; }
+    .legal-ul li { font-size: 0.875rem; color: #64748b; line-height: 1.65; margin-bottom: 0.25rem; }
+    .legal-link { color: #22d3ee; transition: color 0.15s; }
+    .legal-link:hover { color: #67e8f9; }
+  </style>
+</head>
+<body class="min-h-screen font-sans relative text-slate-100 antialiased">
+  <div class="fixed inset-0 bg-gradient-to-br from-[#020d18] via-[#040e18] to-[#02080f] pointer-events-none z-0"></div>
+  <div class="fixed inset-0 pointer-events-none z-0 grid-overlay"></div>
+
+  <div class="relative z-20 max-w-2xl mx-auto px-4 py-16">
+    <!-- Back -->
+    <a href="index.html" class="inline-flex items-center gap-2 text-slate-500 hover:text-slate-300 text-sm transition-colors mb-8">
+      <i class="fa-solid fa-arrow-left text-xs"></i> Back to GhostLua
+    </a>
+
+    <div class="card rounded-2xl p-8">
+      <!-- Header -->
+      <div class="flex items-center gap-3 mb-6">
+        <img src="images/ghost.svg" class="w-9 h-9 object-contain" alt="GhostLua" style="filter:drop-shadow(0 0 8px rgba(6,182,212,0.5))" />
+        <div>
+          <h1 class="text-xl font-extrabold text-white">Privacy Policy</h1>
+          <p class="text-xs text-slate-600 mt-0.5">Last updated: March 2026</p>
+        </div>
+      </div>
+      <div class="border-t border-white/[0.05] pt-6">
+
+        <p class="legal-p">GhostLua ("we", "us", or "our") is committed to protecting your privacy. This Privacy Policy explains what information we collect, how we use it, and your rights regarding that information.</p>
+
+        <h2 class="legal-h2">1. Information We Collect</h2>
+        <h3 class="legal-h3">1.1 Information You Provide</h3>
+        <ul class="legal-ul">
+          <li>Discord username and user ID when you choose to log in via Discord OAuth</li>
+          <li>Any messages or requests you send via our Discord server</li>
+        </ul>
+        <h3 class="legal-h3">1.2 Automatically Collected Information</h3>
+        <ul class="legal-ul">
+          <li>Standard server access logs (IP address, browser type, pages visited, timestamps)</li>
+          <li>Download counts associated with Steam AppIDs (no personal identifiers)</li>
+        </ul>
+        <h3 class="legal-h3">1.3 Locally Stored Data</h3>
+        <p class="legal-p">Download history, starred games, and session data are stored in your browser's <code class="text-cyan-400 bg-cyan-900/20 px-1 rounded text-xs">localStorage</code> only. This data never leaves your device and is not transmitted to our servers.</p>
+
+        <h2 class="legal-h2">2. How We Use Your Information</h2>
+        <ul class="legal-ul">
+          <li>To provide and improve the GhostLua service</li>
+          <li>To identify your account if you choose to log in</li>
+          <li>To monitor download popularity and maintain our database</li>
+          <li>To respond to support requests submitted via Discord</li>
+        </ul>
+
+        <h2 class="legal-h2">3. Data Sharing</h2>
+        <p class="legal-p">We do not sell, trade, or rent your personal information to third parties. We may share aggregated, anonymized statistics (e.g., "top downloaded games") publicly. We use Steam's public APIs to retrieve game metadata — please see <a href="https://store.steampowered.com/privacy_agreement/" target="_blank" rel="noopener" class="legal-link">Steam's Privacy Policy</a> for their data practices.</p>
+
+        <h2 class="legal-h2">4. Data Retention</h2>
+        <p class="legal-p">Server logs are retained for up to 30 days and then deleted. Discord login data is retained as long as your account is active or until you request deletion.</p>
+
+        <h2 class="legal-h2">5. Your Rights</h2>
+        <p class="legal-p">You may request deletion of any personal data we hold about you by contacting us via our Discord server. Browser-stored data can be cleared at any time through your browser settings.</p>
+
+        <h2 class="legal-h2">6. Cookies</h2>
+        <p class="legal-p">GhostLua does not use cookies for tracking. We only use <code class="text-cyan-400 bg-cyan-900/20 px-1 rounded text-xs">localStorage</code> for functionality (history, favorites). No third-party advertising cookies are used.</p>
+
+        <h2 class="legal-h2">7. Contact</h2>
+        <p class="legal-p">Questions about this Privacy Policy? Join us on <a href="https://discord.gg/ghostlua" target="_blank" rel="noopener" class="legal-link">Discord</a>.</p>
+      </div>
+    </div>
+
+    <!-- Footer links -->
+    <div class="flex justify-center gap-6 mt-6 text-xs text-slate-700">
+      <a href="index.html" class="hover:text-slate-400 transition-colors">Home</a>
+      <a href="tos.html" class="hover:text-slate-400 transition-colors">Terms of Service</a>
+      <a href="https://discord.gg/ghostlua" target="_blank" rel="noopener" class="hover:text-slate-400 transition-colors">Discord</a>
+    </div>
+  </div>
+</body>
+</html>

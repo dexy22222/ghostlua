@@ -1,0 +1,254 @@
+// ── Game chart data ───────────────────────────────────────────────────────────
+// AppIDs verified against Steam store (store.steampowered.com/app/APPID)
+let topGames = [
+  { rank: '#1',  name: 'Black Myth: Wukong',          downloads: '3,058 downloads', appId: 2358720, size: '130.0 GB', tags: ['Online Fix'] },
+  { rank: '#2',  name: 'Wallpaper Engine',            downloads: '1,393 downloads', appId: 431960,  size: '0.4 GB',   tags: [] },
+  { rank: '#3',  name: 'Resident Evil 4',             downloads: '1,186 downloads', appId: 2050650, size: '67.5 GB',  tags: ['Online Fix'] },
+  { rank: '#4',  name: 'Red Dead Redemption 2',       downloads: '768 downloads',   appId: 1174180, size: '120.5 GB', tags: ['Online Fix'] },
+  { rank: '#5',  name: 'Geometry Dash',               downloads: '737 downloads',   appId: 322170,  size: '0.2 GB',   tags: [] },
+  { rank: '#6',  name: 'Resident Evil 2',             downloads: '716 downloads',   appId: 883710,  size: '21.7 GB',  tags: ['Online Fix'] },
+  { rank: '#7',  name: 'Grand Theft Auto V',          downloads: '570 downloads',   appId: 271590,  size: '95.2 GB',  tags: ['Online Fix'] },
+  { rank: '#8',  name: "Marvel's Spider-Man 2",       downloads: '564 downloads',   appId: 2651280, size: '69.5 GB',  tags: [] },
+  { rank: '#9',  name: 'Schedule I',                  downloads: '555 downloads',   appId: 3164500, size: '3.1 GB',   tags: [] },
+  { rank: '#10', name: 'Poppy Playtime - Chapter 4',  downloads: '505 downloads',   appId: 3008670, size: '12.4 GB',  tags: [] },
+];
+
+let trendingGames = [
+  { rank: '#1', name: 'Slay the Spire 2',   downloads: '↑ Trending', appId: 2868840, size: '2.5 GB',  tags: ['Online Fix', 'Workshop'] },
+  { rank: '#2', name: 'Elden Ring',         downloads: '↑ Trending', appId: 1245620, size: '60.0 GB', tags: ['Online Fix'] },
+  { rank: '#3', name: 'Hades II',           downloads: '↑ Trending', appId: 1145350, size: '5.0 GB',  tags: [] },
+  { rank: '#4', name: 'Sons of the Forest', downloads: '↑ Trending', appId: 1326470, size: '20.0 GB', tags: ['Online Fix'] },
+  { rank: '#5', name: 'Cyberpunk 2077',     downloads: '↑ Trending', appId: 1091500, size: '70.0 GB', tags: [] },
+];
+
+let recentlyAdded = [
+  { name: 'Schedule I',                appId: 3164500, addedDate: '2026-03-14', downloads: 555, tags: [] },
+  { name: 'Poppy Playtime - Chapter 4',appId: 3008670, addedDate: '2026-03-12', downloads: 505, tags: [] },
+  { name: 'Slay the Spire 2',          appId: 2868840, addedDate: '2026-03-10', downloads: 420, tags: ['Online Fix'] },
+  { name: "Marvel's Spider-Man 2",     appId: 2651280, addedDate: '2026-03-08', downloads: 564, tags: [] },
+  { name: 'Hades II',                  appId: 1145350, addedDate: '2026-03-05', downloads: 380, tags: [] },
+  { name: 'Sons of the Forest',        appId: 1326470, addedDate: '2026-03-01', downloads: 312, tags: ['Online Fix'] },
+];
+
+// Expose to other modules
+window.topGames      = topGames;
+window.trendingGames = trendingGames;
+window.recentlyAdded = recentlyAdded;
+
+// ── State ─────────────────────────────────────────────────────────────────────
+let topShowAll = false;
+window.currentMode = 'individual';
+
+// ── Rank styles ───────────────────────────────────────────────────────────────
+const rankClasses = ['rank-1', 'rank-2', 'rank-3'];
+
+// ── Fallback for recently added thumbs ────────────────────────────────────────
+function _recentThumbFb(el) {
+  el.parentNode.innerHTML = '<span class="recent-thumb-fallback"><i class="fa-brands fa-steam"></i></span>';
+}
+
+// ── Render a single chart game item ───────────────────────────────────────────
+function _renderChartItem(g, i) {
+  const fallback = `if(this.dataset.tried){_thumbFb(this)}else{this.dataset.tried=1;this.src='https://steamcdn-a.akamaihd.net/steam/apps/${g.appId}/header.jpg'}`;
+  return `
+    <button class="chart-game-item group w-full text-left"
+      onclick="quickDownload(${g.appId}, ${_jqAttr(g.name)}, ${_jqAttr(g.downloads)}, ${_jqAttr(g.size || '')}, ${_jqAttr(g.tags || [])})"
+      style="animation-delay:${i * 40}ms">
+      <span class="chart-rank-num ${rankClasses[i] || 'rank-other'}">${g.rank}</span>
+      <div class="chart-thumb-wrap">
+        <img src="${steamImg(g.appId)}" alt="${g.name}" loading="lazy" class="chart-thumb"
+             onerror="${fallback}" />
+      </div>
+      <div class="flex-1 min-w-0">
+        <div class="chart-game-name truncate leading-snug">${g.name}</div>
+        <div class="chart-game-meta">
+          <span class="chart-game-dl">${g.downloads}</span>
+          ${(g.tags || []).map(t => `<span class="game-tag game-tag-${t.toLowerCase().replace(/\s+/g, '-')}">${t}</span>`).join('')}
+        </div>
+      </div>
+      <span class="flex items-center gap-1.5 flex-shrink-0">
+        <span role="button" onclick="event.stopPropagation(); toggleFavorite(${g.appId}, ${_jqAttr(g.name)})"
+          class="favorite-star-btn flex-shrink-0 ${isFavorite(g.appId) ? 'text-yellow-400' : 'text-slate-700 hover:text-yellow-400'} transition-colors"
+          title="${isFavorite(g.appId) ? 'Remove from starred' : 'Star'}">
+          <i class="fa-${isFavorite(g.appId) ? 'solid' : 'regular'} fa-star text-[10px]"></i>
+        </span>
+        <i class="fa-solid fa-chevron-right game-arrow text-[9px]"></i>
+      </span>
+    </button>`;
+}
+
+// ── Render top downloads list ─────────────────────────────────────────────────
+function renderTopList() {
+  const container = document.getElementById('top-downloads-list');
+  if (!container) return;
+  const visible = topShowAll ? topGames : topGames.slice(0, 3);
+  container.innerHTML = visible.map((g, i) => _renderChartItem(g, i)).join('');
+  _updateTopShowMoreBtn();
+}
+
+// ── Render trending list ──────────────────────────────────────────────────────
+function renderTrendingList() {
+  const container = document.getElementById('trending-list');
+  if (!container) return;
+  container.innerHTML = trendingGames.map((g, i) => _renderChartItem(g, i)).join('');
+}
+
+// ── Render recently added ─────────────────────────────────────────────────────
+function renderRecentlyAdded() {
+  const container = document.getElementById('recently-added-list');
+  if (!container) return;
+  container.innerHTML = recentlyAdded.map((g, i) => {
+    const fallback = `if(this.dataset.tried){_recentThumbFb(this)}else{this.dataset.tried=1;this.src='https://steamcdn-a.akamaihd.net/steam/apps/${g.appId}/header.jpg'}`;
+    const dateStr = _fmtAddedDate(g.addedDate);
+    const tagsHtml = (g.tags || []).map(t =>
+      `<span class="game-tag game-tag-${t.toLowerCase().replace(/\s+/g, '-')}">${t}</span>`
+    ).join('');
+    return `
+      <button class="recent-item w-full text-left"
+        onclick="quickDownload(${g.appId}, ${_jqAttr(g.name)}, '${g.downloads} downloads', '', ${_jqAttr(g.tags || [])})"
+        style="animation-delay:${i * 50}ms">
+        <div class="recent-thumb-wrap">
+          <img src="${steamImg(g.appId)}" class="recent-thumb" alt="${g.name}" loading="lazy"
+               onerror="${fallback}" />
+        </div>
+        <div class="flex-1 min-w-0">
+          <div class="recent-game-name truncate">${g.name}</div>
+          <div class="recent-game-meta">
+            <i class="fa-regular fa-clock text-[8px] text-slate-700"></i>
+            <span class="recent-date">${dateStr}</span>
+            <span class="text-slate-700">·</span>
+            <span>↓ ${g.downloads.toLocaleString()}</span>
+            ${tagsHtml}
+          </div>
+        </div>
+        <i class="fa-solid fa-chevron-right game-arrow text-[9px] flex-shrink-0"></i>
+      </button>`;
+  }).join('');
+}
+
+function _fmtAddedDate(dateStr) {
+  try { return _fmtDate(new Date(dateStr)); } catch { return dateStr; }
+}
+
+// ── Master render (called on init + live update) ──────────────────────────────
+function renderGames() {
+  renderTopList();
+  renderTrendingList();
+  renderRecentlyAdded();
+}
+
+// ── Show more (top downloads only) ───────────────────────────────────────────
+function toggleTopShowMore() {
+  topShowAll = !topShowAll;
+  renderTopList();
+}
+
+function _updateTopShowMoreBtn() {
+  const btn  = document.getElementById('top-show-more-btn');
+  if (!btn) return;
+  const rem  = topGames.length - 3;
+  if (rem <= 0) { btn.style.display = 'none'; return; }
+  btn.style.display = 'flex';
+  document.getElementById('top-show-more-text').textContent =
+    topShowAll ? 'Show less' : `Show ${rem} more`;
+  document.getElementById('top-show-more-icon').className =
+    topShowAll ? 'fa-solid fa-chevron-up text-[9px]' : 'fa-solid fa-chevron-down text-[9px]';
+}
+
+// ── Chart tab switching ───────────────────────────────────────────────────────
+let currentTab = 'top';
+let showAll    = false;
+
+function switchTab(tab) {
+  currentTab = tab;
+  const topEl    = document.getElementById('chart-tab-top');
+  const trendEl  = document.getElementById('chart-tab-trending');
+  const btnTop   = document.getElementById('tab-btn-top');
+  const btnTrend = document.getElementById('tab-btn-trending');
+
+  if (tab === 'top') {
+    if (topEl)   topEl.classList.remove('hidden');
+    if (trendEl) trendEl.classList.add('hidden');
+    if (btnTop)   { btnTop.classList.add('chart-tab-active');   btnTop.classList.remove('chart-tab-inactive'); }
+    if (btnTrend) { btnTrend.classList.remove('chart-tab-active'); btnTrend.classList.add('chart-tab-inactive'); }
+  } else {
+    if (topEl)   topEl.classList.add('hidden');
+    if (trendEl) trendEl.classList.remove('hidden');
+    if (btnTop)   { btnTop.classList.remove('chart-tab-active'); btnTop.classList.add('chart-tab-inactive'); }
+    if (btnTrend) { btnTrend.classList.add('chart-tab-active');  btnTrend.classList.remove('chart-tab-inactive'); }
+  }
+}
+
+function toggleShowMore()  { toggleTopShowMore(); }
+
+// ── Mode switching ────────────────────────────────────────────────────────────
+function switchMode(mode) {
+  window.currentMode = mode;
+  const isInd = mode === 'individual';
+  const base  = 'flex-1 py-2.5 px-3 text-sm font-semibold rounded-lg transition-all duration-200 ';
+  document.getElementById('mode-individual').className = base + (isInd ? 'mode-tab-active' : 'mode-tab-inactive');
+  document.getElementById('mode-profile').className    = base + (!isInd ? 'mode-tab-active' : 'mode-tab-inactive');
+
+  const input     = document.getElementById('search-input');
+  const tip       = document.getElementById('search-tip');
+  const prof      = document.getElementById('profile-section');
+  const notifCard = document.getElementById('notif-card');
+
+  if (isInd) {
+    input.placeholder = placeholders[phIdx];
+    if (tip)       tip.classList.remove('hidden');
+    if (prof)      prof.classList.add('hidden');
+    if (notifCard) notifCard.classList.remove('hidden');
+    document.getElementById('search-results').classList.add('hidden');
+  } else {
+    input.placeholder = 'Steam URL, Steam64 ID, or username…';
+    if (tip)       tip.classList.add('hidden');
+    if (notifCard) notifCard.classList.add('hidden');
+    if (prof)      { prof.classList.remove('hidden'); renderProfileEmpty(); }
+    document.getElementById('search-results').classList.add('hidden');
+  }
+}
+
+// ── Live chart ticker ─────────────────────────────────────────────────────────
+let _liveLastUpdated = Date.now();
+
+function _tickLiveLabel() {
+  const el = document.getElementById('live-updated');
+  if (!el) return;
+  const sec = Math.floor((Date.now() - _liveLastUpdated) / 1000);
+  if (sec < 15)      el.textContent = 'just now';
+  else if (sec < 60) el.textContent = `${sec}s ago`;
+  else               el.textContent = `${Math.floor(sec / 60)}m ago`;
+}
+
+function _updateChartLive() {
+  topGames.forEach(g => {
+    const base  = parseInt(String(g.downloads).replace(/,/g, '').replace(' downloads', '')) || 0;
+    const delta = Math.floor(Math.random() * 4);
+    g.downloads = (base + delta).toLocaleString() + ' downloads';
+  });
+  _liveLastUpdated = Date.now();
+  renderTopList();
+  renderTrendingList();
+  const el = document.getElementById('live-updated');
+  if (el) el.textContent = 'just now';
+}
+
+// ── DB stats badge ────────────────────────────────────────────────────────────
+async function _loadDbStats() {
+  try {
+    const res  = await fetch('/data/stats.json');
+    const data = await res.json();
+    const el   = document.getElementById('db-count');
+    if (el && data.totalGames) el.textContent = `${data.totalGames} games`;
+  } catch {}
+}
+
+// ── Init ──────────────────────────────────────────────────────────────────────
+document.addEventListener('DOMContentLoaded', () => {
+  renderGames();
+  _loadDbStats();
+  setInterval(cyclePlaceholder,  3500);
+  setInterval(_updateChartLive, 60000);
+  setInterval(_tickLiveLabel,   10000);
+});
