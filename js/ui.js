@@ -110,8 +110,8 @@ function showModal(type) {
   document.getElementById('generic-modal').classList.remove('hidden');
 }
 function hideModal()      { document.getElementById('generic-modal').classList.add('hidden'); }
-function showLoginModal() { document.getElementById('login-modal').classList.remove('hidden'); }
-function hideLoginModal() { document.getElementById('login-modal').classList.add('hidden'); }
+function showLoginModal() { /* removed */ }
+function hideLoginModal() { /* removed */ }
 function toggleMobileMenu() { document.getElementById('mobile-menu').classList.toggle('hidden'); }
 
 function copyAppId() {

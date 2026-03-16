@@ -49,10 +49,6 @@
       <i class="fa-regular fa-circle-question text-cyan-400/70 text-xs"></i>
       <span class="text-[13px] text-slate-300 font-medium">FAQ</span>
     </a>
-    <a href="https://discord.gg/ghostlua" target="_blank" rel="noopener" class="nav-pill flex items-center h-9 gap-2 bg-slate-900/70 rounded-full px-3.5 border border-slate-800/50 hover:border-indigo-700/40">
-      <i class="fa-brands fa-discord text-indigo-400 text-sm"></i>
-      <span class="text-[13px] text-slate-300 font-medium">Discord</span>
-    </a>
     <a href="status.html" class="nav-pill flex items-center h-9 gap-2 bg-slate-900/70 rounded-full px-3.5 border border-slate-800/50 hover:border-emerald-700/40">
       <span class="relative flex h-2 w-2">
         <span class="absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75 animate-ping"></span>
@@ -71,11 +67,6 @@
       </span>
       <span class="text-slate-200 text-[13px] font-medium whitespace-nowrap online-count">27 online</span>
     </div>
-    <button onclick="showLoginModal()"
-      class="nav-pill flex items-center h-9 gap-2 bg-indigo-600/85 hover:bg-indigo-500/90 rounded-full px-4 border border-indigo-500/30 transition-all">
-      <i class="fa-brands fa-discord text-white text-sm"></i>
-      <span class="text-[13px] font-semibold text-white">Login</span>
-    </button>
   </div>
 
   <!-- Mobile Nav -->
@@ -93,10 +84,6 @@
           </span>
           <span class="text-slate-200 text-xs font-medium online-count">27 online</span>
         </div>
-        <button onclick="showLoginModal()"
-          class="nav-pill flex items-center justify-center w-10 h-10 bg-indigo-600/85 hover:bg-indigo-500/90 rounded-xl border border-indigo-500/30">
-          <i class="fa-brands fa-discord text-white text-sm"></i>
-        </button>
       </div>
     </div>
     <div id="mobile-menu" class="hidden mt-2 flex flex-col gap-1">
@@ -105,9 +92,6 @@
       </a>
       <a href="guide.html#faq" class="flex items-center h-10 gap-2.5 bg-slate-900/90 backdrop-blur-xl rounded-xl px-4 border border-slate-800/50 text-sm text-slate-200 font-medium">
         <i class="fa-regular fa-circle-question text-cyan-400/70 text-xs w-4 text-center"></i> FAQ
-      </a>
-      <a href="https://discord.gg/ghostlua" target="_blank" rel="noopener" class="flex items-center h-10 gap-2.5 bg-slate-900/90 backdrop-blur-xl rounded-xl px-4 border border-slate-800/50 text-sm text-slate-200 font-medium">
-        <i class="fa-brands fa-discord text-indigo-400 text-xs w-4 text-center"></i> Discord
       </a>
       <a href="status.html" class="flex items-center h-10 gap-2.5 bg-slate-900/90 backdrop-blur-xl rounded-xl px-4 border border-slate-800/50 text-sm text-slate-200 font-medium">
         <i class="fa-solid fa-circle text-emerald-400 text-xs w-4 text-center" style="font-size:8px;"></i> Status
@@ -324,27 +308,6 @@
     </div>
   </footer>
 
-  <!-- Login Modal -->
-  <div id="login-modal" class="hidden fixed inset-0 z-50 flex items-center justify-center p-4">
-    <div class="absolute inset-0 bg-black/70 backdrop-blur-md" onclick="hideLoginModal()"></div>
-    <div class="modal-card relative w-full max-w-sm rounded-2xl p-6 z-10">
-      <div class="flex items-center gap-3 mb-5">
-        <div class="w-10 h-10 rounded-xl bg-cyan-600/15 border border-cyan-500/25 flex items-center justify-center overflow-hidden">
-          <img src="images/ghost.svg" class="w-7 h-7 object-contain" alt="GhostLua" />
-        </div>
-        <div>
-          <h2 class="text-[15px] font-bold text-white">Login to GhostLua</h2>
-          <p class="text-xs text-slate-500">Track downloads &amp; access features</p>
-        </div>
-      </div>
-      <button onclick="window.open('https://discord.gg/ghostlua','_blank'); hideLoginModal();"
-        class="w-full h-11 flex items-center justify-center gap-2.5 bg-indigo-600 hover:bg-indigo-500 rounded-xl text-white font-semibold text-sm transition-colors">
-        <i class="fa-brands fa-discord text-base"></i>Continue with Discord
-      </button>
-      <button onclick="hideLoginModal()" class="mt-2.5 w-full h-9 text-slate-600 hover:text-slate-400 text-xs transition-colors">Cancel</button>
-    </div>
-  </div>
-
   <!-- Generic Modal -->
   <div id="generic-modal" class="hidden fixed inset-0 z-50 flex items-center justify-center p-4">
     <div class="absolute inset-0 bg-black/70 backdrop-blur-md" onclick="hideModal()"></div>
@@ -414,9 +377,6 @@
           <div class="dl-nf-actions">
             <a id="dl-steamrip-btn" href="#" target="_blank" rel="noopener" class="dl-steamrip-btn">
               <i class="fa-solid fa-download"></i>Try SteamRip
-            </a>
-            <a href="https://discord.gg/ghostlua" target="_blank" rel="noopener" class="dl-nf-discord-btn">
-              <i class="fa-brands fa-discord"></i>Request on Discord
             </a>
           </div>
         </div>
