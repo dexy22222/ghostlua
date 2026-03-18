@@ -180,6 +180,71 @@ http.createServer((req, res) => {
       return;
     }
 
+    // GET /api/community/members
+    if (rawPath === '/api/community/members') {
+      const commFile = path.join(ROOT, 'data', 'community.json');
+      fs.readFile(commFile, 'utf8', (err, data) => {
+        if (err) { sendJSON(res, 200, { members: [] }); return; }
+        try { sendJSON(res, 200, JSON.parse(data)); }
+        catch { sendJSON(res, 200, { members: [] }); }
+      });
+      return;
+    }
+
+    // POST /api/community/join  — body: { steamid }
+    if (rawPath === '/api/community/join' && req.method === 'POST') {
+      let body = '';
+      req.on('data', c => body += c);
+      req.on('end', () => {
+        let payload;
+        try { payload = JSON.parse(body); } catch { sendJSON(res, 400, { error: 'Invalid JSON' }); return; }
+        const steamid = String(payload.steamid || '').trim();
+        if (!/^\d{17}$/.test(steamid)) { sendJSON(res, 400, { error: 'Invalid Steam ID (must be 17 digits)' }); return; }
+
+        // Fetch player summary from Steam
+        steamApiGet('ISteamUser', 'GetPlayerSummaries', 'v2', { steamids: steamid })
+          .then(data => {
+            const player = data?.response?.players?.[0];
+            if (!player) { sendJSON(res, 404, { error: 'Steam profile not found' }); return; }
+
+            const commFile = path.join(ROOT, 'data', 'community.json');
+            fs.readFile(commFile, 'utf8', (err, raw) => {
+              let store = { members: [] };
+              if (!err) { try { store = JSON.parse(raw); } catch {} }
+              if (!Array.isArray(store.members)) store.members = [];
+
+              const exists = store.members.find(m => m.steamid === steamid);
+              if (!exists) {
+                store.members.unshift({
+                  steamid,
+                  name:   player.personaname,
+                  avatar: player.avatarfull,
+                  state:  player.personastate,
+                  joined: Date.now(),
+                });
+                // Keep max 500 members
+                store.members = store.members.slice(0, 500);
+                fs.writeFile(commFile, JSON.stringify(store, null, 2), () => {});
+              }
+
+              sendJSON(res, 200, {
+                ok: true,
+                member: {
+                  steamid,
+                  name:   player.personaname,
+                  avatar: player.avatarfull,
+                  state:  player.personastate,
+                  joined: exists?.joined || Date.now(),
+                  existing: !!exists,
+                },
+              });
+            });
+          })
+          .catch(() => sendJSON(res, 502, { error: 'Steam API unavailable' }));
+      });
+      return;
+    }
+
     sendJSON(res, 404, { error: 'Unknown API endpoint' });
     return;
   }

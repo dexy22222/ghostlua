@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>GhostLua — Community</title>
+  <link rel="icon" type="image/png" href="images/ghost.svg" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #080808;
+      --card-bg: rgba(16,16,16,0.92);
+      --border: rgba(255,255,255,0.06);
+      --border-hover: rgba(255,255,255,0.15);
+      --primary: #d4d4d4;
+      --primary-light: #f5f5f5;
+      --text: #e0e0e0;
+      --text-muted: #525252;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Inter', system-ui, sans-serif;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: '';
+      position: fixed; inset: 0;
+      background:
+        radial-gradient(ellipse 80% 60% at 50% 0%, rgba(255,255,255,0.03) 0%, transparent 70%),
+        radial-gradient(ellipse 50% 40% at 80% 80%, rgba(255,255,255,0.015) 0%, transparent 60%);
+      pointer-events: none; z-index: 0;
+    }
+    body::after {
+      content: '';
+      position: fixed; inset: 0;
+      background-image:
+        linear-gradient(rgba(255,255,255,0.018) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.018) 1px, transparent 1px);
+      background-size: 48px 48px;
+      pointer-events: none; z-index: 0;
+    }
+
+    /* Nav */
+    .nav {
+      position: fixed; top: 0; left: 0; right: 0;
+      z-index: 50; display: flex; align-items: center;
+      justify-content: space-between; padding: 14px 24px;
+      background: rgba(8,8,8,0.92); backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-brand {
+      display: flex; align-items: center; gap: 10px;
+      text-decoration: none; color: var(--text);
+      font-weight: 700; font-size: 15px;
+    }
+    .nav-brand img {
+      width: 24px; height: 24px; object-fit: contain;
+      filter: brightness(0.9) saturate(0) drop-shadow(0 0 8px rgba(255,255,255,0.2));
+    }
+    .nav-back {
+      display: inline-flex; align-items: center; gap: 6px;
+      padding: 7px 14px; border-radius: 20px;
+      border: 1px solid rgba(255,255,255,0.12);
+      background: rgba(255,255,255,0.05);
+      color: var(--primary-light); font-size: 12px; font-weight: 600;
+      text-decoration: none; transition: background 0.15s, border-color 0.15s;
+    }
+    .nav-back:hover { background: rgba(255,255,255,0.10); border-color: rgba(255,255,255,0.25); }
+
+    /* Page */
+    .page {
+      position: relative; z-index: 1;
+      max-width: 900px; margin: 0 auto;
+      padding: 100px 24px 80px;
+    }
+
+    /* Header */
+    .page-header { text-align: center; margin-bottom: 48px; }
+    .page-header h1 {
+      font-size: 2rem; font-weight: 800;
+      background: linear-gradient(90deg, #a3a3a3, #f5f5f5, #d4d4d4, #f5f5f5, #a3a3a3);
+      background-size: 300% 100%; -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent; background-clip: text;
+      animation: grad 5s linear infinite; margin-bottom: 10px;
+    }
+    @keyframes grad { 0% { background-position: 0% 50%; } 100% { background-position: 200% 50%; } }
+    .page-header p { font-size: 14px; color: var(--text-muted); }
+
+    /* Join card */
+    .join-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 20px; padding: 28px 32px;
+      margin-bottom: 36px; backdrop-filter: blur(24px);
+    }
+    .join-card h2 { font-size: 15px; font-weight: 700; color: var(--primary-light); margin-bottom: 6px; }
+    .join-card p  { font-size: 13px; color: var(--text-muted); margin-bottom: 18px; line-height: 1.6; }
+
+    .join-row {
+      display: flex; gap: 10px; flex-wrap: wrap;
+    }
+    .join-input {
+      flex: 1; min-width: 200px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.10);
+      border-radius: 12px; padding: 11px 16px;
+      color: var(--text); font-size: 13.5px; font-family: inherit;
+      outline: none; transition: border-color 0.15s;
+    }
+    .join-input::placeholder { color: var(--text-muted); }
+    .join-input:focus { border-color: rgba(255,255,255,0.25); }
+
+    .join-btn {
+      background: white; color: #0a0a0a;
+      border: none; border-radius: 12px;
+      padding: 11px 22px; font-size: 13px; font-weight: 700;
+      cursor: pointer; white-space: nowrap;
+      transition: background 0.15s, transform 0.1s;
+      display: flex; align-items: center; gap: 7px;
+    }
+    .join-btn:hover { background: #e5e5e5; }
+    .join-btn:active { transform: scale(0.97); }
+    .join-btn:disabled { opacity: 0.5; cursor: not-allowed; }
+
+    .join-msg {
+      margin-top: 12px; font-size: 12.5px;
+      border-radius: 8px; padding: 9px 12px;
+      display: none;
+    }
+    .join-msg.ok    { background: rgba(34,197,94,0.08); border: 1px solid rgba(34,197,94,0.2); color: #4ade80; }
+    .join-msg.error { background: rgba(239,68,68,0.08); border: 1px solid rgba(239,68,68,0.2); color: #f87171; }
+    .join-msg.info  { background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.10); color: var(--text-muted); }
+    .join-msg.show  { display: block; }
+
+    /* Section title */
+    .section-title {
+      font-size: 10.5px; font-weight: 700; text-transform: uppercase;
+      letter-spacing: 0.1em; color: var(--text-muted);
+      margin-bottom: 16px; margin-top: 8px;
+      display: flex; align-items: center; gap: 8px;
+    }
+    .section-title::before {
+      content: ''; display: inline-block;
+      width: 20px; height: 1px; background: rgba(255,255,255,0.12);
+    }
+
+    /* Member count badge */
+    .member-count-badge {
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.10);
+      border-radius: 999px; padding: 3px 10px;
+      font-size: 11px; font-weight: 600; color: var(--text-muted);
+      margin-left: auto;
+    }
+
+    /* Members grid */
+    .members-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 12px;
+    }
+
+    .member-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 16px; padding: 14px 16px;
+      display: flex; align-items: center; gap: 12px;
+      backdrop-filter: blur(20px);
+      transition: border-color 0.15s, transform 0.15s;
+    }
+    .member-card:hover {
+      border-color: var(--border-hover);
+      transform: translateY(-1px);
+    }
+    .member-avatar-wrap { position: relative; flex-shrink: 0; }
+    .member-avatar {
+      width: 44px; height: 44px; border-radius: 10px;
+      object-fit: cover; background: #1a1a1a;
+      border: 1px solid rgba(255,255,255,0.08);
+    }
+    .member-state-dot {
+      position: absolute; bottom: -2px; right: -2px;
+      width: 12px; height: 12px; border-radius: 50%;
+      border: 2px solid #111; background: #3f3f3f;
+    }
+    .member-state-dot.online  { background: #22c55e; }
+    .member-state-dot.ingame  { background: #57cbde; }
+    .member-state-dot.away    { background: #f59e0b; }
+
+    .member-info { flex: 1; min-width: 0; }
+    .member-name {
+      font-size: 13.5px; font-weight: 600; color: #f5f5f5;
+      white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+    }
+    .member-meta { font-size: 11px; color: var(--text-muted); margin-top: 2px; }
+    .member-status-text { font-size: 11px; margin-top: 1px; }
+    .member-status-text.online { color: #4ade80; }
+    .member-status-text.ingame { color: #57cbde; }
+    .member-status-text.away   { color: #fbbf24; }
+    .member-status-text.offline { color: var(--text-muted); }
+
+    .member-steam-link {
+      width: 30px; height: 30px; border-radius: 8px;
+      background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08);
+      display: flex; align-items: center; justify-content: center;
+      color: var(--text-muted); font-size: 12px; text-decoration: none;
+      transition: background 0.15s, color 0.15s; flex-shrink: 0;
+    }
+    .member-steam-link:hover { background: rgba(255,255,255,0.10); color: var(--text); }
+
+    /* Empty / loading */
+    .empty-state {
+      text-align: center; padding: 60px 20px;
+      color: var(--text-muted); font-size: 13px;
+    }
+    .empty-state i { font-size: 2rem; margin-bottom: 12px; display: block; opacity: 0.3; }
+
+    .loading-row {
+      display: flex; align-items: center; justify-content: center; gap: 8px;
+      padding: 40px; color: var(--text-muted); font-size: 13px;
+    }
+
+    /* Footer */
+    .comm-footer {
+      text-align: center; margin-top: 48px;
+      font-size: 12px; color: var(--text-muted);
+      display: flex; flex-direction: column; gap: 6px; align-items: center;
+    }
+    .comm-footer a { color: var(--primary); text-decoration: none; transition: color 0.15s; }
+    .comm-footer a:hover { color: var(--primary-light); }
+
+    @media (max-width: 600px) {
+      .members-grid { grid-template-columns: 1fr; }
+      .join-card { padding: 20px 18px; }
+      .page { padding: 90px 16px 60px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Nav -->
+  <nav class="nav">
+    <a href="index.html" class="nav-brand">
+      <img src="images/ghost.svg" alt="GhostLua" />
+      GhostLua
+    </a>
+    <a href="index.html" class="nav-back">
+      <i class="fa-solid fa-arrow-left" style="font-size:10px;"></i>
+      Back to Home
+    </a>
+  </nav>
+
+  <div class="page">
+
+    <!-- Header -->
+    <div class="page-header">
+      <h1><i class="fa-solid fa-users" style="font-size:1.4rem;margin-right:10px;"></i>GhostLua Community</h1>
+      <p>Steam users who use GhostLua — join and see who else is here</p>
+    </div>
+
+    <!-- Join card -->
+    <div class="join-card">
+      <h2><i class="fa-brands fa-steam" style="margin-right:7px;"></i>Join the Community</h2>
+      <p>Enter your Steam ID (17-digit) or profile URL to appear on the community board and see other GhostLua users.</p>
+      <div class="join-row">
+        <input type="text" id="join-input" class="join-input"
+               placeholder="Steam ID (e.g. 76561198000000000) or profile URL" />
+        <button class="join-btn" id="join-btn" onclick="joinCommunity()">
+          <i class="fa-solid fa-user-plus" style="font-size:11px;"></i>
+          Join
+        </button>
+      </div>
+      <div class="join-msg" id="join-msg"></div>
+    </div>
+
+    <!-- Members list -->
+    <div style="display:flex;align-items:center;gap:8px;margin-bottom:16px;">
+      <div class="section-title" style="margin:0;">GhostLua Members</div>
+      <div class="member-count-badge" id="member-count">Loading…</div>
+      <button onclick="loadMembers()" style="margin-left:auto;background:none;border:none;cursor:pointer;color:#525252;font-size:12px;padding:4px 8px;border-radius:8px;transition:color 0.15s;" onmouseover="this.style.color='#d4d4d4'" onmouseout="this.style.color='#525252'">
+        <i class="fa-solid fa-rotate-right" style="margin-right:5px;"></i>Refresh
+      </button>
+    </div>
+
+    <div id="members-container">
+      <div class="loading-row">
+        <i class="fa-solid fa-spinner fa-spin" style="font-size:14px;"></i>
+        Loading members…
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="comm-footer">
+      <span>© 2026 GhostLua · Steam community board</span>
+      <div style="display:flex;gap:18px;margin-top:4px;">
+        <a href="index.html"><i class="fa-solid fa-house" style="font-size:10px;margin-right:4px;"></i>Home</a>
+        <a href="guide.html"><i class="fa-solid fa-book-open" style="font-size:10px;margin-right:4px;"></i>Guide</a>
+        <a href="status.html"><i class="fa-solid fa-satellite-dish" style="font-size:10px;margin-right:4px;"></i>Status</a>
+        <a href="https://discord.gg/ghostlua" target="_blank" rel="noopener"><i class="fa-brands fa-discord" style="font-size:11px;margin-right:4px;"></i>Discord</a>
+      </div>
+    </div>
+
+  </div>
+
+  <script>
+    // ── State labels ───────────────────────────────────────────────────────────
+    const STATE = {
+      0: { label: 'Offline',      cls: 'offline', dot: '' },
+      1: { label: 'Online',       cls: 'online',  dot: 'online' },
+      2: { label: 'Busy',         cls: 'away',    dot: 'away' },
+      3: { label: 'Away',         cls: 'away',    dot: 'away' },
+      4: { label: 'Snooze',       cls: 'away',    dot: 'away' },
+      5: { label: 'Looking…',     cls: 'online',  dot: 'online' },
+      6: { label: 'Looking…',     cls: 'online',  dot: 'online' },
+    };
+
+    function stateInfo(n) { return STATE[n] || STATE[0]; }
+
+    function timeAgo(ts) {
+      const s = Math.floor((Date.now() - ts) / 1000);
+      if (s < 60)   return 'just now';
+      if (s < 3600) return `${Math.floor(s/60)}m ago`;
+      if (s < 86400) return `${Math.floor(s/3600)}h ago`;
+      return `${Math.floor(s/86400)}d ago`;
+    }
+
+    // ── Render members ─────────────────────────────────────────────────────────
+    function renderMembers(members) {
+      const el = document.getElementById('members-container');
+      document.getElementById('member-count').textContent = `${members.length} member${members.length !== 1 ? 's' : ''}`;
+
+      if (!members.length) {
+        el.innerHTML = `
+          <div class="empty-state">
+            <i class="fa-solid fa-ghost"></i>
+            No members yet — be the first to join!
+          </div>`;
+        return;
+      }
+
+      el.innerHTML = `<div class="members-grid">${members.map(m => {
+        const s   = stateInfo(m.state || 0);
+        const url = `https://steamcommunity.com/profiles/${m.steamid}`;
+        return `
+          <div class="member-card">
+            <div class="member-avatar-wrap">
+              <img class="member-avatar" src="${m.avatar || ''}"
+                   alt="${m.name}" loading="lazy"
+                   onerror="this.src='images/ghost.svg'" />
+              <div class="member-state-dot ${s.dot}"></div>
+            </div>
+            <div class="member-info">
+              <div class="member-name" title="${m.name}">${m.name}</div>
+              <div class="member-meta">Joined ${timeAgo(m.joined)}</div>
+              <div class="member-status-text ${s.cls}">${s.label}</div>
+            </div>
+            <a href="${url}" target="_blank" rel="noopener" class="member-steam-link" title="View on Steam">
+              <i class="fa-brands fa-steam"></i>
+            </a>
+          </div>`;
+      }).join('')}</div>`;
+    }
+
+    // ── Load members ───────────────────────────────────────────────────────────
+    async function loadMembers() {
+      const el = document.getElementById('members-container');
+      el.innerHTML = `
+        <div class="loading-row">
+          <i class="fa-solid fa-spinner fa-spin" style="font-size:14px;"></i>
+          Loading members…
+        </div>`;
+      document.getElementById('member-count').textContent = '…';
+
+      try {
+        const res  = await fetch('/api/community/members', { signal: AbortSignal.timeout(8000) });
+        const data = await res.json();
+        renderMembers(data.members || []);
+      } catch {
+        el.innerHTML = `
+          <div class="empty-state">
+            <i class="fa-solid fa-circle-exclamation" style="color:#f87171;"></i>
+            Could not load members — server may be offline.
+            <br><br>
+            <button onclick="loadMembers()" style="background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.12);color:#d4d4d4;border-radius:8px;padding:7px 16px;font-size:12px;cursor:pointer;">
+              Retry
+            </button>
+          </div>`;
+        document.getElementById('member-count').textContent = '?';
+      }
+    }
+
+    // ── Resolve input (Steam ID or URL) ────────────────────────────────────────
+    async function resolveInput(raw) {
+      raw = raw.trim();
+      // Pure 17-digit Steam ID
+      if (/^\d{17}$/.test(raw)) return raw;
+
+      // Profile URL: steamcommunity.com/profiles/STEAMID or /id/vanityname
+      const profileMatch = raw.match(/steamcommunity\.com\/profiles\/(\d{17})/);
+      if (profileMatch) return profileMatch[1];
+
+      const vanityMatch = raw.match(/steamcommunity\.com\/id\/([^\/\?]+)/);
+      if (vanityMatch) {
+        const res  = await fetch(`/api/steam/resolve?vanity=${encodeURIComponent(vanityMatch[1])}`, {
+          signal: AbortSignal.timeout(8000),
+        });
+        const data = await res.json();
+        if (data?.response?.success === 1) return data.response.steamid;
+        throw new Error('Vanity URL not found');
+      }
+
+      // Plain vanity name (no numbers / 17 digits)
+      if (/^[a-zA-Z0-9_\-]{2,32}$/.test(raw) && !/^\d{17}$/.test(raw)) {
+        const res  = await fetch(`/api/steam/resolve?vanity=${encodeURIComponent(raw)}`, {
+          signal: AbortSignal.timeout(8000),
+        });
+        const data = await res.json();
+        if (data?.response?.success === 1) return data.response.steamid;
+        throw new Error('Could not resolve vanity URL — try your 17-digit Steam ID');
+      }
+
+      throw new Error('Enter a 17-digit Steam ID or your Steam profile URL');
+    }
+
+    // ── Join community ─────────────────────────────────────────────────────────
+    async function joinCommunity() {
+      const input = document.getElementById('join-input');
+      const btn   = document.getElementById('join-btn');
+      const msg   = document.getElementById('join-msg');
+
+      const raw = input.value.trim();
+      if (!raw) { showMsg('error', 'Please enter your Steam ID or profile URL.'); return; }
+
+      btn.disabled = true;
+      btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin" style="font-size:11px;"></i> Joining…';
+      hideMsg();
+
+      try {
+        const steamid = await resolveInput(raw);
+
+        const res  = await fetch('/api/community/join', {
+          method:  'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body:    JSON.stringify({ steamid }),
+          signal:  AbortSignal.timeout(10000),
+        });
+        const data = await res.json();
+
+        if (!res.ok) throw new Error(data.error || 'Server error');
+
+        const m = data.member;
+        if (m.existing) {
+          showMsg('info', `Welcome back, ${m.name}! You're already in the community.`);
+        } else {
+          showMsg('ok', `Welcome, ${m.name}! You've joined the GhostLua community.`);
+          loadMembers();
+        }
+        input.value = '';
+      } catch (e) {
+        showMsg('error', e.message || 'Something went wrong. Try again.');
+      } finally {
+        btn.disabled = false;
+        btn.innerHTML = '<i class="fa-solid fa-user-plus" style="font-size:11px;"></i> Join';
+      }
+    }
+
+    function showMsg(type, text) {
+      const msg = document.getElementById('join-msg');
+      msg.className = `join-msg ${type} show`;
+      msg.textContent = text;
+    }
+    function hideMsg() {
+      const msg = document.getElementById('join-msg');
+      msg.className = 'join-msg';
+    }
+
+    // Enter key support
+    document.addEventListener('DOMContentLoaded', () => {
+      document.getElementById('join-input').addEventListener('keydown', e => {
+        if (e.key === 'Enter') joinCommunity();
+      });
+      loadMembers();
+    });
+  </script>
+</body>
+</html>

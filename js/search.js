@@ -5,7 +5,7 @@ async function searchSteam(query) {
   // 1. Try server-side proxy (works locally with server.js + Steam API key)
   try {
     const res = await fetch(`/api/steam/search?q=${encodeURIComponent(query)}`, {
-      signal: AbortSignal.timeout(8000),
+      signal: AbortSignal.timeout(6000),
     });
     if (res.ok) {
       const data = await res.json();
@@ -43,8 +43,8 @@ function onSearchInput(val) {
 
   results.classList.remove('hidden');
   results.innerHTML = `
-    <div class="px-4 py-3 text-xs text-slate-500 flex items-center gap-2">
-      <i class="fa-solid fa-spinner animate-spin text-teal-400 text-[10px]"></i> Searching Steam…
+    <div class="px-4 py-3 text-xs text-neutral-500 flex items-center gap-2">
+      <i class="fa-solid fa-spinner animate-spin text-neutral-400 text-[10px]"></i> Searching Steam…
     </div>`;
 
   searchTimeout = setTimeout(async () => {
@@ -55,8 +55,8 @@ function onSearchInput(val) {
       if (gf) games = games.filter(g => (g.type || '').toLowerCase().includes(gf) || g.name.toLowerCase().includes(gf));
       if (!games.length) {
         results.innerHTML = `
-          <div class="px-4 py-4 text-xs text-slate-500 text-center">
-            No results for <strong class="text-slate-400">"${val}"</strong>
+          <div class="px-4 py-4 text-xs text-neutral-500 text-center">
+            No results for <strong class="text-neutral-400">"${val}"</strong>
           </div>`;
         return;
       }
@@ -69,7 +69,7 @@ function onSearchInput(val) {
           </div>
           <div class="flex-1 min-w-0">
             <div class="search-result-name truncate">${g.name}</div>
-            <div class="text-[10px] text-slate-600 mt-0.5 capitalize">${g.type} · ${g.price}</div>
+            <div class="text-[10px] text-neutral-600 mt-0.5 capitalize">${g.type} · ${g.price}</div>
           </div>
           <button class="dl-pill-btn"
                   onclick="event.stopPropagation(); quickDownload(${g.appId}, ${_jqAttr(g.name)}, ${_jqAttr(g.price)}, '', [])">
@@ -79,13 +79,13 @@ function onSearchInput(val) {
       `).join('');
     } catch {
       results.innerHTML = `
-        <div class="px-4 py-3 text-xs text-slate-500 text-center">
-          <i class="fa-solid fa-circle-exclamation text-amber-500/70 mr-1.5"></i>
+        <div class="px-4 py-3 text-xs text-neutral-500 text-center">
+          <i class="fa-solid fa-circle-exclamation text-neutral-400 mr-1.5"></i>
           Search unavailable —
-          <button onclick="doSearch()" class="text-teal-400 hover:underline">retry</button>
+          <button onclick="doSearch()" class="text-neutral-300 hover:underline">retry</button>
         </div>`;
     }
-  }, 350);
+  }, 200);
 }
 
 function doSearch() {
@@ -104,12 +104,11 @@ function toggleFilter() {
   if (!panel) return;
   const isHidden = panel.classList.contains('hidden');
   panel.classList.toggle('hidden', !isHidden);
-  if (btn) btn.classList.toggle('text-cyan-400', isHidden);
+  if (btn) btn.classList.toggle('text-neutral-300', isHidden);
 }
 
 function setFilter(type, val, el) {
   window._filters[type] = val;
-  // Update active chip styling
   const group = document.getElementById('filter-' + type);
   if (group) group.querySelectorAll('.filter-chip').forEach(c => {
     c.classList.toggle('active', c.dataset.val === val);
@@ -130,7 +129,6 @@ function resetFilters() {
 function applyFiltersToResults() {
   const genre = (document.getElementById('filter-genre')?.value || '').toLowerCase().trim();
   window._filters.genre = genre;
-  // Re-trigger search if there's a query in the input
   const val = document.getElementById('search-input')?.value.trim();
   if (val) onSearchInput(val);
 }
@@ -142,12 +140,19 @@ function randomGame() {
   quickDownload(g.appId, g.name, g.downloads, g.size || '', g.tags || []);
 }
 
-// Close search results on outside click
+// Close search results on outside click or Escape
 document.addEventListener('click', e => {
   const results = document.getElementById('search-results');
   const input   = document.getElementById('search-input');
   if (results && !results.contains(e.target) && e.target !== input) {
     results.classList.add('hidden');
+  }
+});
+
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') {
+    document.getElementById('search-results')?.classList.add('hidden');
+    document.getElementById('search-input')?.blur();
   }
 });
 
