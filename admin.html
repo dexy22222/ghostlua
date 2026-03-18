@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin — GhostLua</title>
+  <link rel="icon" type="image/png" href="images/ghost.svg" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: { extend: {
+        colors: { primary: '#d4d4d4' },
+        fontFamily: { sans: ['Inter','ui-sans-serif','system-ui','sans-serif'] }
+      }}
+    }
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,300..800;1,14..32,300..800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/custom.css" />
+  <link rel="stylesheet" href="css/animations.css" />
+</head>
+<body class="min-h-screen font-sans relative text-neutral-100 antialiased">
+
+  <!-- Background -->
+  <div class="fixed inset-0 bg-[#080808] pointer-events-none z-0"></div>
+  <div class="fixed inset-0 pointer-events-none z-0 grid-overlay"></div>
+
+  <!-- Floating ghost background -->
+  <div class="ghost-bg-container" aria-hidden="true">
+    <img src="images/ghost.svg" class="ghost-bg ghost-1" alt="" />
+    <img src="images/ghost.svg" class="ghost-bg ghost-2" alt="" />
+    <img src="images/ghost.svg" class="ghost-bg ghost-3" alt="" />
+    <img src="images/ghost.svg" class="ghost-bg ghost-4" alt="" />
+    <img src="images/ghost.svg" class="ghost-bg ghost-5" alt="" />
+  </div>
+
+  <!-- Back nav -->
+  <div class="hidden md:flex fixed top-4 left-4 items-center gap-2 z-30">
+    <a href="index.html" class="nav-pill flex items-center h-9 gap-2 bg-neutral-900/80 rounded-full px-3.5 border border-neutral-800/60 hover:border-neutral-600/60">
+      <i class="fa-solid fa-arrow-left text-neutral-400 text-xs"></i>
+      <span class="text-[13px] text-neutral-300 font-medium">Back</span>
+    </a>
+  </div>
+
+  <!-- Login card -->
+  <div class="relative z-10 flex items-center justify-center min-h-screen px-4">
+    <div id="login-box" class="w-full max-w-sm">
+
+      <!-- Header -->
+      <div class="text-center mb-8">
+        <div class="inline-flex items-center justify-center w-14 h-14 rounded-2xl bg-neutral-900 border border-neutral-800 mb-4">
+          <i class="fa-solid fa-shield-halved text-neutral-300 text-xl"></i>
+        </div>
+        <h1 class="text-xl font-semibold text-neutral-100 mb-1">Admin Panel</h1>
+        <p class="text-sm text-neutral-500">Sign in to access the dashboard</p>
+      </div>
+
+      <!-- Form -->
+      <div class="bg-neutral-900/60 backdrop-blur-xl border border-neutral-800/60 rounded-2xl p-6 space-y-4">
+
+        <!-- Error message -->
+        <div id="error-msg" class="hidden flex items-center gap-2 bg-red-500/10 border border-red-500/20 rounded-xl px-4 py-3 text-sm text-red-400">
+          <i class="fa-solid fa-circle-exclamation text-xs"></i>
+          <span>Invalid username or password.</span>
+        </div>
+
+        <!-- Username -->
+        <div>
+          <label class="block text-xs font-medium text-neutral-400 mb-1.5">Username</label>
+          <div class="relative">
+            <span class="absolute inset-y-0 left-3 flex items-center text-neutral-500 text-xs">
+              <i class="fa-regular fa-user"></i>
+            </span>
+            <input
+              id="username"
+              type="text"
+              autocomplete="username"
+              placeholder="Enter username"
+              class="w-full bg-neutral-800/60 border border-neutral-700/60 rounded-xl pl-8 pr-4 py-2.5 text-sm text-neutral-100 placeholder-neutral-600 focus:outline-none focus:border-neutral-500 transition-colors"
+            />
+          </div>
+        </div>
+
+        <!-- Password -->
+        <div>
+          <label class="block text-xs font-medium text-neutral-400 mb-1.5">Password</label>
+          <div class="relative">
+            <span class="absolute inset-y-0 left-3 flex items-center text-neutral-500 text-xs">
+              <i class="fa-solid fa-lock"></i>
+            </span>
+            <input
+              id="password"
+              type="password"
+              autocomplete="current-password"
+              placeholder="Enter password"
+              class="w-full bg-neutral-800/60 border border-neutral-700/60 rounded-xl pl-8 pr-10 py-2.5 text-sm text-neutral-100 placeholder-neutral-600 focus:outline-none focus:border-neutral-500 transition-colors"
+            />
+            <button
+              type="button"
+              onclick="togglePw()"
+              class="absolute inset-y-0 right-3 flex items-center text-neutral-500 hover:text-neutral-300 transition-colors text-xs"
+              tabindex="-1"
+            >
+              <i id="pw-eye" class="fa-regular fa-eye"></i>
+            </button>
+          </div>
+        </div>
+
+        <!-- Submit -->
+        <button
+          onclick="attemptLogin()"
+          id="login-btn"
+          class="w-full mt-1 h-10 rounded-xl bg-neutral-100 text-neutral-900 text-sm font-semibold hover:bg-white transition-colors flex items-center justify-center gap-2"
+        >
+          <i class="fa-solid fa-right-to-bracket text-xs"></i>
+          Sign In
+        </button>
+
+      </div>
+
+      <p class="text-center text-xs text-neutral-600 mt-5">GhostLua &mdash; Admin access only</p>
+    </div>
+
+    <!-- Dashboard (shown after login) -->
+    <div id="dashboard" class="hidden w-full max-w-2xl">
+      <div class="text-center mb-8">
+        <div class="inline-flex items-center justify-center w-14 h-14 rounded-2xl bg-emerald-500/10 border border-emerald-500/20 mb-4">
+          <i class="fa-solid fa-shield-check text-emerald-400 text-xl"></i>
+        </div>
+        <h1 class="text-xl font-semibold text-neutral-100 mb-1">Welcome back, <span id="dash-user" class="text-emerald-400"></span></h1>
+        <p class="text-sm text-neutral-500">You are signed in as administrator</p>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 mb-4">
+        <div class="bg-neutral-900/60 border border-neutral-800/60 rounded-2xl p-5 text-center">
+          <div class="text-2xl font-bold text-neutral-100 mb-0.5" id="dash-pages">6</div>
+          <div class="text-xs text-neutral-500">Pages</div>
+        </div>
+        <div class="bg-neutral-900/60 border border-neutral-800/60 rounded-2xl p-5 text-center">
+          <div class="text-2xl font-bold text-emerald-400 mb-0.5">Online</div>
+          <div class="text-xs text-neutral-500">Site Status</div>
+        </div>
+        <div class="bg-neutral-900/60 border border-neutral-800/60 rounded-2xl p-5 text-center">
+          <div class="text-2xl font-bold text-neutral-100 mb-0.5">Admin</div>
+          <div class="text-xs text-neutral-500">Role</div>
+        </div>
+      </div>
+
+      <div class="bg-neutral-900/60 border border-neutral-800/60 rounded-2xl p-5 mb-4">
+        <h2 class="text-sm font-semibold text-neutral-300 mb-3 flex items-center gap-2">
+          <i class="fa-solid fa-link text-neutral-500 text-xs"></i> Quick Links
+        </h2>
+        <div class="grid grid-cols-2 sm:grid-cols-3 gap-2">
+          <a href="index.html"     class="flex items-center gap-2 h-9 px-3 rounded-xl bg-neutral-800/50 border border-neutral-700/40 text-xs text-neutral-300 hover:border-neutral-600/60 transition-colors"><i class="fa-solid fa-house text-neutral-500 w-3.5 text-center"></i>Home</a>
+          <a href="guide.html"     class="flex items-center gap-2 h-9 px-3 rounded-xl bg-neutral-800/50 border border-neutral-700/40 text-xs text-neutral-300 hover:border-neutral-600/60 transition-colors"><i class="fa-solid fa-book-open text-neutral-500 w-3.5 text-center"></i>Guide</a>
+          <a href="community.html" class="flex items-center gap-2 h-9 px-3 rounded-xl bg-neutral-800/50 border border-neutral-700/40 text-xs text-neutral-300 hover:border-neutral-600/60 transition-colors"><i class="fa-solid fa-users text-neutral-500 w-3.5 text-center"></i>Community</a>
+          <a href="status.html"    class="flex items-center gap-2 h-9 px-3 rounded-xl bg-neutral-800/50 border border-neutral-700/40 text-xs text-neutral-300 hover:border-neutral-600/60 transition-colors"><i class="fa-solid fa-signal text-neutral-500 w-3.5 text-center"></i>Status</a>
+          <a href="privacy.html"   class="flex items-center gap-2 h-9 px-3 rounded-xl bg-neutral-800/50 border border-neutral-700/40 text-xs text-neutral-300 hover:border-neutral-600/60 transition-colors"><i class="fa-solid fa-shield text-neutral-500 w-3.5 text-center"></i>Privacy</a>
+          <a href="tos.html"       class="flex items-center gap-2 h-9 px-3 rounded-xl bg-neutral-800/50 border border-neutral-700/40 text-xs text-neutral-300 hover:border-neutral-600/60 transition-colors"><i class="fa-solid fa-file-lines text-neutral-500 w-3.5 text-center"></i>Terms</a>
+        </div>
+      </div>
+
+      <button
+        onclick="signOut()"
+        class="w-full h-10 rounded-xl bg-neutral-800 border border-neutral-700/60 text-sm text-neutral-400 hover:text-red-400 hover:border-red-500/30 transition-colors flex items-center justify-center gap-2"
+      >
+        <i class="fa-solid fa-right-from-bracket text-xs"></i>
+        Sign Out
+      </button>
+    </div>
+  </div>
+
+  <script>
+    const ADMIN_USER = 'dexy';
+    const ADMIN_PASS = 'dexyisgoated2';
+    const SESSION_KEY = 'gl_admin_session';
+
+    function attemptLogin() {
+      const u = document.getElementById('username').value.trim();
+      const p = document.getElementById('password').value;
+      const err = document.getElementById('error-msg');
+
+      if (u === ADMIN_USER && p === ADMIN_PASS) {
+        err.classList.add('hidden');
+        localStorage.setItem(SESSION_KEY, JSON.stringify({ user: u, ts: Date.now() }));
+        showDashboard(u);
+      } else {
+        err.classList.remove('hidden');
+        document.getElementById('password').value = '';
+      }
+    }
+
+    function showDashboard(user) {
+      document.getElementById('login-box').classList.add('hidden');
+      document.getElementById('dashboard').classList.remove('hidden');
+      document.getElementById('dash-user').textContent = user;
+    }
+
+    function signOut() {
+      localStorage.removeItem(SESSION_KEY);
+      document.getElementById('dashboard').classList.add('hidden');
+      document.getElementById('login-box').classList.remove('hidden');
+      document.getElementById('username').value = '';
+      document.getElementById('password').value = '';
+      document.getElementById('error-msg').classList.add('hidden');
+    }
+
+    function togglePw() {
+      const inp = document.getElementById('password');
+      const eye = document.getElementById('pw-eye');
+      if (inp.type === 'password') {
+        inp.type = 'text';
+        eye.className = 'fa-regular fa-eye-slash';
+      } else {
+        inp.type = 'password';
+        eye.className = 'fa-regular fa-eye';
+      }
+    }
+
+    // Allow Enter key to submit
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Enter' && !document.getElementById('login-box').classList.contains('hidden')) {
+        attemptLogin();
+      }
+    });
+
+    // Auto-restore session on load
+    (function () {
+      try {
+        const s = JSON.parse(localStorage.getItem(SESSION_KEY) || 'null');
+        // Session expires after 8 hours
+        if (s && s.user && (Date.now() - s.ts) < 8 * 60 * 60 * 1000) {
+          showDashboard(s.user);
+        }
+      } catch {}
+    })();
+  </script>
+</body>
+</html>
