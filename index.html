@@ -11,7 +11,7 @@
     tailwind.config = {
       darkMode: 'class',
       theme: { extend: {
-        colors: { primary: '#06b6d4' },
+        colors: { primary: '#d4d4d4' },
         fontFamily: { sans: ['Inter','ui-sans-serif','system-ui','sans-serif'] }
       }}
     }
@@ -22,10 +22,10 @@
   <link rel="stylesheet" href="css/custom.css" />
   <link rel="stylesheet" href="css/animations.css" />
 </head>
-<body class="min-h-screen font-sans relative text-slate-100 antialiased">
+<body class="min-h-screen font-sans relative text-neutral-100 antialiased">
 
-  <!-- Background layers -->
-  <div class="fixed inset-0 bg-gradient-to-br from-[#060b14] via-[#040e18] to-[#02080f] pointer-events-none z-0"></div>
+  <!-- Background -->
+  <div class="fixed inset-0 bg-[#080808] pointer-events-none z-0"></div>
   <div class="fixed inset-0 pointer-events-none z-0 grid-overlay"></div>
 
   <!-- Floating ghost background -->
@@ -41,31 +41,31 @@
 
   <!-- Desktop Nav Left -->
   <div class="hidden md:flex fixed top-4 left-4 items-center gap-2 z-30">
-    <a href="guide.html" class="nav-pill flex items-center h-9 gap-2 bg-slate-900/70 rounded-full px-3.5 border border-slate-800/50 hover:border-cyan-800/40">
-      <i class="fa-solid fa-book-open text-cyan-400/70 text-xs"></i>
-      <span class="text-[13px] text-slate-300 font-medium">Guide</span>
+    <a href="guide.html" class="nav-pill flex items-center h-9 gap-2 bg-neutral-900/80 rounded-full px-3.5 border border-neutral-800/60 hover:border-neutral-600/60">
+      <i class="fa-solid fa-book-open text-neutral-400 text-xs"></i>
+      <span class="text-[13px] text-neutral-300 font-medium">Guide</span>
     </a>
-    <a href="guide.html#faq" class="nav-pill flex items-center h-9 gap-2 bg-slate-900/70 rounded-full px-3.5 border border-slate-800/50 hover:border-cyan-800/40">
-      <i class="fa-regular fa-circle-question text-cyan-400/70 text-xs"></i>
-      <span class="text-[13px] text-slate-300 font-medium">FAQ</span>
+    <a href="guide.html#faq" class="nav-pill flex items-center h-9 gap-2 bg-neutral-900/80 rounded-full px-3.5 border border-neutral-800/60 hover:border-neutral-600/60">
+      <i class="fa-regular fa-circle-question text-neutral-400 text-xs"></i>
+      <span class="text-[13px] text-neutral-300 font-medium">FAQ</span>
     </a>
-    <a href="status.html" class="nav-pill flex items-center h-9 gap-2 bg-slate-900/70 rounded-full px-3.5 border border-slate-800/50 hover:border-emerald-700/40">
+    <a href="status.html" class="nav-pill flex items-center h-9 gap-2 bg-neutral-900/80 rounded-full px-3.5 border border-neutral-800/60 hover:border-emerald-700/40">
       <span class="relative flex h-2 w-2">
         <span class="absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75 animate-ping"></span>
         <span class="relative inline-flex rounded-full h-2 w-2 bg-emerald-400"></span>
       </span>
-      <span class="text-[13px] text-slate-300 font-medium">Status</span>
+      <span class="text-[13px] text-neutral-300 font-medium">Status</span>
     </a>
   </div>
 
   <!-- Desktop Nav Right -->
   <div class="hidden md:flex fixed top-4 right-4 items-center gap-2 z-30">
-    <div class="nav-pill flex items-center gap-2 bg-slate-900/70 rounded-full px-3.5 h-9 border border-slate-800/50">
+    <div class="nav-pill flex items-center gap-2 bg-neutral-900/80 rounded-full px-3.5 h-9 border border-neutral-800/60">
       <span class="relative flex h-2 w-2">
-        <span class="absolute inline-flex h-full w-full rounded-full bg-cyan-400 opacity-75 animate-ping"></span>
-        <span class="relative inline-flex rounded-full h-2 w-2 bg-cyan-400"></span>
+        <span class="absolute inline-flex h-full w-full rounded-full bg-neutral-300 opacity-60 animate-ping"></span>
+        <span class="relative inline-flex rounded-full h-2 w-2 bg-neutral-300"></span>
       </span>
-      <span class="text-slate-200 text-[13px] font-medium whitespace-nowrap online-count">27 online</span>
+      <span class="text-neutral-200 text-[13px] font-medium whitespace-nowrap online-count">27 online</span>
     </div>
   </div>
 
@@ -73,278 +73,271 @@
   <div class="md:hidden fixed top-3 left-3 right-3 z-30">
     <div class="flex items-center justify-between gap-2">
       <button onclick="toggleMobileMenu()"
-        class="nav-pill flex items-center justify-center w-10 h-10 bg-slate-900/75 rounded-xl border border-slate-800/50">
-        <i class="fa-solid fa-bars text-slate-400 text-sm"></i>
+        class="nav-pill flex items-center justify-center w-10 h-10 bg-neutral-900/80 rounded-xl border border-neutral-800/60">
+        <i class="fa-solid fa-bars text-neutral-400 text-sm"></i>
       </button>
       <div class="flex items-center gap-2">
-        <div class="nav-pill flex items-center gap-1.5 bg-slate-900/70 rounded-full px-3 h-9 border border-slate-800/50">
+        <div class="nav-pill flex items-center gap-1.5 bg-neutral-900/80 rounded-full px-3 h-9 border border-neutral-800/60">
           <span class="relative flex h-1.5 w-1.5">
-            <span class="absolute inline-flex h-full w-full rounded-full bg-cyan-400 opacity-75 animate-ping"></span>
-            <span class="relative inline-flex rounded-full h-1.5 w-1.5 bg-cyan-400"></span>
+            <span class="absolute inline-flex h-full w-full rounded-full bg-neutral-300 opacity-60 animate-ping"></span>
+            <span class="relative inline-flex rounded-full h-1.5 w-1.5 bg-neutral-300"></span>
           </span>
-          <span class="text-slate-200 text-xs font-medium online-count">27 online</span>
+          <span class="text-neutral-200 text-xs font-medium online-count">27 online</span>
         </div>
       </div>
     </div>
     <div id="mobile-menu" class="hidden mt-2 flex flex-col gap-1">
-      <a href="guide.html" class="flex items-center h-10 gap-2.5 bg-slate-900/90 backdrop-blur-xl rounded-xl px-4 border border-slate-800/50 text-sm text-slate-200 font-medium">
-        <i class="fa-solid fa-book-open text-cyan-400/70 text-xs w-4 text-center"></i> Usage Guide
+      <a href="guide.html" class="flex items-center h-10 gap-2.5 bg-neutral-900/90 backdrop-blur-xl rounded-xl px-4 border border-neutral-800/60 text-sm text-neutral-200 font-medium">
+        <i class="fa-solid fa-book-open text-neutral-500 text-xs w-4 text-center"></i> Usage Guide
       </a>
-      <a href="guide.html#faq" class="flex items-center h-10 gap-2.5 bg-slate-900/90 backdrop-blur-xl rounded-xl px-4 border border-slate-800/50 text-sm text-slate-200 font-medium">
-        <i class="fa-regular fa-circle-question text-cyan-400/70 text-xs w-4 text-center"></i> FAQ
+      <a href="guide.html#faq" class="flex items-center h-10 gap-2.5 bg-neutral-900/90 backdrop-blur-xl rounded-xl px-4 border border-neutral-800/60 text-sm text-neutral-200 font-medium">
+        <i class="fa-regular fa-circle-question text-neutral-500 text-xs w-4 text-center"></i> FAQ
       </a>
-      <a href="status.html" class="flex items-center h-10 gap-2.5 bg-slate-900/90 backdrop-blur-xl rounded-xl px-4 border border-slate-800/50 text-sm text-slate-200 font-medium">
+      <a href="status.html" class="flex items-center h-10 gap-2.5 bg-neutral-900/90 backdrop-blur-xl rounded-xl px-4 border border-neutral-800/60 text-sm text-neutral-200 font-medium">
         <i class="fa-solid fa-circle text-emerald-400 text-xs w-4 text-center" style="font-size:8px;"></i> Status
       </a>
     </div>
   </div>
 
   <!-- ═══════════════════════════════════════════════════
-       MAIN DASHBOARD — 2-column layout
+       MAIN DASHBOARD — centered hero + 3-column charts
   ═══════════════════════════════════════════════════ -->
-  <main class="relative w-full max-w-[1280px] mx-auto px-4 sm:px-6 pt-[4.75rem] pb-28 z-20">
-    <div class="grid grid-cols-1 lg:grid-cols-[1fr_360px] gap-5 items-start">
+  <main class="relative w-full max-w-[1400px] mx-auto px-4 sm:px-6 pt-[5rem] pb-28 z-20">
 
-      <!-- ════════════════════════════════════
-           LEFT COLUMN: Charts + Recently Added
-      ════════════════════════════════════ -->
-      <div class="flex flex-col gap-4">
+    <!-- ── HERO: Logo + Search ── -->
+    <div class="hero-search-wrap mb-10">
 
-        <!-- Chart card (tabbed: Top Downloads | Trending) -->
-        <div class="card card-charts rounded-2xl overflow-hidden">
-
-          <!-- Tab header bar -->
-          <div class="flex items-center border-b border-white/[0.05] bg-white/[0.012]">
-            <button id="tab-btn-top" onclick="switchTab('top')"
-              class="chart-tab-btn chart-tab-active flex items-center gap-1.5 px-5 py-3.5 text-[11px] font-bold uppercase tracking-wide">
-              <i class="fa-solid fa-chart-bar text-[9px]"></i>Top Downloads
-            </button>
-            <button id="tab-btn-trending" onclick="switchTab('trending')"
-              class="chart-tab-btn chart-tab-inactive flex items-center gap-1.5 px-5 py-3.5 text-[11px] font-bold uppercase tracking-wide">
-              <i class="fa-solid fa-arrow-trend-up text-[9px]"></i>Trending
-            </button>
-            <div class="flex items-center gap-1.5 ml-auto pr-4">
-              <span class="live-dot-indicator"></span>
-              <span class="text-[9px] text-slate-700 font-medium uppercase tracking-wider">LIVE · <span id="live-updated">just now</span></span>
-            </div>
-          </div>
-
-          <!-- Top Downloads pane -->
-          <div id="chart-tab-top">
-            <div id="top-downloads-list" class="chart-list space-y-0.5 px-2.5 pt-2.5"></div>
-            <div class="px-2.5 pb-2">
-              <button id="top-show-more-btn" onclick="toggleTopShowMore()"
-                class="show-more-btn w-full py-2 text-[11px] font-medium flex items-center justify-center gap-1.5 text-slate-500 hover:text-slate-300">
-                <span id="top-show-more-text">Show 7 more</span>
-                <i id="top-show-more-icon" class="fa-solid fa-chevron-down text-[9px]"></i>
-              </button>
-            </div>
-          </div>
-
-          <!-- Trending pane (hidden by default) -->
-          <div id="chart-tab-trending" class="hidden">
-            <div id="trending-list" class="chart-list space-y-0.5 px-2.5 pt-2.5 pb-3"></div>
-          </div>
-
+      <!-- Logo block -->
+      <div class="flex flex-col items-center gap-1.5 mb-2">
+        <div class="title-glow-wrap">
+          <h1 class="text-[2rem] font-extrabold animate-gradient flex items-center justify-center gap-2.5">
+            <img src="images/ghost.svg" class="ghost-logo-img" alt="Ghost" />GhostLua
+          </h1>
         </div>
-        <!-- /chart card -->
-
-      </div>
-      <!-- /LEFT COLUMN -->
-
-      <!-- ════════════════════════════════════
-           RIGHT COLUMN: Search + Notifications + Profile
-      ════════════════════════════════════ -->
-      <div class="flex flex-col gap-4">
-
-        <!-- Search / Logo card -->
-        <div class="card card-search rounded-2xl p-5 space-y-4">
-
-          <!-- Logo -->
-          <div class="flex flex-col items-center pt-0.5 pb-0.5 gap-1.5">
-            <div class="title-glow-wrap">
-              <h1 class="text-[1.9rem] font-extrabold animate-gradient flex items-center justify-center gap-2.5">
-                <img src="images/ghost.svg" class="ghost-logo-img" alt="Ghost" />GhostLua
-              </h1>
-            </div>
-            <p class="text-[10px] text-slate-700 tracking-[0.18em] uppercase font-semibold">Free Steam Lua Scripts</p>
-            <div class="flex items-center gap-1.5 mt-0.5">
-              <span class="db-badge">
-                <i class="fa-solid fa-database text-[8px]"></i>
-                <span id="db-count">loading…</span>
-              </span>
-            </div>
-          </div>
-
-          <!-- Mode tabs -->
-          <div class="flex bg-slate-950/60 rounded-xl p-1 gap-1 border border-white/[0.05]">
-            <button id="mode-individual" onclick="switchMode('individual')"
-              class="flex-1 py-2.5 px-3 text-sm font-semibold rounded-lg transition-all duration-200 mode-tab-active">
-              <span class="flex items-center justify-center gap-2">
-                <i class="fa-regular fa-file-code text-xs"></i>Individual
-              </span>
-            </button>
-            <button id="mode-profile" onclick="switchMode('profile')"
-              class="flex-1 py-2.5 px-3 text-sm font-semibold rounded-lg transition-all duration-200 mode-tab-inactive">
-              <span class="flex items-center justify-center gap-2">
-                <i class="fa-regular fa-user text-xs"></i>Profile
-                <span class="px-1.5 py-0.5 text-[8px] font-bold bg-cyan-600/80 text-white rounded uppercase tracking-wider leading-none">Beta</span>
-              </span>
-            </button>
-          </div>
-
-          <!-- Search input -->
-          <div class="relative">
-            <div class="flex items-stretch">
-              <div class="relative flex-1">
-                <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-600 text-xs pointer-events-none"></i>
-                <input id="search-input" type="text"
-                  placeholder="Try: Slay the Spire 2"
-                  class="search-field w-full pl-9 pr-3 py-3 rounded-l-xl border border-slate-800/80 bg-slate-950/70 text-slate-100 placeholder-slate-600 text-sm font-medium"
-                  oninput="onSearchInput(this.value)"
-                  onkeydown="if(event.key==='Enter') doSearch()" />
-              </div>
-              <button onclick="randomGame()" title="Random game"
-                class="px-3 border-y border-slate-800/80 bg-slate-950/70 text-slate-500 hover:text-cyan-400 transition-colors">
-                <i class="fa-solid fa-shuffle text-xs"></i>
-              </button>
-              <button onclick="toggleFilter()" id="filter-toggle-btn" title="Filters"
-                class="px-2.5 rounded-r-xl border border-l-0 border-slate-800/80 bg-slate-950/70 text-slate-500 hover:text-cyan-400 transition-colors">
-                <i class="fa-solid fa-sliders text-xs"></i>
-              </button>
-            </div>
-            <div id="search-results" class="hidden absolute top-full mt-2 left-0 right-0 z-50"></div>
-          </div>
-
-          <!-- Random Filters Panel -->
-          <div id="filter-panel" class="hidden filter-panel">
-            <div class="filter-panel-header">
-              <i class="fa-solid fa-sliders text-cyan-400 text-[10px]"></i>
-              <span>Random Filters</span>
-              <button onclick="resetFilters()" class="ml-auto text-slate-600 hover:text-slate-400 text-[10px] transition-colors">Reset</button>
-            </div>
-            <div class="filter-panel-body">
-              <div class="filter-row">
-                <span class="filter-label"><i class="fa-regular fa-star text-[9px] mr-1 text-slate-600"></i>Reviews</span>
-                <div class="filter-chips" id="filter-reviews">
-                  <button class="filter-chip active" data-val="any" onclick="setFilter('reviews','any',this)">Any</button>
-                  <button class="filter-chip" data-val="100" onclick="setFilter('reviews','100',this)">100+</button>
-                  <button class="filter-chip" data-val="1000" onclick="setFilter('reviews','1000',this)">1K+</button>
-                  <button class="filter-chip" data-val="10000" onclick="setFilter('reviews','10000',this)">10K+</button>
-                </div>
-              </div>
-              <div class="filter-row">
-                <span class="filter-label"><i class="fa-solid fa-thumbs-up text-[9px] mr-1 text-slate-600"></i>Rating</span>
-                <div class="filter-chips" id="filter-rating">
-                  <button class="filter-chip active" data-val="any" onclick="setFilter('rating','any',this)">Any</button>
-                  <button class="filter-chip" data-val="90" onclick="setFilter('rating','90',this)">90%+</button>
-                  <button class="filter-chip" data-val="80" onclick="setFilter('rating','80',this)">80%+</button>
-                  <button class="filter-chip" data-val="70" onclick="setFilter('rating','70',this)">70%+</button>
-                </div>
-              </div>
-              <div class="filter-row">
-                <span class="filter-label"><i class="fa-solid fa-gamepad text-[9px] mr-1 text-slate-600"></i>Metacritic</span>
-                <div class="filter-chips" id="filter-meta">
-                  <button class="filter-chip active" data-val="any" onclick="setFilter('meta','any',this)">Any</button>
-                  <button class="filter-chip" data-val="90" onclick="setFilter('meta','90',this)">90+</button>
-                  <button class="filter-chip" data-val="80" onclick="setFilter('meta','80',this)">80+</button>
-                  <button class="filter-chip" data-val="70" onclick="setFilter('meta','70',this)">70+</button>
-                </div>
-              </div>
-              <div class="filter-row">
-                <span class="filter-label"><i class="fa-solid fa-tags text-[9px] mr-1 text-slate-600"></i>Genre</span>
-                <input id="filter-genre" type="text" placeholder="e.g. RPG, Action…"
-                  class="filter-genre-input" oninput="applyFiltersToResults()" />
-              </div>
-            </div>
-          </div>
-
-          <!-- Tip -->
-          <p id="search-tip" class="text-[11px] text-slate-600 px-0.5 text-center">
-            <span class="text-slate-500">Tip:</span> Search DLCs too, e.g.
-            <button onclick="document.getElementById('search-input').value='Shadow of the Erdtree'; doSearch();"
-              class="text-cyan-400/80 hover:text-cyan-300 transition-colors font-medium">Shadow of the Erdtree</button>
-          </p>
+        <p class="text-[10px] text-neutral-700 tracking-[0.18em] uppercase font-semibold">Free Steam Lua Scripts</p>
+        <div class="flex items-center gap-1.5 mt-0.5">
+          <span class="db-badge">
+            <i class="fa-solid fa-database text-[8px]"></i>
+            <span id="db-count">loading…</span>
+          </span>
         </div>
-        <!-- /search card -->
-
-        <!-- Profile section (profile mode, hidden by default) -->
-        <div id="profile-section" class="card rounded-2xl p-4 hidden" style="animation-delay:140ms"></div>
-
       </div>
-      <!-- /RIGHT COLUMN -->
+
+      <!-- Search card -->
+      <div class="card hero-card rounded-2xl p-5 space-y-4">
+
+        <!-- Mode tabs -->
+        <div class="flex bg-black/60 rounded-xl p-1 gap-1 border border-white/[0.05]">
+          <button id="mode-individual" onclick="switchMode('individual')"
+            class="flex-1 py-2.5 px-3 text-sm font-semibold rounded-lg transition-all duration-200 mode-tab-active">
+            <span class="flex items-center justify-center gap-2">
+              <i class="fa-regular fa-file-code text-xs"></i>Individual
+            </span>
+          </button>
+          <button id="mode-profile" onclick="switchMode('profile')"
+            class="flex-1 py-2.5 px-3 text-sm font-semibold rounded-lg transition-all duration-200 mode-tab-inactive">
+            <span class="flex items-center justify-center gap-2">
+              <i class="fa-regular fa-user text-xs"></i>Profile
+              <span class="px-1.5 py-0.5 text-[8px] font-bold bg-neutral-700/80 text-neutral-300 rounded uppercase tracking-wider leading-none">Beta</span>
+            </span>
+          </button>
+        </div>
+
+        <!-- Search input -->
+        <div class="relative">
+          <div class="flex items-stretch">
+            <div class="relative flex-1">
+              <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-1/2 -translate-y-1/2 text-neutral-600 text-xs pointer-events-none"></i>
+              <input id="search-input" type="text"
+                placeholder="Try: Baldur's Gate 3"
+                class="search-field w-full pl-9 pr-3 py-3 rounded-l-xl border border-neutral-800/80 bg-black/60 text-neutral-100 placeholder-neutral-700 text-sm font-medium"
+                oninput="onSearchInput(this.value)"
+                onkeydown="if(event.key==='Enter') doSearch()" />
+            </div>
+            <button onclick="randomGame()" title="Random game"
+              class="px-3 border-y border-neutral-800/80 bg-black/60 text-neutral-600 hover:text-neutral-200 transition-colors">
+              <i class="fa-solid fa-shuffle text-xs"></i>
+            </button>
+            <button onclick="toggleFilter()" id="filter-toggle-btn" title="Filters"
+              class="px-2.5 rounded-r-xl border border-l-0 border-neutral-800/80 bg-black/60 text-neutral-600 hover:text-neutral-200 transition-colors">
+              <i class="fa-solid fa-sliders text-xs"></i>
+            </button>
+          </div>
+          <div id="search-results" class="hidden absolute top-full mt-2 left-0 right-0 z-50"></div>
+        </div>
+
+        <!-- Filter Panel -->
+        <div id="filter-panel" class="hidden filter-panel">
+          <div class="filter-panel-header">
+            <i class="fa-solid fa-sliders text-neutral-500 text-[10px]"></i>
+            <span>Random Filters</span>
+            <button onclick="resetFilters()" class="ml-auto text-neutral-700 hover:text-neutral-400 text-[10px] transition-colors">Reset</button>
+          </div>
+          <div class="filter-panel-body">
+            <div class="filter-row">
+              <span class="filter-label"><i class="fa-regular fa-star text-[9px] mr-1 text-neutral-700"></i>Reviews</span>
+              <div class="filter-chips" id="filter-reviews">
+                <button class="filter-chip active" data-val="any" onclick="setFilter('reviews','any',this)">Any</button>
+                <button class="filter-chip" data-val="100" onclick="setFilter('reviews','100',this)">100+</button>
+                <button class="filter-chip" data-val="1000" onclick="setFilter('reviews','1000',this)">1K+</button>
+                <button class="filter-chip" data-val="10000" onclick="setFilter('reviews','10000',this)">10K+</button>
+              </div>
+            </div>
+            <div class="filter-row">
+              <span class="filter-label"><i class="fa-solid fa-thumbs-up text-[9px] mr-1 text-neutral-700"></i>Rating</span>
+              <div class="filter-chips" id="filter-rating">
+                <button class="filter-chip active" data-val="any" onclick="setFilter('rating','any',this)">Any</button>
+                <button class="filter-chip" data-val="90" onclick="setFilter('rating','90',this)">90%+</button>
+                <button class="filter-chip" data-val="80" onclick="setFilter('rating','80',this)">80%+</button>
+                <button class="filter-chip" data-val="70" onclick="setFilter('rating','70',this)">70%+</button>
+              </div>
+            </div>
+            <div class="filter-row">
+              <span class="filter-label"><i class="fa-solid fa-gamepad text-[9px] mr-1 text-neutral-700"></i>Metacritic</span>
+              <div class="filter-chips" id="filter-meta">
+                <button class="filter-chip active" data-val="any" onclick="setFilter('meta','any',this)">Any</button>
+                <button class="filter-chip" data-val="90" onclick="setFilter('meta','90',this)">90+</button>
+                <button class="filter-chip" data-val="80" onclick="setFilter('meta','80',this)">80+</button>
+                <button class="filter-chip" data-val="70" onclick="setFilter('meta','70',this)">70+</button>
+              </div>
+            </div>
+            <div class="filter-row">
+              <span class="filter-label"><i class="fa-solid fa-tags text-[9px] mr-1 text-neutral-700"></i>Genre</span>
+              <input id="filter-genre" type="text" placeholder="e.g. RPG, Action…"
+                class="filter-genre-input" oninput="applyFiltersToResults()" />
+            </div>
+          </div>
+        </div>
+
+        <!-- Tip (individual mode) -->
+        <p id="search-tip" class="text-[11px] text-neutral-700 px-0.5 text-center">
+          <span class="text-neutral-600">Tip:</span> Search DLCs too, e.g.
+          <button onclick="document.getElementById('search-input').value='Shadow of the Erdtree'; doSearch();"
+            class="text-neutral-400 hover:text-neutral-200 transition-colors font-medium">Shadow of the Erdtree</button>
+        </p>
+      </div>
+      <!-- /search card -->
+
+      <!-- Profile section (shown when profile mode is active) -->
+      <div id="profile-section" class="card hero-profile-section rounded-2xl p-4 hidden"></div>
 
     </div>
+    <!-- /hero -->
+
+    <!-- ── THREE-COLUMN CHARTS ── -->
+    <div class="charts-three-col">
+
+      <!-- Top Downloads -->
+      <div class="card rounded-2xl overflow-hidden">
+        <div class="chart-panel-header">
+          <i class="fa-solid fa-chart-bar text-[9px]"></i>
+          <span>Top Downloads</span>
+          <div class="flex items-center gap-1.5 ml-auto">
+            <span class="live-dot-indicator"></span>
+            <span class="text-[9px] text-neutral-800 font-medium uppercase tracking-wider">LIVE · <span id="live-updated">just now</span></span>
+          </div>
+        </div>
+        <div id="top-downloads-list" class="chart-list space-y-0.5 px-2.5 pt-2.5"></div>
+        <div class="px-2.5 pb-2">
+          <button id="top-show-more-btn" onclick="toggleTopShowMore()"
+            class="show-more-btn w-full py-2 text-[11px] font-medium flex items-center justify-center gap-1.5 text-neutral-600 hover:text-neutral-300">
+            <span id="top-show-more-text">Show more</span>
+            <i id="top-show-more-icon" class="fa-solid fa-chevron-down text-[9px]"></i>
+          </button>
+        </div>
+      </div>
+
+      <!-- Trending -->
+      <div class="card rounded-2xl overflow-hidden">
+        <div class="chart-panel-header">
+          <i class="fa-solid fa-arrow-trend-up text-[9px]"></i>
+          <span>Trending</span>
+        </div>
+        <div id="trending-list" class="chart-list space-y-0.5 px-2.5 pt-2.5 pb-3"></div>
+      </div>
+
+      <!-- Recently Added -->
+      <div class="card rounded-2xl overflow-hidden">
+        <div class="chart-panel-header">
+          <i class="fa-solid fa-clock text-[9px]"></i>
+          <span>Recently Added</span>
+        </div>
+        <div id="recent-list" class="chart-list space-y-0.5 px-2.5 pt-2.5 pb-3"></div>
+      </div>
+
+    </div>
+    <!-- /charts -->
+
   </main>
 
   <!-- Favorites Button -->
   <button onclick="showFavorites()" title="Starred Games"
-    class="history-btn fixed bottom-36 md:bottom-20 right-4 md:right-6 z-20 w-12 h-12 bg-slate-900/80 backdrop-blur-xl rounded-full border border-slate-700/50 flex items-center justify-center shadow-xl group">
-    <i class="fa-regular fa-star text-slate-400 group-hover:text-yellow-400 text-sm transition-colors"></i>
-    <span class="hidden md:block absolute right-full mr-3 px-3 py-1.5 bg-slate-900 text-white text-xs rounded-lg border border-slate-700/60 whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none shadow-xl">
+    class="history-btn fixed bottom-36 md:bottom-20 right-4 md:right-6 z-20 w-12 h-12 bg-neutral-900/80 backdrop-blur-xl rounded-full border border-neutral-700/50 flex items-center justify-center shadow-xl group">
+    <i class="fa-regular fa-star text-neutral-500 group-hover:text-yellow-400 text-sm transition-colors"></i>
+    <span class="hidden md:block absolute right-full mr-3 px-3 py-1.5 bg-neutral-900 text-white text-xs rounded-lg border border-neutral-700/60 whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none shadow-xl">
       Starred Games
     </span>
   </button>
 
   <!-- History Button -->
   <button onclick="toggleHistory()" title="Download History"
-    class="history-btn fixed bottom-20 md:bottom-6 right-4 md:right-6 z-20 w-12 h-12 bg-slate-900/80 backdrop-blur-xl rounded-full border border-slate-700/50 flex items-center justify-center shadow-xl group">
-    <i class="fa-solid fa-clock-rotate-left text-slate-400 group-hover:text-cyan-400 text-sm transition-colors"></i>
-    <span class="hidden md:block absolute right-full mr-3 px-3 py-1.5 bg-slate-900 text-white text-xs rounded-lg border border-slate-700/60 whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none shadow-xl">
+    class="history-btn fixed bottom-20 md:bottom-6 right-4 md:right-6 z-20 w-12 h-12 bg-neutral-900/80 backdrop-blur-xl rounded-full border border-neutral-700/50 flex items-center justify-center shadow-xl group">
+    <i class="fa-solid fa-clock-rotate-left text-neutral-500 group-hover:text-neutral-200 text-sm transition-colors"></i>
+    <span class="hidden md:block absolute right-full mr-3 px-3 py-1.5 bg-neutral-900 text-white text-xs rounded-lg border border-neutral-700/60 whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none shadow-xl">
       Download History
     </span>
   </button>
 
   <!-- Footer -->
   <footer class="fixed bottom-0 left-0 right-0 z-10 py-2.5">
-    <div class="max-w-6xl mx-auto px-4 flex flex-wrap items-center justify-center gap-x-5 gap-y-1.5 text-[12px] text-slate-600">
-      <span class="flex items-center gap-1.5"><i class="fa-solid fa-ghost text-cyan-900 text-[10px]"></i>© 2026 GhostLua</span>
-      <a href="privacy.html" class="hover:text-slate-300 transition-colors">Privacy Policy</a>
-      <a href="tos.html" class="hover:text-slate-300 transition-colors">Terms of Service</a>
+    <div class="max-w-6xl mx-auto px-4 flex flex-wrap items-center justify-center gap-x-5 gap-y-1.5 text-[12px] text-neutral-700">
+      <span class="flex items-center gap-1.5"><i class="fa-solid fa-ghost text-neutral-800 text-[10px]"></i>© 2026 GhostLua</span>
+      <a href="privacy.html" class="hover:text-neutral-300 transition-colors">Privacy Policy</a>
+      <a href="tos.html" class="hover:text-neutral-300 transition-colors">Terms of Service</a>
       <a href="status.html" class="hover:text-emerald-400 transition-colors flex items-center gap-1">
         <span class="inline-block w-1.5 h-1.5 rounded-full bg-emerald-500"></span>Status
       </a>
-      <span class="text-slate-700 font-mono">Build 2.3.0</span>
+      <span class="text-neutral-800 font-mono">Build 2.4.0</span>
     </div>
   </footer>
 
   <!-- Generic Modal -->
   <div id="generic-modal" class="hidden fixed inset-0 z-50 flex items-center justify-center p-4">
-    <div class="absolute inset-0 bg-black/70 backdrop-blur-md" onclick="hideModal()"></div>
+    <div class="absolute inset-0 bg-black/75 backdrop-blur-md" onclick="hideModal()"></div>
     <div class="modal-card relative w-full max-w-md rounded-2xl p-6 z-10 max-h-[80vh] overflow-y-auto">
       <h2 id="modal-title" class="text-base font-bold text-white mb-3"></h2>
-      <div id="modal-content" class="text-slate-400 text-sm leading-relaxed"></div>
-      <button onclick="hideModal()" class="mt-5 w-full h-10 bg-slate-800/80 hover:bg-slate-700/80 rounded-xl text-slate-300 text-sm transition-colors font-medium">Close</button>
+      <div id="modal-content" class="text-neutral-400 text-sm leading-relaxed"></div>
+      <button onclick="hideModal()" class="mt-5 w-full h-10 bg-neutral-900/80 hover:bg-neutral-800/80 rounded-xl text-neutral-300 text-sm transition-colors font-medium border border-neutral-800">Close</button>
     </div>
   </div>
 
   <!-- Download Modal -->
   <div id="download-modal" class="hidden fixed inset-0 z-50 flex items-center justify-center p-4">
-    <div class="absolute inset-0 bg-black/75 backdrop-blur-md" onclick="hideDownloadModal()"></div>
+    <div class="absolute inset-0 bg-black/80 backdrop-blur-md" onclick="hideDownloadModal()"></div>
     <div class="modal-card relative w-full max-w-sm rounded-2xl p-5 z-10">
 
       <!-- Game header -->
       <div class="flex items-center gap-3 mb-4">
         <div class="relative flex-shrink-0">
           <img id="dl-img" src="" alt=""
-            class="w-[100px] h-[58px] rounded-xl object-cover bg-slate-800 shadow-lg shadow-black/50" />
+            class="w-[100px] h-[58px] rounded-xl object-cover bg-neutral-900 shadow-lg shadow-black/50" />
           <div class="absolute inset-0 rounded-xl ring-1 ring-white/10 pointer-events-none"></div>
         </div>
         <div class="min-w-0 flex-1">
           <h2 id="dl-title" class="text-sm font-bold text-white truncate leading-snug"></h2>
           <div class="flex items-center gap-1.5 mt-0.5">
-            <p id="dl-appid" class="text-[11px] text-slate-500 font-mono truncate flex-1"></p>
+            <p id="dl-appid" class="text-[11px] text-neutral-600 font-mono truncate flex-1"></p>
             <button id="dl-copy-btn" onclick="copyAppId()" title="Copy AppID"
-              class="flex-shrink-0 text-slate-600 hover:text-cyan-400 transition-colors px-1">
+              class="flex-shrink-0 text-neutral-700 hover:text-neutral-300 transition-colors px-1">
               <i class="fa-regular fa-copy text-[10px]"></i>
             </button>
             <a id="dl-steam-link" href="#" target="_blank" rel="noopener" title="View on Steam"
-              class="flex-shrink-0 text-slate-600 hover:text-cyan-400 transition-colors px-1">
+              class="flex-shrink-0 text-neutral-700 hover:text-neutral-300 transition-colors px-1">
               <i class="fa-brands fa-steam text-[11px]"></i>
             </a>
           </div>
         </div>
-        <button onclick="hideDownloadModal()" class="flex-shrink-0 w-7 h-7 flex items-center justify-center rounded-lg text-slate-600 hover:text-slate-400 hover:bg-white/[0.05] transition-colors">
+        <button onclick="hideDownloadModal()" class="flex-shrink-0 w-7 h-7 flex items-center justify-center rounded-lg text-neutral-700 hover:text-neutral-400 hover:bg-white/[0.05] transition-colors">
           <i class="fa-solid fa-xmark text-xs"></i>
         </button>
       </div>
@@ -362,7 +355,7 @@
         <span>Checking database…</span>
       </div>
 
-      <!-- Not in database / SteamRip fallback -->
+      <!-- Not in database -->
       <div id="dl-not-found" class="hidden">
         <div class="dl-nf-header">
           <i class="fa-solid fa-ghost" style="font-size:11px;color:#f87171;"></i>
@@ -383,10 +376,10 @@
       </div>
 
       <!-- Pre-download info -->
-      <div id="dl-info" class="hidden mb-4 rounded-xl border border-white/[0.06] bg-slate-800/30 overflow-hidden">
+      <div id="dl-info" class="hidden mb-4 rounded-xl border border-white/[0.06] bg-white/[0.02] overflow-hidden">
         <div class="px-3.5 py-2 border-b border-white/[0.04] flex items-center gap-2">
-          <i class="fa-solid fa-ghost text-cyan-500/60 text-[10px]"></i>
-          <span class="text-[10px] font-bold uppercase tracking-widest text-slate-600">How it works</span>
+          <i class="fa-solid fa-ghost text-neutral-600 text-[10px]"></i>
+          <span class="text-[10px] font-bold uppercase tracking-widest text-neutral-700">How it works</span>
         </div>
         <div class="px-3.5 py-3 space-y-2.5">
           <div class="dl-step-row">
@@ -410,23 +403,23 @@
 
       <!-- Progress state -->
       <div id="dl-status" class="hidden mb-4">
-        <div class="flex items-center justify-between text-[11px] text-slate-500 mb-1.5">
+        <div class="flex items-center justify-between text-[11px] text-neutral-600 mb-1.5">
           <div class="flex items-center gap-1.5">
-            <i id="dl-status-icon" class="fa-solid fa-spinner animate-spin text-cyan-400 text-[10px]"></i>
+            <i id="dl-status-icon" class="fa-solid fa-spinner animate-spin text-neutral-400 text-[10px]"></i>
             <span id="dl-status-text">Generating…</span>
           </div>
-          <span id="dl-percent" class="font-mono text-cyan-400">0%</span>
+          <span id="dl-percent" class="font-mono text-neutral-300">0%</span>
         </div>
-        <div class="w-full bg-slate-800/80 rounded-full h-1.5 overflow-hidden">
+        <div class="w-full bg-neutral-900/80 rounded-full h-1.5 overflow-hidden">
           <div id="dl-progress" class="h-1.5 rounded-full" style="width:0%"></div>
         </div>
       </div>
 
       <!-- Done state -->
-      <div id="dl-done" class="hidden mb-4 rounded-xl border border-cyan-500/15 bg-cyan-500/[0.04] overflow-hidden">
-        <div class="px-3.5 py-2.5 border-b border-cyan-500/10 flex items-center gap-2">
-          <i class="fa-solid fa-circle-check text-cyan-400 text-[11px]"></i>
-          <span class="text-[11px] font-bold text-cyan-300">Downloaded! Follow these steps:</span>
+      <div id="dl-done" class="hidden mb-4 rounded-xl border border-white/[0.08] bg-white/[0.03] overflow-hidden">
+        <div class="px-3.5 py-2.5 border-b border-white/[0.05] flex items-center gap-2">
+          <i class="fa-solid fa-circle-check text-neutral-300 text-[11px]"></i>
+          <span class="text-[11px] font-bold text-neutral-200">Downloaded! Follow these steps:</span>
         </div>
         <div class="px-3.5 py-3 space-y-2.5">
           <div class="dl-step-row">
@@ -435,7 +428,7 @@
           </div>
           <div class="dl-step-row">
             <span class="dl-step-num dl-step-active">2</span>
-            <div><span class="dl-step-title text-cyan-300">Drag the .lua file</span><span class="dl-step-desc"> — onto the floating SteamTools icon</span></div>
+            <div><span class="dl-step-title text-neutral-200">Drag the .lua file</span><span class="dl-step-desc"> — onto the floating SteamTools icon</span></div>
           </div>
           <div class="dl-step-row">
             <span class="dl-step-num">3</span>
@@ -447,7 +440,7 @@
           </div>
         </div>
         <div class="px-3.5 pb-3">
-          <a href="guide.html" class="inline-flex items-center gap-1.5 text-[11px] text-cyan-400/70 hover:text-cyan-300 transition-colors">
+          <a href="guide.html" class="inline-flex items-center gap-1.5 text-[11px] text-neutral-500 hover:text-neutral-300 transition-colors">
             <i class="fa-solid fa-book-open text-[9px]"></i> Full installation guide
           </a>
         </div>
@@ -455,11 +448,11 @@
 
       <!-- Download button -->
       <button id="dl-btn" onclick="startDownload()"
-        class="dl-download-btn w-full h-11 flex items-center justify-center gap-2 bg-cyan-600 hover:bg-cyan-500 active:bg-cyan-700 rounded-xl text-white font-bold transition-all text-sm shadow-lg shadow-cyan-900/30 hidden">
+        class="dl-download-btn w-full h-11 flex items-center justify-center gap-2 bg-white hover:bg-neutral-200 active:bg-neutral-300 rounded-xl text-black font-bold transition-all text-sm shadow-lg hidden">
         <i class="fa-solid fa-download text-xs"></i> Download .lua
       </button>
       <button onclick="hideDownloadModal()"
-        class="mt-2 w-full h-9 text-slate-600 hover:text-slate-400 text-xs transition-colors">
+        class="mt-2 w-full h-9 text-neutral-700 hover:text-neutral-400 text-xs transition-colors">
         Close
       </button>
     </div>
@@ -467,7 +460,7 @@
 
   <!-- First-Time Welcome Overlay -->
   <div id="welcome-overlay" class="hidden fixed inset-0 z-[200] flex items-center justify-center p-4">
-    <div class="absolute inset-0 bg-black/80 backdrop-blur-md"></div>
+    <div class="absolute inset-0 bg-black/85 backdrop-blur-md"></div>
     <div class="welcome-card relative w-full max-w-sm rounded-2xl p-7 z-10">
       <div class="flex items-center justify-center gap-2 mb-5">
         <span class="welcome-dot active" data-step="0"></span>
@@ -480,7 +473,7 @@
         <div class="flex flex-col items-center gap-3 mb-5">
           <img src="images/ghost.svg" class="welcome-ghost-img" alt="GhostLua" />
           <h2 class="text-xl font-extrabold text-white text-center">Welcome to GhostLua</h2>
-          <p class="text-sm text-slate-500 text-center leading-relaxed">
+          <p class="text-sm text-neutral-600 text-center leading-relaxed">
             Free Steam Lua script downloads — fast, clean, and easy.
           </p>
         </div>
@@ -504,7 +497,7 @@
             <span class="welcome-step-num">2</span>
             <div>
               <div class="welcome-step-title">Download the <code class="welcome-code">.lua</code> file</div>
-              <div class="welcome-step-sub">Click the game → hit the teal Download button</div>
+              <div class="welcome-step-sub">Click the game → hit the Download button</div>
             </div>
           </div>
           <div class="welcome-step-row">
@@ -528,8 +521,8 @@
             <i class="fa-solid fa-circle-check text-emerald-400 text-2xl"></i>
           </div>
           <h2 class="text-base font-bold text-white text-center">You're all set!</h2>
-          <p class="text-sm text-slate-500 text-center leading-relaxed">
-            Read the <a href="guide.html" class="text-cyan-400 hover:text-cyan-300 font-medium">full guide</a> anytime for detailed help, or jump right in.
+          <p class="text-sm text-neutral-600 text-center leading-relaxed">
+            Read the <a href="guide.html" class="text-neutral-300 hover:text-white font-medium">full guide</a> anytime for detailed help, or jump right in.
           </p>
         </div>
         <div class="flex gap-2">

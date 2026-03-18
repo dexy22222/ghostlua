@@ -55,13 +55,13 @@
 .dot-2 { animation: dotBounce 1.2s ease-in-out infinite 200ms; }
 .dot-3 { animation: dotBounce 1.2s ease-in-out infinite 400ms; }
 
-/* ── Teal glow button pulse ── */
-@keyframes tealPulse {
-  0%, 100% { box-shadow: 0 4px 20px rgba(6,182,212,0.25); }
-  50%       { box-shadow: 0 4px 28px rgba(6,182,212,0.50); }
+/* ── White glow button pulse ── */
+@keyframes whitePulse {
+  0%, 100% { box-shadow: 0 4px 20px rgba(255,255,255,0.08); }
+  50%       { box-shadow: 0 4px 28px rgba(255,255,255,0.18); }
 }
 .dl-download-btn {
-  animation: tealPulse 2.5s ease-in-out infinite;
+  animation: whitePulse 2.5s ease-in-out infinite;
 }
 .dl-download-btn:hover { animation: none; }
 

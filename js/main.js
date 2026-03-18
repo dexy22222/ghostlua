@@ -1,24 +1,24 @@
 // ── Game chart data ───────────────────────────────────────────────────────────
 // AppIDs verified against Steam store (store.steampowered.com/app/APPID)
 let topGames = [
-  { rank: '#1',  name: 'Black Myth: Wukong',          downloads: '3,058 downloads', appId: 2358720, size: '130.0 GB', tags: ['Online Fix'] },
-  { rank: '#2',  name: 'Wallpaper Engine',            downloads: '1,393 downloads', appId: 431960,  size: '0.4 GB',   tags: [] },
-  { rank: '#3',  name: 'Resident Evil 4',             downloads: '1,186 downloads', appId: 2050650, size: '67.5 GB',  tags: ['Online Fix'] },
-  { rank: '#4',  name: 'Red Dead Redemption 2',       downloads: '768 downloads',   appId: 1174180, size: '120.5 GB', tags: ['Online Fix'] },
-  { rank: '#5',  name: 'Geometry Dash',               downloads: '737 downloads',   appId: 322170,  size: '0.2 GB',   tags: [] },
-  { rank: '#6',  name: 'Resident Evil 2',             downloads: '716 downloads',   appId: 883710,  size: '21.7 GB',  tags: ['Online Fix'] },
-  { rank: '#7',  name: 'Grand Theft Auto V',          downloads: '570 downloads',   appId: 271590,  size: '95.2 GB',  tags: ['Online Fix'] },
-  { rank: '#8',  name: "Marvel's Spider-Man 2",       downloads: '564 downloads',   appId: 2651280, size: '69.5 GB',  tags: [] },
-  { rank: '#9',  name: 'Schedule I',                  downloads: '555 downloads',   appId: 3164500, size: '3.1 GB',   tags: [] },
-  { rank: '#10', name: 'Poppy Playtime - Chapter 4',  downloads: '505 downloads',   appId: 3008670, size: '12.4 GB',  tags: [] },
+  { rank: '#1',  name: 'Wallpaper Engine',            downloads: '1,429 downloads', appId: 431960,  size: '0.4 GB',   tags: [] },
+  { rank: '#2',  name: 'Resident Evil 4',             downloads: '1,223 downloads', appId: 2050650, size: '67.5 GB',  tags: ['Online Fix'] },
+  { rank: '#3',  name: 'Red Dead Redemption 2',       downloads: '768 downloads',   appId: 1174180, size: '120.5 GB', tags: ['Online Fix'] },
+  { rank: '#4',  name: 'Geometry Dash',               downloads: '737 downloads',   appId: 322170,  size: '0.2 GB',   tags: [] },
+  { rank: '#5',  name: 'Resident Evil 2',             downloads: '716 downloads',   appId: 883710,  size: '21.7 GB',  tags: ['Online Fix'] },
+  { rank: '#6',  name: 'Grand Theft Auto V',          downloads: '570 downloads',   appId: 271590,  size: '95.2 GB',  tags: ['Online Fix'] },
+  { rank: '#7',  name: "Marvel's Spider-Man 2",       downloads: '564 downloads',   appId: 2651280, size: '69.5 GB',  tags: [] },
+  { rank: '#8',  name: 'Schedule I',                  downloads: '555 downloads',   appId: 3164500, size: '3.1 GB',   tags: [] },
+  { rank: '#9',  name: 'Poppy Playtime - Chapter 4',  downloads: '505 downloads',   appId: 3008670, size: '12.4 GB',  tags: [] },
 ];
 
 let trendingGames = [
   { rank: '#1', name: 'Slay the Spire 2',   downloads: '↑ Trending', appId: 2868840, size: '2.5 GB',  tags: ['Online Fix', 'Workshop'] },
   { rank: '#2', name: 'Elden Ring',         downloads: '↑ Trending', appId: 1245620, size: '60.0 GB', tags: ['Online Fix'] },
   { rank: '#3', name: 'Hades II',           downloads: '↑ Trending', appId: 1145350, size: '5.0 GB',  tags: [] },
-  { rank: '#4', name: 'Sons of the Forest', downloads: '↑ Trending', appId: 1326470, size: '20.0 GB', tags: ['Online Fix'] },
-  { rank: '#5', name: 'Cyberpunk 2077',     downloads: '↑ Trending', appId: 1091500, size: '70.0 GB', tags: [] },
+  { rank: '#4', name: 'Rust',               downloads: '↑ Trending', appId: 252490,  size: '12.0 GB', tags: ['Online Fix'] },
+  { rank: '#5', name: 'Sons of the Forest', downloads: '↑ Trending', appId: 1326470, size: '20.0 GB', tags: ['Online Fix'] },
+  { rank: '#6', name: 'Cyberpunk 2077',     downloads: '↑ Trending', appId: 1091500, size: '70.0 GB', tags: [] },
 ];
 
 let recentlyAdded = [
@@ -72,6 +72,47 @@ function _renderChartItem(g, i) {
     </button>`;
 }
 
+// ── Render a single recently-added item ───────────────────────────────────────
+function _renderRecentItem(g, i) {
+  const fallback = `if(this.dataset.tried){_thumbFb(this)}else{this.dataset.tried=1;this.src='https://steamcdn-a.akamaihd.net/steam/apps/${g.appId}/header.jpg'}`;
+  const d = new Date(g.addedDate + 'T00:00:00');
+  const dateStr = d.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
+  const dlStr = g.downloads.toLocaleString() + ' downloads';
+  return `
+    <button class="chart-game-item group w-full text-left"
+      onclick="quickDownload(${g.appId}, ${_jqAttr(g.name)}, ${_jqAttr(dlStr)}, '', ${_jqAttr(g.tags || [])})"
+      style="animation-delay:${i * 40}ms">
+      <div class="chart-thumb-wrap">
+        <img src="${steamImg(g.appId)}" alt="${g.name}" loading="lazy" class="chart-thumb"
+             onerror="${fallback}" />
+      </div>
+      <div class="flex-1 min-w-0">
+        <div class="chart-game-name truncate leading-snug">${g.name}</div>
+        <div class="chart-game-meta">
+          <span class="text-[9px] text-emerald-400/70 font-medium flex items-center gap-1">
+            <i class="fa-solid fa-plus text-[7px]"></i>${dateStr}
+          </span>
+          ${(g.tags || []).map(t => `<span class="game-tag game-tag-${t.toLowerCase().replace(/\s+/g, '-')}">${t}</span>`).join('')}
+        </div>
+      </div>
+      <span class="flex items-center gap-1.5 flex-shrink-0">
+        <span role="button" onclick="event.stopPropagation(); toggleFavorite(${g.appId}, ${_jqAttr(g.name)})"
+          class="favorite-star-btn flex-shrink-0 ${isFavorite(g.appId) ? 'text-yellow-400' : 'text-slate-700 hover:text-yellow-400'} transition-colors"
+          title="${isFavorite(g.appId) ? 'Remove from starred' : 'Star'}">
+          <i class="fa-${isFavorite(g.appId) ? 'solid' : 'regular'} fa-star text-[10px]"></i>
+        </span>
+        <i class="fa-solid fa-chevron-right game-arrow text-[9px]"></i>
+      </span>
+    </button>`;
+}
+
+// ── Render recently added list ────────────────────────────────────────────────
+function renderRecentList() {
+  const container = document.getElementById('recent-list');
+  if (!container) return;
+  container.innerHTML = recentlyAdded.map((g, i) => _renderRecentItem(g, i)).join('');
+}
+
 // ── Render top downloads list ─────────────────────────────────────────────────
 function renderTopList() {
   const container = document.getElementById('top-downloads-list');
@@ -92,6 +133,7 @@ function renderTrendingList() {
 function renderGames() {
   renderTopList();
   renderTrendingList();
+  renderRecentList();
 }
 
 // ── Show more (top downloads only) ───────────────────────────────────────────
@@ -118,22 +160,16 @@ let showAll    = false;
 
 function switchTab(tab) {
   currentTab = tab;
-  const topEl    = document.getElementById('chart-tab-top');
-  const trendEl  = document.getElementById('chart-tab-trending');
-  const btnTop   = document.getElementById('tab-btn-top');
-  const btnTrend = document.getElementById('tab-btn-trending');
-
-  if (tab === 'top') {
-    if (topEl)   topEl.classList.remove('hidden');
-    if (trendEl) trendEl.classList.add('hidden');
-    if (btnTop)   { btnTop.classList.add('chart-tab-active');   btnTop.classList.remove('chart-tab-inactive'); }
-    if (btnTrend) { btnTrend.classList.remove('chart-tab-active'); btnTrend.classList.add('chart-tab-inactive'); }
-  } else {
-    if (topEl)   topEl.classList.add('hidden');
-    if (trendEl) trendEl.classList.remove('hidden');
-    if (btnTop)   { btnTop.classList.remove('chart-tab-active'); btnTop.classList.add('chart-tab-inactive'); }
-    if (btnTrend) { btnTrend.classList.add('chart-tab-active');  btnTrend.classList.remove('chart-tab-inactive'); }
-  }
+  const tabs = ['top', 'trending', 'recent'];
+  tabs.forEach(t => {
+    const pane = document.getElementById(`chart-tab-${t}`);
+    const btn  = document.getElementById(`tab-btn-${t}`);
+    if (pane) pane.classList.toggle('hidden', t !== tab);
+    if (btn) {
+      btn.classList.toggle('chart-tab-active',   t === tab);
+      btn.classList.toggle('chart-tab-inactive', t !== tab);
+    }
+  });
 }
 
 function toggleShowMore()  { toggleTopShowMore(); }

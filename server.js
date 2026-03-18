@@ -1,6 +1,29 @@
-const http = require('http');
-const fs   = require('fs');
-const path = require('path');
+const http  = require('http');
+const https = require('https');
+const fs    = require('fs');
+const path  = require('path');
+
+const STEAM_API_KEY  = 'FFCB66298DB13D946E747FDFEBB02FCB';
+const STEAM_API_BASE = 'https://api.steampowered.com';
+const STEAM_STORE    = 'https://store.steampowered.com';
+
+function httpsGetJson(url) {
+  return new Promise((resolve, reject) => {
+    https.get(url, { headers: { 'User-Agent': 'GhostLua/1.0' } }, res => {
+      let raw = '';
+      res.on('data', c => raw += c);
+      res.on('end', () => {
+        try { resolve(JSON.parse(raw)); }
+        catch (e) { reject(new Error('Invalid JSON from upstream')); }
+      });
+    }).on('error', reject);
+  });
+}
+
+function steamApiGet(iface, method, version, params) {
+  const q = new URLSearchParams({ key: STEAM_API_KEY, ...params });
+  return httpsGetJson(`${STEAM_API_BASE}/${iface}/${method}/${version}/?${q}`);
+}
 
 const ROOT = __dirname;
 const PORT = 3456;
@@ -97,6 +120,63 @@ http.createServer((req, res) => {
         if (err) { sendJSON(res, 500, { error: 'Database unavailable' }); return; }
         sendJSON(res, 200, { totalGames: db.length });
       });
+      return;
+    }
+
+    // GET /api/steam/search?q=QUERY  — Steam store search (server-side, no CORS proxy needed)
+    if (rawPath === '/api/steam/search') {
+      const params  = new URLSearchParams(qs);
+      const q       = params.get('q') || '';
+      if (!q) { sendJSON(res, 400, { error: 'Missing q parameter' }); return; }
+      const storeUrl = `${STEAM_STORE}/api/storesearch/?term=${encodeURIComponent(q)}&l=english&cc=US`;
+      httpsGetJson(storeUrl).then(data => {
+        sendJSON(res, 200, data);
+      }).catch(() => sendJSON(res, 502, { error: 'Steam store unavailable' }));
+      return;
+    }
+
+    // GET /api/steam/resolve?vanity=NAME
+    if (rawPath === '/api/steam/resolve') {
+      const params = new URLSearchParams(qs);
+      const vanity = params.get('vanity') || '';
+      if (!vanity) { sendJSON(res, 400, { error: 'Missing vanity' }); return; }
+      steamApiGet('ISteamUser', 'ResolveVanityURL', 'v1', { vanityurl: vanity })
+        .then(data => sendJSON(res, 200, data))
+        .catch(() => sendJSON(res, 502, { error: 'Steam API unavailable' }));
+      return;
+    }
+
+    // GET /api/steam/summary?steamids=ID,ID,...
+    if (rawPath === '/api/steam/summary') {
+      const params   = new URLSearchParams(qs);
+      const steamids = params.get('steamids') || '';
+      if (!steamids) { sendJSON(res, 400, { error: 'Missing steamids' }); return; }
+      steamApiGet('ISteamUser', 'GetPlayerSummaries', 'v2', { steamids })
+        .then(data => sendJSON(res, 200, data))
+        .catch(() => sendJSON(res, 502, { error: 'Steam API unavailable' }));
+      return;
+    }
+
+    // GET /api/steam/games?steamid=ID
+    if (rawPath === '/api/steam/games') {
+      const params  = new URLSearchParams(qs);
+      const steamid = params.get('steamid') || '';
+      if (!steamid) { sendJSON(res, 400, { error: 'Missing steamid' }); return; }
+      steamApiGet('IPlayerService', 'GetOwnedGames', 'v1', {
+        steamid, include_appinfo: 1, include_played_free_games: 1,
+      }).then(data => sendJSON(res, 200, data))
+        .catch(() => sendJSON(res, 502, { error: 'Steam API unavailable' }));
+      return;
+    }
+
+    // GET /api/steam/friends?steamid=ID
+    if (rawPath === '/api/steam/friends') {
+      const params  = new URLSearchParams(qs);
+      const steamid = params.get('steamid') || '';
+      if (!steamid) { sendJSON(res, 400, { error: 'Missing steamid' }); return; }
+      steamApiGet('ISteamUser', 'GetFriendList', 'v1', { steamid })
+        .then(data => sendJSON(res, 200, data))
+        .catch(() => sendJSON(res, 502, { error: 'Steam API unavailable' }));
       return;
     }
 

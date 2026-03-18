@@ -2,11 +2,32 @@
 let searchTimeout = null;
 
 async function searchSteam(query) {
-  const url = `https://store.steampowered.com/api/storesearch/?term=${encodeURIComponent(query)}&l=english&cc=US`;
-  const res  = await fetch(`https://corsproxy.io/?url=${encodeURIComponent(url)}`);
-  if (!res.ok) throw new Error('proxy error');
+  // 1. Try server-side proxy (works locally with server.js + Steam API key)
+  try {
+    const res = await fetch(`/api/steam/search?q=${encodeURIComponent(query)}`, {
+      signal: AbortSignal.timeout(8000),
+    });
+    if (res.ok) {
+      const data = await res.json();
+      if (data.items?.length) {
+        return data.items.slice(0, 10).map(item => ({
+          name:  item.name,
+          appId: item.id,
+          type:  item.type || 'game',
+          price: item.price?.final_formatted || 'Free',
+        }));
+      }
+    }
+  } catch (_) {}
+
+  // 2. Fallback: direct store search via allorigins (Cloudflare deployment)
+  const storeUrl = `https://store.steampowered.com/api/storesearch/?term=${encodeURIComponent(query)}&l=english&cc=US`;
+  const res = await fetch(`https://api.allorigins.win/raw?url=${encodeURIComponent(storeUrl)}`, {
+    signal: AbortSignal.timeout(10000),
+  });
+  if (!res.ok) throw new Error('Search unavailable');
   const data = await res.json();
-  return (data.items || []).slice(0, 8).map(item => ({
+  return (data.items || []).slice(0, 10).map(item => ({
     name:  item.name,
     appId: item.id,
     type:  item.type || 'game',
