@@ -1,0 +1,6686 @@
+[
+  {
+    "name": "Counter-Strike 2",
+    "appId": 730,
+    "size": "35.0 GB",
+    "tags": [
+      "Online Fix"
+    ]
+  },
+  {
+    "name": "Dota 2",
+    "appId": 570,
+    "size": "25.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Team Fortress 2",
+    "appId": 440,
+    "size": "15.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Garry's Mod",
+    "appId": 4000,
+    "size": "5.0 GB",
+    "tags": [
+      "Workshop"
+    ]
+  },
+  {
+    "name": "Portal 2",
+    "appId": 620,
+    "size": "8.0 GB",
+    "tags": [
+      "Online Fix"
+    ]
+  },
+  {
+    "name": "Portal",
+    "appId": 400,
+    "size": "4.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Half-Life 2",
+    "appId": 220,
+    "size": "8.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Half-Life 2: Episode One",
+    "appId": 380,
+    "size": "4.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Half-Life 2: Episode Two",
+    "appId": 420,
+    "size": "5.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Half-Life: Alyx",
+    "appId": 546560,
+    "size": "67.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Left 4 Dead 2",
+    "appId": 550,
+    "size": "13.0 GB",
+    "tags": [
+      "Online Fix"
+    ]
+  },
+  {
+    "name": "Left 4 Dead",
+    "appId": 500,
+    "size": "8.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Half-Life",
+    "appId": 70,
+    "size": "2.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Half-Life: Blue Shift",
+    "appId": 130,
+    "size": "1.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Counter-Strike: Source",
+    "appId": 240,
+    "size": "3.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Day of Defeat: Source",
+    "appId": 300,
+    "size": "1.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Dark Souls: Prepare to Die Edition",
+    "appId": 211420,
+    "size": "5.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Dark Souls Remastered",
+    "appId": 570940,
+    "size": "8.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Dark Souls II: Scholar of the First Sin",
+    "appId": 335300,
+    "size": "8.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Dark Souls III",
+    "appId": 374320,
+    "size": "40.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Sekiro: Shadows Die Twice",
+    "appId": 814380,
+    "size": "15.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Elden Ring",
+    "appId": 1245620,
+    "size": "60.0 GB",
+    "tags": [
+      "Online Fix"
+    ]
+  },
+  {
+    "name": "Armored Core VI: Fires of Rubicon",
+    "appId": 1888160,
+    "size": "60.0 GB",
+    "tags": [
+      "Online Fix"
+    ]
+  },
+  {
+    "name": "The Elder Scrolls V: Skyrim Special Edition",
+    "appId": 489830,
+    "size": "15.0 GB",
+    "tags": [
+      "Workshop"
+    ]
+  },
+  {
+    "name": "The Elder Scrolls IV: Oblivion Remastered",
+    "appId": 2623190,
+    "size": "70.0 GB",
+    "tags": []
+  },
+  {
+    "name": "The Elder Scrolls III: Morrowind",
+    "appId": 22320,
+    "size": "2.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Fallout 4",
+    "appId": 377160,
+    "size": "30.0 GB",
+    "tags": [
+      "Workshop"
+    ]
+  },
+  {
+    "name": "Fallout 3 - Game of the Year Edition",
+    "appId": 22300,
+    "size": "7.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Fallout: New Vegas",
+    "appId": 22380,
+    "size": "9.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Starfield",
+    "appId": 1716740,
+    "size": "140.0 GB",
+    "tags": [
+      "Workshop"
+    ]
+  },
+  {
+    "name": "DOOM Eternal",
+    "appId": 782330,
+    "size": "50.0 GB",
+    "tags": []
+  },
+  {
+    "name": "DOOM (2016)",
+    "appId": 379720,
+    "size": "55.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Quake",
+    "appId": 2310,
+    "size": "2.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Wolfenstein II: The New Colossus",
+    "appId": 612880,
+    "size": "30.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Wolfenstein: The New Order",
+    "appId": 201810,
+    "size": "40.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Wolfenstein: The Old Blood",
+    "appId": 350080,
+    "size": "10.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Dishonored 2",
+    "appId": 403640,
+    "size": "20.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Dishonored",
+    "appId": 205100,
+    "size": "6.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Prey (2017)",
+    "appId": 480490,
+    "size": "20.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Deathloop",
+    "appId": 1252330,
+    "size": "30.0 GB",
+    "tags": []
+  },
+  {
+    "name": "The Witcher",
+    "appId": 20900,
+    "size": "9.0 GB",
+    "tags": []
+  },
+  {
+    "name": "The Witcher 2: Assassins of Kings",
+    "appId": 20920,
+    "size": "18.0 GB",
+    "tags": []
+  },
+  {
+    "name": "The Witcher 3: Wild Hunt",
+    "appId": 292030,
+    "size": "50.0 GB",
+    "tags": [
+      "Workshop"
+    ]
+  },
+  {
+    "name": "Cyberpunk 2077",
+    "appId": 1091500,
+    "size": "70.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Red Dead Redemption 2",
+    "appId": 1174180,
+    "size": "120.0 GB",
+    "tags": [
+      "Online Fix"
+    ]
+  },
+  {
+    "name": "Grand Theft Auto V",
+    "appId": 271590,
+    "size": "95.0 GB",
+    "tags": [
+      "Online Fix"
+    ]
+  },
+  {
+    "name": "Max Payne 3",
+    "appId": 204100,
+    "size": "35.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Assassin's Creed Origins",
+    "appId": 582160,
+    "size": "45.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Assassin's Creed Odyssey",
+    "appId": 812140,
+    "size": "45.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Assassin's Creed Valhalla",
+    "appId": 2208920,
+    "size": "45.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Assassin's Creed Mirage",
+    "appId": 2154640,
+    "size": "15.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Assassin's Creed IV: Black Flag",
+    "appId": 242050,
+    "size": "15.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Assassin's Creed Syndicate",
+    "appId": 368500,
+    "size": "40.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Assassin's Creed Unity",
+    "appId": 289650,
+    "size": "40.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Assassin's Creed III Remastered",
+    "appId": 807400,
+    "size": "15.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Watch Dogs 2",
+    "appId": 447040,
+    "size": "21.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Watch Dogs: Legion",
+    "appId": 775830,
+    "size": "36.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Watch Dogs",
+    "appId": 243470,
+    "size": "25.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Far Cry 6",
+    "appId": 2369390,
+    "size": "30.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Far Cry 5",
+    "appId": 552520,
+    "size": "30.0 GB",
+    "tags": [
+      "Online Fix"
+    ]
+  },
+  {
+    "name": "Far Cry New Dawn",
+    "appId": 1018020,
+    "size": "17.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Far Cry 4",
+    "appId": 298110,
+    "size": "20.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Far Cry 3",
+    "appId": 220240,
+    "size": "13.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Far Cry Primal",
+    "appId": 378860,
+    "size": "15.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Tom Clancy's Rainbow Six Siege",
+    "appId": 359550,
+    "size": "25.0 GB",
+    "tags": [
+      "Online Fix"
+    ]
+  },
+  {
+    "name": "Tom Clancy's Ghost Recon Wildlands",
+    "appId": 460930,
+    "size": "30.0 GB",
+    "tags": [
+      "Online Fix"
+    ]
+  },
+  {
+    "name": "Tom Clancy's Ghost Recon Breakpoint",
+    "appId": 837830,
+    "size": "35.0 GB",
+    "tags": [
+      "Online Fix"
+    ]
+  },
+  {
+    "name": "Tom Clancy's The Division 2",
+    "appId": 1771430,
+    "size": "60.0 GB",
+    "tags": [
+      "Online Fix"
+    ]
+  },
+  {
+    "name": "Tom Clancy's The Division",
+    "appId": 365590,
+    "size": "40.0 GB",
+    "tags": [
+      "Online Fix"
+    ]
+  },
+  {
+    "name": "God of War",
+    "appId": 1593500,
+    "size": "34.0 GB",
+    "tags": []
+  },
+  {
+    "name": "God of War Ragnarök",
+    "appId": 2322010,
+    "size": "190.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Horizon Zero Dawn",
+    "appId": 1151640,
+    "size": "67.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Horizon Forbidden West",
+    "appId": 1847160,
+    "size": "150.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Marvel's Spider-Man Remastered",
+    "appId": 1817070,
+    "size": "75.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Marvel's Spider-Man: Miles Morales",
+    "appId": 1734010,
+    "size": "75.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Marvel's Spider-Man 2",
+    "appId": 2651280,
+    "size": "69.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Death Stranding",
+    "appId": 1190460,
+    "size": "55.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Death Stranding: Director's Cut",
+    "appId": 1624070,
+    "size": "55.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Ghost of Tsushima DIRECTOR'S CUT",
+    "appId": 2215430,
+    "size": "75.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Returnal",
+    "appId": 1649240,
+    "size": "60.0 GB",
+    "tags": []
+  },
+  {
+    "name": "The Last of Us Part I",
+    "appId": 1888930,
+    "size": "100.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Uncharted: Legacy of Thieves Collection",
+    "appId": 1659420,
+    "size": "50.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Ratchet & Clank: Rift Apart",
+    "appId": 1895840,
+    "size": "75.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Monster Hunter: World",
+    "appId": 582010,
+    "size": "35.0 GB",
+    "tags": [
+      "Online Fix"
+    ]
+  },
+  {
+    "name": "Monster Hunter Rise",
+    "appId": 1446780,
+    "size": "12.0 GB",
+    "tags": [
+      "Online Fix"
+    ]
+  },
+  {
+    "name": "Monster Hunter Wilds",
+    "appId": 2246340,
+    "size": "75.0 GB",
+    "tags": [
+      "Online Fix"
+    ]
+  },
+  {
+    "name": "Resident Evil 7: Biohazard",
+    "appId": 418370,
+    "size": "25.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Resident Evil 2",
+    "appId": 883710,
+    "size": "22.0 GB",
+    "tags": [
+      "Online Fix"
+    ]
+  },
+  {
+    "name": "Resident Evil 3",
+    "appId": 952060,
+    "size": "17.0 GB",
+    "tags": [
+      "Online Fix"
+    ]
+  },
+  {
+    "name": "Resident Evil 4",
+    "appId": 2050650,
+    "size": "67.0 GB",
+    "tags": [
+      "Online Fix"
+    ]
+  },
+  {
+    "name": "Resident Evil Village",
+    "appId": 1196590,
+    "size": "20.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Resident Evil Requiem",
+    "appId": 3764200,
+    "size": "42.0 GB",
+    "tags": [
+      "Online Fix"
+    ]
+  },
+  {
+    "name": "Resident Evil 0 HD Remaster",
+    "appId": 304480,
+    "size": "15.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Resident Evil HD Remaster",
+    "appId": 304490,
+    "size": "8.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Devil May Cry 5",
+    "appId": 601150,
+    "size": "35.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Devil May Cry 4: Special Edition",
+    "appId": 268170,
+    "size": "15.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Devil May Cry HD Collection",
+    "appId": 631510,
+    "size": "15.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Street Fighter 6",
+    "appId": 1364780,
+    "size": "30.0 GB",
+    "tags": [
+      "Online Fix"
+    ]
+  },
+  {
+    "name": "Street Fighter V",
+    "appId": 310950,
+    "size": "30.0 GB",
+    "tags": [
+      "Online Fix"
+    ]
+  },
+  {
+    "name": "Dragon's Dogma 2",
+    "appId": 2054970,
+    "size": "60.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Final Fantasy VII Remake Intergrade",
+    "appId": 1462040,
+    "size": "90.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Final Fantasy VII Rebirth",
+    "appId": 2909400,
+    "size": "155.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Final Fantasy XV Windows Edition",
+    "appId": 637650,
+    "size": "100.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Final Fantasy XIV Online",
+    "appId": 39210,
+    "size": "60.0 GB",
+    "tags": [
+      "Online Fix"
+    ]
+  },
+  {
+    "name": "Final Fantasy X/X-2 HD Remaster",
+    "appId": 359870,
+    "size": "25.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Final Fantasy XII: The Zodiac Age",
+    "appId": 594780,
+    "size": "30.0 GB",
+    "tags": []
+  },
+  {
+    "name": "NieR: Automata",
+    "appId": 524220,
+    "size": "22.0 GB",
+    "tags": []
+  },
+  {
+    "name": "NieR Replicant",
+    "appId": 1113560,
+    "size": "30.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Deus Ex: Mankind Divided",
+    "appId": 337000,
+    "size": "45.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Deus Ex: Human Revolution Director's Cut",
+    "appId": 238010,
+    "size": "14.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Deus Ex",
+    "appId": 6910,
+    "size": "2.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Tomb Raider (2013)",
+    "appId": 203160,
+    "size": "12.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Rise of the Tomb Raider",
+    "appId": 391220,
+    "size": "22.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Shadow of the Tomb Raider",
+    "appId": 750920,
+    "size": "40.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Just Cause 4",
+    "appId": 517630,
+    "size": "44.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Just Cause 3",
+    "appId": 225540,
+    "size": "54.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Outriders",
+    "appId": 680420,
+    "size": "30.0 GB",
+    "tags": [
+      "Online Fix"
+    ]
+  },
+  {
+    "name": "Life is Strange: True Colors",
+    "appId": 936790,
+    "size": "20.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Life is Strange Remastered",
+    "appId": 1265510,
+    "size": "15.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Life is Strange",
+    "appId": 319630,
+    "size": "5.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Dragon Quest XI S: Echoes of an Elusive Age",
+    "appId": 1113000,
+    "size": "35.0 GB",
+    "tags": []
+  },
+  {
+    "name": "BioShock Remastered",
+    "appId": 409710,
+    "size": "15.0 GB",
+    "tags": []
+  },
+  {
+    "name": "BioShock 2 Remastered",
+    "appId": 409720,
+    "size": "15.0 GB",
+    "tags": []
+  },
+  {
+    "name": "BioShock Infinite",
+    "appId": 8870,
+    "size": "30.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Borderlands 3",
+    "appId": 397540,
+    "size": "75.0 GB",
+    "tags": [
+      "Online Fix"
+    ]
+  },
+  {
+    "name": "Borderlands 2",
+    "appId": 49520,
+    "size": "20.0 GB",
+    "tags": [
+      "Online Fix"
+    ]
+  },
+  {
+    "name": "Borderlands: The Pre-Sequel",
+    "appId": 261640,
+    "size": "20.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Tiny Tina's Wonderlands",
+    "appId": 1286750,
+    "size": "40.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Sid Meier's Civilization VI",
+    "appId": 289070,
+    "size": "12.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Sid Meier's Civilization V",
+    "appId": 8930,
+    "size": "8.0 GB",
+    "tags": []
+  },
+  {
+    "name": "XCOM 2",
+    "appId": 268500,
+    "size": "45.0 GB",
+    "tags": []
+  },
+  {
+    "name": "XCOM: Enemy Unknown",
+    "appId": 200510,
+    "size": "14.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Mafia: Definitive Edition",
+    "appId": 1030840,
+    "size": "30.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Mafia II: Definitive Edition",
+    "appId": 1030830,
+    "size": "30.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Mafia III",
+    "appId": 360430,
+    "size": "30.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Stellaris",
+    "appId": 281990,
+    "size": "10.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Hearts of Iron IV",
+    "appId": 394360,
+    "size": "5.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Crusader Kings III",
+    "appId": 1158310,
+    "size": "6.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Victoria 3",
+    "appId": 529340,
+    "size": "7.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Europa Universalis IV",
+    "appId": 236850,
+    "size": "3.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Imperator: Rome",
+    "appId": 859580,
+    "size": "5.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Cities: Skylines",
+    "appId": 255710,
+    "size": "5.0 GB",
+    "tags": [
+      "Workshop"
+    ]
+  },
+  {
+    "name": "Cities: Skylines II",
+    "appId": 949230,
+    "size": "10.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Prison Architect",
+    "appId": 233450,
+    "size": "2.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Surviving Mars",
+    "appId": 464920,
+    "size": "4.0 GB",
+    "tags": []
+  },
+  {
+    "name": "BATTLETECH",
+    "appId": 637090,
+    "size": "5.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Baldur's Gate 3",
+    "appId": 1086940,
+    "size": "150.0 GB",
+    "tags": [
+      "Online Fix"
+    ]
+  },
+  {
+    "name": "Baldur's Gate II: Enhanced Edition",
+    "appId": 257350,
+    "size": "3.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Baldur's Gate: Enhanced Edition",
+    "appId": 228280,
+    "size": "2.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Icewind Dale: Enhanced Edition",
+    "appId": 321800,
+    "size": "2.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Pathfinder: Wrath of the Righteous",
+    "appId": 1184370,
+    "size": "50.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Pathfinder: Kingmaker",
+    "appId": 640820,
+    "size": "20.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Pillars of Eternity II: Deadfire",
+    "appId": 560130,
+    "size": "25.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Pillars of Eternity",
+    "appId": 291650,
+    "size": "10.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Tyranny",
+    "appId": 362960,
+    "size": "10.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Divinity: Original Sin 2",
+    "appId": 435150,
+    "size": "26.0 GB",
+    "tags": [
+      "Online Fix"
+    ]
+  },
+  {
+    "name": "Divinity: Original Sin Enhanced Edition",
+    "appId": 373420,
+    "size": "14.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Wasteland 3",
+    "appId": 719040,
+    "size": "35.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Dragon Age: Origins",
+    "appId": 47810,
+    "size": "20.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Dragon Age: The Veilguard",
+    "appId": 1845910,
+    "size": "100.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Mass Effect Legendary Edition",
+    "appId": 1328670,
+    "size": "100.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Disco Elysium - The Final Cut",
+    "appId": 632470,
+    "size": "13.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Kenshi",
+    "appId": 233860,
+    "size": "5.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Neverwinter Nights: Enhanced Edition",
+    "appId": 704450,
+    "size": "10.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Planescape: Torment Enhanced Edition",
+    "appId": 466300,
+    "size": "2.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Star Wars: Knights of the Old Republic",
+    "appId": 32370,
+    "size": "1.5 GB",
+    "tags": []
+  },
+  {
+    "name": "Star Wars: Knights of the Old Republic II",
+    "appId": 208580,
+    "size": "2.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Stardew Valley",
+    "appId": 413150,
+    "size": "1.0 GB",
+    "tags": [
+      "Online Fix"
+    ]
+  },
+  {
+    "name": "Terraria",
+    "appId": 105600,
+    "size": "0.2 GB",
+    "tags": []
+  },
+  {
+    "name": "Hollow Knight",
+    "appId": 367520,
+    "size": "2.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Celeste",
+    "appId": 504230,
+    "size": "2.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Dead Cells",
+    "appId": 588650,
+    "size": "2.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Hades",
+    "appId": 1145360,
+    "size": "4.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Hades II",
+    "appId": 1145350,
+    "size": "5.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Ori and the Blind Forest: Definitive Edition",
+    "appId": 387290,
+    "size": "4.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Ori and the Will of the Wisps",
+    "appId": 1057090,
+    "size": "6.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Undertale",
+    "appId": 391540,
+    "size": "0.2 GB",
+    "tags": []
+  },
+  {
+    "name": "Slay the Spire",
+    "appId": 646570,
+    "size": "1.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Slay the Spire 2",
+    "appId": 2868840,
+    "size": "2.5 GB",
+    "tags": []
+  },
+  {
+    "name": "Monster Train",
+    "appId": 1102190,
+    "size": "1.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Inscryption",
+    "appId": 1092790,
+    "size": "2.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Noita",
+    "appId": 881100,
+    "size": "1.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Enter the Gungeon",
+    "appId": 311690,
+    "size": "1.0 GB",
+    "tags": []
+  },
+  {
+    "name": "The Binding of Isaac: Rebirth",
+    "appId": 250900,
+    "size": "1.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Cuphead",
+    "appId": 268910,
+    "size": "3.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Cuphead: The Delicious Last Course",
+    "appId": 1501570,
+    "size": "3.0 GB",
+    "tags": []
+  },
+  {
+    "name": "FTL: Faster Than Light",
+    "appId": 212680,
+    "size": "0.2 GB",
+    "tags": []
+  },
+  {
+    "name": "Katana ZERO",
+    "appId": 460950,
+    "size": "1.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Axiom Verge",
+    "appId": 332200,
+    "size": "1.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Shovel Knight: Treasure Trove",
+    "appId": 250760,
+    "size": "1.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Streets of Rage 4",
+    "appId": 985890,
+    "size": "2.0 GB",
+    "tags": []
+  },
+  {
+    "name": "TMNT: Shredder's Revenge",
+    "appId": 1361510,
+    "size": "2.0 GB",
+    "tags": [
+      "Online Fix"
+    ]
+  },
+  {
+    "name": "Vampire Survivors",
+    "appId": 1794680,
+    "size": "0.2 GB",
+    "tags": []
+  },
+  {
+    "name": "Geometry Dash",
+    "appId": 322170,
+    "size": "0.2 GB",
+    "tags": []
+  },
+  {
+    "name": "Spiritfarer",
+    "appId": 972660,
+    "size": "3.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Phasmophobia",
+    "appId": 739630,
+    "size": "1.0 GB",
+    "tags": [
+      "Online Fix"
+    ]
+  },
+  {
+    "name": "Valheim",
+    "appId": 892970,
+    "size": "2.0 GB",
+    "tags": [
+      "Online Fix"
+    ]
+  },
+  {
+    "name": "Deep Rock Galactic",
+    "appId": 548430,
+    "size": "4.0 GB",
+    "tags": [
+      "Online Fix"
+    ]
+  },
+  {
+    "name": "Risk of Rain 2",
+    "appId": 632360,
+    "size": "3.0 GB",
+    "tags": [
+      "Online Fix"
+    ]
+  },
+  {
+    "name": "Gunfire Reborn",
+    "appId": 1217060,
+    "size": "5.0 GB",
+    "tags": [
+      "Online Fix"
+    ]
+  },
+  {
+    "name": "Schedule I",
+    "appId": 3164500,
+    "size": "3.1 GB",
+    "tags": []
+  },
+  {
+    "name": "Poppy Playtime - Chapter 4",
+    "appId": 3008670,
+    "size": "12.4 GB",
+    "tags": []
+  },
+  {
+    "name": "Poppy Playtime - Chapter 3",
+    "appId": 2090880,
+    "size": "8.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Poppy Playtime - Chapter 2",
+    "appId": 1798490,
+    "size": "6.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Poppy Playtime - Chapter 1",
+    "appId": 1721470,
+    "size": "1.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Darkest Dungeon II",
+    "appId": 1940670,
+    "size": "10.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Darkest Dungeon",
+    "appId": 262060,
+    "size": "1.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Balatro",
+    "appId": 2379780,
+    "size": "0.3 GB",
+    "tags": []
+  },
+  {
+    "name": "Sifu",
+    "appId": 2070050,
+    "size": "10.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Kena: Bridge of Spirits",
+    "appId": 1954200,
+    "size": "12.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Tunic",
+    "appId": 553420,
+    "size": "2.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Curse of the Dead Gods",
+    "appId": 1123770,
+    "size": "2.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Risk of Rain Returns",
+    "appId": 1843390,
+    "size": "1.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Brotato",
+    "appId": 1942280,
+    "size": "0.2 GB",
+    "tags": []
+  },
+  {
+    "name": "Dredge",
+    "appId": 1562430,
+    "size": "1.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Dave the Diver",
+    "appId": 1868140,
+    "size": "1.5 GB",
+    "tags": []
+  },
+  {
+    "name": "Lies of P",
+    "appId": 1627720,
+    "size": "30.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Black Myth: Wukong",
+    "appId": 2358720,
+    "size": "130.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Factorio",
+    "appId": 427520,
+    "size": "1.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Satisfactory",
+    "appId": 526870,
+    "size": "8.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Dyson Sphere Program",
+    "appId": 1366540,
+    "size": "3.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Oxygen Not Included",
+    "appId": 457140,
+    "size": "1.0 GB",
+    "tags": []
+  },
+  {
+    "name": "RimWorld",
+    "appId": 294100,
+    "size": "1.0 GB",
+    "tags": [
+      "Workshop"
+    ]
+  },
+  {
+    "name": "Dwarf Fortress",
+    "appId": 975370,
+    "size": "1.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Tropico 6",
+    "appId": 492720,
+    "size": "12.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Planet Zoo",
+    "appId": 703080,
+    "size": "20.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Planet Coaster 2",
+    "appId": 2159380,
+    "size": "15.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Jurassic World Evolution 2",
+    "appId": 1244460,
+    "size": "12.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Two Point Hospital",
+    "appId": 535930,
+    "size": "3.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Two Point Campus",
+    "appId": 1649080,
+    "size": "5.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Frostpunk",
+    "appId": 323190,
+    "size": "3.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Frostpunk 2",
+    "appId": 1649980,
+    "size": "5.0 GB",
+    "tags": []
+  },
+  {
+    "name": "They Are Billions",
+    "appId": 644930,
+    "size": "3.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Northgard",
+    "appId": 466560,
+    "size": "2.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Age of Empires IV",
+    "appId": 1466860,
+    "size": "35.0 GB",
+    "tags": [
+      "Online Fix"
+    ]
+  },
+  {
+    "name": "Age of Empires II: Definitive Edition",
+    "appId": 813780,
+    "size": "45.0 GB",
+    "tags": [
+      "Online Fix"
+    ]
+  },
+  {
+    "name": "Age of Empires III: Definitive Edition",
+    "appId": 933110,
+    "size": "25.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Age of Mythology: Retold",
+    "appId": 1934680,
+    "size": "20.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Total War: WARHAMMER III",
+    "appId": 1142710,
+    "size": "35.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Total War: WARHAMMER II",
+    "appId": 594570,
+    "size": "30.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Total War: WARHAMMER",
+    "appId": 364360,
+    "size": "50.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Total War: THREE KINGDOMS",
+    "appId": 779340,
+    "size": "35.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Total War: ROME REMASTERED",
+    "appId": 1440790,
+    "size": "15.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Total War Saga: TROY",
+    "appId": 1099410,
+    "size": "20.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Company of Heroes 3",
+    "appId": 1880890,
+    "size": "35.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Company of Heroes 2",
+    "appId": 231430,
+    "size": "10.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Apex Legends",
+    "appId": 1172470,
+    "size": "50.0 GB",
+    "tags": []
+  },
+  {
+    "name": "PUBG: BATTLEGROUNDS",
+    "appId": 578080,
+    "size": "30.0 GB",
+    "tags": [
+      "Online Fix"
+    ]
+  },
+  {
+    "name": "Warframe",
+    "appId": 230410,
+    "size": "35.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Among Us",
+    "appId": 945360,
+    "size": "0.3 GB",
+    "tags": [
+      "Online Fix"
+    ]
+  },
+  {
+    "name": "Fall Guys",
+    "appId": 1097150,
+    "size": "5.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Hunt: Showdown 1896",
+    "appId": 594650,
+    "size": "15.0 GB",
+    "tags": [
+      "Online Fix"
+    ]
+  },
+  {
+    "name": "Dead by Daylight",
+    "appId": 381210,
+    "size": "30.0 GB",
+    "tags": [
+      "Online Fix"
+    ]
+  },
+  {
+    "name": "DayZ",
+    "appId": 221100,
+    "size": "10.0 GB",
+    "tags": [
+      "Online Fix"
+    ]
+  },
+  {
+    "name": "Squad",
+    "appId": 393380,
+    "size": "15.0 GB",
+    "tags": [
+      "Online Fix"
+    ]
+  },
+  {
+    "name": "Hell Let Loose",
+    "appId": 686810,
+    "size": "20.0 GB",
+    "tags": [
+      "Online Fix"
+    ]
+  },
+  {
+    "name": "Insurgency: Sandstorm",
+    "appId": 581320,
+    "size": "25.0 GB",
+    "tags": [
+      "Online Fix"
+    ]
+  },
+  {
+    "name": "Ready or Not",
+    "appId": 1144200,
+    "size": "20.0 GB",
+    "tags": [
+      "Online Fix"
+    ]
+  },
+  {
+    "name": "ARMA 3",
+    "appId": 107410,
+    "size": "50.0 GB",
+    "tags": [
+      "Online Fix"
+    ]
+  },
+  {
+    "name": "Arma Reforger",
+    "appId": 1874880,
+    "size": "15.0 GB",
+    "tags": [
+      "Online Fix"
+    ]
+  },
+  {
+    "name": "Path of Exile",
+    "appId": 238960,
+    "size": "20.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Path of Exile 2",
+    "appId": 2694490,
+    "size": "35.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Rocket League",
+    "appId": 252950,
+    "size": "10.0 GB",
+    "tags": [
+      "Online Fix"
+    ]
+  },
+  {
+    "name": "Warhammer 40,000: Darktide",
+    "appId": 1361210,
+    "size": "40.0 GB",
+    "tags": [
+      "Online Fix"
+    ]
+  },
+  {
+    "name": "Warhammer: Vermintide 2",
+    "appId": 552500,
+    "size": "20.0 GB",
+    "tags": [
+      "Online Fix"
+    ]
+  },
+  {
+    "name": "Warhammer 40K: Space Marine 2",
+    "appId": 2183900,
+    "size": "75.0 GB",
+    "tags": [
+      "Online Fix"
+    ]
+  },
+  {
+    "name": "Helldivers 2",
+    "appId": 553850,
+    "size": "40.0 GB",
+    "tags": [
+      "Online Fix"
+    ]
+  },
+  {
+    "name": "STAR WARS Jedi: Fallen Order",
+    "appId": 1172380,
+    "size": "35.0 GB",
+    "tags": []
+  },
+  {
+    "name": "STAR WARS Jedi: Survivor",
+    "appId": 1571830,
+    "size": "155.0 GB",
+    "tags": []
+  },
+  {
+    "name": "STAR WARS Squadrons",
+    "appId": 1222730,
+    "size": "10.0 GB",
+    "tags": []
+  },
+  {
+    "name": "The Forest",
+    "appId": 242760,
+    "size": "4.0 GB",
+    "tags": [
+      "Online Fix"
+    ]
+  },
+  {
+    "name": "Sons of the Forest",
+    "appId": 1326470,
+    "size": "20.0 GB",
+    "tags": [
+      "Online Fix"
+    ]
+  },
+  {
+    "name": "Green Hell",
+    "appId": 815370,
+    "size": "4.0 GB",
+    "tags": [
+      "Online Fix"
+    ]
+  },
+  {
+    "name": "ARK: Survival Evolved",
+    "appId": 346110,
+    "size": "300.0 GB",
+    "tags": [
+      "Online Fix"
+    ]
+  },
+  {
+    "name": "ARK: Survival Ascended",
+    "appId": 2399830,
+    "size": "60.0 GB",
+    "tags": [
+      "Online Fix"
+    ]
+  },
+  {
+    "name": "Conan Exiles",
+    "appId": 440900,
+    "size": "65.0 GB",
+    "tags": [
+      "Online Fix"
+    ]
+  },
+  {
+    "name": "7 Days to Die",
+    "appId": 251570,
+    "size": "15.0 GB",
+    "tags": [
+      "Online Fix"
+    ]
+  },
+  {
+    "name": "The Long Dark",
+    "appId": 305620,
+    "size": "4.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Raft",
+    "appId": 648800,
+    "size": "8.0 GB",
+    "tags": [
+      "Online Fix"
+    ]
+  },
+  {
+    "name": "No Man's Sky",
+    "appId": 275850,
+    "size": "15.0 GB",
+    "tags": [
+      "Online Fix"
+    ]
+  },
+  {
+    "name": "Subnautica",
+    "appId": 264710,
+    "size": "10.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Subnautica: Below Zero",
+    "appId": 848450,
+    "size": "5.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Rust",
+    "appId": 252490,
+    "size": "10.0 GB",
+    "tags": [
+      "Online Fix"
+    ]
+  },
+  {
+    "name": "Stranded Deep",
+    "appId": 313120,
+    "size": "2.0 GB",
+    "tags": []
+  },
+  {
+    "name": "The Planet Crafter",
+    "appId": 1284190,
+    "size": "2.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Icarus",
+    "appId": 1149460,
+    "size": "40.0 GB",
+    "tags": [
+      "Online Fix"
+    ]
+  },
+  {
+    "name": "Grounded",
+    "appId": 962130,
+    "size": "15.0 GB",
+    "tags": [
+      "Online Fix"
+    ]
+  },
+  {
+    "name": "Astroneer",
+    "appId": 361420,
+    "size": "5.0 GB",
+    "tags": [
+      "Online Fix"
+    ]
+  },
+  {
+    "name": "Space Engineers",
+    "appId": 244850,
+    "size": "10.0 GB",
+    "tags": [
+      "Online Fix"
+    ]
+  },
+  {
+    "name": "V Rising",
+    "appId": 1604030,
+    "size": "5.0 GB",
+    "tags": [
+      "Online Fix"
+    ]
+  },
+  {
+    "name": "Palworld",
+    "appId": 1623730,
+    "size": "12.0 GB",
+    "tags": [
+      "Online Fix"
+    ]
+  },
+  {
+    "name": "Enshrouded",
+    "appId": 1203620,
+    "size": "15.0 GB",
+    "tags": [
+      "Online Fix"
+    ]
+  },
+  {
+    "name": "Amnesia: The Dark Descent",
+    "appId": 57300,
+    "size": "3.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Amnesia: Rebirth",
+    "appId": 999220,
+    "size": "10.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Outlast",
+    "appId": 238320,
+    "size": "10.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Outlast 2",
+    "appId": 414700,
+    "size": "30.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Outlast Trials",
+    "appId": 1304930,
+    "size": "20.0 GB",
+    "tags": [
+      "Online Fix"
+    ]
+  },
+  {
+    "name": "Alien: Isolation",
+    "appId": 214490,
+    "size": "30.0 GB",
+    "tags": []
+  },
+  {
+    "name": "SOMA",
+    "appId": 282140,
+    "size": "17.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Little Nightmares II",
+    "appId": 860510,
+    "size": "10.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Little Nightmares",
+    "appId": 424840,
+    "size": "5.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Visage",
+    "appId": 594330,
+    "size": "8.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Signalis",
+    "appId": 1262350,
+    "size": "2.0 GB",
+    "tags": []
+  },
+  {
+    "name": "The Quarry",
+    "appId": 1368220,
+    "size": "50.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Until Dawn",
+    "appId": 2172010,
+    "size": "50.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Man of Medan",
+    "appId": 952560,
+    "size": "15.0 GB",
+    "tags": []
+  },
+  {
+    "name": "FNAF: Security Breach",
+    "appId": 747660,
+    "size": "80.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Dead Space Remake",
+    "appId": 1693980,
+    "size": "50.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Dead Space",
+    "appId": 17470,
+    "size": "15.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Dead Space 2",
+    "appId": 47780,
+    "size": "10.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Control",
+    "appId": 870780,
+    "size": "30.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Alan Wake 2",
+    "appId": 1903290,
+    "size": "90.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Alan Wake Remastered",
+    "appId": 1588140,
+    "size": "30.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Ghostwire: Tokyo",
+    "appId": 1475810,
+    "size": "20.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Batman: Arkham Knight",
+    "appId": 208650,
+    "size": "45.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Batman: Arkham City",
+    "appId": 200260,
+    "size": "18.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Batman: Arkham Asylum",
+    "appId": 35140,
+    "size": "10.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Batman: Arkham Origins",
+    "appId": 209000,
+    "size": "15.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Gotham Knights",
+    "appId": 1496790,
+    "size": "45.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Middle-earth: Shadow of Mordor",
+    "appId": 241930,
+    "size": "35.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Middle-earth: Shadow of War",
+    "appId": 356190,
+    "size": "97.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Marvel's Guardians of the Galaxy",
+    "appId": 1088020,
+    "size": "35.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Hogwarts Legacy",
+    "appId": 990080,
+    "size": "85.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Avatar: Frontiers of Pandora",
+    "appId": 1992800,
+    "size": "60.0 GB",
+    "tags": []
+  },
+  {
+    "name": "BeamNG.drive",
+    "appId": 284160,
+    "size": "15.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Assetto Corsa",
+    "appId": 244210,
+    "size": "15.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Assetto Corsa Competizione",
+    "appId": 805550,
+    "size": "30.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Wreckfest",
+    "appId": 228380,
+    "size": "10.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Euro Truck Simulator 2",
+    "appId": 227300,
+    "size": "10.0 GB",
+    "tags": []
+  },
+  {
+    "name": "American Truck Simulator",
+    "appId": 270880,
+    "size": "5.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Farming Simulator 22",
+    "appId": 1248130,
+    "size": "15.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Farming Simulator 25",
+    "appId": 2790870,
+    "size": "15.0 GB",
+    "tags": []
+  },
+  {
+    "name": "F1 23",
+    "appId": 1911860,
+    "size": "25.0 GB",
+    "tags": []
+  },
+  {
+    "name": "F1 22",
+    "appId": 1708520,
+    "size": "25.0 GB",
+    "tags": []
+  },
+  {
+    "name": "DiRT Rally 2.0",
+    "appId": 690790,
+    "size": "30.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Need for Speed Heat",
+    "appId": 1222680,
+    "size": "55.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Goat Simulator",
+    "appId": 265930,
+    "size": "3.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Goat Simulator 3",
+    "appId": 1934780,
+    "size": "15.0 GB",
+    "tags": []
+  },
+  {
+    "name": "PowerWash Simulator",
+    "appId": 1290630,
+    "size": "3.0 GB",
+    "tags": []
+  },
+  {
+    "name": "House Flipper",
+    "appId": 613100,
+    "size": "3.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Project Zomboid",
+    "appId": 108600,
+    "size": "1.0 GB",
+    "tags": [
+      "Online Fix"
+    ]
+  },
+  {
+    "name": "Tabletop Simulator",
+    "appId": 286160,
+    "size": "1.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Persona 5 Royal",
+    "appId": 1687950,
+    "size": "20.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Persona 3 Reload",
+    "appId": 2161700,
+    "size": "25.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Tales of Arise",
+    "appId": 1675200,
+    "size": "25.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Scarlet Nexus",
+    "appId": 1293220,
+    "size": "20.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Granblue Fantasy: Relink",
+    "appId": 881020,
+    "size": "35.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Guilty Gear -Strive-",
+    "appId": 1384160,
+    "size": "15.0 GB",
+    "tags": [
+      "Online Fix"
+    ]
+  },
+  {
+    "name": "Dragon Ball FighterZ",
+    "appId": 678950,
+    "size": "15.0 GB",
+    "tags": [
+      "Online Fix"
+    ]
+  },
+  {
+    "name": "Tekken 7",
+    "appId": 389730,
+    "size": "60.0 GB",
+    "tags": [
+      "Online Fix"
+    ]
+  },
+  {
+    "name": "Tekken 8",
+    "appId": 1778820,
+    "size": "70.0 GB",
+    "tags": [
+      "Online Fix"
+    ]
+  },
+  {
+    "name": "Mortal Kombat 11",
+    "appId": 976310,
+    "size": "65.0 GB",
+    "tags": []
+  },
+  {
+    "name": "SoulCalibur VI",
+    "appId": 544750,
+    "size": "40.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Metal Gear Solid V: The Phantom Pain",
+    "appId": 287700,
+    "size": "50.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Metal Gear Rising: Revengeance",
+    "appId": 235460,
+    "size": "25.0 GB",
+    "tags": []
+  },
+  {
+    "name": "ULTRAKILL",
+    "appId": 1229490,
+    "size": "2.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Dusk",
+    "appId": 519860,
+    "size": "2.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Ion Fury",
+    "appId": 562510,
+    "size": "0.5 GB",
+    "tags": []
+  },
+  {
+    "name": "AMID EVIL",
+    "appId": 673130,
+    "size": "3.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Prodeus",
+    "appId": 964800,
+    "size": "2.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Turbo Overkill",
+    "appId": 1780200,
+    "size": "2.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Hotline Miami",
+    "appId": 219150,
+    "size": "0.2 GB",
+    "tags": []
+  },
+  {
+    "name": "Hotline Miami 2: Wrong Number",
+    "appId": 274170,
+    "size": "0.5 GB",
+    "tags": []
+  },
+  {
+    "name": "Neon Abyss",
+    "appId": 1124310,
+    "size": "1.5 GB",
+    "tags": []
+  },
+  {
+    "name": "Pizza Tower",
+    "appId": 2231450,
+    "size": "0.5 GB",
+    "tags": []
+  },
+  {
+    "name": "A Hat in Time",
+    "appId": 253230,
+    "size": "4.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Psychonauts 2",
+    "appId": 607080,
+    "size": "30.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Crash Bandicoot N. Sane Trilogy",
+    "appId": 731490,
+    "size": "28.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Crash Bandicoot 4: It's About Time",
+    "appId": 1751590,
+    "size": "50.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Spyro Reignited Trilogy",
+    "appId": 996580,
+    "size": "35.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Sonic Frontiers",
+    "appId": 1237320,
+    "size": "50.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Sonic Mania",
+    "appId": 584400,
+    "size": "0.3 GB",
+    "tags": []
+  },
+  {
+    "name": "Sonic Generations",
+    "appId": 71340,
+    "size": "8.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Freedom Planet 2",
+    "appId": 1467285,
+    "size": "3.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Blasphemous",
+    "appId": 774361,
+    "size": "3.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Blasphemous 2",
+    "appId": 2114740,
+    "size": "5.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Rogue Legacy 2",
+    "appId": 1253920,
+    "size": "1.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Rogue Legacy",
+    "appId": 241600,
+    "size": "1.0 GB",
+    "tags": []
+  },
+  {
+    "name": "LIMBO",
+    "appId": 48000,
+    "size": "0.2 GB",
+    "tags": []
+  },
+  {
+    "name": "INSIDE",
+    "appId": 304430,
+    "size": "2.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Fez",
+    "appId": 224760,
+    "size": "0.3 GB",
+    "tags": []
+  },
+  {
+    "name": "Gris",
+    "appId": 683320,
+    "size": "2.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Firewatch",
+    "appId": 383870,
+    "size": "3.0 GB",
+    "tags": []
+  },
+  {
+    "name": "What Remains of Edith Finch",
+    "appId": 501300,
+    "size": "2.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Outer Wilds",
+    "appId": 753640,
+    "size": "2.0 GB",
+    "tags": []
+  },
+  {
+    "name": "The Witness",
+    "appId": 210970,
+    "size": "10.0 GB",
+    "tags": []
+  },
+  {
+    "name": "The Talos Principle",
+    "appId": 257510,
+    "size": "3.0 GB",
+    "tags": []
+  },
+  {
+    "name": "The Talos Principle 2",
+    "appId": 835770,
+    "size": "25.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Baba Is You",
+    "appId": 736260,
+    "size": "0.1 GB",
+    "tags": []
+  },
+  {
+    "name": "Return of the Obra Dinn",
+    "appId": 653530,
+    "size": "1.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Into the Breach",
+    "appId": 590380,
+    "size": "0.2 GB",
+    "tags": []
+  },
+  {
+    "name": "A Short Hike",
+    "appId": 1055540,
+    "size": "0.2 GB",
+    "tags": []
+  },
+  {
+    "name": "Unpacking",
+    "appId": 1194560,
+    "size": "0.5 GB",
+    "tags": []
+  },
+  {
+    "name": "Stray",
+    "appId": 1332010,
+    "size": "5.0 GB",
+    "tags": []
+  },
+  {
+    "name": "It Takes Two",
+    "appId": 1426210,
+    "size": "15.0 GB",
+    "tags": [
+      "Online Fix"
+    ]
+  },
+  {
+    "name": "Overcooked! 2",
+    "appId": 728880,
+    "size": "2.0 GB",
+    "tags": [
+      "Online Fix"
+    ]
+  },
+  {
+    "name": "A Plague Tale: Requiem",
+    "appId": 1182900,
+    "size": "55.0 GB",
+    "tags": []
+  },
+  {
+    "name": "A Plague Tale: Innocence",
+    "appId": 752590,
+    "size": "40.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Pacific Drive",
+    "appId": 1816580,
+    "size": "30.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Cocoon",
+    "appId": 1497570,
+    "size": "2.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Doki Doki Literature Club Plus!",
+    "appId": 1388880,
+    "size": "1.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Wo Long: Fallen Dynasty",
+    "appId": 2184640,
+    "size": "18.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Nioh 2 – The Complete Edition",
+    "appId": 1325200,
+    "size": "60.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Nioh: Complete Edition",
+    "appId": 485510,
+    "size": "60.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Mortal Shell",
+    "appId": 1159640,
+    "size": "25.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Dying Light",
+    "appId": 239140,
+    "size": "22.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Dying Light 2 Stay Human",
+    "appId": 534380,
+    "size": "30.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Days Gone",
+    "appId": 1259420,
+    "size": "70.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Biomutant",
+    "appId": 1173510,
+    "size": "15.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Mad Max",
+    "appId": 234140,
+    "size": "32.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Sleeping Dogs: Definitive Edition",
+    "appId": 307690,
+    "size": "15.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Ghostrunner",
+    "appId": 1138810,
+    "size": "10.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Ghostrunner 2",
+    "appId": 1903310,
+    "size": "15.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Prince of Persia: The Lost Crown",
+    "appId": 2368850,
+    "size": "6.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Scorn",
+    "appId": 698670,
+    "size": "15.0 GB",
+    "tags": []
+  },
+  {
+    "name": "The Ascent",
+    "appId": 979690,
+    "size": "15.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Evil West",
+    "appId": 1619420,
+    "size": "15.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Payday 2",
+    "appId": 218620,
+    "size": "20.0 GB",
+    "tags": [
+      "Online Fix"
+    ]
+  },
+  {
+    "name": "Payday 3",
+    "appId": 1272080,
+    "size": "30.0 GB",
+    "tags": [
+      "Online Fix"
+    ]
+  },
+  {
+    "name": "Killing Floor 2",
+    "appId": 232090,
+    "size": "15.0 GB",
+    "tags": [
+      "Online Fix"
+    ]
+  },
+  {
+    "name": "Back 4 Blood",
+    "appId": 924970,
+    "size": "50.0 GB",
+    "tags": [
+      "Online Fix"
+    ]
+  },
+  {
+    "name": "Friday the 13th: The Game",
+    "appId": 438740,
+    "size": "25.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Texas Chain Saw Massacre",
+    "appId": 1659630,
+    "size": "30.0 GB",
+    "tags": []
+  },
+  {
+    "name": "BattleBit Remastered",
+    "appId": 671860,
+    "size": "4.0 GB",
+    "tags": [
+      "Online Fix"
+    ]
+  },
+  {
+    "name": "War Thunder",
+    "appId": 236390,
+    "size": "75.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Post Scriptum",
+    "appId": 736220,
+    "size": "20.0 GB",
+    "tags": [
+      "Online Fix"
+    ]
+  },
+  {
+    "name": "Foxhole",
+    "appId": 505460,
+    "size": "3.0 GB",
+    "tags": [
+      "Online Fix"
+    ]
+  },
+  {
+    "name": "Splitgate",
+    "appId": 677620,
+    "size": "4.0 GB",
+    "tags": []
+  },
+  {
+    "name": "VRChat",
+    "appId": 438100,
+    "size": "1.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Elite Dangerous",
+    "appId": 359320,
+    "size": "40.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Kerbal Space Program",
+    "appId": 220200,
+    "size": "2.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Kerbal Space Program 2",
+    "appId": 954850,
+    "size": "15.0 GB",
+    "tags": []
+  },
+  {
+    "name": "X4: Foundations",
+    "appId": 392160,
+    "size": "10.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Microsoft Flight Simulator",
+    "appId": 1250410,
+    "size": "170.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Hardspace: Shipbreaker",
+    "appId": 1161580,
+    "size": "20.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Deliver Us The Moon",
+    "appId": 596440,
+    "size": "10.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Homeworld Remastered Collection",
+    "appId": 288020,
+    "size": "25.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Endless Space 2",
+    "appId": 392110,
+    "size": "5.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Endless Legend",
+    "appId": 289130,
+    "size": "5.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Humankind",
+    "appId": 1124300,
+    "size": "10.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Old World",
+    "appId": 1213630,
+    "size": "1.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Terra Invicta",
+    "appId": 1591530,
+    "size": "2.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Against the Storm",
+    "appId": 1979250,
+    "size": "1.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Timberborn",
+    "appId": 1062090,
+    "size": "1.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Songs of Syx",
+    "appId": 867379,
+    "size": "0.2 GB",
+    "tags": []
+  },
+  {
+    "name": "Children of Morta",
+    "appId": 330020,
+    "size": "3.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Wildermyth",
+    "appId": 763890,
+    "size": "2.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Wartales",
+    "appId": 1527950,
+    "size": "6.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Jagged Alliance 3",
+    "appId": 1994130,
+    "size": "15.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Phoenix Point",
+    "appId": 839786,
+    "size": "15.0 GB",
+    "tags": []
+  },
+  {
+    "name": "System Shock",
+    "appId": 482400,
+    "size": "8.0 GB",
+    "tags": []
+  },
+  {
+    "name": "System Shock 2",
+    "appId": 238210,
+    "size": "2.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Thief",
+    "appId": 239160,
+    "size": "12.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Antichamber",
+    "appId": 219890,
+    "size": "0.2 GB",
+    "tags": []
+  },
+  {
+    "name": "Myst (2021)",
+    "appId": 1178960,
+    "size": "4.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Obduction",
+    "appId": 306760,
+    "size": "5.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Viewfinder",
+    "appId": 1382020,
+    "size": "2.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Rollerdrome",
+    "appId": 1691590,
+    "size": "5.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Midnight Suns",
+    "appId": 368260,
+    "size": "20.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Bendy and the Dark Revival",
+    "appId": 1582880,
+    "size": "20.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Lost Ark",
+    "appId": 1599340,
+    "size": "50.0 GB",
+    "tags": []
+  },
+  {
+    "name": "New World",
+    "appId": 1063730,
+    "size": "50.0 GB",
+    "tags": []
+  },
+  {
+    "name": "The Outer Worlds",
+    "appId": 1402170,
+    "size": "18.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Rage 2",
+    "appId": 707920,
+    "size": "45.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Neon White",
+    "appId": 1533420,
+    "size": "5.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Trepang2",
+    "appId": 1339740,
+    "size": "10.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Severed Steel",
+    "appId": 1167220,
+    "size": "5.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Project Warlock",
+    "appId": 924270,
+    "size": "1.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Moving Out 2",
+    "appId": 2268740,
+    "size": "2.0 GB",
+    "tags": [
+      "Online Fix"
+    ]
+  },
+  {
+    "name": "Super Meat Boy",
+    "appId": 40800,
+    "size": "0.5 GB",
+    "tags": []
+  },
+  {
+    "name": "Cave Story+",
+    "appId": 200900,
+    "size": "0.3 GB",
+    "tags": []
+  },
+  {
+    "name": "Guacamelee! 2",
+    "appId": 534550,
+    "size": "4.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Totally Accurate Battle Simulator",
+    "appId": 508440,
+    "size": "1.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Griftlands",
+    "appId": 601840,
+    "size": "1.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Dicey Dungeons",
+    "appId": 861540,
+    "size": "0.5 GB",
+    "tags": []
+  },
+  {
+    "name": "Cobalt Core",
+    "appId": 2179850,
+    "size": "1.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Crown Trick",
+    "appId": 1283400,
+    "size": "1.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Wrath: Aeon of Ruin",
+    "appId": 1029690,
+    "size": "2.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Ruined King: A League of Legends Story",
+    "appId": 1326260,
+    "size": "10.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Star Ocean: The Second Story R",
+    "appId": 1925440,
+    "size": "10.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Atelier Ryza 3",
+    "appId": 1822120,
+    "size": "20.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Forspoken",
+    "appId": 1840280,
+    "size": "150.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Star Wars: Outlaws",
+    "appId": 2134730,
+    "size": "65.0 GB",
+    "tags": []
+  },
+  {
+    "name": "The Callisto Protocol",
+    "appId": 1793680,
+    "size": "35.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Thymesia",
+    "appId": 1715420,
+    "size": "10.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Medieval Dynasty",
+    "appId": 1129580,
+    "size": "10.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Going Medieval",
+    "appId": 1419620,
+    "size": "1.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Banished",
+    "appId": 233230,
+    "size": "0.5 GB",
+    "tags": []
+  },
+  {
+    "name": "Terra Nil",
+    "appId": 1593030,
+    "size": "1.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Eco",
+    "appId": 382310,
+    "size": "1.0 GB",
+    "tags": [
+      "Online Fix"
+    ]
+  },
+  {
+    "name": "Solasta: Crown of the Magister",
+    "appId": 1096530,
+    "size": "10.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Steel Division 2",
+    "appId": 919640,
+    "size": "30.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Gates of Hell: Ostfront",
+    "appId": 1175990,
+    "size": "30.0 GB",
+    "tags": []
+  },
+  {
+    "name": "My Summer Car",
+    "appId": 516750,
+    "size": "5.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Lawn Mowing Simulator",
+    "appId": 1237990,
+    "size": "5.0 GB",
+    "tags": []
+  },
+  {
+    "name": "PlateUp!",
+    "appId": 1599530,
+    "size": "0.5 GB",
+    "tags": [
+      "Online Fix"
+    ]
+  },
+  {
+    "name": "Tinykin",
+    "appId": 1599890,
+    "size": "3.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Solar Ash",
+    "appId": 1463230,
+    "size": "10.0 GB",
+    "tags": []
+  },
+  {
+    "name": "The Forgotten City",
+    "appId": 874260,
+    "size": "8.0 GB",
+    "tags": []
+  },
+  {
+    "name": "FAR: Changing Tides",
+    "appId": 1631040,
+    "size": "1.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Townscaper",
+    "appId": 1291340,
+    "size": "0.2 GB",
+    "tags": []
+  },
+  {
+    "name": "Eldest Souls",
+    "appId": 1241600,
+    "size": "3.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Chorus",
+    "appId": 1256290,
+    "size": "20.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Void Bastards",
+    "appId": 1063540,
+    "size": "3.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Riders Republic",
+    "appId": 1595520,
+    "size": "20.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Skull and Bones",
+    "appId": 1578390,
+    "size": "35.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Elex",
+    "appId": 411550,
+    "size": "20.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Elex II",
+    "appId": 1766120,
+    "size": "25.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Gothic",
+    "appId": 65540,
+    "size": "5.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Gothic 2",
+    "appId": 39510,
+    "size": "4.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Risen",
+    "appId": 40390,
+    "size": "6.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Risen 2: Dark Waters",
+    "appId": 40850,
+    "size": "8.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Dark Souls II",
+    "appId": 236430,
+    "size": "12.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Loop Hero",
+    "appId": 1282730,
+    "size": "0.5 GB",
+    "tags": []
+  },
+  {
+    "name": "Peglin",
+    "appId": 1823100,
+    "size": "1.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Merchant of the Skies",
+    "appId": 1135380,
+    "size": "1.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Starship Troopers: Extermination",
+    "appId": 1722710,
+    "size": "20.0 GB",
+    "tags": [
+      "Online Fix"
+    ]
+  },
+  {
+    "name": "Deep Rock Galactic: Survivor",
+    "appId": 2365810,
+    "size": "2.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Wayfinder",
+    "appId": 1889590,
+    "size": "40.0 GB",
+    "tags": []
+  },
+  {
+    "name": "The Wandering Village",
+    "appId": 1681110,
+    "size": "1.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Pandemic Express",
+    "appId": 1065670,
+    "size": "1.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Midnight Fight Express",
+    "appId": 1681280,
+    "size": "5.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Ghostbusters: Spirits Unleashed",
+    "appId": 1842110,
+    "size": "30.0 GB",
+    "tags": [
+      "Online Fix"
+    ]
+  },
+  {
+    "name": "Predator: Hunting Grounds",
+    "appId": 781010,
+    "size": "20.0 GB",
+    "tags": [
+      "Online Fix"
+    ]
+  },
+  {
+    "name": "Evil Dead: The Game",
+    "appId": 1675950,
+    "size": "10.0 GB",
+    "tags": [
+      "Online Fix"
+    ]
+  },
+  {
+    "name": "Dungeons & Dragons: Dark Alliance",
+    "appId": 1049590,
+    "size": "30.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Encased: A Sci-Fi Post-Apocalyptic RPG",
+    "appId": 921800,
+    "size": "12.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Panzer Corps 2",
+    "appId": 1074960,
+    "size": "5.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Nebulous: Fleet Command",
+    "appId": 1416350,
+    "size": "2.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Sins of a Solar Empire II",
+    "appId": 1660370,
+    "size": "5.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Galactic Civilizations IV",
+    "appId": 1557090,
+    "size": "5.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Battlefleet Gothic: Armada 2",
+    "appId": 617410,
+    "size": "20.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Men of War: Assault Squad 2",
+    "appId": 244870,
+    "size": "7.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Zombie Army 4: Dead War",
+    "appId": 681840,
+    "size": "30.0 GB",
+    "tags": [
+      "Online Fix"
+    ]
+  },
+  {
+    "name": "Sniper Elite 5",
+    "appId": 1369720,
+    "size": "27.0 GB",
+    "tags": [
+      "Online Fix"
+    ]
+  },
+  {
+    "name": "Sniper Elite 4",
+    "appId": 312660,
+    "size": "20.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Strange Brigade",
+    "appId": 312670,
+    "size": "20.0 GB",
+    "tags": [
+      "Online Fix"
+    ]
+  },
+  {
+    "name": "Shadow Warrior 3",
+    "appId": 1545470,
+    "size": "20.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Shadow Warrior 2",
+    "appId": 324800,
+    "size": "24.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Bulletstorm: Full Clip Edition",
+    "appId": 411570,
+    "size": "15.0 GB",
+    "tags": []
+  },
+  {
+    "name": "The Surge 2",
+    "appId": 679540,
+    "size": "26.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Ashen",
+    "appId": 726640,
+    "size": "8.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Bendy and the Ink Machine",
+    "appId": 622950,
+    "size": "5.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Hello Neighbor 2",
+    "appId": 1558860,
+    "size": "25.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Corpse Party",
+    "appId": 877580,
+    "size": "0.5 GB",
+    "tags": []
+  },
+  {
+    "name": "Layers of Fear",
+    "appId": 1265920,
+    "size": "20.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Observation",
+    "appId": 906760,
+    "size": "15.0 GB",
+    "tags": []
+  },
+  {
+    "name": "The Medium",
+    "appId": 1293820,
+    "size": "30.0 GB",
+    "tags": []
+  },
+  {
+    "name": "F.E.A.R.",
+    "appId": 21090,
+    "size": "5.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Condemned: Criminal Origins",
+    "appId": 7820,
+    "size": "8.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Forza Motorsport",
+    "appId": 2440510,
+    "size": "55.0 GB",
+    "tags": []
+  },
+  {
+    "name": "DiRT 5",
+    "appId": 1282030,
+    "size": "50.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Trackmania",
+    "appId": 2225070,
+    "size": "5.0 GB",
+    "tags": []
+  },
+  {
+    "name": "GRID Legends",
+    "appId": 1307710,
+    "size": "50.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Project CARS 3",
+    "appId": 1191900,
+    "size": "30.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Burnout Paradise Remastered",
+    "appId": 1238080,
+    "size": "30.0 GB",
+    "tags": []
+  },
+  {
+    "name": "NBA 2K24",
+    "appId": 2338770,
+    "size": "130.0 GB",
+    "tags": []
+  },
+  {
+    "name": "WWE 2K24",
+    "appId": 2591240,
+    "size": "60.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Steep",
+    "appId": 415550,
+    "size": "10.0 GB",
+    "tags": []
+  },
+  {
+    "name": "eFootball 2024",
+    "appId": 1448030,
+    "size": "35.0 GB",
+    "tags": []
+  },
+  {
+    "name": "TopSpin 2K25",
+    "appId": 2312180,
+    "size": "30.0 GB",
+    "tags": []
+  },
+  {
+    "name": "EA Sports PGA Tour",
+    "appId": 1740700,
+    "size": "50.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Battletoads",
+    "appId": 1258080,
+    "size": "2.0 GB",
+    "tags": []
+  },
+  {
+    "name": "King of Fighters XV",
+    "appId": 1498990,
+    "size": "30.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Granblue Fantasy Versus: Rising",
+    "appId": 1819410,
+    "size": "15.0 GB",
+    "tags": []
+  },
+  {
+    "name": "DNF Duel",
+    "appId": 1724800,
+    "size": "20.0 GB",
+    "tags": []
+  },
+  {
+    "name": "BlazBlue: Centralfiction",
+    "appId": 586140,
+    "size": "20.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Skullgirls",
+    "appId": 245170,
+    "size": "5.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Star Ocean: First Departure R",
+    "appId": 1126020,
+    "size": "5.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Chrono Ark",
+    "appId": 1225570,
+    "size": "2.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Surviving the Aftermath",
+    "appId": 1172220,
+    "size": "5.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Planetfall: Age of Wonders",
+    "appId": 718650,
+    "size": "20.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Homeworld 3",
+    "appId": 2190750,
+    "size": "35.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Dota Underlords",
+    "appId": 1046930,
+    "size": "1.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Artifact",
+    "appId": 583950,
+    "size": "1.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Wallpaper Engine",
+    "appId": 431960,
+    "size": "0.4 GB",
+    "tags": []
+  },
+  {
+    "name": "Minion Masters",
+    "appId": 489520,
+    "size": "1.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Teardown",
+    "appId": 1167630,
+    "size": "3.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Wobbly Life",
+    "appId": 1202590,
+    "size": "2.0 GB",
+    "tags": [
+      "Online Fix"
+    ]
+  },
+  {
+    "name": "Golf With Your Friends",
+    "appId": 431240,
+    "size": "0.5 GB",
+    "tags": [
+      "Online Fix"
+    ]
+  },
+  {
+    "name": "Poly Bridge 3",
+    "appId": 1850160,
+    "size": "0.3 GB",
+    "tags": []
+  },
+  {
+    "name": "SpeedRunners",
+    "appId": 207140,
+    "size": "0.3 GB",
+    "tags": [
+      "Online Fix"
+    ]
+  },
+  {
+    "name": "Pummel Party",
+    "appId": 880940,
+    "size": "1.0 GB",
+    "tags": [
+      "Online Fix"
+    ]
+  },
+  {
+    "name": "Keep Talking and Nobody Explodes",
+    "appId": 341800,
+    "size": "0.5 GB",
+    "tags": []
+  },
+  {
+    "name": "Human: Fall Flat",
+    "appId": 477160,
+    "size": "1.0 GB",
+    "tags": [
+      "Online Fix"
+    ]
+  },
+  {
+    "name": "Struggling",
+    "appId": 1126510,
+    "size": "0.5 GB",
+    "tags": []
+  },
+  {
+    "name": "ROUNDS",
+    "appId": 1557740,
+    "size": "0.3 GB",
+    "tags": [
+      "Online Fix"
+    ]
+  },
+  {
+    "name": "Stick Fight: The Game",
+    "appId": 674940,
+    "size": "0.1 GB",
+    "tags": [
+      "Online Fix"
+    ]
+  },
+  {
+    "name": "Unrailed!",
+    "appId": 1016920,
+    "size": "0.5 GB",
+    "tags": [
+      "Online Fix"
+    ]
+  },
+  {
+    "name": "Lovers in a Dangerous Spacetime",
+    "appId": 252600,
+    "size": "1.0 GB",
+    "tags": []
+  },
+  {
+    "name": "We Were Here Together",
+    "appId": 1132030,
+    "size": "1.0 GB",
+    "tags": [
+      "Online Fix"
+    ]
+  },
+  {
+    "name": "Split/Second",
+    "appId": 38920,
+    "size": "6.0 GB",
+    "tags": []
+  },
+  {
+    "name": "OutRun 2006: Coast 2 Coast",
+    "appId": 7200,
+    "size": "1.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Pumpkin Jack",
+    "appId": 1216490,
+    "size": "3.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Bright Memory: Infinite",
+    "appId": 1451840,
+    "size": "10.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Sayonara Wild Hearts",
+    "appId": 1263000,
+    "size": "2.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Venba",
+    "appId": 1843290,
+    "size": "0.5 GB",
+    "tags": []
+  },
+  {
+    "name": "Season: A Letter to the Future",
+    "appId": 1542970,
+    "size": "10.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Still Wakes the Deep",
+    "appId": 2285772,
+    "size": "15.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Alba: A Wildlife Adventure",
+    "appId": 1337010,
+    "size": "1.5 GB",
+    "tags": []
+  },
+  {
+    "name": "Endling: Extinction is Forever",
+    "appId": 1276240,
+    "size": "8.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Before Your Eyes",
+    "appId": 1082430,
+    "size": "2.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Twelve Minutes",
+    "appId": 1000330,
+    "size": "2.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Heaven's Vault",
+    "appId": 891520,
+    "size": "5.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Everspace 2",
+    "appId": 1128920,
+    "size": "15.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Omno",
+    "appId": 897350,
+    "size": "1.0 GB",
+    "tags": []
+  },
+  {
+    "name": "The Pathless",
+    "appId": 1492370,
+    "size": "5.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Unexplored 2",
+    "appId": 1040600,
+    "size": "3.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Caves of Qud",
+    "appId": 333640,
+    "size": "0.3 GB",
+    "tags": []
+  },
+  {
+    "name": "Narita Boy",
+    "appId": 1053920,
+    "size": "4.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Cyber Shadow",
+    "appId": 861500,
+    "size": "0.5 GB",
+    "tags": []
+  },
+  {
+    "name": "Toem",
+    "appId": 1307580,
+    "size": "0.5 GB",
+    "tags": []
+  },
+  {
+    "name": "Minute of Islands",
+    "appId": 1069530,
+    "size": "2.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Sable",
+    "appId": 733030,
+    "size": "15.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Backbone",
+    "appId": 865600,
+    "size": "1.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Oxenfree",
+    "appId": 388880,
+    "size": "1.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Oxenfore II: Lost Signals",
+    "appId": 2092060,
+    "size": "2.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Mutazione",
+    "appId": 986300,
+    "size": "2.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Islanders",
+    "appId": 1046030,
+    "size": "0.2 GB",
+    "tags": []
+  },
+  {
+    "name": "FAR: Lone Sails",
+    "appId": 609350,
+    "size": "1.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Wandersong",
+    "appId": 563840,
+    "size": "0.5 GB",
+    "tags": []
+  },
+  {
+    "name": "Ikenfell",
+    "appId": 854250,
+    "size": "1.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Night in the Woods",
+    "appId": 481510,
+    "size": "2.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Tacoma",
+    "appId": 343860,
+    "size": "4.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Gone Home",
+    "appId": 232430,
+    "size": "3.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Suzerain",
+    "appId": 1207650,
+    "size": "0.5 GB",
+    "tags": []
+  },
+  {
+    "name": "80 Days",
+    "appId": 381780,
+    "size": "0.3 GB",
+    "tags": []
+  },
+  {
+    "name": "Roadwarden",
+    "appId": 1371110,
+    "size": "0.2 GB",
+    "tags": []
+  },
+  {
+    "name": "Citizen Sleeper",
+    "appId": 1578650,
+    "size": "1.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Norco",
+    "appId": 1221250,
+    "size": "1.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Pentiment",
+    "appId": 1929870,
+    "size": "3.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Grindstone",
+    "appId": 1194820,
+    "size": "0.5 GB",
+    "tags": []
+  },
+  {
+    "name": "Dome Keeper",
+    "appId": 1637320,
+    "size": "0.3 GB",
+    "tags": []
+  },
+  {
+    "name": "Rogue: Genesia",
+    "appId": 1997390,
+    "size": "1.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Slay the Princess",
+    "appId": 1989270,
+    "size": "0.5 GB",
+    "tags": []
+  },
+  {
+    "name": "Arranger: A Role-Puzzler Adventure",
+    "appId": 2603910,
+    "size": "1.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Planet of Lana",
+    "appId": 1778020,
+    "size": "5.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Botany Manor",
+    "appId": 1425763,
+    "size": "1.0 GB",
+    "tags": []
+  },
+  {
+    "name": "SCHiM",
+    "appId": 1986700,
+    "size": "0.5 GB",
+    "tags": []
+  },
+  {
+    "name": "Flintlock: The Siege of Dawn",
+    "appId": 1388860,
+    "size": "20.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Towerborne",
+    "appId": 2137670,
+    "size": "5.0 GB",
+    "tags": []
+  },
+  {
+    "name": "MechWarrior 5: Mercenaries",
+    "appId": 784080,
+    "size": "35.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Battlezone: Gold Edition",
+    "appId": 394570,
+    "size": "5.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Mech Arena: Robot Showdown",
+    "appId": 1425810,
+    "size": "2.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Xenonauts 2",
+    "appId": 538030,
+    "size": "3.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Dungeon of the Endless",
+    "appId": 249050,
+    "size": "2.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Legends of Kingdom Rush",
+    "appId": 1600930,
+    "size": "2.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Kingdom Rush Frontiers",
+    "appId": 1002670,
+    "size": "1.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Bloons TD 6",
+    "appId": 960090,
+    "size": "1.5 GB",
+    "tags": []
+  },
+  {
+    "name": "Plants vs Zombies Game of the Year",
+    "appId": 3590,
+    "size": "0.5 GB",
+    "tags": []
+  },
+  {
+    "name": "Peggle Deluxe",
+    "appId": 3480,
+    "size": "0.2 GB",
+    "tags": []
+  },
+  {
+    "name": "Portal Reloaded",
+    "appId": 1255980,
+    "size": "1.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Black Mesa",
+    "appId": 362890,
+    "size": "20.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Cry of Fear",
+    "appId": 223710,
+    "size": "5.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Insurgency (2014)",
+    "appId": 222880,
+    "size": "8.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Killing Floor",
+    "appId": 1250,
+    "size": "5.0 GB",
+    "tags": []
+  },
+  {
+    "name": "No More Room in Hell",
+    "appId": 224260,
+    "size": "2.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Zombie Panic! Source",
+    "appId": 17500,
+    "size": "3.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Natural Selection 2",
+    "appId": 4920,
+    "size": "3.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Synergy",
+    "appId": 1622340,
+    "size": "2.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Chivalry 2",
+    "appId": 1824220,
+    "size": "20.0 GB",
+    "tags": [
+      "Online Fix"
+    ]
+  },
+  {
+    "name": "Mordhau",
+    "appId": 629760,
+    "size": "10.0 GB",
+    "tags": [
+      "Online Fix"
+    ]
+  },
+  {
+    "name": "For Honor",
+    "appId": 304390,
+    "size": "50.0 GB",
+    "tags": [
+      "Online Fix"
+    ]
+  },
+  {
+    "name": "Brawlhalla",
+    "appId": 291550,
+    "size": "2.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Neverwinter",
+    "appId": 109600,
+    "size": "15.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Tera",
+    "appId": 323370,
+    "size": "60.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Black Desert Online",
+    "appId": 586150,
+    "size": "60.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Albion Online",
+    "appId": 761890,
+    "size": "4.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Guild Wars 2",
+    "appId": 1284410,
+    "size": "80.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Final Fantasy XI Online",
+    "appId": 25900,
+    "size": "20.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Phantasy Star Online 2: New Genesis",
+    "appId": 1349580,
+    "size": "20.0 GB",
+    "tags": []
+  },
+  {
+    "name": "MapleStory",
+    "appId": 216150,
+    "size": "15.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Core Keeper",
+    "appId": 1621690,
+    "size": "1.0 GB",
+    "tags": [
+      "Online Fix"
+    ]
+  },
+  {
+    "name": "Starbound",
+    "appId": 211820,
+    "size": "3.0 GB",
+    "tags": [
+      "Online Fix"
+    ]
+  },
+  {
+    "name": "Don't Starve Together",
+    "appId": 322330,
+    "size": "2.0 GB",
+    "tags": [
+      "Online Fix"
+    ]
+  },
+  {
+    "name": "Minecraft Dungeons",
+    "appId": 1672970,
+    "size": "5.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Code Vein",
+    "appId": 678960,
+    "size": "15.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Greedfall",
+    "appId": 849020,
+    "size": "25.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Kingdoms of Amalur: Re-Reckoning",
+    "appId": 1041650,
+    "size": "20.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Torchlight III",
+    "appId": 1030210,
+    "size": "10.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Torchlight II",
+    "appId": 200710,
+    "size": "4.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Last Epoch",
+    "appId": 899770,
+    "size": "15.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Hellblade: Senua Sacrifice",
+    "appId": 414340,
+    "size": "20.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Senua Saga: Hellblade II",
+    "appId": 1721920,
+    "size": "40.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Vampyr",
+    "appId": 427290,
+    "size": "30.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Metal: Hellsinger",
+    "appId": 1268430,
+    "size": "10.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Scott Pilgrim vs the World",
+    "appId": 1289590,
+    "size": "2.0 GB",
+    "tags": []
+  },
+  {
+    "name": "River City Girls 2",
+    "appId": 1694670,
+    "size": "2.0 GB",
+    "tags": []
+  },
+  {
+    "name": "30XX",
+    "appId": 1236190,
+    "size": "1.0 GB",
+    "tags": []
+  },
+  {
+    "name": "The Evil Within",
+    "appId": 202170,
+    "size": "40.0 GB",
+    "tags": []
+  },
+  {
+    "name": "The Evil Within 2",
+    "appId": 601430,
+    "size": "40.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Crow Country",
+    "appId": 2137050,
+    "size": "2.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Maid of Sker",
+    "appId": 1050890,
+    "size": "10.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Dread Templar",
+    "appId": 1334060,
+    "size": "1.0 GB",
+    "tags": []
+  },
+  {
+    "name": "World War Z Aftermath",
+    "appId": 699130,
+    "size": "20.0 GB",
+    "tags": [
+      "Online Fix"
+    ]
+  },
+  {
+    "name": "Zombie Army Trilogy",
+    "appId": 301640,
+    "size": "15.0 GB",
+    "tags": [
+      "Online Fix"
+    ]
+  },
+  {
+    "name": "Parkitect",
+    "appId": 453090,
+    "size": "2.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Planet Coaster",
+    "appId": 493340,
+    "size": "10.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Football Manager 2024",
+    "appId": 2252570,
+    "size": "15.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Football Manager 2023",
+    "appId": 1795010,
+    "size": "15.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Rebel Galaxy Outlaw",
+    "appId": 1246880,
+    "size": "10.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Everspace",
+    "appId": 396750,
+    "size": "10.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Blood Fresh Supply",
+    "appId": 968660,
+    "size": "2.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Thief Gold",
+    "appId": 211600,
+    "size": "0.5 GB",
+    "tags": []
+  },
+  {
+    "name": "13 Sentinels Aegis Rim",
+    "appId": 1592820,
+    "size": "6.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Ace Attorney Trilogy",
+    "appId": 787480,
+    "size": "2.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Danganronpa: Trigger Happy Havoc",
+    "appId": 413410,
+    "size": "3.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Zero Escape: The Nonary Games",
+    "appId": 477480,
+    "size": "3.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Omori",
+    "appId": 1152540,
+    "size": "0.5 GB",
+    "tags": []
+  },
+  {
+    "name": "VA-11 Hall-A",
+    "appId": 447530,
+    "size": "0.5 GB",
+    "tags": []
+  },
+  {
+    "name": "Luck be a Landlord",
+    "appId": 1022730,
+    "size": "0.5 GB",
+    "tags": []
+  },
+  {
+    "name": "Across the Obelisk",
+    "appId": 1385380,
+    "size": "0.5 GB",
+    "tags": [
+      "Online Fix"
+    ]
+  },
+  {
+    "name": "Trine 4",
+    "appId": 1030590,
+    "size": "5.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Trine 2: Complete Story",
+    "appId": 35160,
+    "size": "3.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Unravel Two",
+    "appId": 1183790,
+    "size": "3.0 GB",
+    "tags": []
+  },
+  {
+    "name": "The Surge",
+    "appId": 378650,
+    "size": "20.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Salt and Sacrifice",
+    "appId": 1730260,
+    "size": "5.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Salt and Sanctuary",
+    "appId": 390180,
+    "size": "2.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Ender Lilies",
+    "appId": 1369630,
+    "size": "2.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Nine Sols",
+    "appId": 1809540,
+    "size": "5.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Another Crabs Treasure",
+    "appId": 1992490,
+    "size": "10.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Huntdown",
+    "appId": 1079700,
+    "size": "1.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Ape Out",
+    "appId": 447420,
+    "size": "0.5 GB",
+    "tags": []
+  },
+  {
+    "name": "Scum",
+    "appId": 513710,
+    "size": "40.0 GB",
+    "tags": [
+      "Online Fix"
+    ]
+  },
+  {
+    "name": "Last Oasis",
+    "appId": 1116860,
+    "size": "5.0 GB",
+    "tags": [
+      "Online Fix"
+    ]
+  },
+  {
+    "name": "Project Winter",
+    "appId": 774861,
+    "size": "2.0 GB",
+    "tags": [
+      "Online Fix"
+    ]
+  },
+  {
+    "name": "Commandos 2 HD Remaster",
+    "appId": 1124450,
+    "size": "2.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Desperados III",
+    "appId": 610370,
+    "size": "20.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Shadow Tactics",
+    "appId": 418240,
+    "size": "6.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Carrier Command 2",
+    "appId": 1489630,
+    "size": "3.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Heretic",
+    "appId": 2390,
+    "size": "0.1 GB",
+    "tags": []
+  },
+  {
+    "name": "RollerCoaster Tycoon Classic",
+    "appId": 683900,
+    "size": "0.3 GB",
+    "tags": []
+  },
+  {
+    "name": "STALKER 2: Heart of Chornobyl",
+    "appId": 1643320,
+    "size": "160.0 GB",
+    "tags": []
+  },
+  {
+    "name": "STALKER: Shadow of Chernobyl",
+    "appId": 20510,
+    "size": "5.0 GB",
+    "tags": []
+  },
+  {
+    "name": "STALKER: Call of Pripyat",
+    "appId": 41700,
+    "size": "5.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Metro Exodus",
+    "appId": 412020,
+    "size": "50.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Metro 2033 Redux",
+    "appId": 286690,
+    "size": "10.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Metro: Last Light Redux",
+    "appId": 287390,
+    "size": "10.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Atomic Heart",
+    "appId": 668580,
+    "size": "40.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Pathologic 2",
+    "appId": 505230,
+    "size": "10.0 GB",
+    "tags": []
+  },
+  {
+    "name": "We Happy Few",
+    "appId": 320580,
+    "size": "20.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Sherlock Holmes Chapter One",
+    "appId": 1222130,
+    "size": "15.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Stellar Blade",
+    "appId": 2741170,
+    "size": "50.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Zenless Zone Zero",
+    "appId": 2406030,
+    "size": "60.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Wuthering Waves",
+    "appId": 2595610,
+    "size": "40.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Bastion",
+    "appId": 107100,
+    "size": "1.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Transistor",
+    "appId": 237930,
+    "size": "3.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Pyre",
+    "appId": 462770,
+    "size": "1.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Crypt of the NecroDancer",
+    "appId": 247080,
+    "size": "1.0 GB",
+    "tags": []
+  },
+  {
+    "name": "River City Girls",
+    "appId": 1000410,
+    "size": "2.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Moving Out",
+    "appId": 996770,
+    "size": "1.0 GB",
+    "tags": [
+      "Online Fix"
+    ]
+  },
+  {
+    "name": "Chivalry: Medieval Warfare",
+    "appId": 219640,
+    "size": "10.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Isonzo",
+    "appId": 1556790,
+    "size": "20.0 GB",
+    "tags": [
+      "Online Fix"
+    ]
+  },
+  {
+    "name": "Verdun",
+    "appId": 242860,
+    "size": "8.0 GB",
+    "tags": [
+      "Online Fix"
+    ]
+  },
+  {
+    "name": "Warhammer 40K: Inquisitor",
+    "appId": 527430,
+    "size": "15.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Wolcen: Lords of Mayhem",
+    "appId": 424370,
+    "size": "20.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Shadowrun Returns",
+    "appId": 234650,
+    "size": "2.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Shadowrun Hong Kong",
+    "appId": 346940,
+    "size": "3.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Grim Dawn",
+    "appId": 219990,
+    "size": "10.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Titan Quest Anniversary Edition",
+    "appId": 475150,
+    "size": "5.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Book of Demons",
+    "appId": 449790,
+    "size": "2.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Greedfall 2",
+    "appId": 2261400,
+    "size": "30.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Danganronpa 2: Goodbye Despair",
+    "appId": 413420,
+    "size": "3.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Danganronpa V3: Killing Harmony",
+    "appId": 567640,
+    "size": "5.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Steins;Gate",
+    "appId": 412830,
+    "size": "1.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Steins;Gate 0",
+    "appId": 825630,
+    "size": "1.0 GB",
+    "tags": []
+  },
+  {
+    "name": "20 Minutes Till Dawn",
+    "appId": 1940850,
+    "size": "0.2 GB",
+    "tags": []
+  },
+  {
+    "name": "Dragon Ball Xenoverse 2",
+    "appId": 323470,
+    "size": "20.0 GB",
+    "tags": [
+      "Online Fix"
+    ]
+  },
+  {
+    "name": "One Piece Pirate Warriors 4",
+    "appId": 1001360,
+    "size": "15.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Attack on Titan 2",
+    "appId": 837080,
+    "size": "20.0 GB",
+    "tags": []
+  },
+  {
+    "name": "One Piece Odyssey",
+    "appId": 1840210,
+    "size": "25.0 GB",
+    "tags": []
+  },
+  {
+    "name": "NBA 2K23",
+    "appId": 2194550,
+    "size": "115.0 GB",
+    "tags": []
+  },
+  {
+    "name": "WWE 2K23",
+    "appId": 2127700,
+    "size": "55.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Tannenberg",
+    "appId": 552530,
+    "size": "10.0 GB",
+    "tags": [
+      "Online Fix"
+    ]
+  },
+  {
+    "name": "War of Rights",
+    "appId": 424030,
+    "size": "30.0 GB",
+    "tags": [
+      "Online Fix"
+    ]
+  },
+  {
+    "name": "Hello Neighbor",
+    "appId": 756510,
+    "size": "5.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Duck Game",
+    "appId": 312530,
+    "size": "0.5 GB",
+    "tags": [
+      "Online Fix"
+    ]
+  },
+  {
+    "name": "TowerFall Ascension",
+    "appId": 251470,
+    "size": "0.5 GB",
+    "tags": [
+      "Online Fix"
+    ]
+  },
+  {
+    "name": "Project Warlock II",
+    "appId": 2182490,
+    "size": "2.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Devil Daggers",
+    "appId": 422970,
+    "size": "0.1 GB",
+    "tags": []
+  },
+  {
+    "name": "Wolfenstein: Youngblood",
+    "appId": 1056960,
+    "size": "30.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Teslagrad",
+    "appId": 251990,
+    "size": "1.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Electronic Super Joy",
+    "appId": 282420,
+    "size": "0.2 GB",
+    "tags": []
+  },
+  {
+    "name": "Outriders Worldslayer",
+    "appId": 1930020,
+    "size": "35.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Metal Gear Solid V Ground Zeroes",
+    "appId": 311340,
+    "size": "5.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Quake Champions",
+    "appId": 611500,
+    "size": "10.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Duke Nukem 3D Megaton Edition",
+    "appId": 238450,
+    "size": "0.1 GB",
+    "tags": []
+  },
+  {
+    "name": "Star Wars Battlefront II 2017",
+    "appId": 1237950,
+    "size": "100.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Saints Row 2022",
+    "appId": 726870,
+    "size": "25.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Forza Motorsport 7",
+    "appId": 679730,
+    "size": "60.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Need for Speed Most Wanted 2012",
+    "appId": 214220,
+    "size": "8.0 GB",
+    "tags": []
+  },
+  {
+    "name": "The Crew 2",
+    "appId": 486140,
+    "size": "45.0 GB",
+    "tags": []
+  },
+  {
+    "name": "The Crew Motorfest",
+    "appId": 2396440,
+    "size": "50.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Project CARS 2",
+    "appId": 378400,
+    "size": "40.0 GB",
+    "tags": []
+  },
+  {
+    "name": "WRC 10",
+    "appId": 1488430,
+    "size": "45.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Need for Speed Rivals",
+    "appId": 214230,
+    "size": "20.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Jump Force",
+    "appId": 816020,
+    "size": "20.0 GB",
+    "tags": []
+  },
+  {
+    "name": "Ori and the Blind Forest",
+    "appId": 261570,
+    "size": "5.0 GB",
+    "tags": [
+      "Online Fix"
+    ]
+  },
+  {
+    "name": "Hollow Knight: Silksong",
+    "appId": 1030300,
+    "size": "4.0 GB",
+    "tags": [
+      "Online Fix"
+    ]
+  },
+  {
+    "name": "Braid Anniversary Edition",
+    "appId": 1260280,
+    "size": "3.0 GB",
+    "tags": [
+      "Online Fix"
+    ]
+  },
+  {
+    "name": "Little Nightmares II",
+    "appId": 1293160,
+    "size": "9.0 GB",
+    "tags": [
+      "Online Fix"
+    ]
+  },
+  {
+    "name": "Yooka-Laylee",
+    "appId": 360830,
+    "size": "5.0 GB",
+    "tags": [
+      "Online Fix"
+    ]
+  },
+  {
+    "name": "Rayman Legends",
+    "appId": 274290,
+    "size": "15.0 GB",
+    "tags": [
+      "Online Fix"
+    ]
+  },
+  {
+    "name": "Trine 4: The Nightmare Prince",
+    "appId": 690640,
+    "size": "8.0 GB",
+    "tags": [
+      "Online Fix"
+    ]
+  },
+  {
+    "name": "Dead Space 3",
+    "appId": 1238860,
+    "size": "15.0 GB",
+    "tags": [
+      "Online Fix"
+    ]
+  },
+  {
+    "name": "SOMA",
+    "appId": 351280,
+    "size": "13.0 GB",
+    "tags": [
+      "Online Fix"
+    ]
+  },
+  {
+    "name": "Penumbra: Overture",
+    "appId": 22180,
+    "size": "1.5 GB",
+    "tags": [
+      "Online Fix"
+    ]
+  },
+  {
+    "name": "Layers of Fear",
+    "appId": 391720,
+    "size": "7.0 GB",
+    "tags": [
+      "Online Fix"
+    ]
+  },
+  {
+    "name": "Observer: System Redux",
+    "appId": 1386950,
+    "size": "15.0 GB",
+    "tags": [
+      "Online Fix"
+    ]
+  },
+  {
+    "name": "Haunting Ground",
+    "appId": 1638340,
+    "size": "2.5 GB",
+    "tags": [
+      "Online Fix"
+    ]
+  },
+  {
+    "name": "Evil Within",
+    "appId": 268050,
+    "size": "44.0 GB",
+    "tags": [
+      "Online Fix"
+    ]
+  },
+  {
+    "name": "Dying Light: The Following",
+    "appId": 268520,
+    "size": "30.0 GB",
+    "tags": [
+      "Online Fix"
+    ]
+  },
+  {
+    "name": "Offworld Trading Company",
+    "appId": 271890,
+    "size": "2.0 GB",
+    "tags": [
+      "Online Fix"
+    ]
+  },
+  {
+    "name": "Iron Harvest",
+    "appId": 1149640,
+    "size": "20.0 GB",
+    "tags": [
+      "Online Fix"
+    ]
+  },
+  {
+    "name": "Company of Heroes 3",
+    "appId": 1677280,
+    "size": "50.0 GB",
+    "tags": [
+      "Online Fix"
+    ]
+  },
+  {
+    "name": "Men of War: Assault Squad 2",
+    "appId": 244450,
+    "size": "6.0 GB",
+    "tags": [
+      "Online Fix"
+    ]
+  },
+  {
+    "name": "Command & Conquer Remastered",
+    "appId": 1213210,
+    "size": "13.0 GB",
+    "tags": [
+      "Online Fix"
+    ]
+  },
+  {
+    "name": "Age of Wonders 4",
+    "appId": 1669000,
+    "size": "10.0 GB",
+    "tags": [
+      "Online Fix"
+    ]
+  },
+  {
+    "name": "Amplitude",
+    "appId": 327510,
+    "size": "3.5 GB",
+    "tags": [
+      "Online Fix"
+    ]
+  },
+  {
+    "name": "Frostpunk 2",
+    "appId": 1601580,
+    "size": "15.0 GB",
+    "tags": [
+      "Online Fix"
+    ]
+  },
+  {
+    "name": "Aven Colony",
+    "appId": 484900,
+    "size": "5.0 GB",
+    "tags": [
+      "Online Fix"
+    ]
+  },
+  {
+    "name": "Torment: Tides of Numenera",
+    "appId": 272270,
+    "size": "12.0 GB",
+    "tags": [
+      "Online Fix"
+    ]
+  },
+  {
+    "name": "Solasta: Crown of the Magister",
+    "appId": 1096930,
+    "size": "13.0 GB",
+    "tags": [
+      "Online Fix"
+    ]
+  },
+  {
+    "name": "Dragon Age II",
+    "appId": 1238040,
+    "size": "9.0 GB",
+    "tags": [
+      "Online Fix"
+    ]
+  },
+  {
+    "name": "Dragon Age: Inquisition",
+    "appId": 1238820,
+    "size": "30.0 GB",
+    "tags": [
+      "Online Fix"
+    ]
+  },
+  {
+    "name": "Jade Empire: Special Edition",
+    "appId": 7110,
+    "size": "6.0 GB",
+    "tags": [
+      "Online Fix"
+    ]
+  },
+  {
+    "name": "The Bard's Tale IV",
+    "appId": 499580,
+    "size": "10.0 GB",
+    "tags": [
+      "Online Fix"
+    ]
+  },
+  {
+    "name": "Wasteland 3",
+    "appId": 846110,
+    "size": "18.0 GB",
+    "tags": [
+      "Online Fix"
+    ]
+  },
+  {
+    "name": "Wasteland 2",
+    "appId": 240990,
+    "size": "7.0 GB",
+    "tags": [
+      "Online Fix"
+    ]
+  },
+  {
+    "name": "Shadowrun: Dragonfall",
+    "appId": 300550,
+    "size": "2.5 GB",
+    "tags": [
+      "Online Fix"
+    ]
+  },
+  {
+    "name": "Tiny Tina's Wonderlands",
+    "appId": 1286680,
+    "size": "40.0 GB",
+    "tags": [
+      "Online Fix"
+    ]
+  },
+  {
+    "name": "Escape from Tarkov",
+    "appId": 1271990,
+    "size": "50.0 GB",
+    "tags": [
+      "Online Fix"
+    ]
+  },
+  {
+    "name": "Battlefield V",
+    "appId": 1238810,
+    "size": "58.0 GB",
+    "tags": [
+      "Online Fix"
+    ]
+  },
+  {
+    "name": "Battlefield 2042",
+    "appId": 1517290,
+    "size": "64.0 GB",
+    "tags": [
+      "Online Fix"
+    ]
+  },
+  {
+    "name": "Titanfall 2",
+    "appId": 1237970,
+    "size": "35.0 GB",
+    "tags": [
+      "Online Fix"
+    ]
+  },
+  {
+    "name": "Medal of Honor: Warfighter",
+    "appId": 209870,
+    "size": "17.0 GB",
+    "tags": [
+      "Online Fix"
+    ]
+  },
+  {
+    "name": "Spec Ops: The Line",
+    "appId": 50750,
+    "size": "8.0 GB",
+    "tags": [
+      "Online Fix"
+    ]
+  },
+  {
+    "name": "Microsoft Flight Simulator 2024",
+    "appId": 2537590,
+    "size": "230.0 GB",
+    "tags": [
+      "Online Fix"
+    ]
+  },
+  {
+    "name": "Train Sim World 4",
+    "appId": 1464790,
+    "size": "30.0 GB",
+    "tags": [
+      "Online Fix"
+    ]
+  },
+  {
+    "name": "Farming Simulator 25",
+    "appId": 2890550,
+    "size": "12.0 GB",
+    "tags": [
+      "Online Fix"
+    ]
+  },
+  {
+    "name": "Lawn Mowing Simulator",
+    "appId": 1480560,
+    "size": "6.0 GB",
+    "tags": [
+      "Online Fix"
+    ]
+  },
+  {
+    "name": "PowerWash Simulator",
+    "appId": 1290000,
+    "size": "2.0 GB",
+    "tags": [
+      "Online Fix"
+    ]
+  },
+  {
+    "name": "Cooking Simulator",
+    "appId": 976620,
+    "size": "4.0 GB",
+    "tags": [
+      "Online Fix"
+    ]
+  },
+  {
+    "name": "House Flipper 2",
+    "appId": 1688820,
+    "size": "8.0 GB",
+    "tags": [
+      "Online Fix"
+    ]
+  },
+  {
+    "name": "Car Mechanic Simulator 2021",
+    "appId": 1190000,
+    "size": "8.0 GB",
+    "tags": [
+      "Online Fix"
+    ]
+  },
+  {
+    "name": "Jalopy",
+    "appId": 446010,
+    "size": "2.5 GB",
+    "tags": [
+      "Online Fix"
+    ]
+  },
+  {
+    "name": "Bus Simulator 21",
+    "appId": 1209700,
+    "size": "11.0 GB",
+    "tags": [
+      "Online Fix"
+    ]
+  },
+  {
+    "name": "Snowrunner",
+    "appId": 1465360,
+    "size": "14.0 GB",
+    "tags": [
+      "Online Fix"
+    ]
+  },
+  {
+    "name": "MudRunner",
+    "appId": 675010,
+    "size": "3.0 GB",
+    "tags": [
+      "Online Fix"
+    ]
+  },
+  {
+    "name": "Expeditions: A MudRunner Game",
+    "appId": 2119370,
+    "size": "15.0 GB",
+    "tags": [
+      "Online Fix"
+    ]
+  },
+  {
+    "name": "Construction Simulator",
+    "appId": 1273400,
+    "size": "10.0 GB",
+    "tags": [
+      "Online Fix"
+    ]
+  },
+  {
+    "name": "Grand Theft Auto IV",
+    "appId": 12210,
+    "size": "22.0 GB",
+    "tags": [
+      "Online Fix"
+    ]
+  },
+  {
+    "name": "L.A. Noire",
+    "appId": 110800,
+    "size": "26.0 GB",
+    "tags": [
+      "Online Fix"
+    ]
+  },
+  {
+    "name": "Bully: Scholarship Edition",
+    "appId": 12200,
+    "size": "4.0 GB",
+    "tags": [
+      "Online Fix"
+    ]
+  },
+  {
+    "name": "Mafia II: Definitive Edition",
+    "appId": 50130,
+    "size": "17.0 GB",
+    "tags": [
+      "Online Fix"
+    ]
+  },
+  {
+    "name": "Saints Row IV",
+    "appId": 206420,
+    "size": "10.0 GB",
+    "tags": [
+      "Online Fix"
+    ]
+  },
+  {
+    "name": "Saints Row (2022)",
+    "appId": 742420,
+    "size": "30.0 GB",
+    "tags": [
+      "Online Fix"
+    ]
+  },
+  {
+    "name": "Far Cry Primal",
+    "appId": 371660,
+    "size": "20.0 GB",
+    "tags": [
+      "Online Fix"
+    ]
+  },
+  {
+    "name": "Far Cry New Dawn",
+    "appId": 939960,
+    "size": "25.0 GB",
+    "tags": [
+      "Online Fix"
+    ]
+  },
+  {
+    "name": "Far Cry 6",
+    "appId": 1339980,
+    "size": "40.0 GB",
+    "tags": [
+      "Online Fix"
+    ]
+  },
+  {
+    "name": "Assassins Creed Chronicles: China",
+    "appId": 338970,
+    "size": "2.0 GB",
+    "tags": [
+      "Online Fix"
+    ]
+  },
+  {
+    "name": "The Talos Principle 2",
+    "appId": 835960,
+    "size": "10.0 GB",
+    "tags": [
+      "Online Fix"
+    ]
+  },
+  {
+    "name": "Manifold Garden",
+    "appId": 1049890,
+    "size": "1.2 GB",
+    "tags": [
+      "Online Fix"
+    ]
+  },
+  {
+    "name": "The Room series",
+    "appId": 288160,
+    "size": "0.5 GB",
+    "tags": [
+      "Online Fix"
+    ]
+  },
+  {
+    "name": "Her Story",
+    "appId": 368370,
+    "size": "0.3 GB",
+    "tags": [
+      "Online Fix"
+    ]
+  },
+  {
+    "name": "Abzu",
+    "appId": 384190,
+    "size": "2.7 GB",
+    "tags": [
+      "Online Fix"
+    ]
+  },
+  {
+    "name": "Journey",
+    "appId": 638230,
+    "size": "1.5 GB",
+    "tags": [
+      "Online Fix"
+    ]
+  },
+  {
+    "name": "flower",
+    "appId": 966330,
+    "size": "1.2 GB",
+    "tags": [
+      "Online Fix"
+    ]
+  },
+  {
+    "name": "Dear Esther: Landmark Edition",
+    "appId": 520720,
+    "size": "3.0 GB",
+    "tags": [
+      "Online Fix"
+    ]
+  },
+  {
+    "name": "Everybody's Gone to the Rapture",
+    "appId": 682570,
+    "size": "9.0 GB",
+    "tags": [
+      "Online Fix"
+    ]
+  },
+  {
+    "name": "Oxenfree II: Lost Signals",
+    "appId": 1614550,
+    "size": "4.5 GB",
+    "tags": [
+      "Online Fix"
+    ]
+  },
+  {
+    "name": "Injustice 2",
+    "appId": 528230,
+    "size": "18.0 GB",
+    "tags": [
+      "Online Fix"
+    ]
+  },
+  {
+    "name": "Granblue Fantasy Versus",
+    "appId": 1090630,
+    "size": "30.0 GB",
+    "tags": [
+      "Online Fix"
+    ]
+  },
+  {
+    "name": "Under Night In-Birth II",
+    "appId": 2312960,
+    "size": "6.0 GB",
+    "tags": [
+      "Online Fix"
+    ]
+  },
+  {
+    "name": "Melty Blood: Type Lumina",
+    "appId": 1761130,
+    "size": "8.5 GB",
+    "tags": [
+      "Online Fix"
+    ]
+  },
+  {
+    "name": "ARMS",
+    "appId": 1549280,
+    "size": "5.0 GB",
+    "tags": [
+      "Online Fix"
+    ]
+  },
+  {
+    "name": "Hearthstone",
+    "appId": 1463940,
+    "size": "15.0 GB",
+    "tags": [
+      "Online Fix"
+    ]
+  },
+  {
+    "name": "Legends of Runeterra",
+    "appId": 1256460,
+    "size": "3.5 GB",
+    "tags": [
+      "Online Fix"
+    ]
+  },
+  {
+    "name": "Eternal Card Game",
+    "appId": 531640,
+    "size": "2.0 GB",
+    "tags": [
+      "Online Fix"
+    ]
+  },
+  {
+    "name": "Shadowverse",
+    "appId": 453480,
+    "size": "5.5 GB",
+    "tags": [
+      "Online Fix"
+    ]
+  },
+  {
+    "name": "Hand of Fate 2",
+    "appId": 456670,
+    "size": "2.0 GB",
+    "tags": [
+      "Online Fix"
+    ]
+  },
+  {
+    "name": "Cultist Simulator",
+    "appId": 718670,
+    "size": "0.6 GB",
+    "tags": [
+      "Online Fix"
+    ]
+  },
+  {
+    "name": "Untitled Goose Game",
+    "appId": 837470,
+    "size": "0.5 GB",
+    "tags": [
+      "Online Fix"
+    ]
+  },
+  {
+    "name": "Gang Beasts",
+    "appId": 285900,
+    "size": "2.5 GB",
+    "tags": [
+      "Online Fix"
+    ]
+  },
+  {
+    "name": "People Playground",
+    "appId": 1118200,
+    "size": "0.5 GB",
+    "tags": [
+      "Online Fix"
+    ]
+  },
+  {
+    "name": "Clustertruck",
+    "appId": 397560,
+    "size": "0.3 GB",
+    "tags": [
+      "Online Fix"
+    ]
+  },
+  {
+    "name": "Getting Over It with Bennett Foddy",
+    "appId": 240720,
+    "size": "0.2 GB",
+    "tags": [
+      "Online Fix"
+    ]
+  },
+  {
+    "name": "Jump King",
+    "appId": 1061090,
+    "size": "0.3 GB",
+    "tags": [
+      "Online Fix"
+    ]
+  },
+  {
+    "name": "Only Up!",
+    "appId": 2381590,
+    "size": "2.0 GB",
+    "tags": [
+      "Online Fix"
+    ]
+  },
+  {
+    "name": "Pogostuck: Rage With Your Friends",
+    "appId": 688130,
+    "size": "0.2 GB",
+    "tags": [
+      "Online Fix"
+    ]
+  },
+  {
+    "name": "Gothic 3",
+    "appId": 39810,
+    "size": "3.5 GB",
+    "tags": [
+      "Online Fix"
+    ]
+  },
+  {
+    "name": "Risen 3: Titan Lords",
+    "appId": 249230,
+    "size": "5.0 GB",
+    "tags": [
+      "Online Fix"
+    ]
+  },
+  {
+    "name": "Elex",
+    "appId": 411300,
+    "size": "13.5 GB",
+    "tags": [
+      "Online Fix"
+    ]
+  },
+  {
+    "name": "ELEX II",
+    "appId": 1058130,
+    "size": "24.0 GB",
+    "tags": [
+      "Online Fix"
+    ]
+  },
+  {
+    "name": "Two Worlds II",
+    "appId": 7330,
+    "size": "5.0 GB",
+    "tags": [
+      "Online Fix"
+    ]
+  },
+  {
+    "name": "The Incredible Adventures of Van Helsing",
+    "appId": 215530,
+    "size": "4.5 GB",
+    "tags": [
+      "Online Fix"
+    ]
+  },
+  {
+    "name": "Warhammer: Chaosbane",
+    "appId": 882090,
+    "size": "20.0 GB",
+    "tags": [
+      "Online Fix"
+    ]
+  },
+  {
+    "name": "Chronicon",
+    "appId": 375480,
+    "size": "0.5 GB",
+    "tags": [
+      "Online Fix"
+    ]
+  },
+  {
+    "name": "Victor Vran",
+    "appId": 345180,
+    "size": "7.0 GB",
+    "tags": [
+      "Online Fix"
+    ]
+  },
+  {
+    "name": "Sacred 2 Gold",
+    "appId": 225280,
+    "size": "10.0 GB",
+    "tags": [
+      "Online Fix"
+    ]
+  },
+  {
+    "name": "Deus Ex: Human Revolution",
+    "appId": 28050,
+    "size": "7.5 GB",
+    "tags": [
+      "Online Fix"
+    ]
+  },
+  {
+    "name": "The Turing Test",
+    "appId": 499520,
+    "size": "6.5 GB",
+    "tags": [
+      "Online Fix"
+    ]
+  },
+  {
+    "name": "Event[0]",
+    "appId": 470260,
+    "size": "6.0 GB",
+    "tags": [
+      "Online Fix"
+    ]
+  },
+  {
+    "name": "Observation",
+    "appId": 906100,
+    "size": "10.0 GB",
+    "tags": [
+      "Online Fix"
+    ]
+  },
+  {
+    "name": "Tacoma",
+    "appId": 382840,
+    "size": "6.5 GB",
+    "tags": [
+      "Online Fix"
+    ]
+  },
+  {
+    "name": "The Station",
+    "appId": 769300,
+    "size": "2.5 GB",
+    "tags": [
+      "Online Fix"
+    ]
+  },
+  {
+    "name": "Deliver Us The Moon",
+    "appId": 596970,
+    "size": "10.0 GB",
+    "tags": [
+      "Online Fix"
+    ]
+  },
+  {
+    "name": "Deliver Us Mars",
+    "appId": 1834800,
+    "size": "30.0 GB",
+    "tags": [
+      "Online Fix"
+    ]
+  },
+  {
+    "name": "The Solus Project",
+    "appId": 313630,
+    "size": "4.5 GB",
+    "tags": [
+      "Online Fix"
+    ]
+  },
+  {
+    "name": "Hades II",
+    "appId": 1801859,
+    "size": "3.5 GB",
+    "tags": [
+      "Online Fix"
+    ]
+  },
+  {
+    "name": "Exit the Gungeon",
+    "appId": 1209100,
+    "size": "0.3 GB",
+    "tags": [
+      "Online Fix"
+    ]
+  },
+  {
+    "name": "Binding of Isaac: Afterbirth+",
+    "appId": 570660,
+    "size": "0.8 GB",
+    "tags": [
+      "Online Fix"
+    ]
+  },
+  {
+    "name": "Neon Abyss",
+    "appId": 1145940,
+    "size": "1.0 GB",
+    "tags": [
+      "Online Fix"
+    ]
+  },
+  {
+    "name": "Darkest Dungeon II",
+    "appId": 1940340,
+    "size": "4.0 GB",
+    "tags": [
+      "Online Fix"
+    ]
+  },
+  {
+    "name": "Moonlighter",
+    "appId": 606150,
+    "size": "0.7 GB",
+    "tags": [
+      "Online Fix"
+    ]
+  },
+  {
+    "name": "Graveyard Keeper",
+    "appId": 599140,
+    "size": "0.5 GB",
+    "tags": [
+      "Online Fix"
+    ]
+  },
+  {
+    "name": "Potion Craft: Alchemist Simulator",
+    "appId": 1210320,
+    "size": "0.4 GB",
+    "tags": [
+      "Online Fix"
+    ]
+  },
+  {
+    "name": "Forager",
+    "appId": 751780,
+    "size": "0.3 GB",
+    "tags": [
+      "Online Fix"
+    ]
+  },
+  {
+    "name": "Slime Rancher",
+    "appId": 433340,
+    "size": "1.5 GB",
+    "tags": [
+      "Online Fix"
+    ]
+  },
+  {
+    "name": "Slime Rancher 2",
+    "appId": 1657630,
+    "size": "4.0 GB",
+    "tags": [
+      "Online Fix"
+    ]
+  },
+  {
+    "name": "My Time at Portia",
+    "appId": 666140,
+    "size": "4.5 GB",
+    "tags": [
+      "Online Fix"
+    ]
+  },
+  {
+    "name": "My Time at Sandrock",
+    "appId": 1084600,
+    "size": "8.0 GB",
+    "tags": [
+      "Online Fix"
+    ]
+  },
+  {
+    "name": "Coral Island",
+    "appId": 1158250,
+    "size": "5.0 GB",
+    "tags": [
+      "Online Fix"
+    ]
+  },
+  {
+    "name": "Sun Haven",
+    "appId": 1432860,
+    "size": "3.0 GB",
+    "tags": [
+      "Online Fix"
+    ]
+  },
+  {
+    "name": "Haunted Chocolatier",
+    "appId": 1840080,
+    "size": "1.0 GB",
+    "tags": [
+      "Online Fix"
+    ]
+  },
+  {
+    "name": "Fields of Mistria",
+    "appId": 2142790,
+    "size": "1.5 GB",
+    "tags": [
+      "Online Fix"
+    ]
+  },
+  {
+    "name": "Narita Boy",
+    "appId": 1034710,
+    "size": "1.5 GB",
+    "tags": [
+      "Online Fix"
+    ]
+  },
+  {
+    "name": "Axiom Verge 2",
+    "appId": 1455990,
+    "size": "1.0 GB",
+    "tags": [
+      "Online Fix"
+    ]
+  },
+  {
+    "name": "Iconoclasts",
+    "appId": 393520,
+    "size": "0.3 GB",
+    "tags": [
+      "Online Fix"
+    ]
+  },
+  {
+    "name": "Salt and Sanctuary",
+    "appId": 390010,
+    "size": "0.5 GB",
+    "tags": [
+      "Online Fix"
+    ]
+  },
+  {
+    "name": "Salt and Sacrifice",
+    "appId": 1743730,
+    "size": "1.0 GB",
+    "tags": [
+      "Online Fix"
+    ]
+  },
+  {
+    "name": "The Messenger",
+    "appId": 764790,
+    "size": "0.5 GB",
+    "tags": [
+      "Online Fix"
+    ]
+  },
+  {
+    "name": "Shovel Knight Dig",
+    "appId": 1494620,
+    "size": "1.2 GB",
+    "tags": [
+      "Online Fix"
+    ]
+  },
+  {
+    "name": "Shantae and the Seven Sirens",
+    "appId": 1176760,
+    "size": "1.5 GB",
+    "tags": [
+      "Online Fix"
+    ]
+  },
+  {
+    "name": "Shantae: Half-Genie Hero",
+    "appId": 338210,
+    "size": "1.5 GB",
+    "tags": [
+      "Online Fix"
+    ]
+  },
+  {
+    "name": "Azure Striker Gunvolt 3",
+    "appId": 1939210,
+    "size": "2.5 GB",
+    "tags": [
+      "Online Fix"
+    ]
+  },
+  {
+    "name": "Mega Man Legacy Collection",
+    "appId": 363440,
+    "size": "1.5 GB",
+    "tags": [
+      "Online Fix"
+    ]
+  },
+  {
+    "name": "Mega Man 11",
+    "appId": 742300,
+    "size": "2.5 GB",
+    "tags": [
+      "Online Fix"
+    ]
+  },
+  {
+    "name": "Bloodstained: Ritual of the Night",
+    "appId": 692850,
+    "size": "5.0 GB",
+    "tags": [
+      "Online Fix"
+    ]
+  },
+  {
+    "name": "Castlevania Advance Collection",
+    "appId": 1552550,
+    "size": "0.5 GB",
+    "tags": [
+      "Online Fix"
+    ]
+  },
+  {
+    "name": "Rabi-Ribi",
+    "appId": 400910,
+    "size": "0.5 GB",
+    "tags": [
+      "Online Fix"
+    ]
+  },
+  {
+    "name": "Ender Magnolia: Bloom in the Mist",
+    "appId": 2451780,
+    "size": "3.5 GB",
+    "tags": [
+      "Online Fix"
+    ]
+  },
+  {
+    "name": "Haiku the Robot",
+    "appId": 1490630,
+    "size": "0.8 GB",
+    "tags": [
+      "Online Fix"
+    ]
+  },
+  {
+    "name": "Pseudoregalia",
+    "appId": 2365580,
+    "size": "0.5 GB",
+    "tags": [
+      "Online Fix"
+    ]
+  },
+  {
+    "name": "Anger Foot",
+    "appId": 1748280,
+    "size": "0.5 GB",
+    "tags": [
+      "Online Fix"
+    ]
+  },
+  {
+    "name": "El Paso Elsewhere",
+    "appId": 2218560,
+    "size": "0.8 GB",
+    "tags": [
+      "Online Fix"
+    ]
+  },
+  {
+    "name": "Turbo Overkill",
+    "appId": 1328870,
+    "size": "1.5 GB",
+    "tags": [
+      "Online Fix"
+    ]
+  },
+  {
+    "name": "Quake II",
+    "appId": 2320,
+    "size": "0.5 GB",
+    "tags": [
+      "Online Fix"
+    ]
+  },
+  {
+    "name": "Quake III Arena",
+    "appId": 2200,
+    "size": "0.5 GB",
+    "tags": [
+      "Online Fix"
+    ]
+  },
+  {
+    "name": "Hexen: Beyond Heretic",
+    "appId": 2300,
+    "size": "0.1 GB",
+    "tags": [
+      "Online Fix"
+    ]
+  },
+  {
+    "name": "Blood: Fresh Supply",
+    "appId": 1008740,
+    "size": "0.5 GB",
+    "tags": [
+      "Online Fix"
+    ]
+  },
+  {
+    "name": "Ion Fury",
+    "appId": 562860,
+    "size": "0.5 GB",
+    "tags": [
+      "Online Fix"
+    ]
+  },
+  {
+    "name": "Project Warlock II",
+    "appId": 1682200,
+    "size": "1.0 GB",
+    "tags": [
+      "Online Fix"
+    ]
+  },
+  {
+    "name": "Postal 4: No Regerts",
+    "appId": 707550,
+    "size": "15.0 GB",
+    "tags": [
+      "Online Fix"
+    ]
+  },
+  {
+    "name": "Severed Steel",
+    "appId": 1315360,
+    "size": "2.0 GB",
+    "tags": [
+      "Online Fix"
+    ]
+  },
+  {
+    "name": "Roboquest",
+    "appId": 692890,
+    "size": "3.5 GB",
+    "tags": [
+      "Online Fix"
+    ]
+  },
+  {
+    "name": "Deep Rock Galactic: Survivor",
+    "appId": 2321470,
+    "size": "2.5 GB",
+    "tags": [
+      "Online Fix"
+    ]
+  },
+  {
+    "name": "20 Minutes Till Dawn",
+    "appId": 1966900,
+    "size": "0.2 GB",
+    "tags": [
+      "Online Fix"
+    ]
+  },
+  {
+    "name": "Halls of Torment",
+    "appId": 2218750,
+    "size": "0.5 GB",
+    "tags": [
+      "Online Fix"
+    ]
+  },
+  {
+    "name": "Soulstone Survivors",
+    "appId": 2066020,
+    "size": "0.5 GB",
+    "tags": [
+      "Online Fix"
+    ]
+  },
+  {
+    "name": "Holocure: Save the Fans!",
+    "appId": 2420510,
+    "size": "0.3 GB",
+    "tags": [
+      "Online Fix"
+    ]
+  },
+  {
+    "name": "Boneraiser Minions",
+    "appId": 1876830,
+    "size": "0.2 GB",
+    "tags": [
+      "Online Fix"
+    ]
+  },
+  {
+    "name": "Spirit Hunters: Infinite Horde",
+    "appId": 2027070,
+    "size": "0.3 GB",
+    "tags": [
+      "Online Fix"
+    ]
+  },
+  {
+    "name": "The Binding of Isaac: Repentance+",
+    "appId": 2997380,
+    "size": "1.0 GB",
+    "tags": [
+      "Online Fix"
+    ]
+  },
+  {
+    "name": "Endless Dungeon",
+    "appId": 811840,
+    "size": "8.0 GB",
+    "tags": [
+      "Online Fix"
+    ]
+  },
+  {
+    "name": "Tactical Breach Wizards",
+    "appId": 1522390,
+    "size": "1.5 GB",
+    "tags": [
+      "Online Fix"
+    ]
+  },
+  {
+    "name": "Cogmation",
+    "appId": 1975930,
+    "size": "0.2 GB",
+    "tags": [
+      "Online Fix"
+    ]
+  },
+  {
+    "name": "Demon's Tilt",
+    "appId": 1085260,
+    "size": "0.5 GB",
+    "tags": [
+      "Online Fix"
+    ]
+  },
+  {
+    "name": "Pinball FX3",
+    "appId": 442120,
+    "size": "2.5 GB",
+    "tags": [
+      "Online Fix"
+    ]
+  },
+  {
+    "name": "Planet Coaster 2",
+    "appId": 2688560,
+    "size": "12.0 GB",
+    "tags": [
+      "Online Fix"
+    ]
+  },
+  {
+    "name": "Two Point Museum",
+    "appId": 2403070,
+    "size": "6.0 GB",
+    "tags": [
+      "Online Fix"
+    ]
+  },
+  {
+    "name": "Park Beyond",
+    "appId": 1368800,
+    "size": "10.0 GB",
+    "tags": [
+      "Online Fix"
+    ]
+  },
+  {
+    "name": "Urban Empire",
+    "appId": 491040,
+    "size": "2.5 GB",
+    "tags": [
+      "Online Fix"
+    ]
+  },
+  {
+    "name": "Workers & Resources: Soviet Republic",
+    "appId": 784150,
+    "size": "2.5 GB",
+    "tags": [
+      "Online Fix"
+    ]
+  },
+  {
+    "name": "Highrise City",
+    "appId": 1576650,
+    "size": "3.0 GB",
+    "tags": [
+      "Online Fix"
+    ]
+  },
+  {
+    "name": "Anno 1800",
+    "appId": 916440,
+    "size": "17.0 GB",
+    "tags": [
+      "Online Fix"
+    ]
+  },
+  {
+    "name": "Anno 2070",
+    "appId": 48240,
+    "size": "2.0 GB",
+    "tags": [
+      "Online Fix"
+    ]
+  },
+  {
+    "name": "Banished",
+    "appId": 242920,
+    "size": "0.3 GB",
+    "tags": [
+      "Online Fix"
+    ]
+  },
+  {
+    "name": "Foundation",
+    "appId": 690830,
+    "size": "2.0 GB",
+    "tags": [
+      "Online Fix"
+    ]
+  },
+  {
+    "name": "Kingdoms and Castles",
+    "appId": 569480,
+    "size": "0.5 GB",
+    "tags": [
+      "Online Fix"
+    ]
+  },
+  {
+    "name": "Ostriv",
+    "appId": 773790,
+    "size": "0.8 GB",
+    "tags": [
+      "Online Fix"
+    ]
+  },
+  {
+    "name": "Manor Lords",
+    "appId": 1363080,
+    "size": "5.0 GB",
+    "tags": [
+      "Online Fix"
+    ]
+  },
+  {
+    "name": "Return to Monkey Island",
+    "appId": 1800370,
+    "size": "3.0 GB",
+    "tags": [
+      "Online Fix"
+    ]
+  },
+  {
+    "name": "Thimbleweed Park",
+    "appId": 569860,
+    "size": "0.8 GB",
+    "tags": [
+      "Online Fix"
+    ]
+  },
+  {
+    "name": "Paradise Killer",
+    "appId": 1160220,
+    "size": "1.5 GB",
+    "tags": [
+      "Online Fix"
+    ]
+  },
+  {
+    "name": "Citizen Sleeper 2",
+    "appId": 2142920,
+    "size": "1.0 GB",
+    "tags": [
+      "Online Fix"
+    ]
+  },
+  {
+    "name": "Roadwarden",
+    "appId": 1809630,
+    "size": "0.2 GB",
+    "tags": [
+      "Online Fix"
+    ]
+  },
+  {
+    "name": "Backpack Battles",
+    "appId": 2427700,
+    "size": "0.3 GB",
+    "tags": [
+      "Online Fix"
+    ]
+  },
+  {
+    "name": "Mindustry",
+    "appId": 1127400,
+    "size": "0.2 GB",
+    "tags": [
+      "Online Fix"
+    ]
+  },
+  {
+    "name": "Sandwalkers",
+    "appId": 2417420,
+    "size": "0.5 GB",
+    "tags": [
+      "Online Fix"
+    ]
+  },
+  {
+    "name": "Rogue Genesia",
+    "appId": 2067920,
+    "size": "0.2 GB",
+    "tags": [
+      "Online Fix"
+    ]
+  },
+  {
+    "name": "Warsim",
+    "appId": 659540,
+    "size": "0.1 GB",
+    "tags": [
+      "Online Fix"
+    ]
+  },
+  {
+    "name": "Backpack Hero",
+    "appId": 1970580,
+    "size": "0.3 GB",
+    "tags": [
+      "Online Fix"
+    ]
+  },
+  {
+    "name": "Lakeburg Legacies",
+    "appId": 1802420,
+    "size": "1.0 GB",
+    "tags": [
+      "Online Fix"
+    ]
+  },
+  {
+    "name": "Against the Storm",
+    "appId": 1336490,
+    "size": "1.0 GB",
+    "tags": [
+      "Online Fix"
+    ]
+  },
+  {
+    "name": "The Riftbreaker",
+    "appId": 780310,
+    "size": "4.0 GB",
+    "tags": [
+      "Online Fix"
+    ]
+  },
+  {
+    "name": "Pneuma: Breath of Life",
+    "appId": 358060,
+    "size": "5.0 GB",
+    "tags": [
+      "Online Fix"
+    ]
+  },
+  {
+    "name": "Taiji",
+    "appId": 1360090,
+    "size": "0.3 GB",
+    "tags": [
+      "Online Fix"
+    ]
+  },
+  {
+    "name": "Understand",
+    "appId": 1357200,
+    "size": "0.1 GB",
+    "tags": [
+      "Online Fix"
+    ]
+  },
+  {
+    "name": "A Monster Ate My Homework",
+    "appId": 1984110,
+    "size": "0.1 GB",
+    "tags": [
+      "Online Fix"
+    ]
+  },
+  {
+    "name": "Shapez 2",
+    "appId": 2162800,
+    "size": "0.5 GB",
+    "tags": [
+      "Online Fix"
+    ]
+  },
+  {
+    "name": "Infinifactory",
+    "appId": 300570,
+    "size": "0.5 GB",
+    "tags": [
+      "Online Fix"
+    ]
+  }
+]

@@ -48,8 +48,23 @@ let _dbLoadedAt = 0;
 function loadDatabase(cb) {
   const now = Date.now();
   if (_dbCache && now - _dbLoadedAt < 30000) { cb(null, _dbCache); return; }
-  fs.readFile(path.join(ROOT, 'data', 'database.json'), 'utf8', (err, data) => {
-    if (err) { cb(err, null); return; }
+  const primary = path.join(ROOT, 'data', 'games.json');
+  const legacy  = path.join(ROOT, 'data', 'database.json');
+
+  fs.readFile(primary, 'utf8', (err, data) => {
+    // Backward-compatible fallback if games.json isn't present.
+    if (err) {
+      fs.readFile(legacy, 'utf8', (legacyErr, legacyData) => {
+        if (legacyErr) { cb(legacyErr, null); return; }
+        try {
+          _dbCache    = JSON.parse(legacyData);
+          _dbLoadedAt = now;
+          cb(null, _dbCache);
+        } catch (e) { cb(e, null); }
+      });
+      return;
+    }
+
     try {
       _dbCache    = JSON.parse(data);
       _dbLoadedAt = now;

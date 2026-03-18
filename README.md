@@ -41,5 +41,5 @@ node server.js
 - `index.html` — Main dashboard
 - `js/` — UI, search, download, notifications
 - `css/` — Styles
-- `data/` — database.json, stats.json, top/trending data
+- `data/` — games.json, stats.json, top/trending data
 - `images/` — Assets

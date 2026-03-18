@@ -134,10 +134,12 @@ function applyFiltersToResults() {
 }
 
 function randomGame() {
-  const all = [...(window.topGames || []), ...(window.trendingGames || [])];
+  const all = window.allGames?.length
+    ? window.allGames
+    : [...(window.topGames || []), ...(window.trendingGames || [])];
   if (!all.length) return;
   const g = all[Math.floor(Math.random() * all.length)];
-  quickDownload(g.appId, g.name, g.downloads, g.size || '', g.tags || []);
+  quickDownload(g.appId, g.name, g.downloads || '↑ Trending', g.size || '', g.tags || []);
 }
 
 // Close search results on outside click or Escape

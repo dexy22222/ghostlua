@@ -224,20 +224,29 @@ function _updateChartLive() {
   if (el) el.textContent = 'just now';
 }
 
-// ── DB stats badge ────────────────────────────────────────────────────────────
-async function _loadDbStats() {
+// ── Load full game database ───────────────────────────────────────────────────
+async function _loadGameDatabase() {
   try {
-    const res  = await fetch('/data/stats.json');
+    const res  = await fetch('/data/games.json');
     const data = await res.json();
-    const el   = document.getElementById('db-count');
-    if (el && data.totalGames) el.textContent = `${data.totalGames} games`;
-  } catch {}
+    window.allGames = data;
+    const el = document.getElementById('db-count');
+    if (el) el.textContent = `${data.length.toLocaleString()} games`;
+  } catch {
+    // Fallback to stats.json if games.json unavailable
+    try {
+      const res  = await fetch('/data/stats.json');
+      const data = await res.json();
+      const el   = document.getElementById('db-count');
+      if (el && data.totalGames) el.textContent = `${data.totalGames.toLocaleString()} games`;
+    } catch {}
+  }
 }
 
 // ── Init ──────────────────────────────────────────────────────────────────────
 document.addEventListener('DOMContentLoaded', () => {
   renderGames();
-  _loadDbStats();
+  _loadGameDatabase();
   setInterval(cyclePlaceholder,  3500);
   setInterval(_updateChartLive, 60000);
   setInterval(_tickLiveLabel,   10000);
