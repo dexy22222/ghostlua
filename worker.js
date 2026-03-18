@@ -2,7 +2,13 @@
 // GhostLua Cloudflare Worker — Security + Steam API + AI Chat
 // ═══════════════════════════════════════════════════════════════
 
-const STEAM_BASE = 'https://api.steampowered.com';
+const STEAM_BASE  = 'https://api.steampowered.com';
+const STEAM_STORE = 'https://store.steampowered.com';
+
+// ── Community in-memory store ─────────────────────────────────────────────────
+// Resets on new deployments. For persistence across deploys, bind a KV namespace
+// named COMMUNITY_KV in wrangler.toml and the worker will automatically use it.
+const _community = new Map();
 
 // ── Security Headers (Rust Protection) ──────────────────────────
 const SECURITY_HEADERS = {
@@ -173,6 +179,15 @@ export default {
           const steamid = url.searchParams.get('steamid');
           if (!steamid) return json({ error: 'Missing steamid' }, 400, corsHeaders(origin));
           data = await steamApi('/ISteamUser/GetFriendList/v1/', { steamid }, key);
+        } else if (url.pathname === '/api/steam/search') {
+          const q = url.searchParams.get('q');
+          if (!q) return json({ error: 'Missing q' }, 400, corsHeaders(origin));
+          const storeRes = await fetch(
+            `${STEAM_STORE}/api/storesearch/?term=${encodeURIComponent(q)}&l=english&cc=US`,
+            { headers: { 'User-Agent': 'GhostLua/1.0' } }
+          );
+          if (!storeRes.ok) throw new Error(`Store HTTP ${storeRes.status}`);
+          data = await storeRes.json();
         } else {
           return json({ error: 'Unknown endpoint' }, 404, corsHeaders(origin));
         }
@@ -180,6 +195,69 @@ export default {
         return json(data, 200, corsHeaders(origin));
       } catch (e) {
         return json({ error: e.message || 'Steam API error' }, 500, corsHeaders(origin));
+      }
+    }
+
+    // ── Community API ─────────────────────────────────────────────
+    if (url.pathname === '/api/community/members') {
+      // Try KV for persistence, fall back to in-memory
+      let members = [];
+      if (env.COMMUNITY_KV) {
+        try { members = (await env.COMMUNITY_KV.get('members', 'json')) || []; }
+        catch (_) { members = [..._community.values()]; }
+      } else {
+        members = [..._community.values()];
+      }
+      return json({ members: members.slice(0, 200) }, 200, corsHeaders(origin));
+    }
+
+    if (url.pathname === '/api/community/join' && request.method === 'POST') {
+      const rl = checkRateLimit(ip, 'api');
+      if (!rl.allowed) return rateLimitResp(rl);
+
+      try {
+        const body    = await request.json();
+        const steamid = String(body.steamid || '').trim();
+        if (!/^\d{17}$/.test(steamid)) {
+          return json({ error: 'Invalid Steam ID (must be 17 digits)' }, 400, corsHeaders(origin));
+        }
+
+        const key = env.STEAM_API_KEY;
+        if (!key) return json({ error: 'Steam API not configured' }, 503, corsHeaders(origin));
+
+        const data   = await steamApi('/ISteamUser/GetPlayerSummaries/v2/', { steamids: steamid }, key);
+        const player = data?.response?.players?.[0];
+        if (!player) return json({ error: 'Steam profile not found' }, 404, corsHeaders(origin));
+
+        const existing = _community.has(steamid);
+        if (!existing) {
+          _community.set(steamid, {
+            steamid,
+            name:   player.personaname,
+            avatar: player.avatarfull,
+            state:  player.personastate,
+            joined: Date.now(),
+          });
+          // Persist to KV if available
+          if (env.COMMUNITY_KV) {
+            const all = [..._community.values()].slice(0, 500);
+            await env.COMMUNITY_KV.put('members', JSON.stringify(all));
+          }
+        }
+
+        return json({
+          ok: true,
+          member: {
+            steamid,
+            name:     player.personaname,
+            avatar:   player.avatarfull,
+            state:    player.personastate,
+            joined:   _community.get(steamid)?.joined || Date.now(),
+            existing,
+          },
+        }, 200, corsHeaders(origin));
+      } catch (e) {
+        return json({ error: e.message || 'Join error' }, 500, corsHeaders(origin));
       }
     }
 

@@ -305,8 +305,9 @@ input.search-field:focus {
     0 20px 40px -10px rgba(0,0,0,0.8),
     0 0 0 1px rgba(255,255,255,0.02) inset;
   overflow: hidden;
+  /* NOTE: do NOT set position here — the HTML already sets absolute via Tailwind.
+     Setting it here would override the Tailwind class (ID selector wins specificity). */
   z-index: 9999;
-  position: relative;
 }
 
 @keyframes resultsIn {
@@ -976,7 +977,7 @@ a.dl-tag-link:hover {
   align-items: center;
   gap: 16px;
   position: relative;
-  z-index: 10;
+  z-index: 40; /* Must be above chart cards so dropdown always floats on top */
 }
 
 .hero-card {
