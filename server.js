@@ -3,7 +3,7 @@ const https = require('https');
 const fs    = require('fs');
 const path  = require('path');
 
-const STEAM_API_KEY  = 'FFCB66298DB13D946E747FDFEBB02FCB';
+const STEAM_API_KEY  = process.env.STEAM_API_KEY || '';
 const STEAM_API_BASE = 'https://api.steampowered.com';
 const STEAM_STORE    = 'https://store.steampowered.com';
 
@@ -82,6 +82,12 @@ function sendJSON(res, status, obj) {
   res.end(body);
 }
 
+function ensureSteamKey(res) {
+  if (STEAM_API_KEY) return true;
+  sendJSON(res, 503, { error: 'Steam API key not configured on server' });
+  return false;
+}
+
 // ── Request handler ───────────────────────────────────────────────────────────
 http.createServer((req, res) => {
   // CORS pre-flight (for any external tools)
@@ -152,6 +158,7 @@ http.createServer((req, res) => {
 
     // GET /api/steam/resolve?vanity=NAME
     if (rawPath === '/api/steam/resolve') {
+      if (!ensureSteamKey(res)) return;
       const params = new URLSearchParams(qs);
       const vanity = params.get('vanity') || '';
       if (!vanity) { sendJSON(res, 400, { error: 'Missing vanity' }); return; }
@@ -163,6 +170,7 @@ http.createServer((req, res) => {
 
     // GET /api/steam/summary?steamids=ID,ID,...
     if (rawPath === '/api/steam/summary') {
+      if (!ensureSteamKey(res)) return;
       const params   = new URLSearchParams(qs);
       const steamids = params.get('steamids') || '';
       if (!steamids) { sendJSON(res, 400, { error: 'Missing steamids' }); return; }
@@ -174,6 +182,7 @@ http.createServer((req, res) => {
 
     // GET /api/steam/games?steamid=ID
     if (rawPath === '/api/steam/games') {
+      if (!ensureSteamKey(res)) return;
       const params  = new URLSearchParams(qs);
       const steamid = params.get('steamid') || '';
       if (!steamid) { sendJSON(res, 400, { error: 'Missing steamid' }); return; }
@@ -186,6 +195,7 @@ http.createServer((req, res) => {
 
     // GET /api/steam/friends?steamid=ID
     if (rawPath === '/api/steam/friends') {
+      if (!ensureSteamKey(res)) return;
       const params  = new URLSearchParams(qs);
       const steamid = params.get('steamid') || '';
       if (!steamid) { sendJSON(res, 400, { error: 'Missing steamid' }); return; }
@@ -208,6 +218,7 @@ http.createServer((req, res) => {
 
     // POST /api/community/join  — body: { steamid }
     if (rawPath === '/api/community/join' && req.method === 'POST') {
+      if (!ensureSteamKey(res)) return;
       let body = '';
       req.on('data', c => body += c);
       req.on('end', () => {

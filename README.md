@@ -30,6 +30,7 @@ Without the key, profile search falls back to Steam community scraping.
 
 ```bash
 # With Node.js (optional — for /api routes)
+# PowerShell: $env:STEAM_API_KEY="your_key_here"
 node server.js
 # → http://localhost:3456
 

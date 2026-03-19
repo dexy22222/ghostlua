@@ -11,6 +11,3 @@ binding = "AI"
 directory = "."
 binding = "ASSETS"
 run_worker_first = true
-
-[vars]
-STEAM_API_KEY = "FFCB66298DB13D946E747FDFEBB02FCB"
