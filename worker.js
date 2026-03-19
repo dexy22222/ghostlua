@@ -244,6 +244,34 @@ export default {
       return json({ ok: true, events }, 200, corsHeaders(origin));
     }
 
+    // ── Steam app details + DLC list (no API key required) ───────
+    if (url.pathname === '/api/steam/appdetails') {
+      const rl = checkRateLimit(ip, 'api');
+      if (!rl.allowed) return rateLimitResp(rl);
+      const appid = url.searchParams.get('appid');
+      if (!appid || !/^\d+$/.test(appid)) {
+        return json({ error: 'Missing or invalid appid' }, 400, corsHeaders(origin));
+      }
+      try {
+        const storeRes = await fetch(
+          `${STEAM_STORE}/api/appdetails/?appids=${appid}&filters=basic,dlc`,
+          { headers: { 'User-Agent': 'GhostLua/1.0' } }
+        );
+        if (!storeRes.ok) throw new Error(`Store HTTP ${storeRes.status}`);
+        const raw = await storeRes.json();
+        const entry = raw?.[appid];
+        const dlc = entry?.success ? (entry.data?.dlc || []) : [];
+        const name = entry?.success ? (entry.data?.name || null) : null;
+        return json(
+          { appid: Number(appid), name, dlc },
+          200,
+          { ...corsHeaders(origin), 'Cache-Control': 'public, max-age=3600, s-maxage=7200' }
+        );
+      } catch (e) {
+        return json({ appid: Number(appid), name: null, dlc: [], error: e.message }, 200, corsHeaders(origin));
+      }
+    }
+
     // ── Steam store search (no API key required) ─────────────────
     if (url.pathname === '/api/steam/search') {
       const rl = checkRateLimit(ip, 'api');
