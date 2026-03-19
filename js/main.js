@@ -232,8 +232,10 @@ function _updateChartLive() {
     g.downloads = (base + delta).toLocaleString() + ' downloads';
   });
   _liveLastUpdated = Date.now();
-  renderTopList();
-  renderTrendingList();
+  // Update only download count text — avoids full DOM teardown + rebuild
+  document.querySelectorAll('#top-downloads-list .chart-game-dl').forEach((el, i) => {
+    if (topGames[i]) el.textContent = topGames[i].downloads;
+  });
   const el = document.getElementById('live-updated');
   if (el) el.textContent = 'just now';
 }
@@ -275,7 +277,7 @@ document.addEventListener('DOMContentLoaded', () => {
   renderGames();
   window.openGameFromQuery?.();
   _loadGameDatabase();
-  setInterval(cyclePlaceholder,  3500);
-  setInterval(_updateChartLive, 60000);
-  setInterval(_tickLiveLabel,   10000);
+  setInterval(cyclePlaceholder,  4000);
+  setInterval(_updateChartLive, 120000);
+  setInterval(_tickLiveLabel,   15000);
 });

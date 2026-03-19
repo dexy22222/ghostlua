@@ -28,8 +28,8 @@ function _fmtDate(date) {
 // ── Online Presence ───────────────────────────────────────────────────────────
 const SESSION_ID        = Math.random().toString(36).slice(2);
 const HEARTBEAT_KEY     = 'gl_presence';
-const HEARTBEAT_INTERVAL = 4000;
-const SESSION_TTL       = 10000;
+const HEARTBEAT_INTERVAL = 30000;
+const SESSION_TTL       = 90000;
 const ONLINE_BASE       = 24;
 
 function getActiveSessions() {
@@ -73,7 +73,6 @@ try {
 
 heartbeat();
 setInterval(heartbeat, HEARTBEAT_INTERVAL);
-setInterval(() => updateOnlineDisplay(Object.keys(getActiveSessions()).length), 12000);
 
 window.addEventListener('beforeunload', () => {
   try {
