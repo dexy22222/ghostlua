@@ -9,8 +9,13 @@ binding = "ASSETS"
 [ai]
 binding = "AI"
 
+# Non-secret config only. NEVER put STEAM_API_KEY here — it would ship in git and in the Worker bundle.
+# Steam key:  npx wrangler secret put STEAM_API_KEY
+# Local dev:   copy .dev.vars.example → .dev.vars (gitignored)
 [vars]
-STEAM_API_KEY = ""
+# Optional: HTTPS URL with literal "{appid}" — Worker fetches each script from your CDN/API.
+# You must own the host or have permission. Example: "https://cdn.example.com/lua/{appid}.lua"
+LUA_UPSTREAM_TEMPLATE = ""
 
 # Uncomment and create these KV namespaces to enable persistence:
 # wrangler kv namespace create ALERTS_KV

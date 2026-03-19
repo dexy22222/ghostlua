@@ -116,6 +116,40 @@ async function steamApi(path, params, key) {
   return res.json();
 }
 
+/** Max .lua body when pulling from LUA_UPSTREAM_TEMPLATE (abuse guard). */
+const LUA_MAX_BYTES = 512 * 1024;
+
+function defaultLuaSnippet(appId, name) {
+  const now = new Date().toISOString().split('T')[0];
+  const safe = name ? String(name).trim().slice(0, 200) : '';
+  const header = safe
+    ? `-- GhostLua\n-- Game: ${safe}\n-- AppID: ${appId}\n-- Date: ${now}\n\n`
+    : `-- GhostLua\n-- AppID: ${appId}\n-- Date: ${now}\n\n`;
+  return `${header}addappid(${appId}, 1, "")\n`;
+}
+
+/** If LUA_UPSTREAM_TEMPLATE is set (https URL with {appid}), fetch remote script; else null. */
+async function fetchLuaUpstream(appId, env) {
+  const tpl = String(env.LUA_UPSTREAM_TEMPLATE || '').trim();
+  if (!tpl.startsWith('https://') || !tpl.includes('{appid}')) return null;
+  const urlStr = tpl.replaceAll('{appid}', String(appId));
+  let u;
+  try {
+    u = new URL(urlStr);
+  } catch {
+    return null;
+  }
+  if (u.protocol !== 'https:') return null;
+  const res = await fetch(u.toString(), {
+    headers: { 'User-Agent': 'GhostLua/1.0' },
+    redirect: 'follow',
+  });
+  if (!res.ok) return null;
+  const buf = await res.arrayBuffer();
+  if (!buf.byteLength || buf.byteLength > LUA_MAX_BYTES) return null;
+  return new TextDecoder('utf-8', { fatal: false }).decode(buf);
+}
+
 // ── GhostBot system prompt ───────────────────────────────────────
 const GHOSTBOT_PROMPT = `You are GhostBot, the helpful AI assistant for GhostLua (ghostlua.com).
 GhostLua is a free platform for downloading Lua scripts for Steam games used with SteamTools.
@@ -312,6 +346,41 @@ export default {
       } catch (e) {
         return json({ error: e.message || 'Steam search error' }, 500, corsHeaders(origin));
       }
+    }
+
+    // ── Single .lua file: upstream template (optional) or generated addappid ──
+    if (url.pathname === '/api/lua/file' && request.method === 'GET') {
+      const rl = checkRateLimit(ip, 'api');
+      if (!rl.allowed) return rateLimitResp(rl);
+      const appid = url.searchParams.get('appid');
+      if (!appid || !/^\d+$/.test(appid)) {
+        return json({ error: 'Invalid appid' }, 400, corsHeaders(origin));
+      }
+      const name = url.searchParams.get('name');
+      const idNum = Number(appid);
+      let body;
+      let cacheCtl = 'private, no-store';
+      try {
+        const up = await fetchLuaUpstream(idNum, env);
+        if (up != null && up.length > 0) {
+          body = up;
+          cacheCtl = 'public, max-age=600, s-maxage=3600';
+        } else {
+          body = defaultLuaSnippet(idNum, name);
+        }
+      } catch {
+        body = defaultLuaSnippet(idNum, name);
+      }
+      return addSecHeaders(
+        new Response(body, {
+          status: 200,
+          headers: {
+            'Content-Type': 'text/plain; charset=utf-8',
+            'Cache-Control': cacheCtl,
+            ...corsHeaders(origin),
+          },
+        })
+      );
     }
 
     // ── Steam API proxy (requires STEAM_API_KEY) ──────────────────

@@ -4,7 +4,9 @@ The deployment is failing because of asset size and configuration issues. Here's
 
 ## Method 1: Simple Worker Deployment (Recommended)
 
-Replace your `wrangler.toml` with this simplified version:
+Use a `wrangler.toml` that does **not** contain `STEAM_API_KEY`. Set the Steam key with `wrangler secret put STEAM_API_KEY` or the dashboard (Secrets), not `[vars]` (that can leak via git).
+
+Example shape:
 
 ```toml
 name = "ghostlua"
@@ -14,8 +16,7 @@ compatibility_date = "2024-01-01"
 [ai]
 binding = "AI"
 
-[vars]
-STEAM_API_KEY = ""
+# Optional non-secret vars only, e.g. LUA_UPSTREAM_TEMPLATE
 ```
 
 ## Method 2: Manual Deployment via Cloudflare Dashboard
@@ -48,13 +49,19 @@ Since you have static files, use Cloudflare Pages:
 ## Quick Deploy Commands
 
 ```bash
-# Set your API token first
-set CLOUDFLARE_API_TOKEN=your_actual_token_here
-
-# Then deploy
-cd "c:\Users\daviq\Downloads\website\openlua-clone"
+# Bash — set only in your session (never commit a real token)
+export CLOUDFLARE_API_TOKEN="…"
 npx wrangler deploy
 ```
+
+Windows CMD (same idea — type the token locally, never save it into the repo):
+
+```cmd
+set CLOUDFLARE_API_TOKEN=…
+npx wrangler deploy
+```
+
+Or use `wrangler login` instead of a token for interactive deploys.
 
 ## Alternative: Use Git Integration
 
