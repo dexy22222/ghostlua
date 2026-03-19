@@ -1,0 +1,112 @@
+import { readFileSync, writeFileSync } from 'fs';
+
+const existing = JSON.parse(readFileSync('./data/games.json', 'utf8'));
+const existingIds = new Set(existing.map(x => x.appId));
+
+const finalBatch = [
+  // More unique AppIDs
+  { name: "Forager", appId: 751780, size: "0.3 GB", tags: ["Online Fix"] },
+  { name: "Slime Rancher", appId: 433340, size: "1.5 GB", tags: ["Online Fix"] },
+  { name: "Slime Rancher 2", appId: 1657630, size: "4.0 GB", tags: ["Online Fix"] },
+  { name: "My Time at Portia", appId: 666140, size: "4.5 GB", tags: ["Online Fix"] },
+  { name: "My Time at Sandrock", appId: 1084600, size: "8.0 GB", tags: ["Online Fix"] },
+  { name: "Coral Island", appId: 1158250, size: "5.0 GB", tags: ["Online Fix"] },
+  { name: "Sun Haven", appId: 1432860, size: "3.0 GB", tags: ["Online Fix"] },
+  { name: "Haunted Chocolatier", appId: 1840080, size: "1.0 GB", tags: ["Online Fix"] },
+  { name: "Fields of Mistria", appId: 2142790, size: "1.5 GB", tags: ["Online Fix"] },
+  { name: "Spiritfarer", appId: 972660, size: "3.0 GB", tags: ["Online Fix"] },
+  { name: "Gris", appId: 683320, size: "1.5 GB", tags: ["Online Fix"] },
+  { name: "Narita Boy", appId: 1034710, size: "1.5 GB", tags: ["Online Fix"] },
+  { name: "Axiom Verge", appId: 332200, size: "0.4 GB", tags: ["Online Fix"] },
+  { name: "Axiom Verge 2", appId: 1455990, size: "1.0 GB", tags: ["Online Fix"] },
+  { name: "Cave Story+", appId: 200900, size: "0.2 GB", tags: ["Online Fix"] },
+  { name: "Iconoclasts", appId: 393520, size: "0.3 GB", tags: ["Online Fix"] },
+  { name: "Guacamelee 2", appId: 534550, size: "1.5 GB", tags: ["Online Fix"] },
+  { name: "Salt and Sanctuary", appId: 390010, size: "0.5 GB", tags: ["Online Fix"] },
+  { name: "Salt and Sacrifice", appId: 1743730, size: "1.0 GB", tags: ["Online Fix"] },
+  { name: "The Messenger", appId: 764790, size: "0.5 GB", tags: ["Online Fix"] },
+  { name: "Shovel Knight Dig", appId: 1494620, size: "1.2 GB", tags: ["Online Fix"] },
+  { name: "Shantae and the Seven Sirens", appId: 1176760, size: "1.5 GB", tags: ["Online Fix"] },
+  { name: "Shantae: Half-Genie Hero", appId: 338210, size: "1.5 GB", tags: ["Online Fix"] },
+  { name: "Azure Striker Gunvolt 3", appId: 1939210, size: "2.5 GB", tags: ["Online Fix"] },
+  { name: "Mega Man Legacy Collection", appId: 363440, size: "1.5 GB", tags: ["Online Fix"] },
+  { name: "Mega Man 11", appId: 742300, size: "2.5 GB", tags: ["Online Fix"] },
+  { name: "Bloodstained: Ritual of the Night", appId: 692850, size: "5.0 GB", tags: ["Online Fix"] },
+  { name: "Castlevania Advance Collection", appId: 1552550, size: "0.5 GB", tags: ["Online Fix"] },
+  { name: "Rabi-Ribi", appId: 400910, size: "0.5 GB", tags: ["Online Fix"] },
+  { name: "Ender Lilies: Quietus of the Knights", appId: 1369630, size: "2.0 GB", tags: ["Online Fix"] },
+  { name: "Ender Magnolia: Bloom in the Mist", appId: 2451780, size: "3.5 GB", tags: ["Online Fix"] },
+  { name: "Nine Sols", appId: 1809540, size: "3.5 GB", tags: ["Online Fix"] },
+  { name: "Haiku the Robot", appId: 1490630, size: "0.8 GB", tags: ["Online Fix"] },
+  { name: "Pseudoregalia", appId: 2365580, size: "0.5 GB", tags: ["Online Fix"] },
+  { name: "Neon White", appId: 1533420, size: "3.5 GB", tags: ["Online Fix"] },
+  { name: "Pizza Tower", appId: 2231450, size: "0.4 GB", tags: ["Online Fix"] },
+  { name: "Anger Foot", appId: 1748280, size: "0.5 GB", tags: ["Online Fix"] },
+  { name: "El Paso Elsewhere", appId: 2218560, size: "0.8 GB", tags: ["Online Fix"] },
+  { name: "Prodeus", appId: 964800, size: "1.5 GB", tags: ["Online Fix"] },
+  { name: "Turbo Overkill", appId: 1328870, size: "1.5 GB", tags: ["Online Fix"] },
+  { name: "Ultrakill", appId: 1229490, size: "1.5 GB", tags: ["Online Fix"] },
+  { name: "Quake", appId: 2310, size: "0.5 GB", tags: ["Online Fix"] },
+  { name: "Quake II", appId: 2320, size: "0.5 GB", tags: ["Online Fix"] },
+  { name: "Quake III Arena", appId: 2200, size: "0.5 GB", tags: ["Online Fix"] },
+  { name: "Hexen: Beyond Heretic", appId: 2300, size: "0.1 GB", tags: ["Online Fix"] },
+  { name: "Blood: Fresh Supply", appId: 1008740, size: "0.5 GB", tags: ["Online Fix"] },
+  { name: "Ion Fury", appId: 562860, size: "0.5 GB", tags: ["Online Fix"] },
+  { name: "Amid Evil", appId: 673130, size: "1.5 GB", tags: ["Online Fix"] },
+  { name: "Dusk", appId: 519860, size: "1.0 GB", tags: ["Online Fix"] },
+  { name: "Project Warlock II", appId: 1682200, size: "1.0 GB", tags: ["Online Fix"] },
+  { name: "Postal 4: No Regerts", appId: 707550, size: "15.0 GB", tags: ["Online Fix"] },
+  { name: "Severed Steel", appId: 1315360, size: "2.0 GB", tags: ["Online Fix"] },
+  { name: "Roboquest", appId: 692890, size: "3.5 GB", tags: ["Online Fix"] },
+  { name: "Gunfire Reborn", appId: 1217060, size: "3.0 GB", tags: ["Online Fix"] },
+  { name: "Deep Rock Galactic: Survivor", appId: 2321470, size: "2.5 GB", tags: ["Online Fix"] },
+  { name: "Brotato", appId: 1942280, size: "0.3 GB", tags: ["Online Fix"] },
+  { name: "20 Minutes Till Dawn", appId: 1966900, size: "0.2 GB", tags: ["Online Fix"] },
+  { name: "Halls of Torment", appId: 2218750, size: "0.5 GB", tags: ["Online Fix"] },
+  { name: "Soulstone Survivors", appId: 2066020, size: "0.5 GB", tags: ["Online Fix"] },
+  { name: "Holocure: Save the Fans!", appId: 2420510, size: "0.3 GB", tags: ["Online Fix"] },
+  { name: "Boneraiser Minions", appId: 1876830, size: "0.2 GB", tags: ["Online Fix"] },
+  { name: "Spirit Hunters: Infinite Horde", appId: 2027070, size: "0.3 GB", tags: ["Online Fix"] },
+  { name: "The Binding of Isaac: Repentance+", appId: 2997380, size: "1.0 GB", tags: ["Online Fix"] },
+  { name: "Dungeon of the Endless", appId: 249050, size: "0.5 GB", tags: ["Online Fix"] },
+  { name: "Endless Dungeon", appId: 811840, size: "8.0 GB", tags: ["Online Fix"] },
+  { name: "Tactical Breach Wizards", appId: 1522390, size: "1.5 GB", tags: ["Online Fix"] },
+  { name: "Wildermyth", appId: 763890, size: "0.8 GB", tags: ["Online Fix"] },
+  { name: "Caves of Qud", appId: 333640, size: "0.5 GB", tags: ["Online Fix"] },
+  { name: "Cogmation", appId: 1975930, size: "0.2 GB", tags: ["Online Fix"] },
+  { name: "Demon's Tilt", appId: 1085260, size: "0.5 GB", tags: ["Online Fix"] },
+  { name: "Pinball FX3", appId: 442120, size: "2.5 GB", tags: ["Online Fix"] },
+  { name: "Planet Coaster", appId: 493340, size: "4.0 GB", tags: ["Online Fix"] },
+  { name: "Planet Zoo", appId: 703080, size: "8.0 GB", tags: ["Online Fix"] },
+  { name: "Jurassic World Evolution 2", appId: 1244460, size: "10.0 GB", tags: ["Online Fix"] },
+  { name: "Planet Coaster 2", appId: 2688560, size: "12.0 GB", tags: ["Online Fix"] },
+  { name: "Two Point Hospital", appId: 535930, size: "1.5 GB", tags: ["Online Fix"] },
+  { name: "Two Point Campus", appId: 1649080, size: "4.0 GB", tags: ["Online Fix"] },
+  { name: "Two Point Museum", appId: 2403070, size: "6.0 GB", tags: ["Online Fix"] },
+  { name: "Park Beyond", appId: 1368800, size: "10.0 GB", tags: ["Online Fix"] },
+  { name: "Cities: Skylines II", appId: 949230, size: "15.0 GB", tags: ["Online Fix"] },
+  { name: "Urban Empire", appId: 491040, size: "2.5 GB", tags: ["Online Fix"] },
+  { name: "Workers & Resources: Soviet Republic", appId: 784150, size: "2.5 GB", tags: ["Online Fix"] },
+  { name: "Highrise City", appId: 1576650, size: "3.0 GB", tags: ["Online Fix"] },
+  { name: "Tropico 6", appId: 492720, size: "7.0 GB", tags: ["Online Fix"] },
+  { name: "Anno 1800", appId: 916440, size: "17.0 GB", tags: ["Online Fix"] },
+  { name: "Anno 2070", appId: 48240, size: "2.0 GB", tags: ["Online Fix"] },
+  { name: "Banished", appId: 242920, size: "0.3 GB", tags: ["Online Fix"] },
+  { name: "Foundation", appId: 690830, size: "2.0 GB", tags: ["Online Fix"] },
+  { name: "Kingdoms and Castles", appId: 569480, size: "0.5 GB", tags: ["Online Fix"] },
+  { name: "Ostriv", appId: 773790, size: "0.8 GB", tags: ["Online Fix"] },
+  { name: "Manor Lords", appId: 1363080, size: "5.0 GB", tags: ["Online Fix"] },
+];
+
+const result = [...existing];
+for (const g of finalBatch) {
+  if (!existingIds.has(g.appId)) {
+    existingIds.add(g.appId);
+    result.push(g);
+  }
+}
+
+console.log('Final unique count:', result.length);
+writeFileSync('./data/games.json', JSON.stringify(result, null, 2));
+writeFileSync('./data/stats.json', JSON.stringify({ totalGames: result.length }, null, 2));
+console.log('stats.json updated:', result.length, 'games');

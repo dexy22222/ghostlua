@@ -168,10 +168,16 @@ function _renderResult(g) {
         <div class="search-result-meta-row">${_resultMetaText(g)}</div>
         <div class="search-result-tags">${(g.tags || []).slice(0, 2).map(t => `<span class="game-tag game-tag-${String(t).toLowerCase().replace(/\s+/g, '-')}">${t}</span>`).join('')}</div>
       </div>
-      <button class="dl-pill-btn"
-              onclick="event.stopPropagation(); quickDownload(${g.appId}, ${_jqAttr(g.name)}, ${_jqAttr(info)}, ${_jqAttr(g.size || '')}, ${_jqAttr(g.tags || [])})">
-        <i class="fa-solid fa-download" style="font-size:9px;margin-right:3px;"></i>Get
-      </button>
+      <div class="flex items-center gap-2">
+        <input type="checkbox" 
+               class="game-checkbox w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+               onchange="toggleGameSelection(${g.appId})"
+               onclick="event.stopPropagation()">
+        <button class="dl-pill-btn"
+                onclick="event.stopPropagation(); quickDownload(${g.appId}, ${_jqAttr(g.name)}, ${_jqAttr(info)}, ${_jqAttr(g.size || '')}, ${_jqAttr(g.tags || [])})">
+          <i class="fa-solid fa-download" style="font-size:9px;margin-right:3px;"></i>Get
+        </button>
+      </div>
     </div>
   `;
 }

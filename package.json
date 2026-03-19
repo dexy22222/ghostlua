@@ -1,0 +1,23 @@
+{
+  "name": "openlua-clone",
+  "version": "1.0.0",
+  "description": "OpenLua clone with batch download functionality for Cloudflare Workers",
+  "main": "worker.js",
+  "scripts": {
+    "dev": "wrangler dev",
+    "deploy": "wrangler deploy"
+  },
+  "devDependencies": {
+    "wrangler": "^3.0.0"
+  },
+  "keywords": [
+    "steam",
+    "lua",
+    "games",
+    "download",
+    "cloudflare",
+    "workers"
+  ],
+  "author": "",
+  "license": "MIT"
+}
