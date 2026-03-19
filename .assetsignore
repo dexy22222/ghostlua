@@ -1,0 +1,13 @@
+node_modules/
+.git/
+worker.js
+server.js
+wrangler.toml
+package.json
+package-lock.json
+*.mjs
+*.md
+LICENSE
+deploy.bat
+deploy.sh
+.assetsignore

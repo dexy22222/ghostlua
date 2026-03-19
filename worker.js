@@ -244,7 +244,26 @@ export default {
       return json({ ok: true, events }, 200, corsHeaders(origin));
     }
 
-    // ── Steam API proxy ──────────────────────────────────────────
+    // ── Steam store search (no API key required) ─────────────────
+    if (url.pathname === '/api/steam/search') {
+      const rl = checkRateLimit(ip, 'api');
+      if (!rl.allowed) return rateLimitResp(rl);
+      const q = url.searchParams.get('q');
+      if (!q) return json({ error: 'Missing q' }, 400, corsHeaders(origin));
+      try {
+        const storeRes = await fetch(
+          `${STEAM_STORE}/api/storesearch/?term=${encodeURIComponent(q)}&l=english&cc=US`,
+          { headers: { 'User-Agent': 'GhostLua/1.0' } }
+        );
+        if (!storeRes.ok) throw new Error(`Store HTTP ${storeRes.status}`);
+        const data = await storeRes.json();
+        return json(data, 200, { ...corsHeaders(origin), 'Cache-Control': 'public, max-age=60, s-maxage=120' });
+      } catch (e) {
+        return json({ error: e.message || 'Steam search error' }, 500, corsHeaders(origin));
+      }
+    }
+
+    // ── Steam API proxy (requires STEAM_API_KEY) ──────────────────
     if (url.pathname.startsWith('/api/steam/') && env.STEAM_API_KEY) {
       const rl = checkRateLimit(ip, 'api');
       if (!rl.allowed) return rateLimitResp(rl);
@@ -271,24 +290,11 @@ export default {
           const steamid = url.searchParams.get('steamid');
           if (!steamid) return json({ error: 'Missing steamid' }, 400, corsHeaders(origin));
           data = await steamApi('/ISteamUser/GetFriendList/v1/', { steamid }, key);
-        } else if (url.pathname === '/api/steam/search') {
-          const q = url.searchParams.get('q');
-          if (!q) return json({ error: 'Missing q' }, 400, corsHeaders(origin));
-          const storeRes = await fetch(
-            `${STEAM_STORE}/api/storesearch/?term=${encodeURIComponent(q)}&l=english&cc=US`,
-            { headers: { 'User-Agent': 'GhostLua/1.0' } }
-          );
-          if (!storeRes.ok) throw new Error(`Store HTTP ${storeRes.status}`);
-          data = await storeRes.json();
         } else {
           return json({ error: 'Unknown endpoint' }, 404, corsHeaders(origin));
         }
 
-        const headers = corsHeaders(origin);
-        if (url.pathname === '/api/steam/search') {
-          headers['Cache-Control'] = 'public, max-age=60, s-maxage=120';
-        }
-        return json(data, 200, headers);
+        return json(data, 200, corsHeaders(origin));
       } catch (e) {
         return json({ error: e.message || 'Steam API error' }, 500, corsHeaders(origin));
       }
