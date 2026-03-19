@@ -6,6 +6,8 @@ const path  = require('path');
 const STEAM_API_KEY  = process.env.STEAM_API_KEY || '';
 const STEAM_API_BASE = 'https://api.steampowered.com';
 const STEAM_STORE    = 'https://store.steampowered.com';
+const LUA_UPSTREAM_TEMPLATE = process.env.LUA_UPSTREAM_TEMPLATE || '';
+const LUA_MAX_BYTES = 512 * 1024;
 
 function httpsGetJson(url) {
   return new Promise((resolve, reject) => {
@@ -18,6 +20,56 @@ function httpsGetJson(url) {
       });
     }).on('error', reject);
   });
+}
+
+function httpsGetText(url, maxBytes = LUA_MAX_BYTES) {
+  return new Promise((resolve, reject) => {
+    https.get(url, { headers: { 'User-Agent': 'GhostLua/1.0' } }, res => {
+      let raw = '';
+      let size = 0;
+      res.on('data', c => {
+        size += c.length;
+        if (size > maxBytes) {
+          res.destroy();
+          reject(new Error('Response too large'));
+          return;
+        }
+        raw += c;
+      });
+      res.on('end', () => {
+        if (res.statusCode >= 200 && res.statusCode < 300) resolve(raw);
+        else reject(new Error(`HTTP ${res.statusCode}`));
+      });
+    }).on('error', reject);
+  });
+}
+
+function defaultLuaSnippetLocal(appId, name) {
+  const now = new Date().toISOString().split('T')[0];
+  const safe = name ? String(name).trim().slice(0, 200) : '';
+  const header = safe
+    ? `-- GhostLua\n-- Game: ${safe}\n-- AppID: ${appId}\n-- Date: ${now}\n\n`
+    : `-- GhostLua\n-- AppID: ${appId}\n-- Date: ${now}\n\n`;
+  return `${header}addappid(${appId}, 1, "")\n`;
+}
+
+async function resolveUpstreamLuaLocal(appId) {
+  const tpl = LUA_UPSTREAM_TEMPLATE.trim();
+  if (!tpl.startsWith('https://') || !tpl.includes('{appid}')) return null;
+  const urlStr = tpl.replaceAll('{appid}', String(appId));
+  let u;
+  try {
+    u = new URL(urlStr);
+  } catch {
+    return null;
+  }
+  if (u.protocol !== 'https:') return null;
+  try {
+    const text = await httpsGetText(urlStr);
+    return text && text.length ? text : null;
+  } catch {
+    return null;
+  }
 }
 
 function steamApiGet(iface, method, version, params) {
@@ -167,6 +219,67 @@ http.createServer((req, res) => {
       httpsGetJson(storeUrl).then(data => {
         sendJSON(res, 200, data, 'public, max-age=60');
       }).catch(() => sendJSON(res, 502, { error: 'Steam store unavailable' }));
+      return;
+    }
+
+    // GET /api/steam/appdetails?appid= — same shape as Cloudflare worker
+    if (rawPath === '/api/steam/appdetails') {
+      const params = new URLSearchParams(qs);
+      const appid = params.get('appid') || '';
+      if (!appid || !/^\d+$/.test(appid)) {
+        sendJSON(res, 400, { error: 'Missing or invalid appid' });
+        return;
+      }
+      const storeUrl = `${STEAM_STORE}/api/appdetails/?appids=${appid}&filters=basic,dlc`;
+      httpsGetJson(storeUrl)
+        .then(raw => {
+          const entry = raw?.[appid];
+          const dlc = entry?.success ? (entry.data?.dlc || []) : [];
+          const name = entry?.success ? (entry.data?.name || null) : null;
+          sendJSON(res, 200, { appid: Number(appid), name, dlc }, 'public, max-age=3600');
+        })
+        .catch(() => sendJSON(res, 200, { appid: Number(appid), name: null, dlc: [] }));
+      return;
+    }
+
+    // GET /api/lua/file?appid=&name= — optional LUA_UPSTREAM_TEMPLATE
+    if (rawPath === '/api/lua/file') {
+      const params = new URLSearchParams(qs);
+      const appid = params.get('appid') || '';
+      if (!appid || !/^\d+$/.test(appid)) {
+        sendJSON(res, 400, { error: 'Invalid appid' });
+        return;
+      }
+      const name = params.get('name');
+      const idNum = Number(appid);
+      (async () => {
+        let body;
+        let cacheCtl = 'private, no-store';
+        try {
+          const up = await resolveUpstreamLuaLocal(idNum);
+          if (up) {
+            body = up;
+            cacheCtl = 'public, max-age=600';
+          } else {
+            body = defaultLuaSnippetLocal(idNum, name);
+          }
+        } catch {
+          body = defaultLuaSnippetLocal(idNum, name);
+        }
+        res.writeHead(200, {
+          'Content-Type': 'text/plain; charset=utf-8',
+          'Cache-Control': cacheCtl,
+          'Access-Control-Allow-Origin': '*',
+        });
+        res.end(body);
+      })().catch(() => {
+        res.writeHead(200, {
+          'Content-Type': 'text/plain; charset=utf-8',
+          'Cache-Control': 'private, no-store',
+          'Access-Control-Allow-Origin': '*',
+        });
+        res.end(defaultLuaSnippetLocal(idNum, name));
+      });
       return;
     }
 
