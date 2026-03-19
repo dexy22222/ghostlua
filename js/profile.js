@@ -263,21 +263,52 @@ async function _loadFriendsTab(content) {
       return;
     }
   } catch (_) {}
+  // Fallback 2: XML friends endpoint
   try {
     const url = `https://steamcommunity.com/profiles/${_ps.steamId64}/friends/?xml=1`;
     const res  = await _fetchWithCors(url);
+    if (res.ok) {
+      const text = await res.text();
+      const xml  = new DOMParser().parseFromString(text, 'text/xml');
+      const friends = Array.from(xml.querySelectorAll('friends friend')).slice(0, 40).map(f => ({
+        steamId64: f.querySelector('steamID64')?.textContent?.trim() || '',
+        name:      f.querySelector('steamID')?.textContent?.trim()   || 'Unknown',
+        avatar:    f.querySelector('avatarIcon')?.textContent?.trim() || '',
+        state:     f.querySelector('onlineState')?.textContent?.trim() || 'offline',
+      })).filter(f => f.steamId64);
+      if (friends.length) {
+        _ps.friends = friends;
+        _renderFriendsInTab(content, friends);
+        return;
+      }
+    }
+  } catch (_) {}
+
+  // Fallback 3: scrape HTML friends page via Worker proxy
+  try {
+    const url = `https://steamcommunity.com/profiles/${_ps.steamId64}/friends/`;
+    const res = await _fetchWithCors(url);
     if (!res.ok) throw new Error('Friends page unavailable');
-    const text = await res.text();
-    const xml  = new DOMParser().parseFromString(text, 'text/xml');
-    const friends = Array.from(xml.querySelectorAll('friends friend')).slice(0, 40).map(f => ({
-      steamId64: f.querySelector('steamID64')?.textContent?.trim() || '',
-      name:      f.querySelector('steamID')?.textContent?.trim()   || 'Unknown',
-      avatar:    f.querySelector('avatarIcon')?.textContent?.trim() || '',
-      state:     f.querySelector('onlineState')?.textContent?.trim() || 'offline',
-    })).filter(f => f.steamId64);
-    if (!friends.length) throw new Error('Friends list is private');
-    _ps.friends = friends;
-    _renderFriendsInTab(content, friends);
+    const html = await res.text();
+    const parser = new DOMParser();
+    const doc = parser.parseFromString(html, 'text/html');
+    const blocks = doc.querySelectorAll('.friend_block_v2, [data-steamid]');
+    const friends = [];
+    blocks.forEach(block => {
+      const sid = block.getAttribute('data-steamid') || '';
+      if (!sid || !/^\d{17}$/.test(sid)) return;
+      const nameEl = block.querySelector('.friend_block_content .friend_block_persona_name, .friend_block_content');
+      const name = nameEl?.textContent?.trim()?.split('\n')[0]?.trim() || 'Unknown';
+      const avatarEl = block.querySelector('.player_avatar img, .playerAvatar img');
+      const avatar = avatarEl?.getAttribute('src') || '';
+      const stateEl = block.querySelector('.friend_small_text, .friend_block_content');
+      const stateText = (stateEl?.textContent || '').toLowerCase();
+      const state = stateText.includes('in-game') ? 'in-game' : stateText.includes('online') ? 'online' : 'offline';
+      friends.push({ steamId64: sid, name, avatar, state });
+    });
+    if (!friends.length) throw new Error('Friends list is private or empty');
+    _ps.friends = friends.slice(0, 40);
+    _renderFriendsInTab(content, _ps.friends);
   } catch (e) {
     content.innerHTML = `<div class="text-center py-5 text-neutral-600 text-xs">
       <i class="fa-solid fa-user-slash mr-1"></i>${e.message || 'Friends list is private or unavailable'}

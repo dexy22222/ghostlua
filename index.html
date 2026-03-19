@@ -71,10 +71,20 @@
       <i class="fa-brands fa-steam text-neutral-400 text-xs"></i>
       <span class="text-[13px] text-neutral-300 font-medium">Profile</span>
     </a>
+    <a href="pricing.html" class="nav-pill flex items-center h-9 gap-2 bg-neutral-900/80 rounded-full px-3.5 border border-neutral-800/60 hover:border-amber-600/40">
+      <i class="fa-solid fa-crown text-amber-400/70 text-xs"></i>
+      <span class="text-[13px] text-neutral-300 font-medium">Pricing</span>
+    </a>
   </div>
 
   <!-- Desktop Nav Right -->
   <div class="hidden md:flex fixed top-4 right-4 items-center gap-2 z-30">
+    <a href="pricing.html" class="tier-badge nav-pill flex items-center gap-1.5 bg-neutral-900/80 rounded-full px-3 h-9 border border-neutral-800/60 text-[11px] font-semibold hover:border-neutral-600/60 transition-colors">
+      <i class="fa-solid fa-ghost text-[9px] text-neutral-600"></i>
+      <span class="text-neutral-600">Free</span>
+      <span class="text-neutral-700">·</span>
+      <span class="text-neutral-500">25 left</span>
+    </a>
     <a href="https://github.com/dexy22222/ghostlua" target="_blank" class="nav-pill flex items-center justify-center w-9 h-9 bg-neutral-900/80 rounded-full border border-neutral-800/60 hover:border-neutral-600/60 text-neutral-500 hover:text-white transition-colors">
       <i class="fa-brands fa-github text-sm"></i>
     </a>
@@ -119,6 +129,9 @@
       </a>
       <a href="community.html" class="flex items-center h-10 gap-2.5 bg-neutral-900/90 backdrop-blur-xl rounded-xl px-4 border border-neutral-800/60 text-sm text-neutral-200 font-medium">
         <i class="fa-solid fa-users text-neutral-500 text-xs w-4 text-center"></i> Community
+      </a>
+      <a href="pricing.html" class="flex items-center h-10 gap-2.5 bg-neutral-900/90 backdrop-blur-xl rounded-xl px-4 border border-amber-800/40 text-sm text-amber-300 font-medium">
+        <i class="fa-solid fa-crown text-amber-400 text-xs w-4 text-center"></i> Pricing
       </a>
     </div>
   </div>
@@ -330,10 +343,13 @@
       <a href="status.html" class="hover:text-emerald-400 transition-colors flex items-center gap-1">
         <span class="inline-block w-1.5 h-1.5 rounded-full bg-emerald-500"></span>Status
       </a>
+      <a href="pricing.html" class="hover:text-amber-400 transition-colors flex items-center gap-1">
+        <i class="fa-solid fa-crown text-[10px]"></i>Pricing
+      </a>
       <a href="https://github.com/dexy22222/ghostlua" target="_blank" class="hover:text-neutral-300 transition-colors flex items-center gap-1">
         <i class="fa-brands fa-github text-[11px]"></i>GitHub
       </a>
-      <span class="text-neutral-800 font-mono">Build 2.5.0</span>
+      <span class="text-neutral-800 font-mono">Build 3.0.0</span>
     </div>
   </footer>
 
@@ -495,6 +511,17 @@
         </div>
       </div>
 
+      <!-- Tier usage -->
+      <div id="dl-tier-bar" class="mb-2 px-1 hidden">
+        <div class="flex items-center justify-between text-[10px] mb-1">
+          <span class="tier-badge flex items-center gap-1.5 font-semibold"></span>
+          <a href="pricing.html" class="text-neutral-700 hover:text-neutral-400 transition-colors">Upgrade</a>
+        </div>
+        <div class="w-full h-1 rounded-full bg-white/[0.06] overflow-hidden">
+          <div class="tier-progress-bar h-full rounded-full transition-all" style="width:0%"></div>
+        </div>
+      </div>
+
       <!-- Download button -->
       <button id="dl-btn" onclick="startDownload()"
         class="dl-download-btn w-full h-11 flex items-center justify-center gap-2 bg-white hover:bg-neutral-200 active:bg-neutral-300 rounded-xl text-black font-bold transition-all text-sm shadow-lg hidden">
@@ -591,6 +618,7 @@
     </div>
   </div>
 
+  <script src="js/tiers.js"></script>
   <script src="js/ui.js"></script>
   <script src="js/analytics.js"></script>
   <script src="js/history.js"></script>

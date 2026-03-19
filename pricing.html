@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pricing | GhostLua</title>
+  <meta name="description" content="GhostLua pricing — Free, Pro, and Master plans for Steam Lua script downloads." />
+  <link rel="icon" type="image/png" href="images/ghost.svg" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: { extend: {
+        colors: { primary: '#d4d4d4' },
+        fontFamily: { sans: ['Inter','ui-sans-serif','system-ui','sans-serif'] }
+      }}
+    }
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,300..800;1,14..32,300..800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/custom.css" />
+  <link rel="stylesheet" href="css/animations.css" />
+  <style>
+    .pricing-card { transition: transform 0.25s, border-color 0.25s, box-shadow 0.3s; }
+    .pricing-card:hover { transform: translateY(-4px); }
+    .pricing-popular {
+      border-color: rgba(59,130,246,0.5) !important;
+      box-shadow: 0 0 40px -10px rgba(59,130,246,0.3), 0 20px 50px -15px rgba(0,0,0,0.8) !important;
+    }
+    .pricing-master:hover {
+      border-color: rgba(245,158,11,0.4) !important;
+      box-shadow: 0 0 40px -10px rgba(245,158,11,0.2), 0 20px 50px -15px rgba(0,0,0,0.8) !important;
+    }
+    .check-icon { color: #22c55e; }
+    .cross-icon { color: #404040; }
+    @keyframes floatBadge {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-3px); }
+    }
+    .popular-badge { animation: floatBadge 2s ease-in-out infinite; }
+  </style>
+</head>
+<body class="min-h-screen font-sans relative text-neutral-100 antialiased">
+
+  <!-- Background -->
+  <div class="fixed inset-0 bg-[#080808] pointer-events-none z-0"></div>
+  <div class="fixed inset-0 pointer-events-none z-0 grid-overlay"></div>
+
+  <!-- Nav -->
+  <nav class="fixed top-0 left-0 right-0 z-30 border-b border-white/[0.04] bg-[#080808]/80 backdrop-blur-xl">
+    <div class="max-w-5xl mx-auto px-4 h-14 flex items-center justify-between">
+      <div class="flex items-center gap-4">
+        <a href="index.html" class="flex items-center gap-2 text-white font-bold text-base hover:opacity-80 transition-opacity">
+          <img src="images/ghost.svg" class="w-6 h-6" alt="" />
+          GhostLua
+        </a>
+        <div class="hidden sm:flex items-center gap-1 text-[13px]">
+          <a href="index.html" class="px-3 py-1.5 rounded-lg text-neutral-500 hover:text-white transition-colors">Home</a>
+          <a href="guide.html" class="px-3 py-1.5 rounded-lg text-neutral-500 hover:text-white transition-colors">Guide</a>
+          <a href="profile.html" class="px-3 py-1.5 rounded-lg text-neutral-500 hover:text-white transition-colors">Profile</a>
+          <span class="px-3 py-1.5 rounded-lg text-white bg-white/[0.06]">Pricing</span>
+        </div>
+      </div>
+      <div class="flex items-center gap-3">
+        <a href="https://github.com/dexy22222/ghostlua" target="_blank" class="text-neutral-600 hover:text-white transition-colors">
+          <i class="fa-brands fa-github text-lg"></i>
+        </a>
+        <button onclick="document.getElementById('pricing-mobile-menu').classList.toggle('hidden')" class="sm:hidden text-neutral-500 hover:text-white transition-colors">
+          <i class="fa-solid fa-bars text-base"></i>
+        </button>
+      </div>
+    </div>
+    <div id="pricing-mobile-menu" class="hidden sm:hidden border-t border-white/[0.04] bg-[#080808]/95 backdrop-blur-xl">
+      <div class="max-w-5xl mx-auto px-4 py-2 flex flex-col gap-1">
+        <a href="index.html" class="px-3 py-2 rounded-lg text-sm text-neutral-400 hover:text-white hover:bg-white/[0.04] transition-colors"><i class="fa-solid fa-house text-xs mr-2 w-4 text-center"></i>Home</a>
+        <a href="guide.html" class="px-3 py-2 rounded-lg text-sm text-neutral-400 hover:text-white hover:bg-white/[0.04] transition-colors"><i class="fa-solid fa-book-open text-xs mr-2 w-4 text-center"></i>Guide</a>
+        <a href="profile.html" class="px-3 py-2 rounded-lg text-sm text-neutral-400 hover:text-white hover:bg-white/[0.04] transition-colors"><i class="fa-brands fa-steam text-xs mr-2 w-4 text-center"></i>Profile</a>
+        <span class="px-3 py-2 rounded-lg text-sm text-white bg-white/[0.06] font-medium"><i class="fa-solid fa-tag text-xs mr-2 w-4 text-center"></i>Pricing</span>
+      </div>
+    </div>
+  </nav>
+
+  <main class="relative z-20 max-w-5xl mx-auto px-4 pt-28 pb-32">
+
+    <!-- Header -->
+    <div class="text-center mb-12">
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/[0.04] border border-white/[0.08] text-[11px] text-neutral-500 font-semibold uppercase tracking-wider mb-4">
+        <i class="fa-solid fa-ghost text-[9px]"></i> Pricing
+      </div>
+      <h1 class="text-3xl sm:text-4xl font-extrabold text-white mb-3 tracking-tight">Simple, transparent pricing</h1>
+      <p class="text-neutral-500 text-sm sm:text-base max-w-md mx-auto">Start free. Upgrade when you need more downloads.</p>
+    </div>
+
+    <!-- Current plan indicator -->
+    <div id="current-plan-bar" class="max-w-2xl mx-auto mb-8 px-4 py-3 rounded-xl border border-white/[0.06] bg-white/[0.02] flex items-center justify-between gap-4">
+      <div class="flex items-center gap-3">
+        <div class="w-8 h-8 rounded-lg bg-white/[0.04] border border-white/[0.08] flex items-center justify-center">
+          <i id="plan-bar-icon" class="fa-solid fa-ghost text-neutral-600 text-sm"></i>
+        </div>
+        <div>
+          <div class="text-xs text-neutral-500">Current plan</div>
+          <div id="plan-bar-name" class="text-sm font-bold text-white">Free</div>
+        </div>
+      </div>
+      <div class="text-right">
+        <div id="plan-bar-usage" class="text-xs text-neutral-600">0 / 25 downloads</div>
+        <div class="w-24 h-1.5 rounded-full bg-white/[0.06] mt-1 overflow-hidden">
+          <div id="plan-bar-progress" class="h-full rounded-full bg-neutral-500 transition-all" style="width:0%"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Pricing Cards -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-5 max-w-4xl mx-auto mb-16">
+
+      <!-- Free -->
+      <div class="pricing-card rounded-2xl border border-white/[0.06] bg-white/[0.02] p-6 relative">
+        <div class="mb-5">
+          <div class="flex items-center gap-2 mb-1">
+            <i class="fa-solid fa-ghost text-neutral-600"></i>
+            <span class="text-sm font-bold text-neutral-400">Free</span>
+          </div>
+          <div class="flex items-baseline gap-1 mb-1">
+            <span class="text-3xl font-extrabold text-white">$0</span>
+            <span class="text-neutral-700 text-sm">/mo</span>
+          </div>
+          <p class="text-xs text-neutral-600">Get started with GhostLua</p>
+        </div>
+        <div class="space-y-2.5 mb-6">
+          <div class="flex items-center gap-2.5 text-[13px]">
+            <i class="fa-solid fa-check check-icon text-xs"></i>
+            <span class="text-neutral-300"><strong class="text-white">25</strong> downloads/month</span>
+          </div>
+          <div class="flex items-center gap-2.5 text-[13px]">
+            <i class="fa-solid fa-check check-icon text-xs"></i>
+            <span class="text-neutral-300">Game + DLC zip bundles</span>
+          </div>
+          <div class="flex items-center gap-2.5 text-[13px]">
+            <i class="fa-solid fa-check check-icon text-xs"></i>
+            <span class="text-neutral-300">Steam profile lookup</span>
+          </div>
+          <div class="flex items-center gap-2.5 text-[13px]">
+            <i class="fa-solid fa-check check-icon text-xs"></i>
+            <span class="text-neutral-300">1,000+ game database</span>
+          </div>
+          <div class="flex items-center gap-2.5 text-[13px]">
+            <i class="fa-solid fa-xmark cross-icon text-xs"></i>
+            <span class="text-neutral-700">Priority support</span>
+          </div>
+          <div class="flex items-center gap-2.5 text-[13px]">
+            <i class="fa-solid fa-xmark cross-icon text-xs"></i>
+            <span class="text-neutral-700">Early access to new games</span>
+          </div>
+        </div>
+        <button id="btn-free" onclick="selectPlan('free')"
+          class="w-full py-2.5 rounded-xl border border-white/[0.1] bg-white/[0.04] text-neutral-400 text-sm font-semibold hover:bg-white/[0.08] transition-all">
+          Current Plan
+        </button>
+      </div>
+
+      <!-- Pro -->
+      <div class="pricing-card pricing-popular rounded-2xl border border-blue-500/30 bg-white/[0.02] p-6 relative">
+        <div class="popular-badge absolute -top-3 left-1/2 -translate-x-1/2 px-3 py-0.5 rounded-full bg-blue-600 text-white text-[10px] font-bold uppercase tracking-wider">
+          Most Popular
+        </div>
+        <div class="mb-5">
+          <div class="flex items-center gap-2 mb-1">
+            <i class="fa-solid fa-bolt text-blue-400"></i>
+            <span class="text-sm font-bold text-blue-400">Pro</span>
+          </div>
+          <div class="flex items-baseline gap-1 mb-1">
+            <span class="text-3xl font-extrabold text-white">$4.99</span>
+            <span class="text-neutral-700 text-sm">/mo</span>
+          </div>
+          <p class="text-xs text-neutral-600">For regular gamers</p>
+        </div>
+        <div class="space-y-2.5 mb-6">
+          <div class="flex items-center gap-2.5 text-[13px]">
+            <i class="fa-solid fa-check check-icon text-xs"></i>
+            <span class="text-neutral-300"><strong class="text-white">500</strong> downloads/month</span>
+          </div>
+          <div class="flex items-center gap-2.5 text-[13px]">
+            <i class="fa-solid fa-check check-icon text-xs"></i>
+            <span class="text-neutral-300">Game + DLC zip bundles</span>
+          </div>
+          <div class="flex items-center gap-2.5 text-[13px]">
+            <i class="fa-solid fa-check check-icon text-xs"></i>
+            <span class="text-neutral-300">Steam profile lookup</span>
+          </div>
+          <div class="flex items-center gap-2.5 text-[13px]">
+            <i class="fa-solid fa-check check-icon text-xs"></i>
+            <span class="text-neutral-300">1,000+ game database</span>
+          </div>
+          <div class="flex items-center gap-2.5 text-[13px]">
+            <i class="fa-solid fa-check check-icon text-xs"></i>
+            <span class="text-neutral-300">Priority support</span>
+          </div>
+          <div class="flex items-center gap-2.5 text-[13px]">
+            <i class="fa-solid fa-xmark cross-icon text-xs"></i>
+            <span class="text-neutral-700">Early access to new games</span>
+          </div>
+        </div>
+        <button id="btn-pro" onclick="selectPlan('pro')"
+          class="w-full py-2.5 rounded-xl bg-blue-600 hover:bg-blue-500 text-white text-sm font-bold transition-all shadow-lg shadow-blue-500/20">
+          <i class="fa-solid fa-bolt text-xs mr-1"></i> Upgrade to Pro
+        </button>
+      </div>
+
+      <!-- Master -->
+      <div class="pricing-card pricing-master rounded-2xl border border-amber-500/20 bg-white/[0.02] p-6 relative">
+        <div class="mb-5">
+          <div class="flex items-center gap-2 mb-1">
+            <i class="fa-solid fa-crown text-amber-400"></i>
+            <span class="text-sm font-bold text-amber-400">Master</span>
+          </div>
+          <div class="flex items-baseline gap-1 mb-1">
+            <span class="text-3xl font-extrabold text-white">$9.99</span>
+            <span class="text-neutral-700 text-sm">/mo</span>
+          </div>
+          <p class="text-xs text-neutral-600">Unlimited power</p>
+        </div>
+        <div class="space-y-2.5 mb-6">
+          <div class="flex items-center gap-2.5 text-[13px]">
+            <i class="fa-solid fa-check check-icon text-xs"></i>
+            <span class="text-neutral-300"><strong class="text-white">2,000</strong> downloads/month</span>
+          </div>
+          <div class="flex items-center gap-2.5 text-[13px]">
+            <i class="fa-solid fa-check check-icon text-xs"></i>
+            <span class="text-neutral-300">Game + DLC zip bundles</span>
+          </div>
+          <div class="flex items-center gap-2.5 text-[13px]">
+            <i class="fa-solid fa-check check-icon text-xs"></i>
+            <span class="text-neutral-300">Steam profile lookup</span>
+          </div>
+          <div class="flex items-center gap-2.5 text-[13px]">
+            <i class="fa-solid fa-check check-icon text-xs"></i>
+            <span class="text-neutral-300">1,000+ game database</span>
+          </div>
+          <div class="flex items-center gap-2.5 text-[13px]">
+            <i class="fa-solid fa-check check-icon text-xs"></i>
+            <span class="text-neutral-300">Priority support</span>
+          </div>
+          <div class="flex items-center gap-2.5 text-[13px]">
+            <i class="fa-solid fa-check check-icon text-xs"></i>
+            <span class="text-neutral-300">Early access to new games</span>
+          </div>
+        </div>
+        <button id="btn-master" onclick="selectPlan('master')"
+          class="w-full py-2.5 rounded-xl bg-amber-500 hover:bg-amber-400 text-black text-sm font-bold transition-all shadow-lg shadow-amber-500/20">
+          <i class="fa-solid fa-crown text-xs mr-1"></i> Upgrade to Master
+        </button>
+      </div>
+    </div>
+
+    <!-- FAQ -->
+    <div class="max-w-2xl mx-auto">
+      <h2 class="text-lg font-bold text-white mb-5 text-center">Frequently Asked Questions</h2>
+      <div class="space-y-3">
+        <details class="group rounded-xl border border-white/[0.06] bg-white/[0.02] overflow-hidden">
+          <summary class="px-4 py-3 text-sm font-semibold text-neutral-300 cursor-pointer flex items-center justify-between hover:bg-white/[0.02] transition-colors">
+            How do downloads reset?
+            <i class="fa-solid fa-chevron-down text-[10px] text-neutral-700 group-open:rotate-180 transition-transform"></i>
+          </summary>
+          <div class="px-4 pb-3 text-xs text-neutral-500 leading-relaxed">Your download count resets on the 1st of every month. Unused downloads don't roll over.</div>
+        </details>
+        <details class="group rounded-xl border border-white/[0.06] bg-white/[0.02] overflow-hidden">
+          <summary class="px-4 py-3 text-sm font-semibold text-neutral-300 cursor-pointer flex items-center justify-between hover:bg-white/[0.02] transition-colors">
+            Can I cancel anytime?
+            <i class="fa-solid fa-chevron-down text-[10px] text-neutral-700 group-open:rotate-180 transition-transform"></i>
+          </summary>
+          <div class="px-4 pb-3 text-xs text-neutral-500 leading-relaxed">Yes! Cancel anytime and you'll keep access until the end of your billing period. No questions asked.</div>
+        </details>
+        <details class="group rounded-xl border border-white/[0.06] bg-white/[0.02] overflow-hidden">
+          <summary class="px-4 py-3 text-sm font-semibold text-neutral-300 cursor-pointer flex items-center justify-between hover:bg-white/[0.02] transition-colors">
+            What payment methods do you accept?
+            <i class="fa-solid fa-chevron-down text-[10px] text-neutral-700 group-open:rotate-180 transition-transform"></i>
+          </summary>
+          <div class="px-4 pb-3 text-xs text-neutral-500 leading-relaxed">We accept all major credit cards, PayPal, and cryptocurrency through our secure payment portal.</div>
+        </details>
+        <details class="group rounded-xl border border-white/[0.06] bg-white/[0.02] overflow-hidden">
+          <summary class="px-4 py-3 text-sm font-semibold text-neutral-300 cursor-pointer flex items-center justify-between hover:bg-white/[0.02] transition-colors">
+            What happens if I hit my limit?
+            <i class="fa-solid fa-chevron-down text-[10px] text-neutral-700 group-open:rotate-180 transition-transform"></i>
+          </summary>
+          <div class="px-4 pb-3 text-xs text-neutral-500 leading-relaxed">You'll see an upgrade prompt. You can upgrade instantly to continue downloading, or wait until your limit resets next month.</div>
+        </details>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="fixed bottom-0 left-0 right-0 z-10 py-2.5 bg-[#080808]/80 backdrop-blur-xl border-t border-white/[0.04]">
+    <div class="max-w-5xl mx-auto px-4 flex flex-wrap items-center justify-center gap-x-5 gap-y-1 text-[11px] text-neutral-700">
+      <span><i class="fa-solid fa-ghost text-neutral-800 text-[9px] mr-1"></i>&copy; 2026 GhostLua</span>
+      <a href="privacy.html" class="hover:text-neutral-400 transition-colors">Privacy</a>
+      <a href="tos.html" class="hover:text-neutral-400 transition-colors">Terms</a>
+      <a href="https://github.com/dexy22222/ghostlua" target="_blank" class="hover:text-neutral-400 transition-colors flex items-center gap-1">
+        <i class="fa-brands fa-github text-[10px]"></i>GitHub
+      </a>
+    </div>
+  </footer>
+
+  <!-- Generic Modal (for upgrade prompt) -->
+  <div id="generic-modal" class="hidden fixed inset-0 z-50 flex items-center justify-center p-4">
+    <div class="absolute inset-0 bg-black/75 backdrop-blur-md" onclick="hideModal()"></div>
+    <div class="modal-card relative w-full max-w-md rounded-2xl p-6 z-10 max-h-[80vh] overflow-y-auto">
+      <h2 id="modal-title" class="text-base font-bold text-white mb-3"></h2>
+      <div id="modal-content" class="text-neutral-400 text-sm leading-relaxed"></div>
+      <button onclick="hideModal()" class="mt-5 w-full h-10 bg-neutral-900/80 hover:bg-neutral-800/80 rounded-xl text-neutral-300 text-sm transition-colors font-medium border border-neutral-800">Close</button>
+    </div>
+  </div>
+
+  <script src="js/tiers.js"></script>
+  <script>
+    function hideModal() { document.getElementById('generic-modal').classList.add('hidden'); }
+
+    function selectPlan(plan) {
+      if (plan === 'free') return;
+      // For now, show a message — replace with Stripe/payment link later
+      document.getElementById('modal-title').textContent = 'Upgrade to ' + plan.charAt(0).toUpperCase() + plan.slice(1);
+      document.getElementById('modal-content').innerHTML = `
+        <div class="text-center">
+          <div class="inline-flex items-center justify-center w-14 h-14 rounded-2xl mb-3
+            ${plan === 'pro' ? 'bg-blue-500/10 border border-blue-500/20' : 'bg-amber-500/10 border border-amber-500/20'}">
+            <i class="fa-solid ${plan === 'pro' ? 'fa-bolt text-blue-400' : 'fa-crown text-amber-400'} text-xl"></i>
+          </div>
+          <p class="text-neutral-300 text-sm mb-4">Payment integration coming soon!</p>
+          <p class="text-neutral-600 text-xs mb-4">Join our Discord to get early access to paid plans and receive a promo code.</p>
+          <a href="https://discord.gg/ghostlua" target="_blank"
+            class="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-[#5865F2] hover:bg-[#4752C4] text-white text-sm font-bold transition-colors">
+            <i class="fa-brands fa-discord"></i> Join Discord
+          </a>
+        </div>`;
+      document.getElementById('generic-modal').classList.remove('hidden');
+    }
+
+    // Update plan bar on load
+    document.addEventListener('DOMContentLoaded', () => {
+      const info = getTierInfo();
+      document.getElementById('plan-bar-name').textContent = info.name;
+      document.getElementById('plan-bar-usage').textContent = `${info.used} / ${info.limit} downloads`;
+      document.getElementById('plan-bar-progress').style.width = info.percentage + '%';
+      document.getElementById('plan-bar-progress').style.background = info.color;
+      document.getElementById('plan-bar-icon').className = `fa-solid ${TIERS[info.id].icon} text-sm`;
+      document.getElementById('plan-bar-icon').style.color = info.color;
+
+      // Update buttons based on current plan
+      const tier = getUserTier();
+      if (tier === 'pro') {
+        document.getElementById('btn-free').textContent = 'Downgrade';
+        document.getElementById('btn-pro').innerHTML = '<i class="fa-solid fa-check text-xs mr-1"></i> Current Plan';
+        document.getElementById('btn-pro').classList.replace('bg-blue-600', 'bg-white/[0.04]');
+        document.getElementById('btn-pro').classList.replace('hover:bg-blue-500', 'hover:bg-white/[0.08]');
+        document.getElementById('btn-pro').classList.replace('text-white', 'text-neutral-400');
+      } else if (tier === 'master') {
+        document.getElementById('btn-free').textContent = 'Downgrade';
+        document.getElementById('btn-pro').textContent = 'Downgrade';
+        document.getElementById('btn-master').innerHTML = '<i class="fa-solid fa-check text-xs mr-1"></i> Current Plan';
+        document.getElementById('btn-master').classList.replace('bg-amber-500', 'bg-white/[0.04]');
+        document.getElementById('btn-master').classList.replace('hover:bg-amber-400', 'hover:bg-white/[0.08]');
+        document.getElementById('btn-master').classList.replace('text-black', 'text-neutral-400');
+      }
+    });
+  </script>
+</body>
+</html>

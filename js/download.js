@@ -172,6 +172,13 @@ function openDownloadModal(appId, name, info, size, tags) {
   document.getElementById('download-modal').classList.remove('hidden');
   document.getElementById('search-results').classList.add('hidden');
 
+  // Show tier usage bar
+  const tierBar = document.getElementById('dl-tier-bar');
+  if (tierBar && typeof getTierInfo === 'function') {
+    tierBar.classList.remove('hidden');
+    if (typeof _updateTierBadges === 'function') _updateTierBadges();
+  }
+
   _resetAlertBox();
   _setGameSeo(appId, name);
   window.trackEvent?.('game_opened', { appId, has_tags: !!(tags && tags.length) });
@@ -213,7 +220,8 @@ async function subscribeGameAlert(ev) {
 
     if (!res.ok || !data.ok) throw new Error(data.error || 'Unable to save alert');
 
-    _setAlertStatus(data.existing ? 'You are already subscribed for this game.' : 'Alert saved. We will notify you about updates.', true);
+    _setAlertStatus(data.existing ? 'You\'re already subscribed for this game.' : 'Subscribed! We\'ll email you when this game is updated.', true);
+    if (emailEl) emailEl.disabled = true;
     window.trackEvent?.('alert_subscribed', { appId, existing: !!data.existing });
   } catch (err) {
     _setAlertStatus(err.message || 'Failed to save alert.');
@@ -228,6 +236,13 @@ async function subscribeGameAlert(ev) {
 
 async function startDownload() {
   if (!window.currentDownloadGame) return;
+
+  // Tier limit check
+  if (typeof canDownload === 'function' && !canDownload()) {
+    showUpgradePrompt();
+    return;
+  }
+
   const { appId, name } = window.currentDownloadGame;
   window.trackEvent?.('download_started', { appId });
 
@@ -316,6 +331,9 @@ async function startDownload() {
       const doneEl = document.getElementById('dl-done');
       if (doneEl) doneEl.style.display = 'block';
     }, 400);
+
+    // Track download against tier limit
+    if (typeof incrementDownloadCount === 'function') incrementDownloadCount();
 
     window.trackEvent?.('download_completed', { appId, dlc_count: dlcIds.length });
   } catch (err) {

@@ -11,3 +11,13 @@ binding = "AI"
 
 [vars]
 STEAM_API_KEY = ""
+
+# Uncomment and create these KV namespaces to enable persistence:
+# wrangler kv namespace create ALERTS_KV
+# wrangler kv namespace create ANALYTICS_KV
+# [[kv_namespaces]]
+# binding = "ALERTS_KV"
+# id = "your-kv-id-here"
+# [[kv_namespaces]]
+# binding = "ANALYTICS_KV"
+# id = "your-kv-id-here"
