@@ -1,7 +1,7 @@
 // ── Game chart data ───────────────────────────────────────────────────────────
 // AppIDs verified against Steam store (store.steampowered.com/app/APPID)
 let topGames = [
-  { rank: '#1',  name: 'Wallpaper Engine',            downloads: '1,429 downloads', appId: 431960,  size: '0.4 GB',   tags: [] },
+  { rank: '#1',  name: 'Wallpaper Engine',            downloads: '1,429 downloads', appId: 431960,  size: '0.4 GB',   tags: ['Workshop'] },
   { rank: '#2',  name: 'Resident Evil 4',             downloads: '1,223 downloads', appId: 2050650, size: '67.5 GB',  tags: ['Online Fix'] },
   { rank: '#3',  name: 'Red Dead Redemption 2',       downloads: '768 downloads',   appId: 1174180, size: '120.5 GB', tags: ['Online Fix'] },
   { rank: '#4',  name: 'Geometry Dash',               downloads: '737 downloads',   appId: 322170,  size: '0.2 GB',   tags: [] },
@@ -10,24 +10,38 @@ let topGames = [
   { rank: '#7',  name: "Marvel's Spider-Man 2",       downloads: '564 downloads',   appId: 2651280, size: '69.5 GB',  tags: [] },
   { rank: '#8',  name: 'Schedule I',                  downloads: '555 downloads',   appId: 3164500, size: '3.1 GB',   tags: [] },
   { rank: '#9',  name: 'Poppy Playtime - Chapter 4',  downloads: '505 downloads',   appId: 3008670, size: '12.4 GB',  tags: [] },
+  { rank: '#10', name: "Baldur's Gate 3",             downloads: '489 downloads',   appId: 1086940, size: '150.0 GB', tags: [] },
+  { rank: '#11', name: 'Hogwarts Legacy',             downloads: '452 downloads',   appId: 990080,  size: '85.0 GB',  tags: [] },
+  { rank: '#12', name: 'Palworld',                    downloads: '431 downloads',   appId: 1623730, size: '20.0 GB',  tags: ['Online Fix'] },
+  { rank: '#13', name: 'Cities: Skylines II',         downloads: '398 downloads',   appId: 949230,  size: '60.0 GB',  tags: ['Workshop'] },
+  { rank: '#14', name: 'Black Myth: Wukong',          downloads: '376 downloads',   appId: 2358720, size: '130.0 GB', tags: [] },
+  { rank: '#15', name: 'Cyberpunk 2077',              downloads: '361 downloads',   appId: 1091500, size: '70.0 GB',  tags: [] },
 ];
 
 let trendingGames = [
-  { rank: '#1', name: 'Slay the Spire 2',   downloads: '↑ Trending', appId: 2868840, size: '2.5 GB',  tags: ['Online Fix', 'Workshop'] },
-  { rank: '#2', name: 'Elden Ring',         downloads: '↑ Trending', appId: 1245620, size: '60.0 GB', tags: ['Online Fix'] },
-  { rank: '#3', name: 'Hades II',           downloads: '↑ Trending', appId: 1145350, size: '5.0 GB',  tags: [] },
-  { rank: '#4', name: 'Rust',               downloads: '↑ Trending', appId: 252490,  size: '12.0 GB', tags: ['Online Fix'] },
-  { rank: '#5', name: 'Sons of the Forest', downloads: '↑ Trending', appId: 1326470, size: '20.0 GB', tags: ['Online Fix'] },
-  { rank: '#6', name: 'Cyberpunk 2077',     downloads: '↑ Trending', appId: 1091500, size: '70.0 GB', tags: [] },
+  { rank: '#1', name: 'Slay the Spire 2',        downloads: '↑ Trending', appId: 2868840, size: '2.5 GB',   tags: ['Online Fix', 'Workshop'] },
+  { rank: '#2', name: 'Elden Ring',               downloads: '↑ Trending', appId: 1245620, size: '60.0 GB',  tags: ['Online Fix'] },
+  { rank: '#3', name: 'Hades II',                 downloads: '↑ Trending', appId: 1145350, size: '5.0 GB',   tags: [] },
+  { rank: '#4', name: 'Rust',                     downloads: '↑ Trending', appId: 252490,  size: '12.0 GB',  tags: ['Online Fix'] },
+  { rank: '#5', name: 'Sons of the Forest',       downloads: '↑ Trending', appId: 1326470, size: '20.0 GB',  tags: ['Online Fix'] },
+  { rank: '#6', name: 'Black Myth: Wukong',       downloads: '↑ Trending', appId: 2358720, size: '130.0 GB', tags: [] },
+  { rank: '#7', name: 'Manor Lords',              downloads: '↑ Trending', appId: 1363080, size: '16.0 GB',  tags: [] },
+  { rank: '#8', name: 'Hollow Knight: Silksong',  downloads: '↑ Trending', appId: 1030300, size: '10.0 GB',  tags: [] },
+  { rank: '#9', name: 'Dead by Daylight',         downloads: '↑ Trending', appId: 381210,  size: '50.0 GB',  tags: ['Online Fix'] },
+  { rank: '#10', name: 'Satisfactory',            downloads: '↑ Trending', appId: 526870,  size: '15.0 GB',  tags: ['Online Fix'] },
 ];
 
 let recentlyAdded = [
-  { name: 'Schedule I',                appId: 3164500, addedDate: '2026-03-14', downloads: 555, tags: [] },
-  { name: 'Poppy Playtime - Chapter 4',appId: 3008670, addedDate: '2026-03-12', downloads: 505, tags: [] },
-  { name: 'Slay the Spire 2',          appId: 2868840, addedDate: '2026-03-10', downloads: 420, tags: ['Online Fix'] },
-  { name: "Marvel's Spider-Man 2",     appId: 2651280, addedDate: '2026-03-08', downloads: 564, tags: [] },
-  { name: 'Hades II',                  appId: 1145350, addedDate: '2026-03-05', downloads: 380, tags: [] },
-  { name: 'Sons of the Forest',        appId: 1326470, addedDate: '2026-03-01', downloads: 312, tags: ['Online Fix'] },
+  { name: 'Schedule I',                 appId: 3164500, addedDate: '2026-03-14', downloads: 555, tags: [] },
+  { name: 'Poppy Playtime - Chapter 4', appId: 3008670, addedDate: '2026-03-12', downloads: 505, tags: [] },
+  { name: 'Slay the Spire 2',           appId: 2868840, addedDate: '2026-03-10', downloads: 420, tags: ['Online Fix'] },
+  { name: "Marvel's Spider-Man 2",      appId: 2651280, addedDate: '2026-03-08', downloads: 564, tags: [] },
+  { name: 'Hades II',                   appId: 1145350, addedDate: '2026-03-05', downloads: 380, tags: [] },
+  { name: 'Sons of the Forest',         appId: 1326470, addedDate: '2026-03-01', downloads: 312, tags: ['Online Fix'] },
+  { name: 'Manor Lords',                appId: 1363080, addedDate: '2026-02-25', downloads: 287, tags: [] },
+  { name: 'Black Myth: Wukong',         appId: 2358720, addedDate: '2026-02-20', downloads: 376, tags: [] },
+  { name: 'Satisfactory',               appId: 526870,  addedDate: '2026-02-15', downloads: 245, tags: ['Online Fix'] },
+  { name: 'Dead by Daylight',           appId: 381210,  addedDate: '2026-02-10', downloads: 198, tags: ['Online Fix'] },
 ];
 
 // Expose to other modules
@@ -225,6 +239,11 @@ function _updateChartLive() {
 }
 
 // ── Load full game database ───────────────────────────────────────────────────
+function _updateStatCount(count) {
+  const statEl = document.getElementById('stat-games');
+  if (statEl) statEl.textContent = count.toLocaleString();
+}
+
 async function _loadGameDatabase() {
   const el = document.getElementById('db-count');
   try {
@@ -232,12 +251,14 @@ async function _loadGameDatabase() {
     const data = await res.json();
     window.allGames = data;
     if (el) el.textContent = `${data.length.toLocaleString()} games`;
+    _updateStatCount(data.length);
     window.openGameFromQuery?.();
   } catch {
     try {
       const res  = await fetch('/data/stats.json');
       const data = await res.json();
       if (el && data.totalGames) el.textContent = `${data.totalGames.toLocaleString()} games`;
+      if (data.totalGames) _updateStatCount(data.totalGames);
       window.openGameFromQuery?.();
     } catch {
       if (el) {

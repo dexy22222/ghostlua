@@ -64,33 +64,41 @@ function _resetAlertBox() {
   }
 }
 
-/** Fetch .lua bodies from Worker (/api/lua/file); supports optional upstream template server-side. */
-async function _fetchLuaBodies(appIds, mainGameName, onProgress) {
-  const batchSize = 12;
-  const out = new Array(appIds.length);
-  for (let i = 0; i < appIds.length; i += batchSize) {
-    const slice = appIds.slice(i, i + batchSize);
-    const chunk = await Promise.all(
-      slice.map(async (id, j) => {
-        const globalIdx = i + j;
-        const q =
-          globalIdx === 0 && mainGameName
-            ? `appid=${id}&name=${encodeURIComponent(mainGameName)}`
-            : `appid=${id}`;
-        const res = await fetch(`/api/lua/file?${q}`, {
-          signal: AbortSignal.timeout(20000),
-        });
-        if (!res.ok) throw new Error('Lua fetch failed');
-        return res.text();
-      })
-    );
-    chunk.forEach((text, j) => {
-      out[i + j] = text;
-    });
-    const done = i + slice.length;
-    if (typeof onProgress === 'function') onProgress(done, appIds.length);
+/** Generate a single .lua file containing addappid() calls for game + all DLCs */
+function _generateLuaContent(appId, name, dlcIds) {
+  const now = new Date().toISOString().split('T')[0];
+  const safeName = name ? String(name).trim().slice(0, 200) : `Steam App ${appId}`;
+  const totalItems = 1 + dlcIds.length;
+
+  const lines = [];
+  lines.push('-- ═══════════════════════════════════════════════════════════');
+  lines.push(`-- GhostLua — ${safeName}`);
+  lines.push('-- ═══════════════════════════════════════════════════════════');
+  lines.push(`-- AppID:      ${appId}`);
+  lines.push(`-- Generated:  ${now}`);
+  lines.push(`-- Items:      ${totalItems} (1 game + ${dlcIds.length} DLC${dlcIds.length !== 1 ? 's' : ''})`);
+  lines.push(`-- Source:     ghostlua.com`);
+  lines.push('--');
+  lines.push('-- Usage: Drag this file onto the floating SteamTools icon,');
+  lines.push('--        then restart Steam (right-click icon → Restart).');
+  lines.push('-- ═══════════════════════════════════════════════════════════');
+  lines.push('');
+  lines.push(`-- Main game: ${safeName}`);
+  lines.push(`addappid(${appId}, 1, "")`);
+
+  if (dlcIds.length > 0) {
+    lines.push('');
+    lines.push(`-- DLC (${dlcIds.length} items)`);
+    for (const dlc of dlcIds) {
+      lines.push(`addappid(${dlc}, 1, "")`);
+    }
   }
-  return out;
+
+  lines.push('');
+  lines.push('-- End of file');
+  lines.push('');
+
+  return lines.join('\n');
 }
 
 // Entry point - called when user clicks a game
@@ -131,7 +139,7 @@ function _setModalState(state) {
     if (btn) {
       btn.style.display = 'flex';
       btn.disabled = false;
-      btn.innerHTML = '<i class="fa-solid fa-file-zipper text-xs"></i> Download .zip';
+      btn.innerHTML = '<i class="fa-solid fa-file-code text-xs"></i> Download .lua';
     }
   }
 }
@@ -178,7 +186,7 @@ function openDownloadModal(appId, name, info, size, tags) {
   const dlCount = (info || '').replace(' downloads', '').replace('Trending', '').trim();
   let meta = `AppID: ${appId}`;
   if (size) meta += ` · ${size}`;
-  if (dlCount && /^\d/.test(dlCount)) meta += ` · ?${dlCount}`;
+  if (dlCount && /^\d/.test(dlCount)) meta += ` · ↓${dlCount}`;
   document.getElementById('dl-appid').textContent = meta;
 
   const tagsEl = document.getElementById('dl-tags');
@@ -263,6 +271,7 @@ async function subscribeGameAlert(ev) {
   }
 }
 
+/** Download a single .lua file (game + all DLCs combined). No zip needed. */
 async function startDownload() {
   if (!window.currentDownloadGame) return;
 
@@ -294,7 +303,7 @@ async function startDownload() {
   }
 
   try {
-    setProgress(10, 'Fetching DLC list from Steam...');
+    setProgress(15, 'Fetching DLC list from Steam...');
 
     // Fetch DLC list from our Worker endpoint
     let dlcIds = [];
@@ -320,34 +329,27 @@ async function startDownload() {
       } catch (_) {}
     }
 
-    const allIds = [appId, ...dlcIds];
-    setProgress(32, `Found ${dlcIds.length} DLC(s). Fetching scripts...`);
-    const luaBodies = await _fetchLuaBodies(allIds, name, (done, total) => {
-      const pct = 32 + Math.floor((done / total) * 38);
-      setProgress(pct, `Fetching scripts (${done}/${total})...`);
-    });
+    setProgress(50, `Found ${dlcIds.length} DLC(s). Generating lua...`);
 
-    const zip = new JSZip();
-    for (let i = 0; i < allIds.length; i++) {
-      zip.file(`${allIds[i]}.lua`, luaBodies[i]);
-    }
+    // Generate a single combined .lua file
+    const luaContent = _generateLuaContent(appId, name, dlcIds);
 
-    setProgress(75, 'Compressing...');
-    const zipBlob = await zip.generateAsync({ type: 'blob', compression: 'DEFLATE' });
+    setProgress(80, 'Preparing download...');
+    await new Promise(r => setTimeout(r, 100));
 
-    setProgress(95, 'Starting download...');
-    await new Promise(r => setTimeout(r, 150));
-
-    const dlUrl = URL.createObjectURL(zipBlob);
+    // Download as a single .lua file (no zip)
+    const blob = new Blob([luaContent], { type: 'text/plain;charset=utf-8' });
+    const dlUrl = URL.createObjectURL(blob);
     const a = document.createElement('a');
     a.style.cssText = 'position:fixed;top:-200px;left:-200px;';
     a.href = dlUrl;
-    a.setAttribute('download', `${appId}.zip`);
+    a.setAttribute('download', `${appId}.lua`);
     document.body.appendChild(a);
     a.click();
     setTimeout(() => { if (a.parentNode) document.body.removeChild(a); URL.revokeObjectURL(dlUrl); }, 10000);
 
-    setProgress(100, `Done! ${1 + dlcIds.length} file(s) in zip.`);
+    const totalItems = 1 + dlcIds.length;
+    setProgress(100, `Done! ${totalItems} item${totalItems !== 1 ? 's' : ''} in .lua file.`);
     if (statusIcon) statusIcon.className = 'fa-solid fa-circle-check text-emerald-400';
     setTimeout(() => {
       if (statusEl) statusEl.style.display = 'none';
@@ -370,6 +372,7 @@ async function startDownload() {
   }
 }
 
+/** Batch download — multiple games as separate .lua files in a zip (requires Pro/Master) */
 async function downloadBatchZip() {
   if (window.selectedGames.size === 0) {
     alert('No games selected for batch download');
@@ -397,46 +400,42 @@ async function downloadBatchZip() {
 
     if (btn) {
       btn.disabled = true;
-      btn.innerHTML = '<i class="fa-solid fa-spinner animate-spin text-xs"></i> Creating zip...';
+      btn.innerHTML = '<i class="fa-solid fa-spinner animate-spin text-xs"></i> Generating lua files...';
     }
     if (headerBtn) {
       headerBtn.disabled = true;
-      headerBtn.innerHTML = '<i class="fa-solid fa-spinner animate-spin text-xs"></i> Creating zip...';
+      headerBtn.innerHTML = '<i class="fa-solid fa-spinner animate-spin text-xs"></i> Generating...';
     }
 
+    // Fetch details + DLCs for each game, then generate lua files
     const gameData = await Promise.all(
       appIds.map(async (appId) => {
+        let gameName = `Steam App ${appId}`;
+        let dlcIds = [];
         try {
           const response = await fetch(`/api/steam/appdetails?appid=${appId}`, {
             signal: AbortSignal.timeout(10000),
           });
           const data = await response.json();
-          return {
-            appId,
-            name: data.name || `Steam App ${appId}`,
-          };
+          gameName = data.name || gameName;
+          dlcIds = Array.isArray(data.dlc) ? data.dlc : [];
         } catch (error) {
-          console.error(`Failed to fetch Steam details for AppID ${appId}:`, error);
-          return { appId, name: `Steam App ${appId}` };
+          console.error(`Failed to fetch details for AppID ${appId}:`, error);
         }
+        return { appId, name: gameName, dlcIds };
       })
     );
 
     const zip = new JSZip();
     const now = new Date().toISOString().split('T')[0];
 
-    for (const { appId, name: gameName } of gameData) {
-      const res = await fetch(
-        `/api/lua/file?appid=${appId}&name=${encodeURIComponent(gameName)}`,
-        { signal: AbortSignal.timeout(20000) }
-      );
-      if (!res.ok) throw new Error(`Lua fetch failed for ${appId}`);
-      const lua = await res.text();
-      zip.file(`${appId}.lua`, lua);
+    for (const { appId, name: gameName, dlcIds } of gameData) {
+      const luaContent = _generateLuaContent(appId, gameName, dlcIds);
+      zip.file(`${appId}.lua`, luaContent);
     }
 
     // Generate and download zip
-    const zipBlob = await zip.generateAsync({ type: 'blob' });
+    const zipBlob = await zip.generateAsync({ type: 'blob', compression: 'DEFLATE' });
     const url = URL.createObjectURL(zipBlob);
     const a = document.createElement('a');
     a.style.cssText = 'position:fixed;top:-200px;left:-200px;';
@@ -480,14 +479,14 @@ function updateBatchDownloadButton() {
   const btn = document.getElementById('batch-download-btn');
   const headerBtn = document.getElementById('header-batch-btn');
   const count = window.selectedGames.size;
-  
+
   if (btn) {
     btn.textContent = count > 0 ? `Download Selected (${count})` : 'Download Selected';
     btn.disabled = count === 0;
     btn.classList.toggle('opacity-50', count === 0);
     btn.classList.toggle('cursor-not-allowed', count === 0);
   }
-  
+
   if (headerBtn) {
     headerBtn.textContent = count > 0 ? `Download Selected (${count})` : 'Download Selected (0)';
     headerBtn.disabled = count === 0;

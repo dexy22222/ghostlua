@@ -154,7 +154,7 @@ const pages = {
         <div class="step-title">Search for the game you want to add to your Steam Library for free</div>
       </div></div>
       <div class="step"><div class="step-num">3</div><div class="step-body">
-        <div class="step-title">Click <strong>Download</strong> and follow the steps shown</div>
+        <div class="step-title">Click <strong>Download .lua</strong> — this downloads a single file containing the game + all its DLCs</div>
       </div></div>
 
       <h2>2. Open SteamTools and add the game</h2>
@@ -460,7 +460,7 @@ const pages = {
       ${faqItem("Can I download and play VR games using this?", "Yes.")}
 
       <div class="faq-section-title">Generator (GhostLua)</div>
-      ${faqItem("Why is there no zip file? Why is it just a single .lua file?", "That's completely normal, it's supposed to be like that. Just drag and drop that single file onto SteamTools.")}
+      ${faqItem("Why is there just a single .lua file?", "That's how it works! Each <code>.lua</code> file contains the game <strong>and</strong> all its DLCs. Just drag and drop that one file onto SteamTools.")}
       ${faqItem("What does DRM/Restrictions detected mean?", "That means that the game contains extra security measures, and there's no bypass for it available.")}
 
       <div class="faq-section-title">Troubleshooting</div>

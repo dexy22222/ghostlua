@@ -159,7 +159,7 @@
             <img src="images/ghost.svg" class="ghost-logo-img" alt="" width="40" height="40" fetchpriority="high" decoding="async" />GhostLua
           </h1>
         </div>
-        <p class="text-[11px] text-neutral-600 tracking-wide max-w-md text-center leading-relaxed px-2">Search Steam, pick a game, download a zip of Lua scripts for <span class="text-neutral-500">SteamTools</span></p>
+        <p class="text-[11px] text-neutral-600 tracking-wide max-w-md text-center leading-relaxed px-2">Search any Steam game, download a <code class="text-neutral-500">.lua</code> file, and drag it onto <span class="text-neutral-500">SteamTools</span></p>
         <div class="flex items-center gap-1.5 mt-0.5">
           <span class="db-badge">
             <i class="fa-solid fa-database text-[8px]"></i>
@@ -328,6 +328,94 @@
     </div>
     <!-- /charts -->
 
+    <!-- ── FEATURED GAME SPOTLIGHT ── -->
+    <div id="featured-game" class="card rounded-2xl overflow-hidden mt-6">
+      <div class="chart-panel-header">
+        <i class="fa-solid fa-fire text-[9px] text-amber-400"></i>
+        <span>Featured This Week</span>
+        <span class="ml-auto text-[9px] text-neutral-800 uppercase tracking-wider">EDITOR'S PICK</span>
+      </div>
+      <div class="p-4">
+        <button class="w-full flex items-center gap-4 group text-left"
+          onclick="quickDownload(2651280, 'Marvel\'s Spider-Man 2', '564 downloads', '69.5 GB', [])">
+          <div class="relative flex-shrink-0">
+            <img src="https://cdn.akamai.steamstatic.com/steam/apps/2651280/header.jpg" alt="Marvel's Spider-Man 2"
+              class="w-[180px] h-[84px] rounded-xl object-cover shadow-lg shadow-black/50"
+              onerror="this.style.opacity='0.15'" />
+            <div class="absolute inset-0 rounded-xl ring-1 ring-white/10"></div>
+          </div>
+          <div class="flex-1 min-w-0">
+            <div class="text-sm font-bold text-neutral-100 group-hover:text-white transition-colors">Marvel's Spider-Man 2</div>
+            <div class="text-[11px] text-neutral-600 mt-0.5">AppID: 2651280 · 69.5 GB</div>
+            <div class="text-[11px] text-neutral-500 mt-1.5 leading-relaxed">Swing through Marvel's New York as both Peter Parker and Miles Morales. All DLCs included in the download.</div>
+            <div class="mt-2">
+              <span class="inline-flex items-center gap-1.5 px-2.5 py-1 bg-white/[0.06] rounded-lg text-[10px] text-neutral-400 font-medium">
+                <i class="fa-solid fa-download text-[8px]"></i> Click to download .lua
+              </span>
+            </div>
+          </div>
+          <i class="fa-solid fa-chevron-right text-neutral-800 group-hover:text-neutral-500 text-xs flex-shrink-0 transition-colors"></i>
+        </button>
+      </div>
+    </div>
+
+    <!-- ── DISCORD + QUICK LINKS ── -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-6">
+      <!-- Discord -->
+      <a href="https://discord.gg/ghostlua" target="_blank" rel="noopener"
+        class="card rounded-2xl p-5 flex items-center gap-4 group hover:border-indigo-500/30 transition-all no-underline">
+        <div class="w-12 h-12 rounded-xl bg-indigo-500/10 border border-indigo-500/20 flex items-center justify-center flex-shrink-0">
+          <i class="fa-brands fa-discord text-indigo-400 text-xl"></i>
+        </div>
+        <div class="flex-1 min-w-0">
+          <div class="text-sm font-bold text-neutral-200 group-hover:text-white transition-colors">Join the Discord</div>
+          <div class="text-[11px] text-neutral-600 mt-0.5">Get promo codes, request games, and get support</div>
+        </div>
+        <i class="fa-solid fa-arrow-right text-neutral-700 group-hover:text-indigo-400 text-xs transition-colors"></i>
+      </a>
+      <!-- Quick links -->
+      <div class="card rounded-2xl p-5">
+        <div class="text-[10px] font-bold uppercase tracking-widest text-neutral-700 mb-3">Quick Links</div>
+        <div class="grid grid-cols-2 gap-2">
+          <a href="guide.html#installing" class="flex items-center gap-2 px-3 py-2 rounded-lg bg-white/[0.03] hover:bg-white/[0.06] transition-colors text-[11px] text-neutral-400 hover:text-neutral-200 no-underline">
+            <i class="fa-solid fa-wrench text-[9px] text-neutral-600"></i> Install SteamTools
+          </a>
+          <a href="guide.html#downloading" class="flex items-center gap-2 px-3 py-2 rounded-lg bg-white/[0.03] hover:bg-white/[0.06] transition-colors text-[11px] text-neutral-400 hover:text-neutral-200 no-underline">
+            <i class="fa-solid fa-download text-[9px] text-neutral-600"></i> How to Download
+          </a>
+          <a href="guide.html#faq" class="flex items-center gap-2 px-3 py-2 rounded-lg bg-white/[0.03] hover:bg-white/[0.06] transition-colors text-[11px] text-neutral-400 hover:text-neutral-200 no-underline">
+            <i class="fa-regular fa-circle-question text-[9px] text-neutral-600"></i> FAQ
+          </a>
+          <a href="guide.html#plans" class="flex items-center gap-2 px-3 py-2 rounded-lg bg-white/[0.03] hover:bg-white/[0.06] transition-colors text-[11px] text-amber-400/70 hover:text-amber-300 no-underline">
+            <i class="fa-solid fa-crown text-[9px] text-amber-500/50"></i> View Plans
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── STATS BAR ── -->
+    <div class="mt-6 flex flex-wrap items-center justify-center gap-6 text-center py-4 border-t border-b border-white/[0.04]">
+      <div>
+        <div class="text-lg font-extrabold text-neutral-200" id="stat-games">—</div>
+        <div class="text-[10px] text-neutral-700 uppercase tracking-wider">Games Available</div>
+      </div>
+      <div class="w-px h-8 bg-white/[0.06] hidden sm:block"></div>
+      <div>
+        <div class="text-lg font-extrabold text-neutral-200">100%</div>
+        <div class="text-[10px] text-neutral-700 uppercase tracking-wider">Free Downloads</div>
+      </div>
+      <div class="w-px h-8 bg-white/[0.06] hidden sm:block"></div>
+      <div>
+        <div class="text-lg font-extrabold text-neutral-200">Single .lua</div>
+        <div class="text-[10px] text-neutral-700 uppercase tracking-wider">Game + All DLCs</div>
+      </div>
+      <div class="w-px h-8 bg-white/[0.06] hidden sm:block"></div>
+      <div>
+        <div class="text-lg font-extrabold text-emerald-400">Online</div>
+        <div class="text-[10px] text-neutral-700 uppercase tracking-wider">Server Status</div>
+      </div>
+    </div>
+
   </main>
 
   <!-- Favorites Button -->
@@ -363,7 +451,7 @@
       <a href="https://github.com/dexy22222/ghostlua" target="_blank" class="hover:text-neutral-300 transition-colors flex items-center gap-1">
         <i class="fa-brands fa-github text-[11px]"></i>GitHub
       </a>
-      <span class="text-neutral-800 font-mono">Build 3.0.0</span>
+      <span class="text-neutral-800 font-mono">Build 4.0.0</span>
     </div>
   </footer>
 
@@ -467,15 +555,15 @@
           </div>
           <div class="dl-step-row">
             <span class="dl-step-num dl-step-active">2</span>
-            <div><span class="dl-step-title">Click download below</span><span class="dl-step-desc"> — saves a <code class="dl-code">.zip</code> with game + DLC luas</span></div>
+            <div><span class="dl-step-title">Click download below</span><span class="dl-step-desc"> — saves a single <code class="dl-code">.lua</code> file with game + all DLCs</span></div>
           </div>
           <div class="dl-step-row">
             <span class="dl-step-num">3</span>
-            <div><span class="dl-step-title">Drag onto SteamTools</span><span class="dl-step-desc"> — the floating Steam icon</span></div>
+            <div><span class="dl-step-title">Drag the .lua file onto SteamTools</span><span class="dl-step-desc"> — the floating Steam icon</span></div>
           </div>
           <div class="dl-step-row">
             <span class="dl-step-num">4</span>
-            <div><span class="dl-step-title">Restart Steam</span><span class="dl-step-desc"> — right-click → Restart</span></div>
+            <div><span class="dl-step-title">Restart Steam</span><span class="dl-step-desc"> — right-click icon → Restart Steam</span></div>
           </div>
         </div>
       </div>
@@ -497,7 +585,7 @@
       <!-- Done state -->
       <div id="dl-done" class="hidden mb-4 rounded-xl border border-white/[0.08] bg-white/[0.03] overflow-hidden">
         <div class="px-3.5 py-2.5 border-b border-white/[0.05] flex items-center gap-2">
-          <i class="fa-solid fa-circle-check text-neutral-300 text-[11px]"></i>
+          <i class="fa-solid fa-circle-check text-emerald-400 text-[11px]"></i>
           <span class="text-[11px] font-bold text-neutral-200">Downloaded! Follow these steps:</span>
         </div>
         <div class="px-3.5 py-3 space-y-2.5">
@@ -507,20 +595,23 @@
           </div>
           <div class="dl-step-row">
             <span class="dl-step-num dl-step-active">2</span>
-            <div><span class="dl-step-title text-neutral-200">Extract zip, drag .lua files</span><span class="dl-step-desc"> — onto the floating SteamTools icon</span></div>
+            <div><span class="dl-step-title text-neutral-200">Drag the .lua file</span><span class="dl-step-desc"> — onto the floating SteamTools icon</span></div>
           </div>
           <div class="dl-step-row">
             <span class="dl-step-num">3</span>
-            <div><span class="dl-step-title">Restart Steam</span><span class="dl-step-desc"> — right-click icon → Restart</span></div>
+            <div><span class="dl-step-title">Restart Steam</span><span class="dl-step-desc"> — right-click icon → Restart Steam</span></div>
           </div>
           <div class="dl-step-row">
             <span class="dl-step-num">4</span>
-            <div><span class="dl-step-title">Open Library</span><span class="dl-step-desc"> — game appears in your Steam Library</span></div>
+            <div><span class="dl-step-title">Open Library</span><span class="dl-step-desc"> — game + DLCs appear in your Steam Library</span></div>
           </div>
         </div>
-        <div class="px-3.5 pb-3">
+        <div class="px-3.5 pb-3 flex items-center gap-3">
           <a href="guide.html" class="inline-flex items-center gap-1.5 text-[11px] text-neutral-500 hover:text-neutral-300 transition-colors">
-            <i class="fa-solid fa-book-open text-[9px]"></i> Full installation guide
+            <i class="fa-solid fa-book-open text-[9px]"></i> Full guide
+          </a>
+          <a href="https://discord.gg/ghostlua" target="_blank" rel="noopener" class="inline-flex items-center gap-1.5 text-[11px] text-neutral-500 hover:text-neutral-300 transition-colors">
+            <i class="fa-brands fa-discord text-[9px]"></i> Need help? Join Discord
           </a>
         </div>
       </div>
@@ -539,13 +630,13 @@
       <!-- Download button -->
       <button id="dl-btn" onclick="startDownload()"
         class="dl-download-btn w-full h-11 flex items-center justify-center gap-2 bg-white hover:bg-neutral-200 active:bg-neutral-300 rounded-xl text-black font-bold transition-all text-sm shadow-lg hidden">
-        <i class="fa-solid fa-file-zipper text-xs"></i> Download .zip
+        <i class="fa-solid fa-file-code text-xs"></i> Download .lua
       </button>
       
       <!-- Batch download button -->
       <button id="batch-download-btn" onclick="downloadBatchZip()"
         class="w-full h-11 flex items-center justify-center gap-2 bg-blue-600 hover:bg-blue-700 active:bg-blue-800 rounded-xl text-white font-bold transition-all text-sm shadow-lg mt-2 opacity-50 cursor-not-allowed" disabled>
-        <i class="fa-solid fa-file-zipper text-xs"></i> Download Selected
+        <i class="fa-solid fa-layer-group text-xs"></i> Download Selected
       </button>
       
       <button onclick="hideDownloadModal()"
@@ -594,7 +685,7 @@
             <span class="welcome-step-num">2</span>
             <div>
               <div class="welcome-step-title">Download the <code class="welcome-code">.lua</code> file</div>
-              <div class="welcome-step-sub">Click the game → hit the Download button</div>
+              <div class="welcome-step-sub">Click the game → hit Download. One file for game + all DLCs.</div>
             </div>
           </div>
           <div class="welcome-step-row">
