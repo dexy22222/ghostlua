@@ -4,6 +4,12 @@
 
 const STEAM_BASE  = 'https://api.steampowered.com';
 const STEAM_STORE = 'https://store.steampowered.com';
+const CANONICAL_HOST = 'ghostlua.com';
+const REDIRECT_HOSTS = new Set([
+  'www.ghostlua.com',
+  'ghostlua.pages.dev',
+  'ghostlua.workers.dev',
+]);
 
 // ── Community in-memory store ─────────────────────────────────────────────────
 // Resets on new deployments. For persistence across deploys, bind a KV namespace
@@ -112,6 +118,14 @@ export default {
     const url    = new URL(request.url);
     const origin = request.headers.get('Origin') || '';
     const ip     = request.headers.get('CF-Connecting-IP') || 'unknown';
+    const host   = url.hostname.toLowerCase();
+
+    // Canonical domain enforcement.
+    if (REDIRECT_HOSTS.has(host)) {
+      url.protocol = 'https:';
+      url.host = CANONICAL_HOST;
+      return Response.redirect(url.toString(), 301);
+    }
 
     // CORS preflight
     if (request.method === 'OPTIONS') {

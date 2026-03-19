@@ -14,7 +14,7 @@ Free Steam Lua scripts — fast, clean, and easy.
    - **Root directory:** `.` (this folder)
 5. Click **Save and Deploy**
 
-The site is static — no build step required. It will be live at `https://ghostlua.pages.dev` (or your custom domain).
+The site is static — no build step required. Primary domain: `https://ghostlua.com`.
 
 ## Steam API (optional, for better profile search)
 
