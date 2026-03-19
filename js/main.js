@@ -226,22 +226,26 @@ function _updateChartLive() {
 
 // ── Load full game database ───────────────────────────────────────────────────
 async function _loadGameDatabase() {
+  const el = document.getElementById('db-count');
   try {
     const res  = await fetch('/data/games.json');
     const data = await res.json();
     window.allGames = data;
-    const el = document.getElementById('db-count');
     if (el) el.textContent = `${data.length.toLocaleString()} games`;
     window.openGameFromQuery?.();
   } catch {
-    // Fallback to stats.json if games.json unavailable
     try {
       const res  = await fetch('/data/stats.json');
       const data = await res.json();
-      const el   = document.getElementById('db-count');
       if (el && data.totalGames) el.textContent = `${data.totalGames.toLocaleString()} games`;
       window.openGameFromQuery?.();
-    } catch {}
+    } catch {
+      if (el) {
+        el.textContent = 'catalog unavailable';
+        el.classList.add('db-count-err');
+      }
+      window.openGameFromQuery?.();
+    }
   }
 }
 

@@ -154,6 +154,15 @@ function _resultMetaText(g) {
   return parts.join(' · ');
 }
 
+function _searchResultsListEl() {
+  return document.getElementById('search-results-list');
+}
+
+function _setSearchResultsExpanded(open) {
+  const input = document.getElementById('search-input');
+  if (input) input.setAttribute('aria-expanded', open ? 'true' : 'false');
+}
+
 function _renderResult(g) {
   const info = g.price || g.downloads || 'Catalog';
   return `
@@ -188,8 +197,12 @@ function onSearchInput(val) {
 
   const q = String(val || '').trim();
   const results = document.getElementById('search-results');
+  const listEl = _searchResultsListEl();
+
   if (!q) {
     results.classList.add('hidden');
+    _setSearchResultsExpanded(false);
+    if (listEl) listEl.innerHTML = '';
     return;
   }
 
@@ -200,10 +213,13 @@ function onSearchInput(val) {
   }
 
   results.classList.remove('hidden');
-  results.innerHTML = `
+  _setSearchResultsExpanded(true);
+  const loadingHtml = `
     <div class="px-4 py-3 text-xs text-neutral-500 flex items-center gap-2">
-      <i class="fa-solid fa-spinner animate-spin text-neutral-400 text-[10px]"></i> Searching Steam...
+      <i class="fa-solid fa-spinner animate-spin text-neutral-400 text-[10px]" aria-hidden="true"></i> Searching…
     </div>`;
+  if (listEl) listEl.innerHTML = loadingHtml;
+  else results.innerHTML = loadingHtml;
 
   searchTimeout = setTimeout(async () => {
     try {
@@ -211,15 +227,21 @@ function onSearchInput(val) {
       games = _applyFilters(games);
 
       if (!games.length) {
-        results.innerHTML = `
-          <div class="px-4 py-4 text-xs text-neutral-500 text-center">
-            No results for <strong class="text-neutral-400">"${q}"</strong>
+        const emptyHtml = `
+          <div class="px-4 py-4 text-xs text-neutral-500 text-center space-y-2">
+            <p>No results for <strong class="text-neutral-400">"${q.replace(/</g, '')}"</strong></p>
+            <p class="text-neutral-600">Try a shorter name, clear filters, or check spelling.</p>
+            <button type="button" onclick="resetFilters(); doSearch();" class="text-neutral-300 hover:underline font-medium">Reset filters &amp; search again</button>
           </div>`;
+        if (listEl) listEl.innerHTML = emptyHtml;
+        else results.innerHTML = emptyHtml;
         window.trackEvent?.('search_results', { query_length: q.length, count: 0 });
         return;
       }
 
-      results.innerHTML = games.map(_renderResult).join('');
+      const body = games.map(_renderResult).join('');
+      if (listEl) listEl.innerHTML = body;
+      else results.innerHTML = body;
       const fromCatalog = games.filter(g => g.source === 'catalog').length;
       window.trackEvent?.('search_results', {
         query_length: q.length,
@@ -227,12 +249,14 @@ function onSearchInput(val) {
         catalog_hits: fromCatalog,
       });
     } catch {
-      results.innerHTML = `
+      const errHtml = `
         <div class="px-4 py-3 text-xs text-neutral-500 text-center">
-          <i class="fa-solid fa-circle-exclamation text-neutral-400 mr-1.5"></i>
-          Search unavailable -
-          <button onclick="doSearch()" class="text-neutral-300 hover:underline">retry</button>
+          <i class="fa-solid fa-circle-exclamation text-neutral-400 mr-1.5" aria-hidden="true"></i>
+          Search unavailable —
+          <button type="button" onclick="doSearch()" class="text-neutral-300 hover:underline">Retry</button>
         </div>`;
+      if (listEl) listEl.innerHTML = errHtml;
+      else results.innerHTML = errHtml;
       window.trackEvent?.('search_error', { query_length: q.length });
     }
   }, 180);
@@ -257,7 +281,11 @@ function toggleFilter() {
   if (!panel) return;
   const isHidden = panel.classList.contains('hidden');
   panel.classList.toggle('hidden', !isHidden);
-  if (btn) btn.classList.toggle('text-neutral-300', isHidden);
+  const open = !panel.classList.contains('hidden');
+  if (btn) {
+    btn.classList.toggle('text-neutral-300', open);
+    btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+  }
 }
 
 function setFilter(type, val) {
@@ -305,15 +333,70 @@ function randomGame() {
 document.addEventListener('click', e => {
   const results = document.getElementById('search-results');
   const input = document.getElementById('search-input');
-  if (results && !results.contains(e.target) && e.target !== input) {
+  const filterBtn = document.getElementById('filter-toggle-btn');
+  const filterPanel = document.getElementById('filter-panel');
+  if (results && !results.contains(e.target) && e.target !== input && !input?.contains?.(e.target)) {
     results.classList.add('hidden');
+    _setSearchResultsExpanded(false);
+  }
+  if (
+    filterPanel &&
+    !filterPanel.classList.contains('hidden') &&
+    !filterPanel.contains(e.target) &&
+    e.target !== filterBtn &&
+    !filterBtn?.contains?.(e.target)
+  ) {
+    filterPanel.classList.add('hidden');
+    if (filterBtn) {
+      filterBtn.classList.remove('text-neutral-300');
+      filterBtn.setAttribute('aria-expanded', 'false');
+    }
   }
 });
 
 document.addEventListener('keydown', e => {
   if (e.key === 'Escape') {
+    const dl = document.getElementById('download-modal');
+    if (dl && !dl.classList.contains('hidden')) {
+      hideDownloadModal();
+      e.preventDefault();
+      return;
+    }
+    const gen = document.getElementById('generic-modal');
+    if (gen && !gen.classList.contains('hidden')) {
+      hideModal();
+      e.preventDefault();
+      return;
+    }
+    const welcome = document.getElementById('welcome-overlay');
+    if (welcome && !welcome.classList.contains('hidden') && typeof welcomeDone === 'function') {
+      welcomeDone();
+      e.preventDefault();
+      return;
+    }
+    const menu = document.getElementById('mobile-menu');
+    if (menu && !menu.classList.contains('hidden')) {
+      menu.classList.add('hidden');
+      const mb = document.getElementById('mobile-menu-btn');
+      if (mb) mb.setAttribute('aria-expanded', 'false');
+      e.preventDefault();
+      return;
+    }
     document.getElementById('search-results')?.classList.add('hidden');
+    _setSearchResultsExpanded(false);
     document.getElementById('search-input')?.blur();
+  }
+
+  if (e.key === '/' && !e.ctrlKey && !e.metaKey && !e.altKey) {
+    const t = e.target;
+    if (t.closest?.('input, textarea, [contenteditable="true"]')) return;
+    if (window.currentMode === 'profile') return;
+    e.preventDefault();
+    const si = document.getElementById('search-input');
+    if (si) {
+      si.focus();
+      si.select?.();
+    }
   }
 });
 

@@ -3,13 +3,21 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#080808" />
   <title>GhostLua - Steam Game Catalog</title>
-  <meta name="description" id="meta-description" content="Search the GhostLua Steam game catalog by AppID, title, tags, and size." />
+  <meta name="description" id="meta-description" content="Search Steam games by name or AppID, filter by tags and size, and download Lua zip bundles for SteamTools." />
   <link rel="canonical" id="canonical-link" href="https://ghostlua.com/" />
   <meta property="og:title" id="og-title" content="GhostLua - Steam Game Catalog" />
-  <meta property="og:description" id="og-description" content="Search games quickly and open detail views by AppID." />
+  <meta property="og:description" id="og-description" content="Search Steam games, browse top charts, and download Lua scripts for SteamTools." />
   <meta property="og:url" id="og-url" content="https://ghostlua.com/" />
   <meta property="og:type" content="website" />
+<<<<<<< Current (Your changes)
+=======
+  <meta property="og:image" content="https://ghostlua.com/images/ghost.svg" />
+  <link rel="dns-prefetch" href="https://cdn.akamai.steamstatic.com" />
+  <link rel="preconnect" href="https://cdn.akamai.steamstatic.com" crossorigin />
+  <link rel="preconnect" href="https://shared.akamai.steamstatic.com" crossorigin />
+>>>>>>> Incoming (Background Agent changes)
   <link rel="icon" type="image/png" href="images/ghost.svg" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
   <script src="https://cdn.tailwindcss.com"></script>
@@ -30,6 +38,8 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
 </head>
 <body class="min-h-screen font-sans relative text-neutral-100 antialiased">
+
+  <a href="#main-content" class="skip-to-content">Skip to catalog</a>
 
   <!-- Background -->
   <div class="fixed inset-0 bg-[#080808] pointer-events-none z-0"></div>
@@ -100,9 +110,10 @@
   <!-- Mobile Nav -->
   <div class="md:hidden fixed top-3 left-3 right-3 z-30">
     <div class="flex items-center justify-between gap-2">
-      <button onclick="toggleMobileMenu()"
+      <button type="button" onclick="toggleMobileMenu()" aria-expanded="false" aria-controls="mobile-menu" id="mobile-menu-btn"
         class="nav-pill flex items-center justify-center w-10 h-10 bg-neutral-900/80 rounded-xl border border-neutral-800/60">
-        <i class="fa-solid fa-bars text-neutral-400 text-sm"></i>
+        <i class="fa-solid fa-bars text-neutral-400 text-sm" aria-hidden="true"></i>
+        <span class="sr-only">Menu</span>
       </button>
       <div class="flex items-center gap-2">
         <div class="nav-pill flex items-center gap-1.5 bg-neutral-900/80 rounded-full px-3 h-9 border border-neutral-800/60">
@@ -114,7 +125,7 @@
         </div>
       </div>
     </div>
-    <div id="mobile-menu" class="hidden mt-2 flex flex-col gap-1">
+    <div id="mobile-menu" class="hidden mt-2 flex flex-col gap-1" role="navigation" aria-label="Mobile">
       <a href="guide.html" class="flex items-center h-10 gap-2.5 bg-neutral-900/90 backdrop-blur-xl rounded-xl px-4 border border-neutral-800/60 text-sm text-neutral-200 font-medium">
         <i class="fa-solid fa-book-open text-neutral-500 text-xs w-4 text-center"></i> Usage Guide
       </a>
@@ -139,7 +150,7 @@
   <!-- ═══════════════════════════════════════════════════
        MAIN DASHBOARD — centered hero + 3-column charts
   ═══════════════════════════════════════════════════ -->
-  <main class="relative w-full max-w-[1400px] mx-auto px-4 sm:px-6 pt-[5rem] pb-28 z-20">
+  <main id="main-content" class="relative w-full max-w-[1400px] mx-auto px-4 sm:px-6 pt-[5rem] pb-28 z-20" tabindex="-1">
 
     <!-- ── HERO: Logo + Search ── -->
     <div class="hero-search-wrap mb-10">
@@ -151,7 +162,7 @@
             <img src="images/ghost.svg" class="ghost-logo-img" alt="Ghost" />GhostLua
           </h1>
         </div>
-        <p class="text-[10px] text-neutral-700 tracking-[0.18em] uppercase font-semibold">Free Steam Lua Scripts</p>
+        <p class="text-[11px] text-neutral-600 tracking-wide max-w-md text-center leading-relaxed px-2">Search Steam, pick a game, download a zip of Lua scripts for <span class="text-neutral-500">SteamTools</span></p>
         <div class="flex items-center gap-1.5 mt-0.5">
           <span class="db-badge">
             <i class="fa-solid fa-database text-[8px]"></i>
@@ -161,7 +172,7 @@
       </div>
 
       <!-- Search card -->
-      <div class="card hero-card rounded-2xl p-5 space-y-4">
+      <div class="card hero-card rounded-2xl p-5 space-y-4" role="search">
 
         <!-- Mode tabs -->
         <div class="flex bg-black/60 rounded-xl p-1 gap-1 border border-white/[0.05]">
@@ -183,35 +194,39 @@
           <div class="flex items-stretch">
             <div class="relative flex-1">
               <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-1/2 -translate-y-1/2 text-neutral-600 text-xs pointer-events-none"></i>
-              <input id="search-input" type="text"
+              <input id="search-input" type="search" autocomplete="off"
                 placeholder="Try: Baldur's Gate 3"
+                aria-label="Search games by name"
+                aria-controls="search-results-list"
+                aria-expanded="false"
                 class="search-field w-full pl-9 pr-3 py-3 rounded-l-xl border border-neutral-800/80 bg-black/60 text-neutral-100 placeholder-neutral-700 text-sm font-medium"
                 oninput="onSearchInput(this.value)"
                 onkeydown="if(event.key==='Enter') doSearch()" />
             </div>
-            <button onclick="randomGame()" title="Random game"
+            <button type="button" onclick="randomGame()" title="Random game" aria-label="Pick a random game"
               class="px-3 border-y border-neutral-800/80 bg-black/60 text-neutral-600 hover:text-neutral-200 transition-colors">
-              <i class="fa-solid fa-shuffle text-xs"></i>
+              <i class="fa-solid fa-shuffle text-xs" aria-hidden="true"></i>
             </button>
-            <button onclick="toggleFilter()" id="filter-toggle-btn" title="Filters"
+            <button type="button" onclick="toggleFilter()" id="filter-toggle-btn" title="Filters" aria-expanded="false" aria-controls="filter-panel"
               class="px-2.5 rounded-r-xl border border-l-0 border-neutral-800/80 bg-black/60 text-neutral-600 hover:text-neutral-200 transition-colors">
-              <i class="fa-solid fa-sliders text-xs"></i>
+              <i class="fa-solid fa-sliders text-xs" aria-hidden="true"></i>
             </button>
           </div>
-          <div id="search-results" class="hidden absolute top-full mt-2 left-0 right-0 z-50">
-            <div class="batch-controls px-3 py-2 border-b border-neutral-800/60 bg-black/80">
-              <div class="flex items-center justify-between">
+          <div id="search-results" class="hidden absolute top-full mt-2 left-0 right-0 z-50 flex flex-col search-results-shell" role="region" aria-label="Search results">
+            <div class="batch-controls px-3 py-2 border-b border-neutral-800/60 bg-black/80 shrink-0">
+              <div class="flex items-center justify-between gap-2 flex-wrap">
                 <span class="text-xs text-neutral-500">Select games for batch download</span>
                 <div class="flex items-center gap-2">
-                  <button onclick="clearSelection()" class="text-xs text-neutral-600 hover:text-neutral-300 transition-colors">
+                  <button type="button" onclick="clearSelection()" class="text-xs text-neutral-600 hover:text-neutral-300 transition-colors">
                     Clear Selection
                   </button>
-                  <button onclick="downloadBatchZip()" id="header-batch-btn" class="px-3 py-1 bg-blue-600 hover:bg-blue-700 disabled:opacity-50 disabled:cursor-not-allowed text-white text-xs rounded-lg transition-colors" disabled>
+                  <button type="button" onclick="downloadBatchZip()" id="header-batch-btn" class="px-3 py-1 bg-blue-600 hover:bg-blue-700 disabled:opacity-50 disabled:cursor-not-allowed text-white text-xs rounded-lg transition-colors" disabled>
                     Download Selected (0)
                   </button>
                 </div>
               </div>
             </div>
+            <div id="search-results-list" class="search-results-list-body min-h-0"></div>
           </div>
         </div>
 
@@ -258,10 +273,12 @@
         </div>
 
         <!-- Tip (individual mode) -->
-        <p id="search-tip" class="text-[11px] text-neutral-700 px-0.5 text-center">
-          <span class="text-neutral-600">Tip:</span> Search DLCs too, e.g.
-          <button onclick="document.getElementById('search-input').value='Shadow of the Erdtree'; doSearch();"
+        <p id="search-tip" class="text-[11px] text-neutral-700 px-0.5 text-center space-x-1">
+          <span class="text-neutral-600">Tip:</span>
+          <button type="button" onclick="document.getElementById('search-input').value='Shadow of the Erdtree'; doSearch();"
             class="text-neutral-400 hover:text-neutral-200 transition-colors font-medium">Shadow of the Erdtree</button>
+          <span class="text-neutral-800">·</span>
+          <kbd class="kbd-hint">/</kbd><span class="text-neutral-600">focus search</span>
         </p>
       </div>
       <!-- /search card -->

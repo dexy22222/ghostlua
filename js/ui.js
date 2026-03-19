@@ -112,7 +112,13 @@ function showModal(type) {
 function hideModal()      { document.getElementById('generic-modal').classList.add('hidden'); }
 function showLoginModal() { /* removed */ }
 function hideLoginModal() { /* removed */ }
-function toggleMobileMenu() { document.getElementById('mobile-menu').classList.toggle('hidden'); }
+function toggleMobileMenu() {
+  const menu = document.getElementById('mobile-menu');
+  const btn = document.getElementById('mobile-menu-btn');
+  if (menu) menu.classList.toggle('hidden');
+  const open = menu && !menu.classList.contains('hidden');
+  if (btn) btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+}
 
 function copyAppId() {
   if (!window.currentDownloadGame) return;

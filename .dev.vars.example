@@ -1,0 +1,6 @@
+# Local Cloudflare Worker secrets (Wrangler).
+# 1. Copy this file to `.dev.vars` in the same folder.
+# 2. Fill in values. `.dev.vars` is gitignored — never commit it.
+#
+# STEAM_API_KEY=your_steam_web_api_key
+# LUA_UPSTREAM_TEMPLATE=https://cdn.example.com/lua/{appid}.lua
