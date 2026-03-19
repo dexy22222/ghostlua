@@ -241,6 +241,36 @@
       .join-card { padding: 20px 18px; }
       .page { padding: 90px 16px 60px; }
     }
+    .ref-cta-btn {
+      position: fixed;
+      left: 16px;
+      bottom: 16px;
+      z-index: 120;
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      height: 40px;
+      padding: 0 14px;
+      border-radius: 999px;
+      border: 1px solid rgba(16,185,129,0.42);
+      background: rgba(6,95,70,0.92);
+      color: #ecfdf5;
+      text-decoration: none;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+      box-shadow: 0 12px 30px rgba(0,0,0,0.45);
+      transition: transform .15s, background .15s, border-color .15s;
+    }
+    .ref-cta-btn:hover {
+      transform: translateY(-2px);
+      background: rgba(4,120,87,0.95);
+      border-color: rgba(16,185,129,0.65);
+    }
+    @media (max-width: 768px) {
+      .ref-cta-btn { left: 50%; transform: translateX(-50%); bottom: 12px; }
+      .ref-cta-btn:hover { transform: translateX(-50%) translateY(-2px); }
+    }
   </style>
 </head>
 <body>
@@ -308,6 +338,11 @@
     </div>
 
   </div>
+
+  <a class="ref-cta-btn" href="https://runpod.io?ref=vztsr7l0" target="_blank" rel="noopener sponsored">
+    <i class="fa-solid fa-microchip"></i>
+    Run on RunPod
+  </a>
 
   <script>
     // ── State labels ───────────────────────────────────────────────────────────

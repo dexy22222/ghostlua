@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Pricing | GhostLua</title>
-  <meta name="description" content="GhostLua pricing — Free, Pro, and Master plans for Steam Lua script downloads." />
+  <meta name="description" content="GhostLua pricing - Free, Pro, and Master plans for Steam Lua script downloads." />
   <link rel="icon" type="image/png" href="images/ghost.svg" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
   <script src="https://cdn.tailwindcss.com"></script>
@@ -147,7 +147,7 @@
         <i class="fa-solid fa-ghost text-[9px]"></i> Pricing
       </div>
       <h1 class="text-3xl sm:text-4xl font-extrabold text-white mb-3 tracking-tight">Simple, transparent pricing</h1>
-      <p class="text-neutral-500 text-sm sm:text-base max-w-lg mx-auto leading-relaxed">Start free with 25 downloads/mo. Upgrade when you need more — get a promo code on our Discord.</p>
+      <p class="text-neutral-500 text-sm sm:text-base max-w-lg mx-auto leading-relaxed">Start free with 25 downloads/mo. Upgrade when you need more - get a promo code on our Discord.</p>
       <div class="flex items-center justify-center gap-3 mt-5">
         <a href="https://discord.gg/ghostlua" target="_blank" rel="noopener"
           class="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-[#5865F2]/10 border border-[#5865F2]/30 hover:bg-[#5865F2]/20 text-[#7289da] text-sm font-semibold transition-all hover:scale-[1.02]">
@@ -276,7 +276,7 @@
         </div>
       </div>
       <div class="flex gap-2">
-        <input id="promo-input" type="text" class="promo-input flex-1" placeholder="Enter promo code…"
+        <input id="promo-input" type="text" class="promo-input flex-1" placeholder="Enter promo code..."
           autocomplete="off" spellcheck="false" onkeydown="if(event.key==='Enter') redeemCode()" />
         <button onclick="redeemCode()" class="px-5 py-2.5 rounded-xl bg-white hover:bg-neutral-200 text-black text-sm font-bold transition-all whitespace-nowrap hover:scale-[1.02] shadow-lg shadow-white/10">Redeem</button>
       </div>
@@ -295,7 +295,7 @@
 
         <details class="group rounded-xl border border-white/[0.06] bg-white/[0.02] overflow-hidden">
           <summary class="px-4 py-3 text-sm font-semibold text-neutral-300 cursor-pointer flex items-center justify-between hover:bg-white/[0.02]">What are batch downloads?<i class="fa-solid fa-chevron-down text-[10px] text-neutral-700 group-open:rotate-180 transition-transform"></i></summary>
-          <div class="px-4 pb-3 text-xs text-neutral-500 leading-relaxed">Pro and Master users can select multiple games from search results and download all their lua files in a single zip — perfect for setting up a new PC or grabbing a whole series at once.</div>
+          <div class="px-4 pb-3 text-xs text-neutral-500 leading-relaxed">Pro and Master users can select multiple games from search results and download all their lua files in a single zip - perfect for setting up a new PC or grabbing a whole series at once.</div>
         </details>
 
         <details class="group rounded-xl border border-white/[0.06] bg-white/[0.02] overflow-hidden">
@@ -310,7 +310,7 @@
 
         <details class="group rounded-xl border border-white/[0.06] bg-white/[0.02] overflow-hidden">
           <summary class="px-4 py-3 text-sm font-semibold text-neutral-300 cursor-pointer flex items-center justify-between hover:bg-white/[0.02]">Can I cancel anytime?<i class="fa-solid fa-chevron-down text-[10px] text-neutral-700 group-open:rotate-180 transition-transform"></i></summary>
-          <div class="px-4 pb-3 text-xs text-neutral-500 leading-relaxed">Yes — each code activates a plan for 30 days. Simply don't renew and you'll return to Free automatically when it expires.</div>
+          <div class="px-4 pb-3 text-xs text-neutral-500 leading-relaxed">Yes - each code activates a plan for 30 days. Simply don't renew and you'll return to Free automatically when it expires.</div>
         </details>
 
         <details class="group rounded-xl border border-white/[0.06] bg-white/[0.02] overflow-hidden">
@@ -344,6 +344,10 @@
   </div>
 
   <script src="js/tiers.js"></script>
+  <a class="ref-cta-btn" href="https://runpod.io?ref=vztsr7l0" target="_blank" rel="noopener sponsored">
+    <i class="fa-solid fa-microchip"></i>
+    Run on RunPod
+  </a>
   <script>
     function redeemCode() {
       const input  = document.getElementById('promo-input');
@@ -393,7 +397,7 @@
           <div class="relative flex justify-center"><span class="bg-[#111] px-3 text-xs text-neutral-600">already have a code?</span></div>
         </div>
         <div class="flex gap-2">
-          <input id="modal-promo-input" type="text" placeholder="Enter promo code…" autocomplete="off"
+          <input id="modal-promo-input" type="text" placeholder="Enter promo code..." autocomplete="off"
             class="flex-1 bg-black/60 border border-white/[0.08] focus:border-white/[0.2] rounded-xl px-3 py-2.5 text-sm text-white placeholder-neutral-700 outline-none transition-colors"
             onkeydown="if(event.key==='Enter') redeemModalCode('${plan}')" />
           <button onclick="redeemModalCode('${plan}')"
@@ -478,3 +482,4 @@
   </script>
 </body>
 </html>
+

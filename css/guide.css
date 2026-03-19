@@ -427,6 +427,44 @@ details summary::after { content: ' ▼'; font-size: 9px; color: var(--text-mute
 .docs-footer a { transition: color 0.15s; }
 .docs-footer a:hover { color: var(--primary); }
 
+/* Referral CTA */
+.ref-cta-btn {
+  position: fixed;
+  left: 16px;
+  bottom: 16px;
+  z-index: 150;
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  height: 40px;
+  padding: 0 14px;
+  border-radius: 999px;
+  border: 1px solid rgba(16, 185, 129, 0.42);
+  background: rgba(6, 95, 70, 0.92);
+  color: #ecfdf5;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  text-decoration: none;
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.45);
+  transition: transform 0.15s, background 0.15s, border-color 0.15s;
+}
+.ref-cta-btn:hover {
+  transform: translateY(-2px);
+  background: rgba(4, 120, 87, 0.95);
+  border-color: rgba(16, 185, 129, 0.65);
+}
+@media (max-width: 768px) {
+  .ref-cta-btn {
+    left: 50%;
+    bottom: 12px;
+    transform: translateX(-50%);
+  }
+  .ref-cta-btn:hover {
+    transform: translateX(-50%) translateY(-2px);
+  }
+}
+
 /* ══════════════════════════════════════════
    SCROLLBAR
 ══════════════════════════════════════════ */

@@ -1,6 +1,7 @@
 name = "ghostlua"
 main = "worker.js"
-compatibility_date = "2025-01-01"
+compatibility_date = "2025-11-01"
+# workers_dev = false  # uncomment to disable the *.workers.dev subdomain
 
 [assets]
 directory = "."

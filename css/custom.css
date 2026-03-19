@@ -1358,6 +1358,50 @@ a.dl-tag-link:hover {
   pointer-events: none;
 }
 
+/* Referral CTA */
+.ref-cta-btn {
+  position: fixed;
+  left: 16px;
+  bottom: 16px;
+  z-index: 120;
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  height: 40px;
+  padding: 0 14px;
+  border-radius: 999px;
+  border: 1px solid rgba(16, 185, 129, 0.42);
+  background: rgba(6, 95, 70, 0.9);
+  color: #ecfdf5;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  text-decoration: none;
+  box-shadow: 0 12px 30px rgba(5, 46, 22, 0.45), 0 0 0 1px rgba(255, 255, 255, 0.04) inset;
+  transition: transform 0.15s, background 0.15s, border-color 0.15s;
+}
+.ref-cta-btn:hover {
+  transform: translateY(-2px);
+  background: rgba(4, 120, 87, 0.95);
+  border-color: rgba(16, 185, 129, 0.65);
+}
+.ref-cta-btn:active {
+  transform: translateY(0);
+}
+@media (max-width: 768px) {
+  .ref-cta-btn {
+    left: 50%;
+    bottom: 12px;
+    transform: translateX(-50%);
+  }
+  .ref-cta-btn:hover {
+    transform: translateX(-50%) translateY(-2px);
+  }
+  .ref-cta-btn:active {
+    transform: translateX(-50%) translateY(0);
+  }
+}
+
 /* Toast notifications */
 #toast-container {
   position: fixed;
@@ -1850,4 +1894,343 @@ input.search-field:focus-visible {
 @media (max-width: 640px) {
   .stat-divider { display: none; }
   .stats-bar { gap: 16px; }
+}
+
+/* ══════════════════════════════════════════════════════════════
+   GHOSTLUA SHIELD — Protection UI Components  v2.0
+   Rust/WASM-backed visual indicators & glassmorphism upgrades
+══════════════════════════════════════════════════════════════ */
+
+/* ── Shield Badge ──────────────────────────────────────────── */
+.shield-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 3px 9px;
+  border-radius: 20px;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  border: 1px solid;
+  line-height: 1;
+  white-space: nowrap;
+  user-select: none;
+  transition: opacity 0.2s, box-shadow 0.2s;
+}
+
+.shield-badge.verified {
+  background: rgba(34, 197, 94, 0.08);
+  border-color: rgba(34, 197, 94, 0.22);
+  color: #4ade80;
+  box-shadow: 0 0 12px -4px rgba(34,197,94,0.18);
+}
+.shield-badge.verified:hover {
+  box-shadow: 0 0 18px -4px rgba(34,197,94,0.3);
+}
+.shield-badge.protected {
+  background: rgba(6, 182, 212, 0.08);
+  border-color: rgba(6, 182, 212, 0.22);
+  color: #22d3ee;
+  box-shadow: 0 0 12px -4px rgba(6,182,212,0.18);
+}
+.shield-badge.warn {
+  background: rgba(251, 191, 36, 0.08);
+  border-color: rgba(251, 191, 36, 0.22);
+  color: #fbbf24;
+}
+.shield-badge.danger {
+  background: rgba(239, 68, 68, 0.08);
+  border-color: rgba(239, 68, 68, 0.22);
+  color: #f87171;
+}
+
+/* Shield icon pulse for verified state */
+@keyframes shieldPulse {
+  0%, 100% { filter: drop-shadow(0 0 3px rgba(34,197,94,0.4)); }
+  50%       { filter: drop-shadow(0 0 8px rgba(34,197,94,0.8)); }
+}
+.shield-badge.verified .shield-icon {
+  animation: shieldPulse 2.5s ease-in-out infinite;
+  font-size: 9px;
+}
+
+/* ── Integrity indicator bar ───────────────────────────────── */
+.integrity-bar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 12px;
+  border-radius: 10px;
+  background: rgba(34, 197, 94, 0.04);
+  border: 1px solid rgba(34, 197, 94, 0.1);
+  font-size: 10.5px;
+  color: #4ade80;
+}
+.integrity-bar.fail {
+  background: rgba(239, 68, 68, 0.04);
+  border-color: rgba(239, 68, 68, 0.1);
+  color: #f87171;
+}
+.integrity-dot {
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: currentColor;
+  flex-shrink: 0;
+}
+@keyframes integrityPing {
+  0%    { transform: scale(1);    opacity: 1;   }
+  75%   { transform: scale(2.2);  opacity: 0;   }
+  100%  { transform: scale(2.2);  opacity: 0;   }
+}
+.integrity-bar:not(.fail) .integrity-dot {
+  position: relative;
+}
+.integrity-bar:not(.fail) .integrity-dot::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: #4ade80;
+  animation: integrityPing 2s ease-out infinite;
+}
+
+/* ── WASM load shimmer ─────────────────────────────────────── */
+@keyframes wasmShimmer {
+  0%   { background-position: -300px 0; }
+  100% { background-position:  300px 0; }
+}
+.wasm-loading {
+  background: linear-gradient(
+    90deg,
+    rgba(255,255,255,0.03) 25%,
+    rgba(255,255,255,0.07) 50%,
+    rgba(255,255,255,0.03) 75%
+  );
+  background-size: 600px 100%;
+  animation: wasmShimmer 1.6s ease-in-out infinite;
+  border-radius: 6px;
+  color: transparent !important;
+  pointer-events: none;
+  user-select: none;
+}
+
+/* ── Token expiry countdown ────────────────────────────────── */
+.token-expiry {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 10px;
+  color: #475569;
+  font-variant-numeric: tabular-nums;
+}
+.token-expiry.expiring-soon { color: #fbbf24; }
+.token-expiry.expired       { color: #f87171; }
+
+/* ── Glassmorphism upgrade (stronger blur + noise) ─────────── */
+.glass-heavy {
+  background: rgba(10, 10, 14, 0.88);
+  backdrop-filter: blur(40px) saturate(160%) brightness(0.9);
+  -webkit-backdrop-filter: blur(40px) saturate(160%) brightness(0.9);
+  border: 1px solid rgba(255,255,255,0.07);
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,0.05),
+    inset 0 0 0 1px rgba(255,255,255,0.02),
+    0 8px 32px rgba(0,0,0,0.6),
+    0 32px 80px rgba(0,0,0,0.4);
+}
+
+/* Frosted glass variant for modals */
+.glass-frosted {
+  background: rgba(12, 12, 16, 0.94);
+  backdrop-filter: blur(60px) saturate(180%);
+  -webkit-backdrop-filter: blur(60px) saturate(180%);
+  border: 1px solid rgba(255,255,255,0.06);
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,0.06),
+    0 4px 6px rgba(0,0,0,0.5),
+    0 24px 64px rgba(0,0,0,0.7);
+}
+
+/* ── Scanline overlay (optional, add .scanlines class to body) */
+.scanlines::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 9999;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    rgba(0, 0, 0, 0.03) 2px,
+    rgba(0, 0, 0, 0.03) 4px
+  );
+}
+
+/* ── Micro-interaction: ripple on protected buttons ─────────── */
+.btn-protected {
+  position: relative;
+  overflow: hidden;
+}
+.btn-protected::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: radial-gradient(circle at var(--ripple-x, 50%) var(--ripple-y, 50%),
+    rgba(255,255,255,0.15) 0%,
+    transparent 60%);
+  opacity: 0;
+  transition: opacity 0.4s;
+  pointer-events: none;
+}
+.btn-protected:active::after {
+  opacity: 1;
+  transition: opacity 0s;
+}
+
+/* ── Promo code input field ────────────────────────────────── */
+.promo-input-wrap {
+  position: relative;
+}
+.promo-input-wrap input {
+  width: 100%;
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 10px;
+  padding: 10px 42px 10px 14px;
+  font-size: 13px;
+  color: #e2e8f0;
+  letter-spacing: 0.05em;
+  font-family: 'JetBrains Mono', 'Fira Code', monospace;
+  outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+.promo-input-wrap input:focus {
+  border-color: rgba(6,182,212,0.35);
+  box-shadow: 0 0 0 3px rgba(6,182,212,0.06);
+}
+.promo-input-wrap input.valid {
+  border-color: rgba(34,197,94,0.35);
+  box-shadow: 0 0 0 3px rgba(34,197,94,0.06);
+}
+.promo-input-wrap input.invalid {
+  border-color: rgba(239,68,68,0.35);
+  box-shadow: 0 0 0 3px rgba(239,68,68,0.06);
+  animation: notFoundShake 0.4s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
+}
+.promo-input-icon {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 14px;
+  pointer-events: none;
+  color: #334155;
+  transition: color 0.2s;
+}
+.promo-input-wrap input.valid   ~ .promo-input-icon { color: #4ade80; }
+.promo-input-wrap input.invalid ~ .promo-input-icon { color: #f87171; }
+
+/* ── Improved focus-visible styles (accessibility) ─────────── */
+:focus-visible {
+  outline: 2px solid rgba(6,182,212,0.5);
+  outline-offset: 2px;
+}
+button:focus-visible,
+a:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+  outline: 2px solid rgba(6,182,212,0.55);
+  outline-offset: 3px;
+  border-radius: 6px;
+}
+
+/* ── Improved custom scrollbars (global) ───────────────────── */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255,255,255,0.08) transparent;
+}
+*::-webkit-scrollbar          { width: 4px; height: 4px; }
+*::-webkit-scrollbar-track    { background: transparent; }
+*::-webkit-scrollbar-thumb    {
+  background: rgba(255,255,255,0.08);
+  border-radius: 4px;
+}
+*::-webkit-scrollbar-thumb:hover { background: rgba(255,255,255,0.15); }
+*::-webkit-scrollbar-corner   { background: transparent; }
+
+/* ── Protection status strip (shown at top of page) ────────── */
+.protection-strip {
+  width: 100%;
+  padding: 5px 16px;
+  background: linear-gradient(90deg,
+    rgba(34,197,94,0.06) 0%,
+    rgba(6,182,212,0.06) 50%,
+    rgba(34,197,94,0.06) 100%
+  );
+  border-bottom: 1px solid rgba(34,197,94,0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  font-size: 10.5px;
+  color: #4ade80;
+  letter-spacing: 0.04em;
+  font-weight: 500;
+}
+.protection-strip .ps-sep {
+  width: 1px; height: 10px;
+  background: rgba(34,197,94,0.2);
+}
+.protection-strip .ps-icon { font-size: 11px; }
+
+/* ── Card noise texture overlay ────────────────────────────── */
+.card-noise::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+  background-size: 150px 150px;
+  opacity: 0.4;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ── Glow border animation for active tier cards ───────────── */
+@keyframes glowBorderPulse {
+  0%, 100% { box-shadow: 0 0 0 1px rgba(6,182,212,0.15), 0 0 20px -8px rgba(6,182,212,0.2); }
+  50%       { box-shadow: 0 0 0 1px rgba(6,182,212,0.3),  0 0 30px -6px rgba(6,182,212,0.35); }
+}
+.tier-active {
+  animation: glowBorderPulse 3s ease-in-out infinite;
+}
+.tier-active.tier-master {
+  animation: none;
+  box-shadow:
+    0 0 0 1px rgba(168,85,247,0.25),
+    0 0 30px -8px rgba(168,85,247,0.3),
+    0 0 60px -20px rgba(168,85,247,0.15);
+}
+
+/* ── Reduced-motion overrides ──────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* ── High-contrast mode support ────────────────────────────── */
+@media (forced-colors: active) {
+  .shield-badge, .integrity-bar {
+    border: 1px solid ButtonText;
+    color: ButtonText;
+    background: Canvas;
+  }
+  .card { border: 1px solid ButtonText; }
 }
