@@ -544,9 +544,6 @@ function navigate(pageId, pushState = true) {
 
   document.getElementById('doc-content').innerHTML =
     breadcrumbHtml + page.render() +
-    `<a class="edit-link" href="https://github.com/ghostlua" target="_blank">
-       <i class="fa-regular fa-pen-to-square fa-xs"></i> Edit this page
-     </a>` +
     navHtml;
 
   document.title = pageId === 'intro'
