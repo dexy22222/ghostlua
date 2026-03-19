@@ -158,6 +158,23 @@ http.createServer((req, res) => {
       return;
     }
 
+    // GET /api/steam/appdetails?appid=XXXXXXX — Steam app details + DLC list
+    if (rawPath === '/api/steam/appdetails') {
+      const params = new URLSearchParams(qs);
+      const appid  = params.get('appid') || '';
+      if (!appid || !/^\d+$/.test(appid)) { sendJSON(res, 400, { error: 'Missing or invalid appid' }); return; }
+      const storeUrl = `${STEAM_STORE}/api/appdetails/?appids=${appid}&filters=basic,dlc`;
+      httpsGetJson(storeUrl).then(raw => {
+        const entry = raw?.[appid];
+        const dlc   = entry?.success ? (entry.data?.dlc || []) : [];
+        const name  = entry?.success ? (entry.data?.name || null) : null;
+        sendJSON(res, 200, { appid: Number(appid), name, dlc }, 'public, max-age=3600');
+      }).catch(e => {
+        sendJSON(res, 200, { appid: Number(appid), name: null, dlc: [], error: e.message });
+      });
+      return;
+    }
+
     // GET /api/steam/search?q=QUERY  — Steam store search (server-side, no CORS proxy needed)
     if (rawPath === '/api/steam/search') {
       const params  = new URLSearchParams(qs);

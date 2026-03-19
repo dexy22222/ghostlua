@@ -286,7 +286,7 @@ async function startDownload() {
         });
         if (res.ok) {
           const raw = await res.json();
-          dlcIds = raw?.[appId]?.data?.dlc || [];
+          dlcIds = raw?.[String(appId)]?.data?.dlc || [];
         }
       } catch (_) {}
     }
@@ -354,13 +354,13 @@ async function downloadBatchZip() {
   }
 
   const appIds = Array.from(window.selectedGames);
-  
+
+  const btn = document.getElementById('batch-download-btn');
+  const headerBtn = document.getElementById('header-batch-btn');
+  const originalText = btn ? btn.textContent : 'Download Selected';
+
   try {
     // Show loading state
-    const btn = document.getElementById('batch-download-btn');
-    const headerBtn = document.getElementById('header-batch-btn');
-    const originalText = btn ? btn.textContent : 'Download Selected';
-    
     if (btn) {
       btn.disabled = true;
       btn.innerHTML = '<i class="fa-solid fa-spinner animate-spin text-xs"></i> Creating zip...';
