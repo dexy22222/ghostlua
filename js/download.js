@@ -331,10 +331,17 @@ async function startDownload() {
   if (infoEl) infoEl.style.display = 'none';
   if (statusEl) statusEl.style.display = 'block';
 
-  function setProgress(pct, text) {
+  const fileCountEl = document.getElementById('dl-file-count');
+  const fileCountText = document.getElementById('dl-file-count-text');
+
+  function setProgress(pct, text, fileCount) {
     if (progressEl) progressEl.style.width = pct + '%';
     if (pctEl) pctEl.textContent = pct + '%';
     if (statusText) statusText.textContent = text;
+    if (fileCount !== undefined && fileCountEl && fileCountText) {
+      fileCountEl.classList.remove('hidden');
+      fileCountText.textContent = `${fileCount} file${fileCount !== 1 ? 's' : ''}`;
+    }
   }
 
   try {
@@ -365,7 +372,7 @@ async function startDownload() {
     }
 
     const totalFiles = 1 + dlcIds.length;
-    setProgress(30, `Found ${dlcIds.length} DLC(s). Generating ${totalFiles} lua files...`);
+    setProgress(30, `Found ${dlcIds.length} DLC(s). Generating ${totalFiles} lua files...`, totalFiles + 1);
 
     // Build a zip with a named folder containing individual .lua files
     const folderName = _safeFolderName(name, appId);
@@ -403,7 +410,7 @@ async function startDownload() {
     a.click();
     setTimeout(() => { if (a.parentNode) document.body.removeChild(a); URL.revokeObjectURL(dlUrl); }, 10000);
 
-    setProgress(100, `Done! ${totalFiles} lua file${totalFiles !== 1 ? 's' : ''} + README in folder.`);
+    setProgress(100, `Done! ${totalFiles} lua file${totalFiles !== 1 ? 's' : ''} + README in folder.`, totalFiles + 1);
     if (statusIcon) statusIcon.className = 'fa-solid fa-circle-check text-emerald-400';
     setTimeout(() => {
       if (statusEl) statusEl.style.display = 'none';

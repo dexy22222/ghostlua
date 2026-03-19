@@ -410,6 +410,27 @@ input.search-field:focus {
   box-shadow: 0 0 10px rgba(255,255,255,0.3);
   transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
+.dl-progress-track {
+  position: relative;
+  border: 1px solid rgba(255,255,255,0.04);
+}
+@keyframes progressStripes {
+  0%   { background-position: 0 0; }
+  100% { background-position: 24px 0; }
+}
+.dl-progress-bar-animated {
+  background-image: linear-gradient(
+    -45deg,
+    rgba(255,255,255,0.15) 25%,
+    transparent 25%,
+    transparent 50%,
+    rgba(255,255,255,0.15) 50%,
+    rgba(255,255,255,0.15) 75%,
+    transparent 75%
+  );
+  background-size: 24px 24px;
+  animation: progressStripes 0.6s linear infinite;
+}
 
 /* ══════════════════════════════════════════
    HISTORY BUTTON
@@ -1499,4 +1520,334 @@ input.search-field:focus-visible {
   outline: none;
   border-color: rgba(255,255,255,0.28);
   box-shadow: 0 0 0 3px rgba(255,255,255,0.06), 0 0 20px -5px rgba(255,255,255,0.08);
+}
+
+/* ══════════════════════════════════════════
+   ANIMATED GRADIENT ORBS (hero background)
+══════════════════════════════════════════ */
+.hero-orbs {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+  overflow: hidden;
+}
+
+@keyframes orbFloat1 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  33%      { transform: translate(60px, -40px) scale(1.1); }
+  66%      { transform: translate(-30px, 30px) scale(0.95); }
+}
+@keyframes orbFloat2 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  33%      { transform: translate(-50px, 50px) scale(0.9); }
+  66%      { transform: translate(40px, -20px) scale(1.05); }
+}
+@keyframes orbFloat3 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  50%      { transform: translate(30px, 40px) scale(1.1); }
+}
+
+.hero-orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(100px);
+  will-change: transform;
+}
+.hero-orb-1 {
+  width: 500px; height: 500px;
+  top: -10%; left: 20%;
+  background: radial-gradient(circle, rgba(255,255,255,0.04) 0%, transparent 70%);
+  animation: orbFloat1 20s ease-in-out infinite;
+}
+.hero-orb-2 {
+  width: 400px; height: 400px;
+  top: 10%; right: 15%;
+  background: radial-gradient(circle, rgba(99,102,241,0.03) 0%, transparent 70%);
+  animation: orbFloat2 25s ease-in-out infinite;
+}
+.hero-orb-3 {
+  width: 350px; height: 350px;
+  top: 40%; left: 40%;
+  background: radial-gradient(circle, rgba(52,211,153,0.02) 0%, transparent 70%);
+  animation: orbFloat3 18s ease-in-out infinite;
+}
+
+/* ══════════════════════════════════════════
+   HERO LOGO RING
+══════════════════════════════════════════ */
+.hero-logo-ring {
+  width: 72px; height: 72px;
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.08);
+  position: relative;
+  animation: logoRingPulse 4s ease-in-out infinite;
+}
+.hero-logo-ring::before {
+  content: '';
+  position: absolute;
+  inset: -3px;
+  border-radius: 50%;
+  background: conic-gradient(from 0deg, transparent, rgba(255,255,255,0.1), transparent, rgba(255,255,255,0.05), transparent);
+  animation: logoRingSpin 8s linear infinite;
+  z-index: -1;
+}
+@keyframes logoRingSpin {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+@keyframes logoRingPulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(255,255,255,0.05); }
+  50%      { box-shadow: 0 0 30px -5px rgba(255,255,255,0.08); }
+}
+.hero-logo-ring .ghost-logo-img {
+  width: 2.4rem;
+  height: 2.4rem;
+}
+
+/* ══════════════════════════════════════════
+   HOW IT WORKS SECTION
+══════════════════════════════════════════ */
+.hiw-card {
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: 16px;
+  padding: 24px 20px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  transition: border-color 0.25s, transform 0.2s, box-shadow 0.25s;
+  animation: cardEnter 0.5s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+.hiw-card:nth-child(1) { animation-delay: 0.1s; }
+.hiw-card:nth-child(2) { animation-delay: 0.2s; }
+.hiw-card:nth-child(3) { animation-delay: 0.3s; }
+
+.hiw-card:hover {
+  border-color: rgba(255,255,255,0.12);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 30px -10px rgba(0,0,0,0.6), 0 0 40px -15px rgba(255,255,255,0.04);
+}
+.hiw-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+.hiw-card:hover::before { opacity: 1; }
+
+.hiw-icon-wrap {
+  width: 44px; height: 44px;
+  border-radius: 14px;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.08);
+  display: flex; align-items: center; justify-content: center;
+  margin: 0 auto 12px;
+  font-size: 16px;
+  transition: transform 0.2s, background 0.2s;
+}
+.hiw-card:hover .hiw-icon-wrap {
+  transform: scale(1.1);
+  background: rgba(255,255,255,0.06);
+}
+.hiw-icon-active {
+  background: rgba(255,255,255,0.08) !important;
+  border-color: rgba(255,255,255,0.15) !important;
+  box-shadow: 0 0 20px -5px rgba(255,255,255,0.1);
+}
+
+.hiw-num {
+  display: inline-flex;
+  align-items: center; justify-content: center;
+  width: 20px; height: 20px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.1);
+  font-size: 9px;
+  font-weight: 800;
+  color: #525252;
+  margin-bottom: 8px;
+}
+
+/* ══════════════════════════════════════════
+   CHART ACCENT GLOW LINES
+══════════════════════════════════════════ */
+.chart-accent-line {
+  height: 2px;
+  width: 100%;
+  opacity: 0.6;
+}
+.chart-accent-gold {
+  background: linear-gradient(90deg, transparent, rgba(250,204,21,0.5), rgba(250,204,21,0.2), transparent);
+}
+.chart-accent-emerald {
+  background: linear-gradient(90deg, transparent, rgba(52,211,153,0.5), rgba(52,211,153,0.2), transparent);
+}
+.chart-accent-blue {
+  background: linear-gradient(90deg, transparent, rgba(59,130,246,0.5), rgba(59,130,246,0.2), transparent);
+}
+
+.chart-card-glow {
+  transition: border-color 0.2s, box-shadow 0.25s, transform 0.2s;
+}
+.chart-card-glow:hover {
+  transform: translateY(-2px);
+}
+
+/* ══════════════════════════════════════════
+   FEATURED SPOTLIGHT (cinematic)
+══════════════════════════════════════════ */
+.featured-spotlight {
+  position: relative;
+  overflow: hidden;
+}
+.featured-banner {
+  position: relative;
+  height: 120px;
+  overflow: hidden;
+}
+.featured-banner-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: brightness(0.5) saturate(1.2);
+  transition: transform 0.4s ease;
+}
+.featured-spotlight:hover .featured-banner-img {
+  transform: scale(1.03);
+}
+.featured-banner-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, transparent 0%, rgba(16,16,16,0.95) 100%);
+}
+.featured-badge {
+  position: absolute;
+  top: 12px; left: 16px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 10px;
+  background: rgba(0,0,0,0.6);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 8px;
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #fbbf24;
+}
+.featured-editors-pick {
+  display: inline-flex;
+  align-items: center;
+  padding: 2px 8px;
+  background: rgba(245,158,11,0.1);
+  border: 1px solid rgba(245,158,11,0.2);
+  border-radius: 6px;
+  font-size: 9px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: #f59e0b;
+}
+.featured-dl-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 14px;
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.15);
+  border-radius: 10px;
+  font-size: 11px;
+  font-weight: 700;
+  color: #d4d4d4;
+  transition: all 0.15s;
+}
+.featured-spotlight:hover .featured-dl-btn {
+  background: rgba(255,255,255,0.12);
+  border-color: rgba(255,255,255,0.25);
+  color: #fff;
+}
+
+/* ══════════════════════════════════════════
+   CTA CARDS (Discord, GitHub)
+══════════════════════════════════════════ */
+.cta-card {
+  position: relative;
+  overflow: hidden;
+}
+.cta-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.08), transparent);
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+.cta-card:hover::before { opacity: 1; }
+
+/* Quick link items */
+.quick-link-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px;
+  border-radius: 10px;
+  background: rgba(255,255,255,0.02);
+  border: 1px solid rgba(255,255,255,0.04);
+  font-size: 11px;
+  color: #737373;
+  transition: all 0.15s;
+}
+.quick-link-item:hover {
+  background: rgba(255,255,255,0.06);
+  border-color: rgba(255,255,255,0.1);
+  color: #d4d4d4;
+  transform: translateX(2px);
+}
+
+/* ══════════════════════════════════════════
+   STATS BAR (upgraded)
+══════════════════════════════════════════ */
+.stats-bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 24px;
+  text-align: left;
+  padding: 20px 16px;
+  border-radius: 16px;
+  background: rgba(255,255,255,0.015);
+  border: 1px solid rgba(255,255,255,0.04);
+}
+.stat-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.stat-icon {
+  width: 36px; height: 36px;
+  border-radius: 10px;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.08);
+  display: flex; align-items: center; justify-content: center;
+  color: #525252;
+  flex-shrink: 0;
+}
+.stat-divider {
+  width: 1px;
+  height: 32px;
+  background: rgba(255,255,255,0.06);
+}
+@media (max-width: 640px) {
+  .stat-divider { display: none; }
+  .stats-bar { gap: 16px; }
 }

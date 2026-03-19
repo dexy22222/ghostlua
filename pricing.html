@@ -23,9 +23,34 @@
   <link rel="stylesheet" href="css/custom.css" />
   <link rel="stylesheet" href="css/animations.css" />
   <style>
-    .pricing-card { transition: transform 0.25s, border-color 0.25s, box-shadow 0.3s; }
-    .pricing-card:hover { transform: translateY(-4px); }
-    .pricing-popular { border-color:rgba(59,130,246,0.45)!important; box-shadow:0 0 40px -10px rgba(59,130,246,0.25),0 20px 50px -15px rgba(0,0,0,0.8)!important; }
+    .pricing-card {
+      transition: transform 0.25s, border-color 0.25s, box-shadow 0.3s;
+      position: relative;
+      overflow: hidden;
+    }
+    .pricing-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.06), transparent);
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+    .pricing-card:hover::before { opacity: 1; }
+    .pricing-card:hover { transform: translateY(-6px); }
+    .pricing-popular {
+      border-color:rgba(59,130,246,0.45)!important;
+      box-shadow:0 0 40px -10px rgba(59,130,246,0.25),0 20px 50px -15px rgba(0,0,0,0.8)!important;
+    }
+    .pricing-popular::before {
+      background: linear-gradient(90deg, transparent, rgba(59,130,246,0.4), transparent) !important;
+      opacity: 1 !important;
+    }
+    .pricing-master::before {
+      background: linear-gradient(90deg, transparent, rgba(245,158,11,0.3), transparent) !important;
+    }
+    .pricing-master:hover::before { opacity: 1 !important; }
     .pricing-master:hover { border-color:rgba(245,158,11,0.4)!important; box-shadow:0 0 40px -10px rgba(245,158,11,0.2),0 20px 50px -15px rgba(0,0,0,0.8)!important; }
     .check-icon  { color:#22c55e; }
     .cross-icon  { color:#404040; }
@@ -33,12 +58,50 @@
     .master-icon { color:#f59e0b; }
     @keyframes floatBadge { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-3px)} }
     .popular-badge { animation:floatBadge 2s ease-in-out infinite; }
-    .promo-input { background:#0d0d0d; border:1px solid rgba(255,255,255,0.08); color:#fff; border-radius:10px; padding:0.6rem 0.9rem; font-size:0.875rem; width:100%; outline:none; transition:border-color 0.2s; }
-    .promo-input:focus { border-color:rgba(255,255,255,0.2); }
+    @keyframes priceCardIn {
+      from { opacity: 0; transform: translateY(20px) scale(0.97); }
+      to   { opacity: 1; transform: translateY(0) scale(1); }
+    }
+    .pricing-card { animation: priceCardIn 0.5s cubic-bezier(0.22, 1, 0.36, 1) both; }
+    .pricing-card:nth-child(1) { animation-delay: 0.1s; }
+    .pricing-card:nth-child(2) { animation-delay: 0.2s; }
+    .pricing-card:nth-child(3) { animation-delay: 0.3s; }
+    .pricing-icon-ring {
+      width: 48px; height: 48px;
+      border-radius: 16px;
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 12px;
+      position: relative;
+    }
+    .pricing-icon-ring::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: 16px;
+      background: inherit;
+      filter: blur(12px);
+      opacity: 0.3;
+      z-index: -1;
+    }
+    .promo-input { background:#0d0d0d; border:1px solid rgba(255,255,255,0.08); color:#fff; border-radius:10px; padding:0.6rem 0.9rem; font-size:0.875rem; width:100%; outline:none; transition:border-color 0.2s, box-shadow 0.2s; }
+    .promo-input:focus { border-color:rgba(255,255,255,0.2); box-shadow: 0 0 0 3px rgba(255,255,255,0.04); }
     .promo-input::placeholder { color:#404040; }
     .promo-msg { font-size:0.75rem; margin-top:0.4rem; min-height:1.1rem; }
     .promo-msg.ok  { color:#22c55e; }
     .promo-msg.err { color:#f87171; }
+    .plan-bar-card {
+      animation: priceCardIn 0.4s cubic-bezier(0.22, 1, 0.36, 1) both;
+      position: relative;
+      overflow: hidden;
+    }
+    .plan-bar-card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: 16px;
+      opacity: 0.03;
+      pointer-events: none;
+    }
   </style>
 </head>
 <body class="min-h-screen font-sans relative text-neutral-100 antialiased">
@@ -80,25 +143,31 @@
 
     <!-- Header -->
     <div class="text-center mb-12">
-      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/[0.04] border border-white/[0.08] text-[11px] text-neutral-500 font-semibold uppercase tracking-wider mb-4">
+      <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/[0.04] border border-white/[0.08] text-[11px] text-neutral-500 font-semibold uppercase tracking-wider mb-5">
         <i class="fa-solid fa-ghost text-[9px]"></i> Pricing
       </div>
       <h1 class="text-3xl sm:text-4xl font-extrabold text-white mb-3 tracking-tight">Simple, transparent pricing</h1>
-      <p class="text-neutral-500 text-sm sm:text-base max-w-md mx-auto">Start free. Upgrade when you need more — get a promo code on our Discord.</p>
-      <a href="https://discord.gg/ghostlua" target="_blank" rel="noopener"
-        class="inline-flex items-center gap-2 mt-4 px-4 py-2 rounded-xl bg-[#5865F2]/10 border border-[#5865F2]/30 hover:bg-[#5865F2]/20 text-[#7289da] text-sm font-semibold transition-colors">
-        <i class="fa-brands fa-discord"></i> Join Discord to get a promo code
-      </a>
+      <p class="text-neutral-500 text-sm sm:text-base max-w-lg mx-auto leading-relaxed">Start free with 25 downloads/mo. Upgrade when you need more — get a promo code on our Discord.</p>
+      <div class="flex items-center justify-center gap-3 mt-5">
+        <a href="https://discord.gg/ghostlua" target="_blank" rel="noopener"
+          class="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-[#5865F2]/10 border border-[#5865F2]/30 hover:bg-[#5865F2]/20 text-[#7289da] text-sm font-semibold transition-all hover:scale-[1.02]">
+          <i class="fa-brands fa-discord"></i> Join Discord for promo codes
+        </a>
+        <a href="index.html"
+          class="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-white/[0.04] border border-white/[0.08] hover:bg-white/[0.06] text-neutral-400 text-sm font-semibold transition-all hover:scale-[1.02]">
+          <i class="fa-solid fa-arrow-left text-xs"></i> Back to catalog
+        </a>
+      </div>
     </div>
 
     <!-- Current plan bar -->
-    <div class="max-w-2xl mx-auto mb-8 px-4 py-3 rounded-xl border border-white/[0.06] bg-white/[0.02] flex items-center justify-between gap-4">
+    <div class="plan-bar-card max-w-2xl mx-auto mb-8 px-5 py-4 rounded-2xl border border-white/[0.06] bg-white/[0.02] flex items-center justify-between gap-4">
       <div class="flex items-center gap-3">
-        <div class="w-8 h-8 rounded-lg bg-white/[0.04] border border-white/[0.08] flex items-center justify-center">
+        <div class="w-10 h-10 rounded-xl bg-white/[0.04] border border-white/[0.08] flex items-center justify-center">
           <i id="plan-bar-icon" class="fa-solid fa-ghost text-neutral-600 text-sm"></i>
         </div>
         <div>
-          <div class="text-xs text-neutral-500">Current plan</div>
+          <div class="text-[10px] text-neutral-600 uppercase tracking-wider font-semibold">Current plan</div>
           <div id="plan-bar-name" class="text-sm font-bold text-white">Free</div>
         </div>
       </div>
@@ -106,7 +175,7 @@
         <div id="plan-bar-expiry" class="text-xs text-neutral-700 hidden"></div>
         <div class="text-right">
           <div id="plan-bar-usage" class="text-xs text-neutral-600">0 / 25 downloads</div>
-          <div class="w-24 h-1.5 rounded-full bg-white/[0.06] mt-1 overflow-hidden">
+          <div class="w-28 h-2 rounded-full bg-white/[0.06] mt-1.5 overflow-hidden">
             <div id="plan-bar-progress" class="h-full rounded-full bg-neutral-500 transition-all" style="width:0%"></div>
           </div>
         </div>
@@ -119,7 +188,10 @@
       <!-- Free -->
       <div class="pricing-card rounded-2xl border border-white/[0.06] bg-white/[0.02] p-6">
         <div class="mb-5">
-          <div class="flex items-center gap-2 mb-1"><i class="fa-solid fa-ghost text-neutral-600"></i><span class="text-sm font-bold text-neutral-400">Free</span></div>
+          <div class="pricing-icon-ring" style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);">
+            <i class="fa-solid fa-ghost text-neutral-500 text-lg"></i>
+          </div>
+          <div class="flex items-center gap-2 mb-1"><span class="text-sm font-bold text-neutral-400">Free</span></div>
           <div class="flex items-baseline gap-1 mb-1"><span class="text-3xl font-extrabold text-white">$0</span><span class="text-neutral-700 text-sm">/mo</span></div>
           <p class="text-xs text-neutral-600">Get started with GhostLua</p>
         </div>
@@ -138,9 +210,12 @@
 
       <!-- Pro -->
       <div class="pricing-card pricing-popular rounded-2xl border border-blue-500/30 bg-white/[0.02] p-6 relative">
-        <div class="popular-badge absolute -top-3 left-1/2 -translate-x-1/2 px-3 py-0.5 rounded-full bg-blue-600 text-white text-[10px] font-bold uppercase tracking-wider whitespace-nowrap">Most Popular</div>
+        <div class="popular-badge absolute -top-3 left-1/2 -translate-x-1/2 px-3.5 py-1 rounded-full bg-blue-600 text-white text-[10px] font-bold uppercase tracking-wider whitespace-nowrap shadow-lg shadow-blue-500/30">Most Popular</div>
         <div class="mb-5">
-          <div class="flex items-center gap-2 mb-1"><i class="fa-solid fa-bolt text-blue-400"></i><span class="text-sm font-bold text-blue-400">Pro</span></div>
+          <div class="pricing-icon-ring" style="background:rgba(59,130,246,0.1);border:1px solid rgba(59,130,246,0.25);">
+            <i class="fa-solid fa-bolt text-blue-400 text-lg"></i>
+          </div>
+          <div class="flex items-center gap-2 mb-1"><span class="text-sm font-bold text-blue-400">Pro</span></div>
           <div class="flex items-baseline gap-1 mb-1"><span class="text-3xl font-extrabold text-white">$4.99</span><span class="text-neutral-700 text-sm">/mo</span></div>
           <p class="text-xs text-neutral-600">For regular gamers</p>
         </div>
@@ -163,7 +238,10 @@
       <!-- Master -->
       <div class="pricing-card pricing-master rounded-2xl border border-amber-500/20 bg-white/[0.02] p-6">
         <div class="mb-5">
-          <div class="flex items-center gap-2 mb-1"><i class="fa-solid fa-crown text-amber-400"></i><span class="text-sm font-bold text-amber-400">Master</span></div>
+          <div class="pricing-icon-ring" style="background:rgba(245,158,11,0.1);border:1px solid rgba(245,158,11,0.25);">
+            <i class="fa-solid fa-crown text-amber-400 text-lg"></i>
+          </div>
+          <div class="flex items-center gap-2 mb-1"><span class="text-sm font-bold text-amber-400">Master</span></div>
           <div class="flex items-baseline gap-1 mb-1"><span class="text-3xl font-extrabold text-white">$9.99</span><span class="text-neutral-700 text-sm">/mo</span></div>
           <p class="text-xs text-neutral-600">For power users</p>
         </div>
@@ -186,16 +264,21 @@
     </div>
 
     <!-- Promo code box -->
-    <div class="max-w-md mx-auto mb-12 p-5 rounded-2xl border border-white/[0.06] bg-white/[0.02]">
-      <div class="flex items-center gap-2 mb-1">
-        <i class="fa-solid fa-ticket text-neutral-500 text-sm"></i>
-        <span class="text-sm font-bold text-white">Redeem a promo code</span>
+    <div class="max-w-md mx-auto mb-12 p-6 rounded-2xl border border-white/[0.06] bg-white/[0.02] relative overflow-hidden" style="animation:priceCardIn 0.5s cubic-bezier(0.22,1,0.36,1) both;animation-delay:0.4s;">
+      <div class="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-white/10 to-transparent"></div>
+      <div class="flex items-center gap-3 mb-3">
+        <div class="w-10 h-10 rounded-xl bg-white/[0.04] border border-white/[0.08] flex items-center justify-center flex-shrink-0">
+          <i class="fa-solid fa-ticket text-neutral-400 text-sm"></i>
+        </div>
+        <div>
+          <span class="text-sm font-bold text-white block">Redeem a promo code</span>
+          <span class="text-[11px] text-neutral-600">Get a code from our <a href="https://discord.gg/ghostlua" target="_blank" rel="noopener" class="text-[#7289da] hover:text-indigo-300 transition-colors">Discord server</a></span>
+        </div>
       </div>
-      <p class="text-xs text-neutral-600 mb-3">Get a code from our <a href="https://discord.gg/ghostlua" target="_blank" rel="noopener" class="text-[#7289da] hover:text-indigo-300 transition-colors">Discord server</a> and paste it below.</p>
       <div class="flex gap-2">
         <input id="promo-input" type="text" class="promo-input flex-1" placeholder="Enter promo code…"
           autocomplete="off" spellcheck="false" onkeydown="if(event.key==='Enter') redeemCode()" />
-        <button onclick="redeemCode()" class="px-4 py-2 rounded-xl bg-white hover:bg-neutral-200 text-black text-sm font-bold transition-colors whitespace-nowrap">Redeem</button>
+        <button onclick="redeemCode()" class="px-5 py-2.5 rounded-xl bg-white hover:bg-neutral-200 text-black text-sm font-bold transition-all whitespace-nowrap hover:scale-[1.02] shadow-lg shadow-white/10">Redeem</button>
       </div>
       <p id="promo-msg" class="promo-msg"></p>
     </div>

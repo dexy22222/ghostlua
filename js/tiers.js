@@ -16,19 +16,40 @@ const TIERS = {
   },
 };
 
-// ── Promo codes — edit these and distribute via Discord ──────────────────────
-// Format: 'CODE': { tier: 'pro'|'master', days: 30 }
+// ── Promo codes ──────────────────────────────────────────────────────────────
+// oneTime: true = code can only be redeemed ONCE per browser (stored in localStorage)
+// oneTime: false = code can be redeemed unlimited times (standard behavior)
 const PROMO_CODES = {
-  'GHOSTPRO2026':    { tier: 'pro',    days: 30 },
-  'GHOSTMASTER2026': { tier: 'master', days: 30 },
+  'GHOSTPRO2026':    { tier: 'pro',    days: 30, oneTime: false },
+  'GHOSTMASTER2026': { tier: 'master', days: 30, oneTime: false },
+  'MASTERKEY':       { tier: 'master', days: 30, oneTime: true },
 };
 
-const TIER_STORAGE_KEY = 'gl_tier';
-const DL_COUNT_KEY     = 'gl_downloads';
+const TIER_STORAGE_KEY   = 'gl_tier';
+const DL_COUNT_KEY       = 'gl_downloads';
+const REDEEMED_CODES_KEY = 'gl_redeemed_codes';
 
 function _getMonthKey() {
   const d = new Date();
   return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}`;
+}
+
+function _getRedeemedCodes() {
+  try { return JSON.parse(localStorage.getItem(REDEEMED_CODES_KEY) || '[]'); }
+  catch { return []; }
+}
+
+function _markCodeRedeemed(code) {
+  const redeemed = _getRedeemedCodes();
+  const upper = code.toUpperCase().trim();
+  if (!redeemed.includes(upper)) {
+    redeemed.push(upper);
+    localStorage.setItem(REDEEMED_CODES_KEY, JSON.stringify(redeemed));
+  }
+}
+
+function _isCodeRedeemed(code) {
+  return _getRedeemedCodes().includes(code.toUpperCase().trim());
 }
 
 function getUserTier() {
@@ -83,8 +104,14 @@ function getTierInfo() {
 
 // ── Promo code redemption ────────────────────────────────────────────────────
 function redeemPromoCode(code) {
-  const entry = PROMO_CODES[String(code).toUpperCase().trim()];
+  const upper = String(code).toUpperCase().trim();
+  const entry = PROMO_CODES[upper];
   if (!entry) return { ok: false, error: 'Invalid or expired code.' };
+
+  // One-time use check
+  if (entry.oneTime && _isCodeRedeemed(upper)) {
+    return { ok: false, error: 'This code has already been redeemed.' };
+  }
 
   const current   = getUserTier();
   const tierOrder = ['free', 'pro', 'master'];
@@ -93,6 +120,10 @@ function redeemPromoCode(code) {
   }
 
   setUserTier(entry.tier, entry.days);
+
+  // Mark one-time codes as used
+  if (entry.oneTime) _markCodeRedeemed(upper);
+
   return { ok: true, tier: entry.tier, days: entry.days, name: TIERS[entry.tier].name };
 }
 

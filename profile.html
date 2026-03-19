@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Profile Lookup | GhostLua</title>
-  <meta name="description" content="Look up any Steam profile — view games, friends, playtime stats." />
+  <meta name="description" content="Look up any Steam profile — view games, friends, playtime stats with a Steam-style UI." />
   <link rel="icon" type="image/png" href="images/ghost.svg" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
   <script src="https://cdn.tailwindcss.com"></script>
@@ -22,6 +22,229 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,300..800;1,14..32,300..800&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="css/custom.css" />
   <link rel="stylesheet" href="css/animations.css" />
+  <style>
+    /* Steam-style profile banner */
+    .profile-banner {
+      position: relative;
+      background: linear-gradient(135deg, #1a1a2e 0%, #16213e 30%, #0f3460 60%, #1a1a2e 100%);
+      border-radius: 1rem;
+      overflow: hidden;
+      border: 1px solid rgba(255,255,255,0.06);
+    }
+    .profile-banner::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 60% 50% at 20% 80%, rgba(59,130,246,0.12), transparent),
+        radial-gradient(ellipse 50% 40% at 80% 20%, rgba(99,102,241,0.08), transparent);
+      pointer-events: none;
+    }
+    .profile-banner::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, transparent 60%, rgba(0,0,0,0.6) 100%);
+      pointer-events: none;
+    }
+
+    /* Avatar ring glow */
+    .avatar-ring {
+      position: relative;
+      padding: 3px;
+      border-radius: 1rem;
+      background: conic-gradient(from 0deg, #3b82f6, #6366f1, #8b5cf6, #3b82f6);
+    }
+    .avatar-ring.offline { background: conic-gradient(from 0deg, #404040, #525252, #404040); }
+    .avatar-ring.in-game { background: conic-gradient(from 0deg, #14b8a6, #06b6d4, #14b8a6); }
+    .avatar-ring::before {
+      content: '';
+      position: absolute;
+      inset: -4px;
+      border-radius: 1.2rem;
+      background: inherit;
+      filter: blur(12px);
+      opacity: 0.4;
+      z-index: -1;
+    }
+
+    /* Level badge */
+    .level-badge {
+      width: 48px; height: 48px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #1e293b, #0f172a);
+      border: 2px solid rgba(59,130,246,0.4);
+      display: flex; align-items: center; justify-content: center;
+      font-weight: 800; font-size: 0.9rem; color: #60a5fa;
+      box-shadow: 0 0 20px -4px rgba(59,130,246,0.3);
+      position: relative;
+    }
+    .level-badge::after {
+      content: 'LVL';
+      position: absolute;
+      bottom: -14px;
+      font-size: 7px;
+      letter-spacing: 0.1em;
+      color: #475569;
+      font-weight: 700;
+    }
+
+    /* Stat cards */
+    .stat-card {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 0.75rem;
+      padding: 0.75rem;
+      text-align: center;
+      transition: all 0.25s;
+      position: relative;
+      overflow: hidden;
+    }
+    .stat-card:hover {
+      border-color: rgba(255,255,255,0.12);
+      background: rgba(255,255,255,0.05);
+      transform: translateY(-2px);
+    }
+    .stat-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, rgba(59,130,246,0.3), transparent);
+      opacity: 0;
+      transition: opacity 0.25s;
+    }
+    .stat-card:hover::before { opacity: 1; }
+
+    /* Game card (Steam-style) */
+    .steam-game-card {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      padding: 0.5rem 0.625rem;
+      border-radius: 0.625rem;
+      transition: all 0.2s;
+      border: 1px solid transparent;
+      position: relative;
+    }
+    .steam-game-card:hover {
+      background: rgba(255,255,255,0.04);
+      border-color: rgba(255,255,255,0.06);
+    }
+    .steam-game-card .game-thumb {
+      width: 120px;
+      height: 45px;
+      border-radius: 0.375rem;
+      object-fit: cover;
+      flex-shrink: 0;
+      background: #111;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.4);
+    }
+    .steam-game-card .playtime-bar {
+      height: 3px;
+      border-radius: 2px;
+      background: rgba(255,255,255,0.06);
+      overflow: hidden;
+      margin-top: 4px;
+    }
+    .steam-game-card .playtime-fill {
+      height: 100%;
+      border-radius: 2px;
+      background: linear-gradient(90deg, #3b82f6, #6366f1);
+      transition: width 0.6s ease;
+    }
+
+    /* Friends grid */
+    .friend-card {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.5rem;
+      border-radius: 0.5rem;
+      transition: all 0.2s;
+    }
+    .friend-card:hover {
+      background: rgba(255,255,255,0.04);
+    }
+
+    /* Tab bar Steam-style */
+    .steam-tab-bar {
+      display: flex;
+      gap: 2px;
+      padding: 3px;
+      border-radius: 0.75rem;
+      background: rgba(0,0,0,0.4);
+      border: 1px solid rgba(255,255,255,0.04);
+    }
+    .steam-tab {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.375rem;
+      padding: 0.5rem 0.75rem;
+      border-radius: 0.625rem;
+      font-size: 0.6875rem;
+      font-weight: 600;
+      transition: all 0.2s;
+      cursor: pointer;
+      border: 1px solid transparent;
+      color: #525252;
+    }
+    .steam-tab:hover { color: #a3a3a3; }
+    .steam-tab.active {
+      background: rgba(255,255,255,0.08);
+      color: white;
+      border-color: rgba(255,255,255,0.1);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+    }
+
+    /* Recent activity badge */
+    .activity-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.25rem;
+      padding: 0.125rem 0.5rem;
+      border-radius: 9999px;
+      font-size: 0.5625rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    .activity-online { background: rgba(16,185,129,0.12); color: #34d399; border: 1px solid rgba(16,185,129,0.2); }
+    .activity-ingame { background: rgba(20,184,166,0.12); color: #2dd4bf; border: 1px solid rgba(20,184,166,0.2); }
+    .activity-offline { background: rgba(82,82,82,0.2); color: #737373; border: 1px solid rgba(82,82,82,0.3); }
+
+    /* Scrollbar */
+    .steam-scroll::-webkit-scrollbar { width: 4px; }
+    .steam-scroll::-webkit-scrollbar-track { background: transparent; }
+    .steam-scroll::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 4px; }
+
+    /* Search input glow */
+    .search-glow:focus {
+      box-shadow: 0 0 0 1px rgba(59,130,246,0.3), 0 0 20px -4px rgba(59,130,246,0.15);
+    }
+
+    /* Shimmer loading */
+    @keyframes shimmer {
+      0% { background-position: -200% 0; }
+      100% { background-position: 200% 0; }
+    }
+    .shimmer {
+      background: linear-gradient(90deg, rgba(255,255,255,0.03) 25%, rgba(255,255,255,0.06) 50%, rgba(255,255,255,0.03) 75%);
+      background-size: 200% 100%;
+      animation: shimmer 1.5s infinite;
+    }
+
+    /* Copy toast */
+    @keyframes toastIn {
+      from { opacity: 0; transform: translateY(8px) scale(0.95); }
+      to { opacity: 1; transform: translateY(0) scale(1); }
+    }
+    .copy-toast {
+      animation: toastIn 0.2s ease-out;
+    }
+  </style>
 </head>
 <body class="min-h-screen font-sans relative text-neutral-100 antialiased">
 
@@ -69,39 +292,58 @@
   <main class="relative z-20 max-w-3xl mx-auto px-4 pt-24 pb-24">
     <!-- Header -->
     <div class="text-center mb-8">
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/[0.04] border border-white/[0.08] text-[11px] text-neutral-500 font-semibold uppercase tracking-wider mb-3">
+        <i class="fa-brands fa-steam text-[9px]"></i> Steam Profile
+      </div>
       <h1 class="text-2xl font-bold text-white mb-1">Steam Profile Lookup</h1>
-      <p class="text-sm text-neutral-600">Enter a Steam ID, custom URL, or profile link</p>
+      <p class="text-sm text-neutral-600">View any public Steam profile with full details</p>
     </div>
 
     <!-- Search -->
     <div class="mb-8">
       <div class="relative max-w-lg mx-auto">
         <i class="fa-brands fa-steam absolute left-4 top-1/2 -translate-y-1/2 text-neutral-600 text-sm pointer-events-none"></i>
-        <input id="profile-input" type="text" placeholder="Steam64 ID, vanity URL, or profile link…"
-          class="w-full pl-11 pr-24 sm:pr-28 py-3.5 rounded-xl border border-white/[0.08] bg-white/[0.03] text-neutral-100 placeholder-neutral-700 text-sm font-medium outline-none focus:border-white/[0.2] transition-colors"
+        <input id="profile-input" type="text" placeholder="Steam64 ID, vanity URL, or profile link..."
+          class="search-glow w-full pl-11 pr-24 sm:pr-28 py-3.5 rounded-xl border border-white/[0.08] bg-white/[0.03] text-neutral-100 placeholder-neutral-700 text-sm font-medium outline-none focus:border-blue-500/30 transition-all"
           onkeydown="if(event.key==='Enter'){event.preventDefault();_doProfileLookup()}" />
         <button onclick="_doProfileLookup()"
-          class="absolute right-1.5 top-1/2 -translate-y-1/2 px-4 sm:px-5 py-2 bg-white text-black text-sm font-bold rounded-lg hover:bg-neutral-200 active:bg-neutral-300 transition-colors">
+          class="absolute right-1.5 top-1/2 -translate-y-1/2 px-4 sm:px-5 py-2 bg-blue-600 hover:bg-blue-500 text-white text-sm font-bold rounded-lg active:bg-blue-700 transition-colors shadow-lg shadow-blue-500/20">
           <i class="fa-solid fa-magnifying-glass text-xs sm:hidden"></i>
           <span class="hidden sm:inline">Lookup</span>
         </button>
       </div>
-      <div class="flex justify-center gap-3 mt-3 text-[11px] text-neutral-700">
-        <span><i class="fa-solid fa-check text-emerald-600 mr-1"></i>Public profiles</span>
-        <span><i class="fa-solid fa-check text-emerald-600 mr-1"></i>Games &amp; playtime</span>
-        <span><i class="fa-solid fa-check text-emerald-600 mr-1"></i>Friends list</span>
+      <div class="flex justify-center gap-4 mt-3 text-[11px] text-neutral-700">
+        <span class="flex items-center gap-1"><i class="fa-solid fa-check text-emerald-600 text-[8px]"></i>Public profiles</span>
+        <span class="flex items-center gap-1"><i class="fa-solid fa-check text-emerald-600 text-[8px]"></i>Games &amp; playtime</span>
+        <span class="flex items-center gap-1"><i class="fa-solid fa-check text-emerald-600 text-[8px]"></i>Friends list</span>
+        <span class="flex items-center gap-1"><i class="fa-solid fa-check text-emerald-600 text-[8px]"></i>Recent activity</span>
       </div>
     </div>
 
     <!-- Profile results -->
-    <div id="profile-section" class="w-full rounded-2xl border border-white/[0.06] bg-white/[0.02] p-5 sm:p-6 min-h-[200px]">
-      <div class="text-center py-12">
-        <div class="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-white/[0.03] border border-white/[0.06] mb-4">
-          <i class="fa-brands fa-steam text-3xl text-neutral-700"></i>
+    <div id="profile-section" class="w-full">
+      <div class="profile-banner p-8 sm:p-10">
+        <div class="relative z-10 flex flex-col items-center gap-4">
+          <div class="w-20 h-20 rounded-2xl bg-white/[0.05] border border-white/[0.08] flex items-center justify-center">
+            <i class="fa-brands fa-steam text-4xl text-neutral-700"></i>
+          </div>
+          <div class="text-center">
+            <p class="text-sm font-semibold text-neutral-400">Enter a Steam ID to get started</p>
+            <p class="text-xs mt-1.5 text-neutral-600">Supports Steam64 IDs, vanity URLs, and full profile links</p>
+          </div>
+          <div class="flex items-center gap-2 mt-1">
+            <span class="text-[10px] text-neutral-700 px-2 py-0.5 rounded-md bg-white/[0.03] border border-white/[0.06] font-mono">76561198xxxxxxxxx</span>
+            <span class="text-[10px] text-neutral-800">or</span>
+            <span class="text-[10px] text-neutral-700 px-2 py-0.5 rounded-md bg-white/[0.03] border border-white/[0.06] font-mono">steamcommunity.com/id/...</span>
+          </div>
         </div>
-        <p class="text-sm font-semibold text-neutral-500">Enter a Steam ID to get started</p>
-        <p class="text-xs mt-1.5 text-neutral-700">Supports Steam64 IDs, vanity URLs, and full profile links</p>
       </div>
+    </div>
+
+    <!-- Recent lookups -->
+    <div id="recent-lookups" class="mt-6 hidden">
+      <div class="text-[10px] font-bold uppercase tracking-widest text-neutral-700 mb-2">Recent Lookups</div>
+      <div id="recent-lookups-list" class="flex flex-wrap gap-2"></div>
     </div>
   </main>
 
@@ -120,11 +362,43 @@
   <script src="js/ui.js"></script>
   <script src="js/profile.js"></script>
   <script>
+    // Recent lookups from localStorage
+    const RECENT_KEY = 'gl_recent_lookups';
+
+    function _saveRecentLookup(steamId64, name, avatar) {
+      try {
+        let recent = JSON.parse(localStorage.getItem(RECENT_KEY) || '[]');
+        recent = recent.filter(r => r.id !== steamId64);
+        recent.unshift({ id: steamId64, name, avatar, ts: Date.now() });
+        recent = recent.slice(0, 5);
+        localStorage.setItem(RECENT_KEY, JSON.stringify(recent));
+        _renderRecentLookups();
+      } catch {}
+    }
+
+    function _renderRecentLookups() {
+      try {
+        const recent = JSON.parse(localStorage.getItem(RECENT_KEY) || '[]');
+        const container = document.getElementById('recent-lookups');
+        const list = document.getElementById('recent-lookups-list');
+        if (!recent.length || !container || !list) return;
+        container.classList.remove('hidden');
+        list.innerHTML = recent.map(r => `
+          <button onclick="document.getElementById('profile-input').value='${r.id}'; _doProfileLookup()"
+            class="flex items-center gap-2 px-2.5 py-1.5 rounded-lg bg-white/[0.03] border border-white/[0.06] hover:border-white/[0.12] hover:bg-white/[0.05] transition-all group">
+            <img src="${r.avatar}" class="w-5 h-5 rounded-md object-cover" onerror="this.style.display='none'" />
+            <span class="text-[11px] text-neutral-500 group-hover:text-neutral-300 font-medium truncate max-w-[100px]">${r.name}</span>
+          </button>`).join('');
+      } catch {}
+    }
+
     function _doProfileLookup() {
       const input = document.getElementById('profile-input')?.value?.trim();
       if (!input) return;
       lookupProfile(input);
     }
+
+    document.addEventListener('DOMContentLoaded', _renderRecentLookups);
   </script>
 </body>
 </html>
