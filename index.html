@@ -159,7 +159,7 @@
             <img src="images/ghost.svg" class="ghost-logo-img" alt="" width="40" height="40" fetchpriority="high" decoding="async" />GhostLua
           </h1>
         </div>
-        <p class="text-[11px] text-neutral-600 tracking-wide max-w-md text-center leading-relaxed px-2">Search any Steam game, download a <code class="text-neutral-500">.lua</code> file, and drag it onto <span class="text-neutral-500">SteamTools</span></p>
+        <p class="text-[11px] text-neutral-600 tracking-wide max-w-md text-center leading-relaxed px-2">Search any Steam game, download the <code class="text-neutral-500">.lua</code> folder, and drag the files onto <span class="text-neutral-500">SteamTools</span></p>
         <div class="flex items-center gap-1.5 mt-0.5">
           <span class="db-badge">
             <i class="fa-solid fa-database text-[8px]"></i>
@@ -350,7 +350,7 @@
             <div class="text-[11px] text-neutral-500 mt-1.5 leading-relaxed">Swing through Marvel's New York as both Peter Parker and Miles Morales. All DLCs included in the download.</div>
             <div class="mt-2">
               <span class="inline-flex items-center gap-1.5 px-2.5 py-1 bg-white/[0.06] rounded-lg text-[10px] text-neutral-400 font-medium">
-                <i class="fa-solid fa-download text-[8px]"></i> Click to download .lua
+                <i class="fa-solid fa-download text-[8px]"></i> Click to download
               </span>
             </div>
           </div>
@@ -406,8 +406,8 @@
       </div>
       <div class="w-px h-8 bg-white/[0.06] hidden sm:block"></div>
       <div>
-        <div class="text-lg font-extrabold text-neutral-200">Single .lua</div>
-        <div class="text-[10px] text-neutral-700 uppercase tracking-wider">Game + All DLCs</div>
+        <div class="text-lg font-extrabold text-neutral-200">Folder</div>
+        <div class="text-[10px] text-neutral-700 uppercase tracking-wider">Game + All DLC Files</div>
       </div>
       <div class="w-px h-8 bg-white/[0.06] hidden sm:block"></div>
       <div>
@@ -451,7 +451,7 @@
       <a href="https://github.com/dexy22222/ghostlua" target="_blank" class="hover:text-neutral-300 transition-colors flex items-center gap-1">
         <i class="fa-brands fa-github text-[11px]"></i>GitHub
       </a>
-      <span class="text-neutral-800 font-mono">Build 4.0.0</span>
+      <span class="text-neutral-800 font-mono">Build 4.1.0</span>
     </div>
   </footer>
 
@@ -555,11 +555,11 @@
           </div>
           <div class="dl-step-row">
             <span class="dl-step-num dl-step-active">2</span>
-            <div><span class="dl-step-title">Click download below</span><span class="dl-step-desc"> — saves a single <code class="dl-code">.lua</code> file with game + all DLCs</span></div>
+            <div><span class="dl-step-title">Click download below</span><span class="dl-step-desc"> — saves a zip with a folder of <code class="dl-code">.lua</code> files (game + all DLCs)</span></div>
           </div>
           <div class="dl-step-row">
             <span class="dl-step-num">3</span>
-            <div><span class="dl-step-title">Drag the .lua file onto SteamTools</span><span class="dl-step-desc"> — the floating Steam icon</span></div>
+            <div><span class="dl-step-title">Extract &amp; drag all .lua files onto SteamTools</span><span class="dl-step-desc"> — the floating Steam icon</span></div>
           </div>
           <div class="dl-step-row">
             <span class="dl-step-num">4</span>
@@ -595,7 +595,7 @@
           </div>
           <div class="dl-step-row">
             <span class="dl-step-num dl-step-active">2</span>
-            <div><span class="dl-step-title text-neutral-200">Drag the .lua file</span><span class="dl-step-desc"> — onto the floating SteamTools icon</span></div>
+            <div><span class="dl-step-title text-neutral-200">Extract the zip &amp; drag all .lua files</span><span class="dl-step-desc"> — onto the floating SteamTools icon</span></div>
           </div>
           <div class="dl-step-row">
             <span class="dl-step-num">3</span>
@@ -630,7 +630,7 @@
       <!-- Download button -->
       <button id="dl-btn" onclick="startDownload()"
         class="dl-download-btn w-full h-11 flex items-center justify-center gap-2 bg-white hover:bg-neutral-200 active:bg-neutral-300 rounded-xl text-black font-bold transition-all text-sm shadow-lg hidden">
-        <i class="fa-solid fa-file-code text-xs"></i> Download .lua
+        <i class="fa-solid fa-download text-xs"></i> Download
       </button>
       
       <!-- Batch download button -->
@@ -684,15 +684,15 @@
           <div class="welcome-step-row">
             <span class="welcome-step-num">2</span>
             <div>
-              <div class="welcome-step-title">Download the <code class="welcome-code">.lua</code> file</div>
-              <div class="welcome-step-sub">Click the game → hit Download. One file for game + all DLCs.</div>
+              <div class="welcome-step-title">Download the lua folder</div>
+              <div class="welcome-step-sub">Click the game → hit Download. You get a zip with individual .lua files for game + all DLCs.</div>
             </div>
           </div>
           <div class="welcome-step-row">
             <span class="welcome-step-num">3</span>
             <div>
-              <div class="welcome-step-title">Drag onto SteamTools</div>
-              <div class="welcome-step-sub">Drop the file on the floating Steam icon, then restart Steam</div>
+              <div class="welcome-step-title">Extract &amp; drag onto SteamTools</div>
+              <div class="welcome-step-sub">Extract the zip, select all .lua files, drop them on the floating Steam icon, then restart Steam</div>
             </div>
           </div>
         </div>

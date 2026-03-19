@@ -154,7 +154,7 @@ const pages = {
         <div class="step-title">Search for the game you want to add to your Steam Library for free</div>
       </div></div>
       <div class="step"><div class="step-num">3</div><div class="step-body">
-        <div class="step-title">Click <strong>Download .lua</strong> — this downloads a single file containing the game + all its DLCs</div>
+        <div class="step-title">Click <strong>Download</strong> — this downloads a zip containing a folder with individual <code>.lua</code> files for the game + all its DLCs</div>
       </div></div>
 
       <h2>2. Open SteamTools and add the game</h2>
@@ -166,7 +166,7 @@ const pages = {
         </details>
       </div></div>
       <div class="step"><div class="step-num">2</div><div class="step-body">
-        <div class="step-title">Drag the <code>.lua</code> file you've downloaded onto the floating Steam icon.</div>
+        <div class="step-title">Extract the downloaded zip. Select <strong>all</strong> the <code>.lua</code> files inside the folder and drag them onto the floating Steam icon.</div>
       </div></div>
       <div class="step"><div class="step-num">3</div><div class="step-body">
         <div class="step-title">Restart Steam through SteamTools by right-clicking the floating Steam icon and selecting <strong>Restart Steam</strong>.</div>
@@ -460,7 +460,7 @@ const pages = {
       ${faqItem("Can I download and play VR games using this?", "Yes.")}
 
       <div class="faq-section-title">Generator (GhostLua)</div>
-      ${faqItem("Why is there just a single .lua file?", "That's how it works! Each <code>.lua</code> file contains the game <strong>and</strong> all its DLCs. Just drag and drop that one file onto SteamTools.")}
+      ${faqItem("Why does it download a zip with a folder?", "Each download contains a folder with individual <code>.lua</code> files — one for the main game and one for each DLC. Extract the zip, select all the <code>.lua</code> files, and drag them onto SteamTools.")}
       ${faqItem("What does DRM/Restrictions detected mean?", "That means that the game contains extra security measures, and there's no bypass for it available.")}
 
       <div class="faq-section-title">Troubleshooting</div>
