@@ -1,7 +1,14 @@
-// ── CORS proxy helper ──────────────────────────────────────────────────────────
+// ── Steam community fetch (uses Worker proxy, fallback to external CORS) ──────
 async function _fetchWithCors(url) {
+  // Primary: use our own Worker proxy (no CORS issues, fast)
+  try {
+    const res = await fetch(`/api/proxy/steam?url=${encodeURIComponent(url)}`, {
+      signal: AbortSignal.timeout(12000),
+    });
+    if (res.ok) return res;
+  } catch (_) {}
+  // Fallback: external CORS proxies
   const proxies = [
-    (u) => `https://corsproxy.io/?url=${encodeURIComponent(u)}`,
     (u) => `https://api.allorigins.win/raw?url=${encodeURIComponent(u)}`,
   ];
   let lastErr;
@@ -10,9 +17,7 @@ async function _fetchWithCors(url) {
       const res = await fetch(toProxy(url), { signal: AbortSignal.timeout(12000) });
       if (res.ok) return res;
       lastErr = new Error(`HTTP ${res.status}`);
-    } catch (e) {
-      lastErr = e;
-    }
+    } catch (e) { lastErr = e; }
   }
   throw lastErr || new Error('Request failed');
 }

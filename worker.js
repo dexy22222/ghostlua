@@ -147,6 +147,29 @@ export default {
       });
     }
 
+    // ── Steam community proxy (no API key needed, avoids CORS) ──
+    if (url.pathname === '/api/proxy/steam') {
+      const rl = checkRateLimit(ip, 'api');
+      if (!rl.allowed) return rateLimitResp(rl);
+      const target = url.searchParams.get('url');
+      if (!target || !target.startsWith('https://steamcommunity.com/')) {
+        return json({ error: 'Invalid URL — must be steamcommunity.com' }, 400, corsHeaders(origin));
+      }
+      try {
+        const res = await fetch(target, {
+          headers: { 'User-Agent': 'GhostLua/1.0', 'Accept': '*/*' },
+        });
+        const body = await res.text();
+        const ct = res.headers.get('Content-Type') || 'text/html';
+        return new Response(body, {
+          status: res.status,
+          headers: { 'Content-Type': ct, 'Cache-Control': 'public, max-age=120', ...corsHeaders(origin), ...SECURITY_HEADERS },
+        });
+      } catch (e) {
+        return json({ error: e.message || 'Steam proxy error' }, 502, corsHeaders(origin));
+      }
+    }
+
     // ── AI Chat ──────────────────────────────────────────────────
     if (url.pathname === '/api/ai/chat' && request.method === 'POST') {
       const rl = checkRateLimit(ip, 'ai');

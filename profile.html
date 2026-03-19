@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Profile Lookup | GhostLua</title>
+  <meta name="description" content="Look up any Steam profile — view games, friends, playtime stats." />
+  <link rel="icon" type="image/png" href="images/ghost.svg" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: { extend: {
+        colors: { primary: '#d4d4d4' },
+        fontFamily: { sans: ['Inter','ui-sans-serif','system-ui','sans-serif'] }
+      }}
+    }
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,300..800;1,14..32,300..800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/custom.css" />
+  <link rel="stylesheet" href="css/animations.css" />
+</head>
+<body class="min-h-screen font-sans relative text-neutral-100 antialiased">
+
+  <!-- Background -->
+  <div class="fixed inset-0 bg-[#080808] pointer-events-none z-0"></div>
+  <div class="fixed inset-0 pointer-events-none z-0 grid-overlay"></div>
+
+  <!-- Nav -->
+  <nav class="fixed top-0 left-0 right-0 z-30 border-b border-white/[0.04] bg-[#080808]/80 backdrop-blur-xl">
+    <div class="max-w-5xl mx-auto px-4 h-14 flex items-center justify-between">
+      <div class="flex items-center gap-4">
+        <a href="index.html" class="flex items-center gap-2 text-white font-bold text-base hover:opacity-80 transition-opacity">
+          <img src="images/ghost.svg" class="w-6 h-6" alt="" />
+          GhostLua
+        </a>
+        <div class="hidden sm:flex items-center gap-1 text-[13px]">
+          <a href="index.html" class="px-3 py-1.5 rounded-lg text-neutral-500 hover:text-white transition-colors">Home</a>
+          <a href="guide.html" class="px-3 py-1.5 rounded-lg text-neutral-500 hover:text-white transition-colors">Guide</a>
+          <span class="px-3 py-1.5 rounded-lg text-white bg-white/[0.06]">Profile</span>
+          <a href="community.html" class="px-3 py-1.5 rounded-lg text-neutral-500 hover:text-white transition-colors">Community</a>
+        </div>
+      </div>
+      <div class="flex items-center gap-3">
+        <a href="https://github.com/dexy22222/ghostlua" target="_blank" class="text-neutral-600 hover:text-white transition-colors">
+          <i class="fa-brands fa-github text-lg"></i>
+        </a>
+        <button onclick="document.getElementById('profile-mobile-menu').classList.toggle('hidden')" class="sm:hidden text-neutral-500 hover:text-white transition-colors">
+          <i class="fa-solid fa-bars text-base"></i>
+        </button>
+      </div>
+    </div>
+    <!-- Mobile dropdown -->
+    <div id="profile-mobile-menu" class="hidden sm:hidden border-t border-white/[0.04] bg-[#080808]/95 backdrop-blur-xl">
+      <div class="max-w-5xl mx-auto px-4 py-2 flex flex-col gap-1">
+        <a href="index.html" class="px-3 py-2 rounded-lg text-sm text-neutral-400 hover:text-white hover:bg-white/[0.04] transition-colors"><i class="fa-solid fa-house text-xs mr-2 w-4 text-center"></i>Home</a>
+        <a href="guide.html" class="px-3 py-2 rounded-lg text-sm text-neutral-400 hover:text-white hover:bg-white/[0.04] transition-colors"><i class="fa-solid fa-book-open text-xs mr-2 w-4 text-center"></i>Guide</a>
+        <span class="px-3 py-2 rounded-lg text-sm text-white bg-white/[0.06] font-medium"><i class="fa-brands fa-steam text-xs mr-2 w-4 text-center"></i>Profile</span>
+        <a href="community.html" class="px-3 py-2 rounded-lg text-sm text-neutral-400 hover:text-white hover:bg-white/[0.04] transition-colors"><i class="fa-solid fa-users text-xs mr-2 w-4 text-center"></i>Community</a>
+      </div>
+    </div>
+  </nav>
+
+  <main class="relative z-20 max-w-3xl mx-auto px-4 pt-24 pb-24">
+    <!-- Header -->
+    <div class="text-center mb-8">
+      <h1 class="text-2xl font-bold text-white mb-1">Steam Profile Lookup</h1>
+      <p class="text-sm text-neutral-600">Enter a Steam ID, custom URL, or profile link</p>
+    </div>
+
+    <!-- Search -->
+    <div class="mb-8">
+      <div class="relative max-w-lg mx-auto">
+        <i class="fa-brands fa-steam absolute left-4 top-1/2 -translate-y-1/2 text-neutral-600 text-sm pointer-events-none"></i>
+        <input id="profile-input" type="text" placeholder="Steam64 ID, vanity URL, or profile link…"
+          class="w-full pl-11 pr-24 sm:pr-28 py-3.5 rounded-xl border border-white/[0.08] bg-white/[0.03] text-neutral-100 placeholder-neutral-700 text-sm font-medium outline-none focus:border-white/[0.2] transition-colors"
+          onkeydown="if(event.key==='Enter'){event.preventDefault();_doProfileLookup()}" />
+        <button onclick="_doProfileLookup()"
+          class="absolute right-1.5 top-1/2 -translate-y-1/2 px-4 sm:px-5 py-2 bg-white text-black text-sm font-bold rounded-lg hover:bg-neutral-200 active:bg-neutral-300 transition-colors">
+          <i class="fa-solid fa-magnifying-glass text-xs sm:hidden"></i>
+          <span class="hidden sm:inline">Lookup</span>
+        </button>
+      </div>
+      <div class="flex justify-center gap-3 mt-3 text-[11px] text-neutral-700">
+        <span><i class="fa-solid fa-check text-emerald-600 mr-1"></i>Public profiles</span>
+        <span><i class="fa-solid fa-check text-emerald-600 mr-1"></i>Games &amp; playtime</span>
+        <span><i class="fa-solid fa-check text-emerald-600 mr-1"></i>Friends list</span>
+      </div>
+    </div>
+
+    <!-- Profile results -->
+    <div id="profile-section" class="w-full rounded-2xl border border-white/[0.06] bg-white/[0.02] p-5 sm:p-6 min-h-[200px]">
+      <div class="text-center py-12">
+        <div class="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-white/[0.03] border border-white/[0.06] mb-4">
+          <i class="fa-brands fa-steam text-3xl text-neutral-700"></i>
+        </div>
+        <p class="text-sm font-semibold text-neutral-500">Enter a Steam ID to get started</p>
+        <p class="text-xs mt-1.5 text-neutral-700">Supports Steam64 IDs, vanity URLs, and full profile links</p>
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="fixed bottom-0 left-0 right-0 z-10 py-2.5 bg-[#080808]/80 backdrop-blur-xl border-t border-white/[0.04]">
+    <div class="max-w-5xl mx-auto px-4 flex flex-wrap items-center justify-center gap-x-5 gap-y-1 text-[11px] text-neutral-700">
+      <span><i class="fa-solid fa-ghost text-neutral-800 text-[9px] mr-1"></i>&copy; 2026 GhostLua</span>
+      <a href="privacy.html" class="hover:text-neutral-400 transition-colors">Privacy</a>
+      <a href="tos.html" class="hover:text-neutral-400 transition-colors">Terms</a>
+      <a href="https://github.com/dexy22222/ghostlua" target="_blank" class="hover:text-neutral-400 transition-colors flex items-center gap-1">
+        <i class="fa-brands fa-github text-[10px]"></i>GitHub
+      </a>
+    </div>
+  </footer>
+
+  <script src="js/ui.js"></script>
+  <script src="js/profile.js"></script>
+  <script>
+    function _doProfileLookup() {
+      const input = document.getElementById('profile-input')?.value?.trim();
+      if (!input) return;
+      lookupProfile(input);
+    }
+  </script>
+</body>
+</html>

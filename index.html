@@ -67,10 +67,17 @@
       <i class="fa-solid fa-users text-neutral-400 text-xs"></i>
       <span class="text-[13px] text-neutral-300 font-medium">Community</span>
     </a>
+    <a href="profile.html" class="nav-pill flex items-center h-9 gap-2 bg-neutral-900/80 rounded-full px-3.5 border border-neutral-800/60 hover:border-neutral-600/60">
+      <i class="fa-brands fa-steam text-neutral-400 text-xs"></i>
+      <span class="text-[13px] text-neutral-300 font-medium">Profile</span>
+    </a>
   </div>
 
   <!-- Desktop Nav Right -->
   <div class="hidden md:flex fixed top-4 right-4 items-center gap-2 z-30">
+    <a href="https://github.com/dexy22222/ghostlua" target="_blank" class="nav-pill flex items-center justify-center w-9 h-9 bg-neutral-900/80 rounded-full border border-neutral-800/60 hover:border-neutral-600/60 text-neutral-500 hover:text-white transition-colors">
+      <i class="fa-brands fa-github text-sm"></i>
+    </a>
     <div class="nav-pill flex items-center gap-2 bg-neutral-900/80 rounded-full px-3.5 h-9 border border-neutral-800/60">
       <span class="relative flex h-2 w-2">
         <span class="absolute inline-flex h-full w-full rounded-full bg-neutral-300 opacity-60 animate-ping"></span>
@@ -107,6 +114,12 @@
       <a href="status.html" class="flex items-center h-10 gap-2.5 bg-neutral-900/90 backdrop-blur-xl rounded-xl px-4 border border-neutral-800/60 text-sm text-neutral-200 font-medium">
         <i class="fa-solid fa-circle text-emerald-400 text-xs w-4 text-center" style="font-size:8px;"></i> Status
       </a>
+      <a href="profile.html" class="flex items-center h-10 gap-2.5 bg-neutral-900/90 backdrop-blur-xl rounded-xl px-4 border border-neutral-800/60 text-sm text-neutral-200 font-medium">
+        <i class="fa-brands fa-steam text-neutral-500 text-xs w-4 text-center"></i> Profile Lookup
+      </a>
+      <a href="community.html" class="flex items-center h-10 gap-2.5 bg-neutral-900/90 backdrop-blur-xl rounded-xl px-4 border border-neutral-800/60 text-sm text-neutral-200 font-medium">
+        <i class="fa-solid fa-users text-neutral-500 text-xs w-4 text-center"></i> Community
+      </a>
     </div>
   </div>
 
@@ -139,19 +152,17 @@
 
         <!-- Mode tabs -->
         <div class="flex bg-black/60 rounded-xl p-1 gap-1 border border-white/[0.05]">
-          <button id="mode-individual" onclick="switchMode('individual')"
-            class="flex-1 py-2.5 px-3 text-sm font-semibold rounded-lg transition-all duration-200 mode-tab-active">
+          <div class="flex-1 py-2.5 px-3 text-sm font-semibold rounded-lg mode-tab-active">
             <span class="flex items-center justify-center gap-2">
               <i class="fa-regular fa-file-code text-xs"></i>Individual
             </span>
-          </button>
-          <button id="mode-profile" onclick="switchMode('profile')"
-            class="flex-1 py-2.5 px-3 text-sm font-semibold rounded-lg transition-all duration-200 mode-tab-inactive">
+          </div>
+          <a href="profile.html"
+            class="flex-1 py-2.5 px-3 text-sm font-semibold rounded-lg transition-all duration-200 mode-tab-inactive no-underline">
             <span class="flex items-center justify-center gap-2">
               <i class="fa-regular fa-user text-xs"></i>Profile
-              <span class="px-1.5 py-0.5 text-[8px] font-bold bg-neutral-700/80 text-neutral-300 rounded uppercase tracking-wider leading-none">Beta</span>
             </span>
-          </button>
+          </a>
         </div>
 
         <!-- Search input -->
@@ -242,8 +253,6 @@
       </div>
       <!-- /search card -->
 
-      <!-- Profile section (shown when profile mode is active) -->
-      <div id="profile-section" class="card hero-profile-section rounded-2xl p-4 hidden"></div>
 
     </div>
     <!-- /hero -->
@@ -321,7 +330,10 @@
       <a href="status.html" class="hover:text-emerald-400 transition-colors flex items-center gap-1">
         <span class="inline-block w-1.5 h-1.5 rounded-full bg-emerald-500"></span>Status
       </a>
-      <span class="text-neutral-800 font-mono">Build 2.4.0</span>
+      <a href="https://github.com/dexy22222/ghostlua" target="_blank" class="hover:text-neutral-300 transition-colors flex items-center gap-1">
+        <i class="fa-brands fa-github text-[11px]"></i>GitHub
+      </a>
+      <span class="text-neutral-800 font-mono">Build 2.5.0</span>
     </div>
   </footer>
 
@@ -584,7 +596,6 @@
   <script src="js/history.js"></script>
   <script src="js/download.js"></script>
   <script src="js/search.js"></script>
-  <script src="js/profile.js"></script>
   <script src="js/main.js"></script>
   <script src="js/notifications.js"></script>
   <script src="js/welcome.js"></script>
