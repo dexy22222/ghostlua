@@ -376,6 +376,12 @@ async function downloadBatchZip() {
     return;
   }
 
+  // Batch downloads require Pro or Master
+  if (typeof canBatchDownload === 'function' && !canBatchDownload()) {
+    if (typeof showUpgradePrompt === 'function') showUpgradePrompt('batch');
+    return;
+  }
+
   const appIds = Array.from(window.selectedGames);
 
   let btn;

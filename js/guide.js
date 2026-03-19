@@ -24,6 +24,11 @@ const pages = {
           <div class="doc-card-title">Bypasses &amp; Fixes</div>
           <div class="doc-card-desc">Special installation steps for certain games</div>
         </a>
+        <a class="doc-card" onclick="navigate('plans')">
+          <div class="doc-card-icon"><i class="fa-solid fa-crown" style="color:#f59e0b;"></i></div>
+          <div class="doc-card-title">Plans &amp; Features</div>
+          <div class="doc-card-desc">Free, Pro, and Master tier comparison</div>
+        </a>
       </div>
     `
   },
@@ -437,6 +442,7 @@ const pages = {
     breadcrumbs: [{ label: 'Frequently Asked Questions', id: null }],
     title: 'Frequently Asked Questions',
     prev: { id: 'among-us', label: 'Among Us' },
+    next: { id: 'plans', label: 'Plans & Features' },
     render: () => `
       <h1>Frequently Asked Questions</h1>
 
@@ -476,6 +482,88 @@ const pages = {
       `)}
       ${faqItem('How do I fix the "Content Configuration Unavailable" error?', 'Go to <code>C:\\Program Files (x86)\\Steam\\appcache</code> and delete the <code>appinfo.vdf</code> file.')}
     `
+  },
+
+  plans: {
+    breadcrumbs: [{ label: 'Plans & Features', id: null }],
+    title: 'Plans & Features',
+    prev: { id: 'faq', label: 'Frequently Asked Questions' },
+    render: () => `
+      <h1>Plans &amp; Features</h1>
+      <p>GhostLua offers three plans. All plans use the same game database — the difference is your monthly download allowance and extra features.</p>
+      <p>Upgrade by joining <a href="https://discord.gg/ghostlua" target="_blank" rel="noopener"><i class="fa-brands fa-discord"></i> our Discord</a> and redeeming a promo code on the <a href="pricing.html">Pricing page</a>.</p>
+
+      <div style="display:grid;gap:1rem;margin:1.5rem 0;">
+
+        <!-- Free -->
+        <div style="border:1px solid var(--border);border-radius:12px;padding:1.25rem 1.5rem;">
+          <div style="display:flex;align-items:center;gap:0.6rem;margin-bottom:0.75rem;">
+            <i class="fa-solid fa-ghost" style="color:#737373;font-size:1.1rem;"></i>
+            <span style="font-weight:700;font-size:1.05rem;">Free</span>
+            <span style="margin-left:auto;font-size:0.8rem;color:var(--text-muted);">$0 / mo</span>
+          </div>
+          <ul style="list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:0.45rem;font-size:0.875rem;">
+            <li><i class="fa-solid fa-check" style="color:#22c55e;width:1rem;"></i> <strong>25 downloads</strong> per month</li>
+            <li><i class="fa-solid fa-xmark" style="color:#ef4444;width:1rem;"></i> Batch downloads</li>
+            <li><i class="fa-solid fa-xmark" style="color:#ef4444;width:1rem;"></i> Ad-free experience</li>
+            <li><i class="fa-solid fa-xmark" style="color:#ef4444;width:1rem;"></i> Priority support</li>
+            <li><i class="fa-solid fa-xmark" style="color:#ef4444;width:1rem;"></i> Early access to new features</li>
+          </ul>
+        </div>
+
+        <!-- Pro -->
+        <div style="border:1px solid #3b82f6;border-radius:12px;padding:1.25rem 1.5rem;background:rgba(59,130,246,0.04);">
+          <div style="display:flex;align-items:center;gap:0.6rem;margin-bottom:0.75rem;">
+            <i class="fa-solid fa-bolt" style="color:#3b82f6;font-size:1.1rem;"></i>
+            <span style="font-weight:700;font-size:1.05rem;color:#3b82f6;">Pro</span>
+            <span style="margin-left:auto;font-size:0.8rem;color:var(--text-muted);">$4.99 / mo</span>
+          </div>
+          <ul style="list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:0.45rem;font-size:0.875rem;">
+            <li><i class="fa-solid fa-check" style="color:#22c55e;width:1rem;"></i> <strong>500 downloads</strong> per month</li>
+            <li><i class="fa-solid fa-check" style="color:#22c55e;width:1rem;"></i> Batch downloads — download a game + all DLCs at once</li>
+            <li><i class="fa-solid fa-check" style="color:#22c55e;width:1rem;"></i> Ad-free experience</li>
+            <li><i class="fa-solid fa-check" style="color:#22c55e;width:1rem;"></i> Priority support on Discord</li>
+            <li><i class="fa-solid fa-xmark" style="color:#ef4444;width:1rem;"></i> Early access to new features</li>
+          </ul>
+        </div>
+
+        <!-- Master -->
+        <div style="border:1px solid #f59e0b;border-radius:12px;padding:1.25rem 1.5rem;background:rgba(245,158,11,0.04);">
+          <div style="display:flex;align-items:center;gap:0.6rem;margin-bottom:0.75rem;">
+            <i class="fa-solid fa-crown" style="color:#f59e0b;font-size:1.1rem;"></i>
+            <span style="font-weight:700;font-size:1.05rem;color:#f59e0b;">Master</span>
+            <span style="margin-left:auto;font-size:0.8rem;color:var(--text-muted);">$9.99 / mo</span>
+          </div>
+          <ul style="list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:0.45rem;font-size:0.875rem;">
+            <li><i class="fa-solid fa-check" style="color:#22c55e;width:1rem;"></i> <strong>2000 downloads</strong> per month</li>
+            <li><i class="fa-solid fa-check" style="color:#22c55e;width:1rem;"></i> Batch downloads — download a game + all DLCs at once</li>
+            <li><i class="fa-solid fa-check" style="color:#22c55e;width:1rem;"></i> Ad-free experience</li>
+            <li><i class="fa-solid fa-check" style="color:#22c55e;width:1rem;"></i> Priority support on Discord</li>
+            <li><i class="fa-solid fa-check" style="color:#22c55e;width:1rem;"></i> Early access to new features</li>
+          </ul>
+        </div>
+
+      </div>
+
+      <h2>How to upgrade</h2>
+      <div class="step"><div class="step-num">1</div><div class="step-body">
+        <div class="step-title">Join <a href="https://discord.gg/ghostlua" target="_blank" rel="noopener"><i class="fa-brands fa-discord"></i> our Discord server</a></div>
+      </div></div>
+      <div class="step"><div class="step-num">2</div><div class="step-body">
+        <div class="step-title">Head to the <strong>#upgrade</strong> channel and follow the instructions to get a promo code</div>
+      </div></div>
+      <div class="step"><div class="step-num">3</div><div class="step-body">
+        <div class="step-title">Go to the <a href="pricing.html">Pricing page</a>, enter your code in the <strong>Redeem a promo code</strong> box, and click <strong>Redeem</strong></div>
+      </div></div>
+
+      <div class="admonition note">
+        <div class="admonition-icon"><i class="fa-solid fa-circle-info"></i></div>
+        <div class="admonition-content">
+          <div class="admonition-title">Note</div>
+          <p>Plans are stored locally in your browser. Clearing your browser data will reset your plan to Free. Keep your promo code safe so you can re-redeem it if needed.</p>
+        </div>
+      </div>
+    `
   }
 };
 
@@ -499,7 +587,7 @@ function toggleFaq(btn) {
 }
 
 // ── Navigation ─────────────────────────────────────────────────────────────
-const pageOrder = ['intro','beginners','installing','downloading','removing','bypasses','fc26','arc-raiders','among-us','faq'];
+const pageOrder = ['intro','beginners','installing','downloading','removing','bypasses','fc26','arc-raiders','among-us','faq','plans'];
 
 function navigate(pageId, pushState = true) {
   const page = pages[pageId];
