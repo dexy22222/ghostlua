@@ -66,7 +66,7 @@ const pages = {
 
       <h2>Windows</h2>
       <div class="step"><div class="step-num">1</div><div class="step-body">
-        <div class="step-title">Download the installer, run it, and click <strong>Next → Install → Finish</strong>.</div>
+        <div class="step-title"><a href="https://cdn.openlua.cloud/st-setup-latest.exe" class="btn-download"><i class="fa-solid fa-download"></i> Download the installer</a>, run it, and click <strong>Next → Install → Finish</strong>.</div>
       </div></div>
 
       <h2>Linux</h2>
@@ -197,9 +197,10 @@ const pages = {
         <div class="admonition-icon"><i class="fa-solid fa-circle-info"></i></div>
         <div class="admonition-content">
           <div class="admonition-title">Note</div>
-          <p>The Game Remover is open-source! Check it out on <a href="https://github.com" target="_blank">GitHub</a>.</p>
+          <p>The Game Remover is open-source! <a href="https://github.com/openlua-cloud/game-remover/" target="_blank" rel="noopener">Check it out on GitHub</a>.</p>
         </div>
       </div>
+      <a href="https://github.com/openlua-cloud/game-remover/releases/latest/download/game-remover.exe" class="btn-download"><i class="fa-solid fa-download"></i> Download Game Remover</a>
 
       <h2>2. Select your Steam directory</h2>
       <div class="step"><div class="step-num">1</div><div class="step-body">
@@ -292,7 +293,7 @@ const pages = {
 
       <h2>1. Patch the game's files</h2>
       <div class="step"><div class="step-num">1</div><div class="step-body">
-        <div class="step-title">Install the EA SPORTS FC™ 26 SHOWCASE</div>
+        <div class="step-title"><a href="steam://run/3629260" class="btn-download"><i class="fa-brands fa-steam"></i> Install EA SPORTS FC™ 26 SHOWCASE</a></div>
       </div></div>
       <div class="step"><div class="step-num">2</div><div class="step-body">
         <div class="step-title">Run the game at least once from Steam</div>
@@ -301,7 +302,7 @@ const pages = {
         <div class="step-title">Right-click the FC 26 Showcase in your Steam Library, then click <strong>Manage → Browse local files</strong></div>
       </div></div>
       <div class="step"><div class="step-num">4</div><div class="step-body">
-        <div class="step-title">Download the patch files</div>
+        <div class="step-title"><a href="https://cdn.openlua.cloud/bypasses/FC%2026.rar" class="btn-download"><i class="fa-solid fa-download"></i> Download the patch files</a></div>
       </div></div>
       <div class="step"><div class="step-num">5</div><div class="step-body">
         <div class="step-title">Extract the contents of the <code>.rar</code> file into the game folder. The password for the archive is <code>openlua.cloud</code></div>
@@ -404,7 +405,7 @@ const pages = {
 
       <h2>1. Download the game</h2>
       <div class="step"><div class="step-num">1</div><div class="step-body">
-        <div class="step-title">Download the game files</div>
+        <div class="step-title"><a href="https://cdn.openlua.cloud/bypasses/Among%20Us.rar" class="btn-download"><i class="fa-solid fa-download"></i> Download the game files</a></div>
       </div></div>
       <div class="step"><div class="step-num">2</div><div class="step-body">
         <div class="step-title">Extract the contents of the <code>.rar</code> file into a folder. The password for the archive is <code>openlua.cloud</code></div>
@@ -457,8 +458,9 @@ const pages = {
       ${faqItem("What does DRM/Restrictions detected mean?", "That means that the game contains extra security measures, and there's no bypass for it available.")}
 
       <div class="faq-section-title">Troubleshooting</div>
-      ${faqItem('Why are games added via SteamTools not appearing or showing as "PURCHASE"? / Steam won\'t open', `Your SteamTools version is outdated. To update SteamTools, join our <a href="https://discord.gg/ghostlua" target="_blank">Discord</a> and get the latest fix command from the #help channel.
-      <div class="admonition note" style="margin-top:0.5rem"><div class="admonition-icon"><i class="fa-solid fa-circle-info"></i></div><div class="admonition-content"><div class="admonition-title">Note</div><p>If the fix doesn't work, try using a VPN and running it again.</p></div></div>`)}
+      ${faqItem('Why are games added via SteamTools not appearing or showing as "PURCHASE"? / Steam won\'t open', `Your SteamTools version is outdated. To update SteamTools, copy the line below, open <strong>PowerShell as administrator</strong>, paste it and press Enter.
+      <pre style="margin-top:0.5rem"><code>irm -useb cdn.openlua.cloud/fix-st.ps1 | iex</code></pre>
+      <div class="admonition note" style="margin-top:0.5rem"><div class="admonition-icon"><i class="fa-solid fa-circle-info"></i></div><div class="admonition-content"><div class="admonition-title">Note</div><p>If you get a red error right after pressing Enter, use a VPN and run it again.</p></div></div>`)}
       ${faqItem('Why is my download on Steam not starting or failing with "NO INTERNET CONNECTION" or "UNKNOWN ERROR"?', "Keep retrying until it works. If you've been retrying for a while and it's still not working, check the current SteamTools server status.")}
       ${faqItem("How do I stop Windows Defender from deleting my bypass/fix files?", `
         <ol>
