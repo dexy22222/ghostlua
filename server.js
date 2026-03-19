@@ -27,6 +27,8 @@ function steamApiGet(iface, method, version, params) {
 
 const ROOT = __dirname;
 const PORT = 3456;
+const ALERTS_FILE    = path.join(ROOT, 'data', 'alerts.json');
+const ANALYTICS_FILE = path.join(ROOT, 'data', 'analytics.json');
 
 const MIME = {
   '.html': 'text/html',
@@ -40,6 +42,18 @@ const MIME = {
   '.ico':  'image/x-icon',
   '.webp': 'image/webp',
 };
+
+function readJsonFile(filePath, fallback, cb) {
+  fs.readFile(filePath, 'utf8', (err, raw) => {
+    if (err) { cb(fallback); return; }
+    try { cb(JSON.parse(raw)); }
+    catch { cb(fallback); }
+  });
+}
+
+function writeJsonFile(filePath, value) {
+  fs.writeFile(filePath, JSON.stringify(value, null, 2), () => {});
+}
 
 // ── Database helpers ──────────────────────────────────────────────────────────
 let _dbCache   = null;
@@ -73,11 +87,11 @@ function loadDatabase(cb) {
   });
 }
 
-function sendJSON(res, status, obj) {
+function sendJSON(res, status, obj, cacheControl = 'no-cache') {
   const body = JSON.stringify(obj);
   res.writeHead(status, {
     'Content-Type':  'application/json',
-    'Cache-Control': 'no-cache',
+    'Cache-Control': cacheControl,
   });
   res.end(body);
 }
@@ -151,7 +165,7 @@ http.createServer((req, res) => {
       if (!q) { sendJSON(res, 400, { error: 'Missing q parameter' }); return; }
       const storeUrl = `${STEAM_STORE}/api/storesearch/?term=${encodeURIComponent(q)}&l=english&cc=US`;
       httpsGetJson(storeUrl).then(data => {
-        sendJSON(res, 200, data);
+        sendJSON(res, 200, data, 'public, max-age=60');
       }).catch(() => sendJSON(res, 502, { error: 'Steam store unavailable' }));
       return;
     }
@@ -271,6 +285,68 @@ http.createServer((req, res) => {
       return;
     }
 
+    // POST /api/alerts/subscribe  — body: { email, appId, gameName }
+    if (rawPath === '/api/alerts/subscribe' && req.method === 'POST') {
+      let body = '';
+      req.on('data', c => body += c);
+      req.on('end', () => {
+        let payload;
+        try { payload = JSON.parse(body); } catch { sendJSON(res, 400, { ok: false, error: 'Invalid JSON' }); return; }
+
+        const email = String(payload.email || '').trim().toLowerCase();
+        const appId = Number(payload.appId);
+        const gameName = String(payload.gameName || '').trim();
+
+        if (!/^\S+@\S+\.\S+$/.test(email)) { sendJSON(res, 400, { ok: false, error: 'Invalid email' }); return; }
+        if (!Number.isFinite(appId) || appId <= 0) { sendJSON(res, 400, { ok: false, error: 'Invalid appId' }); return; }
+
+        readJsonFile(ALERTS_FILE, { subscriptions: [] }, store => {
+          if (!Array.isArray(store.subscriptions)) store.subscriptions = [];
+          const key = `${email}:${appId}`;
+          const existing = store.subscriptions.some(s => `${s.email}:${s.appId}` === key);
+          if (!existing) {
+            store.subscriptions.unshift({ email, appId, gameName, addedAt: Date.now() });
+            store.subscriptions = store.subscriptions.slice(0, 5000);
+            writeJsonFile(ALERTS_FILE, store);
+          }
+          sendJSON(res, 200, { ok: true, existing });
+        });
+      });
+      return;
+    }
+
+    // POST /api/analytics/event — body: { event, ... }
+    if (rawPath === '/api/analytics/event' && req.method === 'POST') {
+      let body = '';
+      req.on('data', c => body += c);
+      req.on('end', () => {
+        let payload;
+        try { payload = JSON.parse(body); } catch { sendJSON(res, 400, { ok: false, error: 'Invalid JSON' }); return; }
+
+        const event = String(payload.event || '').trim().slice(0, 60);
+        if (!/^[a-z0-9_]+$/i.test(event)) { sendJSON(res, 400, { ok: false, error: 'Invalid event' }); return; }
+
+        readJsonFile(ANALYTICS_FILE, { events: {} }, store => {
+          if (!store.events || typeof store.events !== 'object') store.events = {};
+          const rec = store.events[event] || { count: 0, lastSeen: 0 };
+          rec.count += 1;
+          rec.lastSeen = Date.now();
+          store.events[event] = rec;
+          writeJsonFile(ANALYTICS_FILE, store);
+          sendJSON(res, 200, { ok: true });
+        });
+      });
+      return;
+    }
+
+    // GET /api/analytics/funnel
+    if (rawPath === '/api/analytics/funnel') {
+      readJsonFile(ANALYTICS_FILE, { events: {} }, store => {
+        sendJSON(res, 200, { ok: true, events: store.events || {} }, 'no-store');
+      });
+      return;
+    }
+
     sendJSON(res, 404, { error: 'Unknown API endpoint' });
     return;
   }
@@ -293,7 +369,18 @@ http.createServer((req, res) => {
       return;
     }
     const ext = path.extname(filePath).toLowerCase();
-    res.writeHead(200, { 'Content-Type': MIME[ext] || 'text/plain' });
+    let cacheControl = 'no-cache';
+    if (urlPath === '/data/games.json') {
+      cacheControl = 'public, max-age=900';
+    } else if (urlPath === '/data/stats.json' || urlPath === '/data/top-games.json' || urlPath === '/data/trending.json') {
+      cacheControl = 'public, max-age=300';
+    } else if (ext === '.css' || ext === '.js' || ext === '.png' || ext === '.jpg' || ext === '.jpeg' || ext === '.svg' || ext === '.webp' || ext === '.ico') {
+      cacheControl = 'public, max-age=86400';
+    }
+    res.writeHead(200, {
+      'Content-Type': MIME[ext] || 'text/plain',
+      'Cache-Control': cacheControl,
+    });
     res.end(data);
   });
 

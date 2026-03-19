@@ -3,7 +3,13 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>GhostLua — Free Steam Lua Scripts</title>
+  <title>GhostLua - Steam Game Catalog</title>
+  <meta name="description" id="meta-description" content="Search the GhostLua Steam game catalog by AppID, title, tags, and size." />
+  <link rel="canonical" id="canonical-link" href="https://ghostlua.com/" />
+  <meta property="og:title" id="og-title" content="GhostLua - Steam Game Catalog" />
+  <meta property="og:description" id="og-description" content="Search games quickly and open detail views by AppID." />
+  <meta property="og:url" id="og-url" content="https://ghostlua.com/" />
+  <meta property="og:type" content="website" />
   <link rel="icon" type="image/png" href="images/ghost.svg" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
   <script src="https://cdn.tailwindcss.com"></script>
@@ -174,35 +180,34 @@
         <div id="filter-panel" class="hidden filter-panel">
           <div class="filter-panel-header">
             <i class="fa-solid fa-sliders text-neutral-500 text-[10px]"></i>
-            <span>Random Filters</span>
+            <span>Search Filters</span>
             <button onclick="resetFilters()" class="ml-auto text-neutral-700 hover:text-neutral-400 text-[10px] transition-colors">Reset</button>
           </div>
           <div class="filter-panel-body">
             <div class="filter-row">
-              <span class="filter-label"><i class="fa-regular fa-star text-[9px] mr-1 text-neutral-700"></i>Reviews</span>
-              <div class="filter-chips" id="filter-reviews">
-                <button class="filter-chip active" data-val="any" onclick="setFilter('reviews','any',this)">Any</button>
-                <button class="filter-chip" data-val="100" onclick="setFilter('reviews','100',this)">100+</button>
-                <button class="filter-chip" data-val="1000" onclick="setFilter('reviews','1000',this)">1K+</button>
-                <button class="filter-chip" data-val="10000" onclick="setFilter('reviews','10000',this)">10K+</button>
+              <span class="filter-label"><i class="fa-solid fa-layer-group text-[9px] mr-1 text-neutral-700"></i>Content</span>
+              <div class="filter-chips" id="filter-content">
+                <button class="filter-chip active" data-val="any" onclick="setFilter('content','any',this)">Any</button>
+                <button class="filter-chip" data-val="game" onclick="setFilter('content','game',this)">Game</button>
+                <button class="filter-chip" data-val="dlc" onclick="setFilter('content','dlc',this)">DLC</button>
+                <button class="filter-chip" data-val="software" onclick="setFilter('content','software',this)">Software</button>
               </div>
             </div>
             <div class="filter-row">
-              <span class="filter-label"><i class="fa-solid fa-thumbs-up text-[9px] mr-1 text-neutral-700"></i>Rating</span>
-              <div class="filter-chips" id="filter-rating">
-                <button class="filter-chip active" data-val="any" onclick="setFilter('rating','any',this)">Any</button>
-                <button class="filter-chip" data-val="90" onclick="setFilter('rating','90',this)">90%+</button>
-                <button class="filter-chip" data-val="80" onclick="setFilter('rating','80',this)">80%+</button>
-                <button class="filter-chip" data-val="70" onclick="setFilter('rating','70',this)">70%+</button>
+              <span class="filter-label"><i class="fa-solid fa-hard-drive text-[9px] mr-1 text-neutral-700"></i>Size</span>
+              <div class="filter-chips" id="filter-size">
+                <button class="filter-chip active" data-val="any" onclick="setFilter('size','any',this)">Any</button>
+                <button class="filter-chip" data-val="small" onclick="setFilter('size','small',this)">0-10GB</button>
+                <button class="filter-chip" data-val="mid" onclick="setFilter('size','mid',this)">10-50GB</button>
+                <button class="filter-chip" data-val="large" onclick="setFilter('size','large',this)">50GB+</button>
               </div>
             </div>
             <div class="filter-row">
-              <span class="filter-label"><i class="fa-solid fa-gamepad text-[9px] mr-1 text-neutral-700"></i>Metacritic</span>
-              <div class="filter-chips" id="filter-meta">
-                <button class="filter-chip active" data-val="any" onclick="setFilter('meta','any',this)">Any</button>
-                <button class="filter-chip" data-val="90" onclick="setFilter('meta','90',this)">90+</button>
-                <button class="filter-chip" data-val="80" onclick="setFilter('meta','80',this)">80+</button>
-                <button class="filter-chip" data-val="70" onclick="setFilter('meta','70',this)">70+</button>
+              <span class="filter-label"><i class="fa-solid fa-tag text-[9px] mr-1 text-neutral-700"></i>Tag</span>
+              <div class="filter-chips" id="filter-tag">
+                <button class="filter-chip active" data-val="any" onclick="setFilter('tag','any',this)">Any</button>
+                <button class="filter-chip" data-val="Online Fix" onclick="setFilter('tag','Online Fix',this)">Online Fix</button>
+                <button class="filter-chip" data-val="Workshop" onclick="setFilter('tag','Workshop',this)">Workshop</button>
               </div>
             </div>
             <div class="filter-row">
@@ -348,6 +353,19 @@
 
       <!-- Feature tags -->
       <div id="dl-tags" class="dl-tags-row" style="display:none"></div>
+
+      <!-- Email alerts -->
+      <div class="dl-alert-box">
+        <div class="dl-alert-title">
+          <i class="fa-regular fa-envelope text-[10px]"></i>
+          Get update alerts for this game
+        </div>
+        <form id="dl-alert-form" class="dl-alert-form" onsubmit="subscribeGameAlert(event)">
+          <input id="dl-alert-email" type="email" class="dl-alert-input" placeholder="you@example.com" required />
+          <button id="dl-alert-btn" type="submit" class="dl-alert-btn">Notify Me</button>
+        </form>
+        <p id="dl-alert-status" class="dl-alert-status hidden"></p>
+      </div>
 
       <!-- Database checking state -->
       <div id="dl-checking" class="hidden">
@@ -540,6 +558,7 @@
   </div>
 
   <script src="js/ui.js"></script>
+  <script src="js/analytics.js"></script>
   <script src="js/history.js"></script>
   <script src="js/download.js"></script>
   <script src="js/search.js"></script>

@@ -15,6 +15,8 @@ const REDIRECT_HOSTS = new Set([
 // Resets on new deployments. For persistence across deploys, bind a KV namespace
 // named COMMUNITY_KV in wrangler.toml and the worker will automatically use it.
 const _community = new Map();
+const _alerts = new Map();
+const _analytics = new Map();
 
 // ── Security Headers (Rust Protection) ──────────────────────────
 const SECURITY_HEADERS = {
@@ -94,6 +96,16 @@ function rateLimitResp(rl) {
   );
 }
 
+function withCacheHeaders(response, cacheControl) {
+  const headers = new Headers(response.headers);
+  headers.set('Cache-Control', cacheControl);
+  return new Response(response.body, {
+    status: response.status,
+    statusText: response.statusText,
+    headers,
+  });
+}
+
 // ── Steam API helper ─────────────────────────────────────────────
 async function steamApi(path, params, key) {
   const url = new URL(STEAM_BASE + path);
@@ -166,6 +178,72 @@ export default {
       }
     }
 
+    // ── Alerts API ────────────────────────────────────────────────
+    if (url.pathname === '/api/alerts/subscribe' && request.method === 'POST') {
+      const rl = checkRateLimit(ip, 'api');
+      if (!rl.allowed) return rateLimitResp(rl);
+
+      try {
+        const body = await request.json();
+        const email = String(body.email || '').trim().toLowerCase();
+        const appId = Number(body.appId);
+        const gameName = String(body.gameName || '').trim();
+
+        if (!/^\S+@\S+\.\S+$/.test(email)) {
+          return json({ ok: false, error: 'Invalid email' }, 400, corsHeaders(origin));
+        }
+        if (!Number.isFinite(appId) || appId <= 0) {
+          return json({ ok: false, error: 'Invalid appId' }, 400, corsHeaders(origin));
+        }
+
+        let subs = _alerts.get(appId) || [];
+        const existing = subs.some(s => s.email === email);
+        if (!existing) {
+          subs.unshift({ email, gameName, addedAt: Date.now() });
+          subs = subs.slice(0, 1000);
+          _alerts.set(appId, subs);
+        }
+
+        if (env.ALERTS_KV) {
+          await env.ALERTS_KV.put(`alerts:${appId}`, JSON.stringify(subs));
+        }
+
+        return json({ ok: true, existing }, 200, corsHeaders(origin));
+      } catch (e) {
+        return json({ ok: false, error: e.message || 'Subscription failed' }, 500, corsHeaders(origin));
+      }
+    }
+
+    // ── Analytics API ─────────────────────────────────────────────
+    if (url.pathname === '/api/analytics/event' && request.method === 'POST') {
+      try {
+        const body = await request.json();
+        const event = String(body.event || '').trim().slice(0, 60);
+        if (!/^[a-z0-9_]+$/i.test(event)) {
+          return json({ ok: false, error: 'Invalid event' }, 400, corsHeaders(origin));
+        }
+
+        const rec = _analytics.get(event) || { count: 0, lastSeen: 0 };
+        rec.count += 1;
+        rec.lastSeen = Date.now();
+        _analytics.set(event, rec);
+
+        if (env.ANALYTICS_KV) {
+          await env.ANALYTICS_KV.put(`funnel:${event}`, JSON.stringify(rec));
+        }
+
+        return json({ ok: true }, 200, corsHeaders(origin));
+      } catch (e) {
+        return json({ ok: false, error: e.message || 'Analytics failed' }, 500, corsHeaders(origin));
+      }
+    }
+
+    if (url.pathname === '/api/analytics/funnel' && request.method === 'GET') {
+      const events = {};
+      for (const [k, v] of _analytics.entries()) events[k] = v;
+      return json({ ok: true, events }, 200, corsHeaders(origin));
+    }
+
     // ── Steam API proxy ──────────────────────────────────────────
     if (url.pathname.startsWith('/api/steam/') && env.STEAM_API_KEY) {
       const rl = checkRateLimit(ip, 'api');
@@ -206,7 +284,11 @@ export default {
           return json({ error: 'Unknown endpoint' }, 404, corsHeaders(origin));
         }
 
-        return json(data, 200, corsHeaders(origin));
+        const headers = corsHeaders(origin);
+        if (url.pathname === '/api/steam/search') {
+          headers['Cache-Control'] = 'public, max-age=60, s-maxage=120';
+        }
+        return json(data, 200, headers);
       } catch (e) {
         return json({ error: e.message || 'Steam API error' }, 500, corsHeaders(origin));
       }
@@ -277,8 +359,29 @@ export default {
 
     // ── Static assets ────────────────────────────────────────────
     if (env.ASSETS) {
-      const res = await env.ASSETS.fetch(request);
-      return addSecHeaders(res);
+      let assetRequest = request;
+      let cacheControl = '';
+
+      if (request.method === 'GET') {
+        if (url.pathname === '/data/games.json') {
+          assetRequest = new Request(request, { cf: { cacheEverything: true, cacheTtl: 3600 } });
+          cacheControl = 'public, max-age=900, s-maxage=3600, stale-while-revalidate=86400';
+        } else if (
+          url.pathname === '/data/stats.json' ||
+          url.pathname === '/data/top-games.json' ||
+          url.pathname === '/data/trending.json'
+        ) {
+          assetRequest = new Request(request, { cf: { cacheEverything: true, cacheTtl: 900 } });
+          cacheControl = 'public, max-age=300, s-maxage=900, stale-while-revalidate=7200';
+        } else if (/\.(css|js|png|jpg|jpeg|svg|webp|ico)$/i.test(url.pathname)) {
+          assetRequest = new Request(request, { cf: { cacheEverything: true, cacheTtl: 86400 } });
+          cacheControl = 'public, max-age=86400, s-maxage=86400, immutable';
+        }
+      }
+
+      const res = await env.ASSETS.fetch(assetRequest);
+      const secured = addSecHeaders(res);
+      return cacheControl ? withCacheHeaders(secured, cacheControl) : secured;
     }
 
     return json({ error: 'Not found' }, 404);

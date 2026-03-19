@@ -1,9 +1,69 @@
-// ── State ─────────────────────────────────────────────────────────────────────
+// Download modal + SEO game pages + alerts funnel
 window.currentDownloadGame = null;
 
-// ── Entry point — called when user clicks a game ──────────────────────────────
-// Lua files are generated 100% client-side from the AppID, so every Steam
-// game is always available — no database check needed.
+const _defaultSeo = {
+  title: document.title,
+  description: document.getElementById('meta-description')?.getAttribute('content') || '',
+  ogTitle: document.getElementById('og-title')?.getAttribute('content') || '',
+  ogDescription: document.getElementById('og-description')?.getAttribute('content') || '',
+  ogUrl: document.getElementById('og-url')?.getAttribute('content') || '',
+  canonical: document.getElementById('canonical-link')?.getAttribute('href') || '',
+};
+
+function _setMetaById(id, attr, value) {
+  const el = document.getElementById(id);
+  if (el && value != null) el.setAttribute(attr, value);
+}
+
+function _setGameSeo(appId, name) {
+  const safeName = String(name || `Steam App ${appId}`);
+  const url = new URL(location.href);
+  url.searchParams.set('game', String(appId));
+  const canonical = `https://ghostlua.com/?game=${encodeURIComponent(appId)}`;
+
+  document.title = `${safeName} (AppID ${appId}) | GhostLua`;
+  _setMetaById('meta-description', 'content', `${safeName} - Steam AppID ${appId}. Browse tags, size, and details on GhostLua.`);
+  _setMetaById('og-title', 'content', `${safeName} | GhostLua`);
+  _setMetaById('og-description', 'content', `Steam AppID ${appId}. Open game details and quick actions.`);
+  _setMetaById('og-url', 'content', canonical);
+  _setMetaById('canonical-link', 'href', canonical);
+
+  history.replaceState({ ...(history.state || {}), game: appId }, '', url.toString());
+}
+
+function _resetSeo() {
+  document.title = _defaultSeo.title;
+  _setMetaById('meta-description', 'content', _defaultSeo.description);
+  _setMetaById('og-title', 'content', _defaultSeo.ogTitle);
+  _setMetaById('og-description', 'content', _defaultSeo.ogDescription);
+  _setMetaById('og-url', 'content', _defaultSeo.ogUrl);
+  _setMetaById('canonical-link', 'href', _defaultSeo.canonical || 'https://ghostlua.com/');
+
+  const url = new URL(location.href);
+  if (url.searchParams.has('game')) {
+    url.searchParams.delete('game');
+    history.replaceState(history.state || {}, '', url.toString());
+  }
+}
+
+function _setAlertStatus(message, ok = false) {
+  const el = document.getElementById('dl-alert-status');
+  if (!el) return;
+  el.textContent = message;
+  el.classList.remove('hidden', 'ok', 'err');
+  el.classList.add(ok ? 'ok' : 'err');
+}
+
+function _resetAlertBox() {
+  const el = document.getElementById('dl-alert-status');
+  if (el) {
+    el.textContent = '';
+    el.classList.add('hidden');
+    el.classList.remove('ok', 'err');
+  }
+}
+
+// Entry point - called when user clicks a game
 function quickDownload(appId, name, info, size, tags) {
   openDownloadModal(appId, name, info, size, tags);
   saveToHistory(name, appId);
@@ -11,7 +71,6 @@ function quickDownload(appId, name, info, size, tags) {
 }
 
 function _prepare(appId, size, tags) {
-  // Brief "checking" animation for UX, then immediately go ready
   _setModalState('checking');
   setTimeout(() => {
     _updateModalMeta(appId, size || '', tags || []);
@@ -19,17 +78,14 @@ function _prepare(appId, size, tags) {
   }, 420);
 }
 
-// ── Modal state machine ───────────────────────────────────────────────────────
-// Uses style.display directly to avoid CSS specificity conflicts with #id rules.
 function _setModalState(state) {
   const checkingEl = document.getElementById('dl-checking');
   const notFoundEl = document.getElementById('dl-not-found');
-  const infoEl     = document.getElementById('dl-info');
-  const statusEl   = document.getElementById('dl-status');
-  const doneEl     = document.getElementById('dl-done');
-  const btn        = document.getElementById('dl-btn');
+  const infoEl = document.getElementById('dl-info');
+  const statusEl = document.getElementById('dl-status');
+  const doneEl = document.getElementById('dl-done');
+  const btn = document.getElementById('dl-btn');
 
-  // Hide everything first via style to beat ID-selector CSS specificity
   [checkingEl, notFoundEl, infoEl, statusEl, doneEl].forEach(el => {
     if (el) el.style.display = 'none';
   });
@@ -43,7 +99,7 @@ function _setModalState(state) {
   } else if (state === 'ready') {
     if (infoEl) infoEl.style.display = 'block';
     if (btn) {
-      btn.style.display = 'flex'; // override static 'hidden' class
+      btn.style.display = 'flex';
       btn.disabled = false;
       btn.innerHTML = '<i class="fa-solid fa-download text-xs"></i> Download .lua';
     }
@@ -65,7 +121,7 @@ function _updateModalMeta(appId, size, tags) {
       const cls = `dl-tag dl-tag-${t.toLowerCase().replace(/\s+/g, '-')}`;
       if (t === 'Online Fix') {
         const url = `https://online-fix.me/?s=${encodeURIComponent(gameName)}`;
-        return `<a href="${url}" target="_blank" rel="noopener" class="${cls} dl-tag-link" title="Get Online Fix">🔗 ${t}</a>`;
+        return `<a href="${url}" target="_blank" rel="noopener" class="${cls} dl-tag-link" title="Get Online Fix">${t}</a>`;
       }
       return `<span class="${cls}">${t}</span>`;
     }).join('');
@@ -73,12 +129,10 @@ function _updateModalMeta(appId, size, tags) {
   }
 }
 
-// ── Open / close modal ────────────────────────────────────────────────────────
 function openDownloadModal(appId, name, info, size, tags) {
   window.currentDownloadGame = { appId, name, info };
 
   const img = document.getElementById('dl-img');
-  // Try multiple Steam image CDN formats for best coverage
   img.src = `https://cdn.akamai.steamstatic.com/steam/apps/${appId}/header.jpg`;
   img.onerror = function() {
     this.src = `https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/${appId}/header.jpg`;
@@ -86,16 +140,15 @@ function openDownloadModal(appId, name, info, size, tags) {
   };
   img.style.opacity = '1';
 
-  // Set SteamRip search link
   const srBtn = document.getElementById('dl-steamrip-btn');
   if (srBtn) srBtn.href = `https://steamrip.com/?s=${encodeURIComponent(name)}`;
 
   document.getElementById('dl-title').textContent = name;
 
-  const dlCount = (info || '').replace(' downloads', '').replace('↑ Trending', '').trim();
+  const dlCount = (info || '').replace(' downloads', '').replace('Trending', '').trim();
   let meta = `AppID: ${appId}`;
   if (size) meta += ` · ${size}`;
-  if (dlCount && /^\d/.test(dlCount)) meta += ` · ↓${dlCount}`;
+  if (dlCount && /^\d/.test(dlCount)) meta += ` · ?${dlCount}`;
   document.getElementById('dl-appid').textContent = meta;
 
   const tagsEl = document.getElementById('dl-tags');
@@ -105,7 +158,7 @@ function openDownloadModal(appId, name, info, size, tags) {
       const cls = `dl-tag dl-tag-${t.toLowerCase().replace(/\s+/g, '-')}`;
       if (t === 'Online Fix') {
         const url = `https://online-fix.me/?s=${encodeURIComponent(name)}`;
-        return `<a href="${url}" target="_blank" rel="noopener" class="${cls} dl-tag-link" title="Get Online Fix">🔗 ${t}</a>`;
+        return `<a href="${url}" target="_blank" rel="noopener" class="${cls} dl-tag-link" title="Get Online Fix">${t}</a>`;
       }
       return `<span class="${cls}">${t}</span>`;
     }).join('');
@@ -117,39 +170,86 @@ function openDownloadModal(appId, name, info, size, tags) {
 
   document.getElementById('download-modal').classList.remove('hidden');
   document.getElementById('search-results').classList.add('hidden');
+
+  _resetAlertBox();
+  _setGameSeo(appId, name);
+  window.trackEvent?.('game_opened', { appId, has_tags: !!(tags && tags.length) });
 }
 
 function hideDownloadModal() {
   document.getElementById('download-modal').classList.add('hidden');
   window.currentDownloadGame = null;
+  _resetSeo();
 }
 
-// ── User clicks the Download button inside the modal ─────────────────────────
+async function subscribeGameAlert(ev) {
+  ev?.preventDefault?.();
+  if (!window.currentDownloadGame) return;
+
+  const emailEl = document.getElementById('dl-alert-email');
+  const btnEl = document.getElementById('dl-alert-btn');
+  const email = String(emailEl?.value || '').trim().toLowerCase();
+  const appId = window.currentDownloadGame.appId;
+  const gameName = window.currentDownloadGame.name;
+
+  if (!/^\S+@\S+\.\S+$/.test(email)) {
+    _setAlertStatus('Enter a valid email address.');
+    return;
+  }
+
+  try {
+    if (btnEl) {
+      btnEl.disabled = true;
+      btnEl.textContent = 'Saving...';
+    }
+
+    const res = await fetch('/api/alerts/subscribe', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email, appId, gameName }),
+    });
+    const data = await res.json().catch(() => ({}));
+
+    if (!res.ok || !data.ok) throw new Error(data.error || 'Unable to save alert');
+
+    _setAlertStatus(data.existing ? 'You are already subscribed for this game.' : 'Alert saved. We will notify you about updates.', true);
+    window.trackEvent?.('alert_subscribed', { appId, existing: !!data.existing });
+  } catch (err) {
+    _setAlertStatus(err.message || 'Failed to save alert.');
+    window.trackEvent?.('alert_subscribe_error', { appId });
+  } finally {
+    if (btnEl) {
+      btnEl.disabled = false;
+      btnEl.textContent = 'Notify Me';
+    }
+  }
+}
+
 function startDownload() {
   if (!window.currentDownloadGame) return;
   const { appId, name } = window.currentDownloadGame;
+  window.trackEvent?.('download_started', { appId });
   generateAndDownloadLua(appId, name);
   _runProgressAnimation();
 }
 
-// ── Cosmetic progress animation ───────────────────────────────────────────────
 function _runProgressAnimation() {
-  const btn        = document.getElementById('dl-btn');
-  const infoEl     = document.getElementById('dl-info');
-  const statusEl   = document.getElementById('dl-status');
+  const btn = document.getElementById('dl-btn');
+  const infoEl = document.getElementById('dl-info');
+  const statusEl = document.getElementById('dl-status');
   const progressEl = document.getElementById('dl-progress');
   const statusIcon = document.getElementById('dl-status-icon');
   const statusText = document.getElementById('dl-status-text');
-  const pctEl      = document.getElementById('dl-percent');
+  const pctEl = document.getElementById('dl-percent');
 
-  if (btn)    btn.style.display  = 'none';
+  if (btn) btn.style.display = 'none';
   if (infoEl) infoEl.style.display = 'none';
   statusEl.style.display = 'block';
   if (progressEl) progressEl.style.width = '0%';
 
   const steps = [
-    [30,  250, 'Generating .lua file…'],
-    [70,  350, 'Packaging…'],
+    [30, 250, 'Generating .lua file...'],
+    [70, 350, 'Packaging...'],
     [100, 280, 'Done!'],
   ];
 
@@ -157,7 +257,7 @@ function _runProgressAnimation() {
     if (i >= steps.length) {
       if (statusIcon) statusIcon.className = 'fa-solid fa-circle-check text-emerald-400';
       if (statusText) statusText.textContent = 'File downloaded!';
-      if (pctEl)      pctEl.textContent = '100%';
+      if (pctEl) pctEl.textContent = '100%';
       setTimeout(() => {
         statusEl.style.display = 'none';
         document.getElementById('dl-done').style.display = 'block';
@@ -166,20 +266,19 @@ function _runProgressAnimation() {
     }
     const [pct, delay, text] = steps[i];
     if (progressEl) progressEl.style.width = pct + '%';
-    if (pctEl)      pctEl.textContent = pct + '%';
+    if (pctEl) pctEl.textContent = pct + '%';
     if (statusText) statusText.textContent = text;
     setTimeout(() => runStep(i + 1), delay);
   }
   runStep(0);
 }
 
-// ── Lua generator ─────────────────────────────────────────────────────────────
 function generateAndDownloadLua(appId, name) {
   const now = new Date().toISOString().split('T')[0];
   const lua = `-- Generated by OpenLua\n-- Game: ${name}\n-- AppID: ${appId}\n-- Date: ${now}\n\naddappid(${appId}, 1, "")\n`;
   const blob = new Blob([lua], { type: 'application/octet-stream' });
-  const url  = URL.createObjectURL(blob);
-  const a    = document.createElement('a');
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
   a.style.cssText = 'position:fixed;top:-200px;left:-200px;';
   a.href = url;
   a.setAttribute('download', appId + '.lua');
@@ -190,3 +289,25 @@ function generateAndDownloadLua(appId, name) {
     URL.revokeObjectURL(url);
   }, 10000);
 }
+
+function openGameFromQuery() {
+  const url = new URL(location.href);
+  const gameParam = url.searchParams.get('game');
+  if (!gameParam) return;
+  const appId = Number(gameParam);
+  if (!Number.isFinite(appId)) return;
+
+  const pool = [
+    ...(window.allGames || []),
+    ...(window.topGames || []),
+    ...(window.trendingGames || []),
+  ];
+  const g = pool.find(x => Number(x.appId) === appId);
+  if (!g) return;
+
+  quickDownload(g.appId, g.name || `Steam App ${g.appId}`, g.downloads || 'Catalog', g.size || '', g.tags || []);
+  window.trackEvent?.('seo_game_landing', { appId: g.appId });
+}
+
+window.subscribeGameAlert = subscribeGameAlert;
+window.openGameFromQuery = openGameFromQuery;

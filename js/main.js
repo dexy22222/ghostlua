@@ -232,6 +232,7 @@ async function _loadGameDatabase() {
     window.allGames = data;
     const el = document.getElementById('db-count');
     if (el) el.textContent = `${data.length.toLocaleString()} games`;
+    window.openGameFromQuery?.();
   } catch {
     // Fallback to stats.json if games.json unavailable
     try {
@@ -239,6 +240,7 @@ async function _loadGameDatabase() {
       const data = await res.json();
       const el   = document.getElementById('db-count');
       if (el && data.totalGames) el.textContent = `${data.totalGames.toLocaleString()} games`;
+      window.openGameFromQuery?.();
     } catch {}
   }
 }
@@ -246,6 +248,7 @@ async function _loadGameDatabase() {
 // ── Init ──────────────────────────────────────────────────────────────────────
 document.addEventListener('DOMContentLoaded', () => {
   renderGames();
+  window.openGameFromQuery?.();
   _loadGameDatabase();
   setInterval(cyclePlaceholder,  3500);
   setInterval(_updateChartLive, 60000);
